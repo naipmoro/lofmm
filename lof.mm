@@ -1,30 +1,34 @@
-$( lof.mm  version 0.1.0 
+$( lof.mm    version 0.1.0    Copyright (c) 2015 naipmoro
+   This file is made available under the MIT License: 
+   http://opensource.org/licenses/MIT
+
    lof.mm presents metamath derivations of the Primary Algebra from
    Spencer-Brown, G. (1969) Laws of Form (Allen & Unwin, London),
    hereafter cited as LoF.
 
-   The 'arithmetic' of LoF is based on two equations:
+   The 'arithmetic' of LoF consists of the two equations:
 
    I1. Number   () () = ()
    I2. Order    (())  =   
   
-   The algebra derived from these equations has at least two significant 
+   The algebra derived from this base has at least two significant 
    models: Boolean algebra and sentential logic. Briefly,
    
-   T            <=>    ()
-   F            <=>     
-   NOT p        <=>    (p)
-   p OR q       <=>    p q   
-   p AND q      <=>    ((p) (q))   
-   p IMPLIES q  <=>    (p) q
+   T             <=>    ()
+   F             <=>     
+   NOT p         <=>    (p)
+   p OR q        <=>    p q   
+   p AND q       <=>    ((p) (q))   
+   p IMPLIES q   <=>    (p) q
+   p IFF q       <=>    ((p) (q)) (p q)
    etc.
 
-   Spencer-Brown begins with the following axioms:
+   Spencer-Brown begins with the axioms:
 
    J1. Position                 ((p)p) = 
    J2. Transposition            ((pr)(qr)) = ((p)(q))r
 
-   and deduces the series of consequences (LoF, pp. 28-35):
+   and deduces the following consequences (LoF, pp. 28-35):
 
    C1. Reflexion                ((a)) = a
    C2. Generation               (ab)b = (a)b
@@ -36,9 +40,9 @@ $( lof.mm  version 0.1.0
    C8. Modified transposition   ((a)(br)(cr)) = ((a)(b)(c))((a)(r))
    C9. Crosstransposition       (((b)(r))((a)(r))((x)r)((y)r)) = ((r)ab)(rxy)
 
-   Later consequences depend on earlier ones. Although the metamath version 1
-   follows this general approach, it doesn't attempt to mimic Spencer-Brown's 
-   specific steps.
+   While the first metamath version below follows this general approach, it 
+   doesn't attempt to mimic Spencer-Brown's specific steps. For example, 
+   theorem C5 is derived before C4.
 $)
 
   $( constants $)
@@ -59,9 +63,12 @@ $)
   tx $f form x $.
   ty $f form y $.
 
-$( ---------- The 3 types of form ---------- $)
+$( The 3 types of form. This can be considered a recursive definition
+   of 'form'. $)
 
-  $( Empty space is a form. $)
+  $( Empty space is a form. This is the distinctive contribution of
+     LoF to the notation of logic, and what gives it its exceptional
+     computational power. $)
     void  $a form $.
 
   $( A form bounded by parentheses, aka a crossed form, is a form. $)
@@ -70,13 +77,9 @@ $( ---------- The 3 types of form ---------- $)
   $( The juxtaposition of two forms is a form. $)
     juxt  $a form p q $.
 
-  $( We consider a wff to be p = q, but don't actually need to specify it. 
-     The following 4 axioms .................. $)
 
 $( ---------- general axioms of equality ----------- $)
    
-  
- 
   $( Two things equal to the same thing are equal to each other. $)  
   ${  
     tran.1     $e |- p = q   $.
@@ -84,21 +87,22 @@ $( ---------- general axioms of equality ----------- $)
     tran       $a |- p = r   $.  
   $}
    
-  $( --------- LoF specific axioms of equality ----------- $)
+  $( --------- LoF specific axioms of equality ---------- $)
 
   $( The principle of substitution is a general axiom of equality, but it's
      expressed differently in each formal system, depending on that system's 
-     laws of combination. LoF's two laws of combination are concatenation and
+     laws of combination. LoF's two laws of combination are juxtaposition
      and enclosure by parentheses. The principle can also be expressed 
      constructively: applying the same operation to equal things results 
      in equal things. $)
   
+  $( Right-juxtaposing a form to two equal forms leaves two equal forms. $)
   ${  
     sub.1      $e |- p = q $.
     sub        $a |- p r = q r $.  
   $}
  
-  $( Boundary equality - equal forms that are crossed remain equal. $)
+  $( Crossing two equal forms leaves two equal forms. $)
   ${  
     beq.1      $e |- p = q $.
     beq        $a |- ( p ) = ( q ) $.  
