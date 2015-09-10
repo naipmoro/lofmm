@@ -1,48 +1,49 @@
-$( lof.mm    version 0.1.0    Copyright (c) 2015 naipmoro
-   This file is made available under the MIT License: 
-   http://opensource.org/licenses/MIT
+$( 
+  lof.mm    version 0.1.0    Copyright (c) 2015 naipmoro
+  This file is made available under the MIT License: 
+  http://opensource.org/licenses/MIT
 
-   lof.mm presents metamath derivations of the Primary Algebra from
-   Spencer-Brown, G. (1969) Laws of Form (Allen & Unwin, London),
-   hereafter cited as LoF.
+  lof.mm presents metamath derivations of the Primary Algebra from
+  Spencer-Brown, G. (1969) Laws of Form (Allen & Unwin, London),
+  hereafter cited as LoF.
 
-   The 'arithmetic' of LoF consists of the two equations:
+  The 'arithmetic' of LoF consists of two equations:
 
-   I1. Number   () () = ()
-   I2. Order    (())  =   
+  I1. Number   () () = ()
+  I2. Order    (())  =   
   
-   The algebra derived from this base has at least two significant 
-   models: Boolean algebra and sentential logic. Briefly,
+  The algebra derived from this basis has a number of models, most
+  significantly Boolean algebra and sentential logic. Briefly,
    
-   T             <=>    ()
-   F             <=>     
-   NOT p         <=>    (p)
-   p OR q        <=>    p q   
-   p AND q       <=>    ((p) (q))   
-   p IMPLIES q   <=>    (p) q
-   p IFF q       <=>    ((p) (q)) (p q)
-   etc.
+  T             <=>    ()
+  F             <=>     
+  NOT p         <=>    (p)
+  p OR q        <=>    p q   
+  p AND q       <=>    ((p) (q))   
+  p IMPLIES q   <=>    (p) q
+  p IFF q       <=>    ((p) (q)) (p q)
+  etc.
 
-   Spencer-Brown begins with the axioms:
+  Spencer-Brown begins with the axioms:
 
-   J1. Position                 ((p)p) = 
-   J2. Transposition            ((pr)(qr)) = ((p)(q))r
+  J1. Position                 ((p)p) = 
+  J2. Transposition            ((pr)(qr)) = ((p)(q))r
 
-   and deduces the following consequences (LoF, pp. 28-35):
+  and deduces the following consequences (LoF, pp. 28-35):
 
-   C1. Reflexion                ((a)) = a
-   C2. Generation               (ab)b = (a)b
-   C3. Integration              ()a = ()
-   C4. Occultation              ((a)b)a = a
-   C5. Iteration                aa = a
-   C6. Extension                ((a)(b))((a)b) = a
-   C7. Echelon                  (((a)b)c) = (ac)((b)c)
-   C8. Modified transposition   ((a)(br)(cr)) = ((a)(b)(c))((a)(r))
-   C9. Crosstransposition       (((b)(r))((a)(r))((x)r)((y)r)) = ((r)ab)(rxy)
+  C1. Reflexion                ((a)) = a
+  C2. Generation               (ab)b = (a)b
+  C3. Integration              ()a = ()
+  C4. Occultation              ((a)b)a = a
+  C5. Iteration                aa = a
+  C6. Extension                ((a)(b))((a)b) = a
+  C7. Echelon                  (((a)b)c) = (ac)((b)c)
+  C8. Modified transposition   ((a)(br)(cr)) = ((a)(b)(c))((a)(r))
+  C9. Crosstransposition       (((b)(r))((a)(r))((x)r)((y)r)) = ((r)ab)(rxy)
 
-   While the first metamath version below follows this general approach, it 
-   doesn't attempt to mimic Spencer-Brown's specific steps. For example, 
-   theorem C5 is derived before C4.
+  While the first metamath version below follows this approach, it does not
+  attempt to mimic Spencer-Brown's specific steps. For example, theorem C5
+  is derived before C4.
 $)
 
   $( constants $)
@@ -63,22 +64,38 @@ $)
   tx $f form x $.
   ty $f form y $.
 
-$( The 3 types of form. This can be considered a recursive definition
-   of 'form'. $)
+  $( The next three statements will provide a recursive definition of 'form': 
+       1. Empty space is a form.
+       2. If p is a form, enclosing it in parentheses as (p) is a form. 
+       3. If p and q are forms, juxtaposing them as p q is a form. 
 
-  $( Empty space is a form. This is the distinctive contribution of
-     LoF to the notation of logic, and what gives it its exceptional
-     computational power. $)
-    void  $a form $.
+     LoF is a 2-dimensional topological formalism in which a closed curve 
+     (a boundary) is the only object of investigation, and in which the only 
+     properties of interest are whether a given boundary is inside or outside 
+     of another boundary, intersecting boundaries not being allowed. Variables 
+     p q r ... will range over possible arrangements of boundaries (which are 
+     the forms). Given the topological nature of the system, note that the
+     'operations' are implicitly commutative. It is now common to call LoF
+     a 'boundary algebra'.  
 
-  $( A form bounded by parentheses, aka a crossed form, is a form. $)
-    crss  $a form ( p ) $.
+     Transferring this system to a linear notation involves compromises. As 
+     has become standard, we use matching parentheses (...) to represent 
+     boundaries. And we need to explicitly state the commutative property.
+  $)
+    
+  void  $a form $.         $( Empty space is a form. $)
+  encl  $a form ( p ) $.   $( If p is a form, then (p) is a form. $)
+  juxt  $a form p q $.     $( If p and q are forms, then p q is a form. $)
 
-  $( The juxtaposition of two forms is a form. $)
-    juxt  $a form p q $.
 
-
-$( ---------- general axioms of equality ----------- $)
+  $( ---------- Axioms of equality ----------- 
+   
+     We never define the symbol '=' but it will turn out to obey the expected
+     laws of an equivalence relation. Specifically, from the general axiom
+     that two things equal to the same thing are equal to each other and from 
+     the commutativity of LoF, we derive the reflexivity, symmetry, and 
+     transitivity of '='. 
+  $)
    
   $( Two things equal to the same thing are equal to each other. $)  
   ${  
@@ -89,20 +106,20 @@ $( ---------- general axioms of equality ----------- $)
    
   $( --------- LoF specific axioms of equality ---------- $)
 
-  $( The principle of substitution is a general axiom of equality, but it's
-     expressed differently in each formal system, depending on that system's 
-     laws of combination. LoF's two laws of combination are juxtaposition
-     and enclosure by parentheses. The principle can also be expressed 
-     constructively: applying the same operation to equal things results 
-     in equal things. $)
+  $( The principle of substitution can be considered a general axiom of 
+     equality, but it's expressed differently in each formal system, depending 
+     on that system's laws of combination. LoF's two laws of combination are 
+     juxtaposition and enclosure by parentheses. The principle can also be 
+     expressed constructively: applying the same operation to equal things 
+     results in equal things. $)
   
-  $( Right-juxtaposing a form to two equal forms leaves two equal forms. $)
+  $( Appending the same form to two equal forms leaves two equal forms. $)
   ${  
     sub.1      $e |- p = q $.
     sub        $a |- p r = q r $.  
   $}
  
-  $( Crossing two equal forms leaves two equal forms. $)
+  $( Enclosing two equal forms leaves two equal forms. $)
   ${  
     beq.1      $e |- p = q $.
     beq        $a |- ( p ) = ( q ) $.  
@@ -112,14 +129,14 @@ $( ---------- general axioms of equality ----------- $)
     comm       $a |- p q = q p $.
   
   
-$( ----------- Equality consequences ----------- $)
+  $( ----------- Equality consequences ----------- $)
 
-  $( Equality is reflexive. $)
+  $( '=' is reflexive. $)
     id         $p |- p = p  $=
       ( void comm ) ABC $.
       $( [6-Sep-2015] $)
 
-  $( Equality is symmetric. $)
+  $( '=' is symmetric. $)
   ${  
     sym.1      $e |- p = q $.
     sym        $p |- q = p $=
@@ -127,7 +144,7 @@ $( ----------- Equality consequences ----------- $)
       $( [2-Sep-2015] $)
   $}
 
-  $( Equality is transitive. $)
+  $( '=' is transitive. $)
   ${  
     trans.1    $e |- p = q $.
     trans.2    $e |- q = r $.
@@ -163,10 +180,10 @@ $( ----------- Equality consequences ----------- $)
       ( juxt sub comm trans subr ) CAFDFCDFBFDBFZCFADFZKCLBDFKABDEGBDHIJCKHI $.
       $( [2-Sep-2015] $)
     subb1      $p |- w ( u p v ) x = w ( u q v ) x $=  
-      ( juxt crss subst beq ) CAHDHZICBHDHZIEFLMABCDGJKJ $.
+      ( juxt encl subst beq ) CAHDHZICBHDHZIEFLMABCDGJKJ $.
       $( [2-Sep-2015] $)
     subb3      $p |- w ( u p v ) x = w ( v q u ) x  $= 
-      ( juxt crss substr beq subst ) CAHDHZIDBHCHZIEFMNABCDGJKL $.
+      ( juxt encl substr beq subst ) CAHDHZIDBHCHZIEFMNABCDGJKL $.
       $( [2-Sep-2015] $)
   $}
 
@@ -200,110 +217,115 @@ $( ----------- Equality consequences ----------- $)
       $( [3-Sep-2015] $)
   $}
 
-  $( It's hard to know where to stop with auxiliary theorems. For example,
-     if we bother to prove the two statements
+  $( It's hard to know where to stop with auxiliary theorems. If we choose 
+     to prove the two additional statements:
          $p |- x ( v p u ) w = w ( u r v ) x $.
          $p |- x ( v q u ) w = w ( u r v ) x $.
      we can reduce the proof of C9-cro by a hundred steps. $)
 
-$( -------------- Laws of Form ---------------- $)
+$( 
+=============================================================================
+                          Laws of Form, Version 1 
+============================================================================= 
+$)
 
-J1-pos $a |- ( ( p ) p ) = $.
-J2-tra $a |- ( ( p r ) ( q r ) ) = ( ( p ) ( q ) ) r $.
+  J1-pos $a |- ( ( p ) p ) = $.
+  J2-tra $a |- ( ( p r ) ( q r ) ) = ( ( p ) ( q ) ) r $.
 
-$( ----------- reflexion ------------- $)
+  $( ----------- reflexion ------------- $)
 
-C1-ref $p |- ( ( p ) ) =  p $=
+  C1-ref $p |- ( ( p ) ) =  p $=
 
-  ( crss juxt void J1-pos sub sym J2-tra tran commbx subb1 trans quadbx ) ABZBZ
-  OACBZNACBZCBZAOAOCBZBZROONCBZSCBZTONOCBZSCBZUBOUAOCZUDUEOUADONEZFGNAOHIUCUADS
-  DDNODDDDDJKLUADDSDDUFKLSPDQDDDDDAODDDDDJQDAEGMLROBOCBZACAONAHUGDAOEFLL $.
-  $( [6-Sep-2015] $)
-
-
-$( ----------- generation ------------ $)
-
-C2-gen $p |- ( p q ) q = ( p ) q $=
-
-  ( crss juxt J2-tra void C1-ref quadbx trans J1-pos subb1 tranr ) ACZBDZCZBCZB
-  DCZDCZABDCBDZNRMCZPCZDCBDSMPBETAUABFFFFBAGBGHIROCNQFOFFFBJKNGIL $.
-  $( [6-Sep-2015] $)
+    ( encl juxt void J1-pos sub sym J2-tra tran commbx subb1 trans quadbx ) ABZ
+    BZOACBZNACBZCBZAOAOCBZBZROONCBZSCBZTONOCBZSCBZUBOUAOCZUDUEOUADONEZFGNAOHIUC
+    UADSDDNODDDDDJKLUADDSDDUFKLSPDQDDDDDAODDDDDJQDAEGMLROBOCBZACAONAHUGDAOEFLL 
+    $.
+    $( [6-Sep-2015] $)
 
 
-$( ---------- integration- ---------- $)
+  $( ----------- generation ------------ $)
 
-C3-int $p |- ( ) p  = ( ) $=
+  C2-gen $p |- ( p q ) q = ( p ) q $=
 
-  ( crss juxt void C2-gen C1-ref J1-pos beq tranr ) ABACZDBZACKDAEJBZBJKJFLDAGH
-  II $.
-  $( [6-Sep-2015] $)
+    ( encl juxt J2-tra void C1-ref quadbx trans J1-pos subb1 tranr ) ACZBDZCZBC
+    ZBDCZDCZABDCBDZNRMCZPCZDCBDSMPBETAUABFFFFBAGBGHIROCNQFOFFFBJKNGIL $.
+    $( [6-Sep-2015] $)
 
 
-$( ----------- iteration ------------ $)
+  $( ---------- integration- ---------- $)
 
-C5-ite $p |- p p = p $=
+  C3-int $p |- ( ) p  = ( ) $=
+
+    ( encl juxt void C2-gen C1-ref J1-pos beq tranr ) ABACZDBZACKDAEJBZBJKJFLDA
+    GHII $.
+    $( [6-Sep-2015] $)
+
+
+  $( ----------- iteration ------------ $)
+
+  C5-ite $p |- p p = p $=
   
-( crss juxt C2-gen void C1-ref subst trans J1-pos tranr ) ABZACBZACZAACZAMKBZ
-  ACNKADOAEAAFGHLEEAAIGJ $.
-  $( [6-Sep-2015] $)
+    ( encl juxt C2-gen void C1-ref subst trans J1-pos tranr ) ABZACBZACZAACZAMK
+    BZACNKADOAEAAFGHLEEAAIGJ $.
+    $( [6-Sep-2015] $)
 
 
-$( ----------- occultation ------------ $)
+  $( ----------- occultation ------------ $)
 
-C4-occ $p |- ( ( p ) q ) p = p $=
+  C4-occ $p |- ( ( p ) q ) p = p $=
 
-  ( crss juxt void J2-tra C1-ref subb1 trans C5-ite tranr C3-int subst ) ACZBDC
-  ADZECZCZADZAOPBCZCZDZCADZRONSADCZDCZUBAADZCZUCDCZOUDUGNTDCADOASAFTBNEEABGHIUF
-  NEUCEEUEAEEEEAJHHKESAFIUAPEEEATLHIQEEAEGMI $.
-  $( [6-Sep-2015] $)
-
-
-$( ----------- extension ------------ $)
-
-C6-ext $p |- ( ( p ) ( q ) ) ( ( p ) q ) = p  $=
-
-  ( crss juxt C1-ref void commbx quadbx J2-tra trans beq J1-pos subb1 tranr ) A
-  CZBCZDCZOBDCZDZOCZASCZCZSTSEUBPCPDCZODZCTUAUDUAPODCZBODCZDCUDQUERUFFFFFFOPFFF
-  FFGOBFFFFFGHPBOIJKUCFFOFFPLMJNAEJ $.
-  $( [6-Sep-2015] $)
+    ( encl juxt void J2-tra C1-ref subb1 trans C5-ite tranr C3-int subst ) ACZB
+    DCADZECZCZADZAOPBCZCZDZCADZRONSADCZDCZUBAADZCZUCDCZOUDUGNTDCADOASAFTBNEEABG
+    HIUFNEUCEEUEAEEEEAJHHKESAFIUAPEEEATLHIQEEAEGMI $.
+    $( [6-Sep-2015] $)
 
 
-$( ---------- echelon ----------- $)
+  $( ----------- extension ------------ $)
 
-C7-ech $p |- ( ( ( p ) q ) r ) = ( p r ) ( ( q ) r ) $=
+  C6-ext $p |- ( ( p ) ( q ) ) ( ( p ) q ) = p  $=
 
-  ( juxt crss J2-tra beq void C1-ref subb1 trans tranr ) ACDEBEZCDEDZEZEZAEZBDE
-  CDZEZNPQMEZDECDZESOUAAMCFGUARTBQHHCBIJGKNIL $.
-  $( [6-Sep-2015] $)
-
-
-$( ---------- modified transposition ----------- $)
-
-C8-mod $p |- ( ( p ) ( q s ) ( r s ) ) = 
-             ( ( p ) ( q ) ( r ) ) ( ( p ) ( s ) ) $=
-
-  ( crss juxt void C1-ref subb1 J2-tra beq subb3 tranr C7-ech commbx quad trans
-  ) AEZBDFEZFCDFEZFEZBEZCEZFZEDFZEZRFEZRUBFUCFEZRDEZFEZFZRSTFZEZEZFEUAUGUNULRGG
-  GULHIUNUFRGGGUMUEBCDJKLMUGUDRFEZUIRFEZFUKUDDRNUOUHUPUJUDRGGGGGOUIRGGGGGOPQQ
-  $.
-  $( [6-Sep-2015] $)
+    ( encl juxt C1-ref void commbx quadbx J2-tra trans beq J1-pos subb1 tranr ) 
+    ACZBCZDCZOBDCZDZOCZASCZCZSTSEUBPCPDCZODZCTUAUDUAPODCZBODCZDCUDQUERUFFFFFFOP
+    FFFFFGOBFFFFFGHPBOIJKUCFFOFFPLMJNAEJ $.
+    $( [6-Sep-2015] $)
 
 
-$( ------------ crosstransposition ----------- $)
+  $( ---------- echelon ----------- $)
 
-C9-cro $p |- ( ( ( q ) ( p ) ) ( ( r ) ( p ) ) ( ( s ) p ) ( ( t ) p ) ) =
-             ( ( p ) q r ) ( p s t )  $=
+  C7-ech $p |- ( ( ( p ) q ) r ) = ( p r ) ( ( q ) r ) $=
 
-  ( crss juxt C1-ref J2-tra quadbx trans tranr subb3 C8-mod subb1 C2-gen commbx
-  void beq C6-ext ) BFZAFZGFZCFZUBGFZGZDFZAGFZGEFZAGFZGFDEGZFZAGZFZUCGUEGFZUBBG
-  CGFZADGEGFZGZUHUJGZUNUFRRRUSFZFUSUNUSHUTUMUTUGFZUIFZGFAGUMUGUIAIVADVBERRRRADH
-  EHJKSLMUOUNBGCGZFZUKAGFZGZURUOVDULFZAGZFGZVFUOVDUNAGZFGZVIUOVDUNUBFZGFZGZVKUO
-  UNUAFZGUDFZGFVMGVNUMUAUDUBNVOBVPCUNRRRVMBHCHJKVLAUNRVDRAHZOKVJVHRRVDRULAPOKVG
-  UKRAVDRUKHOKVCVEGFVEGZVFURVCVEPVRAULGFZBGCGZUQGFVEGZURUNVSVEUQRBCGZRRVEULARRR
-  RRQUKARRRRRQJVLULGFZBGCGZVLDGEGFZGFVEGZWAURWDVTWEUQRRRRVEVLARULRWBVQOVLARUKRR
-  VQOJWFWCWEGZBGCGFVEGZURWBWEWCRRRVEQWHUPVEGURWGUBRWBRVEUBUKTOUKARRRUPRQKKLKLKK
-  $.
-  $( [6-Sep-2015] $)
+    ( juxt encl J2-tra beq void C1-ref subb1 trans tranr ) ACDEBEZCDEDZEZEZAEZB
+    DECDZEZNPQMEZDECDZESOUAAMCFGUARTBQHHCBIJGKNIL $.
+    $( [6-Sep-2015] $)
+
+
+  $( ---------- modified transposition ----------- $)
+
+  C8-mod $p |- ( ( p ) ( q s ) ( r s ) ) = 
+               ( ( p ) ( q ) ( r ) ) ( ( p ) ( s ) ) $=
+
+    ( encl juxt void C1-ref subb1 J2-tra beq subb3 tranr C7-ech commbx quad 
+    trans ) AEZBDFEZFCDFEZFEZBEZCEZFZEDFZEZRFEZRUBFUCFEZRDEZFEZFZRSTFZEZEZFEUAU
+    GUNULRGGGULHIUNUFRGGGUMUEBCDJKLMUGUDRFEZUIRFEZFUKUDDRNUOUHUPUJUDRGGGGGOUIRG
+    GGGGOPQQ $.
+    $( [6-Sep-2015] $)
+
+
+  $( ------------ crosstransposition ----------- $)
+
+  C9-cro $p |- ( ( ( q ) ( p ) ) ( ( r ) ( p ) ) ( ( s ) p ) ( ( t ) p ) ) =
+               ( ( p ) q r ) ( p s t )  $=
+
+    ( encl juxt C1-ref J2-tra quadbx trans tranr subb3 C8-mod subb1 C2-gen 
+    commbx void beq C6-ext ) BFZAFZGFZCFZUBGFZGZDFZAGFZGEFZAGFZGFDEGZFZAGZFZUCG
+    UEGFZUBBGCGFZADGEGFZGZUHUJGZUNUFRRRUSFZFUSUNUSHUTUMUTUGFZUIFZGFAGUMUGUIAIVA
+    DVBERRRRADHEHJKSLMUOUNBGCGZFZUKAGFZGZURUOVDULFZAGZFGZVFUOVDUNAGZFGZVIUOVDUN
+    UBFZGFZGZVKUOUNUAFZGUDFZGFVMGVNUMUAUDUBNVOBVPCUNRRRVMBHCHJKVLAUNRVDRAHZOKVJ
+    VHRRVDRULAPOKVGUKRAVDRUKHOKVCVEGFVEGZVFURVCVEPVRAULGFZBGCGZUQGFVEGZURUNVSVE
+    UQRBCGZRRVEULARRRRRQUKARRRRRQJVLULGFZBGCGZVLDGEGFZGFVEGZWAURWDVTWEUQRRRRVEV
+    LARULRWBVQOVLARUKRRVQOJWFWCWEGZBGCGFVEGZURWBWEWCRRRVEQWHUPVEGURWGUBRWBRVEUB
+    UKTOUKARRRUPRQKKLKLKK $.
+    $( [6-Sep-2015] $)
 
 
 
