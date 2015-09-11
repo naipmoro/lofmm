@@ -7,43 +7,24 @@ $(
   Spencer-Brown, G. (1969) Laws of Form (Allen & Unwin, London),
   hereafter cited as LoF.
 
-  The 'arithmetic' of LoF consists of two equations:
+  The algebra of LoF has a number of models, most significantly Boolean 
+  algebra, equational logic, and sentential logic, so it may be of some 
+  interest to logicians. From the perspective of metamath, it is a non-trivial 
+  system that requires, indeed is based on, the empty substitution.
 
-  I1. Number   () () = ()
-  I2. Order    (())  =   
-  
-  The algebra derived from this basis has a number of models, most
-  significantly Boolean algebra and sentential logic. Briefly,
-   
-  T             <=>    ()
-  F             <=>     
-  NOT p         <=>    (p)
-  p OR q        <=>    p q   
-  p AND q       <=>    ((p) (q))   
-  p IMPLIES q   <=>    (p) q
-  p IFF q       <=>    ((p) (q)) (p q)
-  etc.
+  LoF is a 2D topological notation in which closed curves (boundaries) 
+  are the symbols under investigation, and in which the only properties of 
+  interest are whether a given boundary is inside or outside of another 
+  boundary, intersecting boundaries not being allowed. Variables p q r ... 
+  will range over possible arrangements of boundaries (which we call 'forms'). 
+  It is now common to call LoF a 'boundary algebra'. 
 
-  Spencer-Brown begins with the axioms:
-
-  J1. Position                 ((p)p) = 
-  J2. Transposition            ((pr)(qr)) = ((p)(q))r
-
-  and deduces the following consequences (LoF, pp. 28-35):
-
-  C1. Reflexion                ((a)) = a
-  C2. Generation               (ab)b = (a)b
-  C3. Integration              ()a = ()
-  C4. Occultation              ((a)b)a = a
-  C5. Iteration                aa = a
-  C6. Extension                ((a)(b))((a)b) = a
-  C7. Echelon                  (((a)b)c) = (ac)((b)c)
-  C8. Modified transposition   ((a)(br)(cr)) = ((a)(b)(c))((a)(r))
-  C9. Crosstransposition       (((b)(r))((a)(r))((x)r)((y)r)) = ((r)ab)(rxy)
-
-  While the first metamath version below follows this approach, it does not
-  attempt to mimic Spencer-Brown's specific steps. For example, theorem C5
-  is derived before C4.
+  Given the topological nature of the system, the operations are implicitly
+  commutative. Transferring this to a linear notation involves compromises. 
+  As has become standard, we use matching parentheses (...) to represent 
+  boundaries. And we will need to explicitly state the commutative property. 
+  The consequences of this last point are particularly onerous, as properties 
+  that are obvious in the 2D notation have to be spelled out case by case.  
 $)
 
   $( constants $)
@@ -64,23 +45,11 @@ $)
   tx $f form x $.
   ty $f form y $.
 
-  $( The next three statements will provide a recursive definition of 'form': 
+  $( ----------- Recursive Definition of Form ------------
+
        1. Empty space is a form.
-       2. If p is a form, enclosing it in parentheses as (p) is a form. 
-       3. If p and q are forms, juxtaposing them as p q is a form. 
-
-     LoF is a 2-dimensional topological formalism in which a closed curve 
-     (a boundary) is the only object of investigation, and in which the only 
-     properties of interest are whether a given boundary is inside or outside 
-     of another boundary, intersecting boundaries not being allowed. Variables 
-     p q r ... will range over possible arrangements of boundaries (which are 
-     the forms). Given the topological nature of the system, note that the
-     'operations' are implicitly commutative. It is now common to call LoF
-     a 'boundary algebra'.  
-
-     Transferring this system to a linear notation involves compromises. As 
-     has become standard, we use matching parentheses (...) to represent 
-     boundaries. And we need to explicitly state the commutative property.
+       2. If p is a form, enclosing it in parentheses is a form. 
+       3. If p and q are forms, juxtaposing them is a form. 
   $)
     
   void  $a form $.         $( Empty space is a form. $)
@@ -88,48 +57,52 @@ $)
   juxt  $a form p q $.     $( If p and q are forms, then p q is a form. $)
 
 
-  $( ---------- Axioms of equality ----------- 
-   
-     We never define the symbol '=' but it will turn out to obey the expected
-     laws of an equivalence relation. Specifically, from the general axiom
-     that two things equal to the same thing are equal to each other and from 
-     the commutativity of LoF, we derive the reflexivity, symmetry, and 
-     transitivity of '='. 
+  $( --------------- Common Axioms ---------------- 
+     
+     We require the following 4 axioms for the machinery of symbol
+     manipulation. 
   $)
    
-  $( Two things equal to the same thing are equal to each other. $)  
+  $( Two things equal to the same thing are equal to each other.
+     This is Euclid's first Common Notion. $)  
   ${  
     tran.1     $e |- p = q   $.
     tran.2     $e |- r = q   $.
     tran       $a |- p = r   $.  
   $}
    
-  $( --------- LoF specific axioms of equality ---------- $)
-
-  $( The principle of substitution can be considered a general axiom of 
-     equality, but it's expressed differently in each formal system, depending 
-     on that system's laws of combination. LoF's two laws of combination are 
-     juxtaposition and enclosure by parentheses. The principle can also be 
-     expressed constructively: applying the same operation to equal things 
-     results in equal things. $)
+  $( Euclid's second and third Common Notions are specific to quantity, 
+     so not exactly common. We can rephrase them as: doing the same thing 
+     (e.g., applying the same operation) to equal things leaves equal things. 
+     Applying this to LoF's two operations, enclosure and juxtaposition,
+     leads to the next two axioms. $)
   
-  $( Appending the same form to two equal forms leaves two equal forms. $)
-  ${  
-    sub.1      $e |- p = q $.
-    sub        $a |- p r = q r $.  
-  $}
- 
-  $( Enclosing two equal forms leaves two equal forms. $)
+  $( Enclosing equal forms leaves equal forms. 
+     We can consider this a definition of boundary equality. $)
   ${  
     beq.1      $e |- p = q $.
     beq        $a |- ( p ) = ( q ) $.  
   $}
 
-  $( Commutativity of LoF $)
+  $( Juxtaposing the same form with equal forms leaves equal forms. $)
+  ${  
+    sub.1      $e |- p = q $.
+    sub        $a |- p r = q r $.  
+  $}
+ 
+  $( -------- Commutativity of LoF -------- $)
     comm       $a |- p q = q p $.
   
-  
-  $( ----------- Equality consequences ----------- $)
+ 
+  $( =========== Consequences from the axioms =============
+
+     We never define the symbol '=' but it will turn out to obey the expected
+     laws of an equivalence relation. Specifically, from the common notion 
+     that two things equal to the same thing are equal to each other and from 
+     the commutativity of LoF, we derive the reflexivity, symmetry, and 
+     transitivity of '='. Note that such a derivation is not possible in a
+     traditional formal system without additional axioms -- it is the ability 
+     to reference the empty (or void) form that allows it here. $)
 
   $( '=' is reflexive. $)
     id         $p |- p = p  $=
@@ -153,6 +126,9 @@ $)
       $( [2-Sep-2015] $)
   $}
  
+  $( Now comes a series of auxiliary theorems that will actually be the
+     workhorses in subsequent derivations. $)
+
   $( A commuted - or reversed - version of tran. $)
   ${  
     tranr.1    $e |- p = q $.
@@ -226,6 +202,44 @@ $)
 $( 
 =============================================================================
                           Laws of Form, Version 1 
+
+  The 'arithmetic' of LoF consists of two equations (LoF, p. 12):
+
+  I1. Number   () () = ()
+  I2. Order    (())  =   
+  
+  The algebra derived from this basis has a number of models, most
+  significantly Boolean algebra and sentential logic. Briefly,
+   
+  T             <=>    ()
+  F             <=>     
+  NOT p         <=>    (p)
+  p OR q        <=>    p q   
+  p AND q       <=>    ((p) (q))   
+  p IMPLIES q   <=>    (p) q
+  p IFF q       <=>    ((p) (q)) (p q)
+  etc.
+
+  Spencer-Brown begins with the axioms:
+
+  J1. Position                 ((p)p) = 
+  J2. Transposition            ((pr)(qr)) = ((p)(q))r
+
+  and deduces the following consequences (LoF, pp. 28-35):
+
+  C1. Reflexion                ((a)) = a
+  C2. Generation               (ab)b = (a)b
+  C3. Integration              ()a = ()
+  C4. Occultation              ((a)b)a = a
+  C5. Iteration                aa = a
+  C6. Extension                ((a)(b))((a)b) = a
+  C7. Echelon                  (((a)b)c) = (ac)((b)c)
+  C8. Modified transposition   ((a)(br)(cr)) = ((a)(b)(c))((a)(r))
+  C9. Crosstransposition       (((b)(r))((a)(r))((x)r)((y)r)) = ((r)ab)(rxy)
+
+  While this version follows LoF, it does not attempt to mimic Spencer-Brown's 
+  specific steps. For example, theorem C5 is derived before C4 (Note that we 
+  retain LoF's original numbering of theorems to facilitate cross-references).
 ============================================================================= 
 $)
 
