@@ -1,14 +1,14 @@
 $( 
-  lof.mm    version 0.1.0    Copyright (c) 2015 naipmoro
+  lof.mm    version 0.1.0    Copyright (C) 2015 naipmoro
   This file is made available under the MIT License: 
   http://opensource.org/licenses/MIT
 
   lof.mm presents metamath derivations of the Primary Algebra from
   Spencer-Brown, G. (1969) Laws of Form (Allen & Unwin, London),
-  hereafter cited as LoF.
+  hereafter cited as LoF. Spencer-Brown will be cited as SB.
 
   The algebra of LoF has a number of models, most significantly Boolean 
-  algebra, and sentential logic, so it may be of some interest to logicians. 
+  algebra and sentential logic, so it may be of some interest to logicians. 
   From the perspective of metamath, it is a non-trivial example of a system 
   that requires, indeed is based on, the empty substitution.
 
@@ -21,8 +21,8 @@ $(
 
   Given the topological nature of the system, its operations are implicitly
   commutative. Transferring this to a linear notation involves compromises. 
-  As has become standard, we use matching parentheses (...) to represent 
-  boundaries. And we will need to explicitly state the commutative property. 
+  As has become standard, I use matching parentheses (...) to represent 
+  boundaries. And I will need to explicitly state the commutative property. 
   The ramifications of this last point are felt throughout the ensuing 
   derivations, as properties that are obvious in the 2D notation have to be 
   spelled out case by case in auxiliary theorems.  
@@ -64,7 +64,7 @@ $)
 
   $( Common Axioms --------------------------------------------   
      One goal of lof.mm is exploring the minimal basis for a boundary algebra.
-     The next 4 axioms are the machinery of symbol manipulation. 
+     The next 4 axioms are the required machinery of symbol manipulation. 
   $)
       
   ${  
@@ -102,7 +102,7 @@ $)
  
   $( Consequences from the common axioms ----------------------
 
-     We never define the symbol '=' but it will turn out to obey the expected
+     The symbol '=' is never defined but it will turn out to obey the expected
      laws of an equivalence relation. Specifically, from the common notion 
      that two things equal to the same thing are equal to each other and from 
      the commutativity of LoF, we derive the reflexivity, symmetry, and 
@@ -170,10 +170,28 @@ $)
       $( [2-Sep-2015] $)
   $}
 
+  ${
+    rep.1  $e |- p = q $.
+    rep.2  $e |- u p v = y $.
+    $( Direct substitution into an equation. $)
+    rep    $p |- u q v = y $= 
+      ( juxt subst eucr ) CAHDHCBHDHEABCDFIGJ $.
+      $( [18-Sep-2015] $)
+  $}
+
+  ${
+    repbx.1  $e |- p = q $.
+    repbx.2  $e |- w ( u p v ) x = y $.
+    $( Direct substitution into an bounded-form equation. $)
+    repbx    $p |- w ( u q v ) x = y $= 
+      ( juxt encl subb1 eucr ) ECAJDJKJFJECBJDJKJFJGABCDEFHLIM $.
+      $( [18-Sep-2015] $)
+  $}
+
   ${ 
     quad.1  $e |- p = q $.
     quad.2  $e |- r = s $.
-    $( Allows a double substitution of equivalent forms. $)
+    $( Double substitution of equivalent forms. $)
     quad    $p |- p r = q s $=
       ( juxt void subst trans ) ACGBCGBDGABHCEICDBHFIJ $.
       $( [2-Sep-2015] $)
@@ -181,7 +199,7 @@ $)
 
   ${
     ins.1  $e |- p q = r s $.
-    $( Allows us to insert the same form into two equivalent forms. $)
+    $( Insert the same form into two equivalent forms. $)
     ins    $p |- p v q = r v s $= 
       ( juxt ax-cmm ax-sub subr trans ) AEGZBGZECGZDGZCEGZDGMEAGZBGOLQBAEHIABGC
       DGEFJKNPDECHIK $.
@@ -204,7 +222,7 @@ $)
   ${ 
     quadbx.1  $e |- p = q $.
     quadbx.2  $e |- r = s $.
-    $( Allows a double substitution into a bounded and extended form. $)
+    $( Double substitution into a bounded and extended form. $)
     quadbx    $p |- x ( u p v r w ) y = x ( u q v s w ) y  $= 
       ( juxt quad ins subb1 ) AFLCLBFLDLEGHIACBDFABCDJKMNO $.
       $( [3-Sep-2015] $)
@@ -245,8 +263,10 @@ $)
   p IMPLIES q   <=>    (p (q))
   p IFF q       <=>    (((p) (q)) (p q))  
 
-  Unless otherwise noted, we always use the first interpretation (juxtaposition
-  as disjunction). Spencer-Brown begins with the axioms:
+  Unless otherwise noted, I use the first interpretation (juxtaposition as
+  disjunction). When referencing the second interpretation, I refer to it as
+  the 'dual interpretation' or just the 'dual'. Spencer-Brown begins with the 
+  axioms:
 
   J1. Position                 ((p) p) = 
   J2. Transposition            ((p r) (q r)) = ((p) (q)) r
@@ -265,9 +285,9 @@ $)
                                ((r) a b) (r x y)
 
   One of the goals of lof.mm is establishing different bases (initial 
-  axioms) for the algebra. Since we wish to do it in one file, we need a
+  axioms) for the algebra. Since I wish to do this in one file, I need a
   way to reference the same theorems in different base systems. Retaining
-  Spencer-Brown's original numbering scheme for cross-referencing, we label 
+  Spencer-Brown's original numbering scheme for cross-referencing, I label 
   the theorems as ck.n (jk.n), where ck (jk) refers to LoF's Ck (Jk) and n 
   refers to the base system under consideration. In other words, ck.n = ck.m 
   (jk.n = jk.m) for all n, m. LoF's system will have n = 0.
@@ -360,10 +380,15 @@ $)
   $( =======================================================================
      
      System_1
-     In the notes to his derivation of System_0, Spencer-Brown comments 
-     that proceeding from a base of C5 and C6 (instead of J1 and J2), while 
-     possible, 'is both difficult and tedious' [LoF, p.89]. The reader can
-     decide whether Sytem_1 is any more complicated than System_0. $)
+     Although System_0 is the only one demonstrated by SB, and so can be
+     considered canonical, he mentions the possibility of proceeding from 
+     a base of C5 and C6 (instead of J1 and J2), but dismisses it as 'both 
+     difficult and tedious' [LoF, p.89]. Readers can decide for themselves 
+     whether System_1 is any more complicated than System_0. The virtue of 
+     this base, as noted by SB, is the need for only two distinct variables. 
+
+     The derivation below ends at the point where both j1.1 and j2.1 are 
+     proved, since that establishes c5.1 and c6.1 as a legitimate base. $)
   
   $( Sytem_1 base --------------------------------------------- $)
 
@@ -372,78 +397,65 @@ $)
 
   $( System_1 consequences ------------------------------------ $)
 
-  $( Lemma for proof of c1.1 $)
-  c1lem.1   $p |- p ( ( q ) p ) = p q $= 
+  $( Lemma for proof of c1.1. Under the dual interpretation, this is mildly
+     reminiscent of modus ponens: (p & (p -> q)) <-> (p & q). $)
+  lem1.1  $p |- p ( ( q ) p ) = p q $= 
+    ( encl juxt void cmmbx subst cmmx trans c5.1 ax-sub c6.1 quad eucr ) ACZBCZ
+    DCZOBDCZDZPODCZPADCZDZDZAUADZABDUCSUADZUDUCQQDZRUADZDZUEUCSQUADDUHTQSUAPOEE
+    EEEFGRQQEUAHIUFQUGQJKISAUAABLZKISAUBBUIBALMN $.
+    $( [17-Sep-2015] $)
 
-     tp encl tq encl juxt encl tp encl tq juxt encl juxt
-     tq encl tp encl juxt encl tq encl tp juxt encl juxt juxt
-     tp tq encl tp juxt encl juxt
-     tp tq juxt
+  c1.1  $p |- ( ( p ) ) = p $=
+    ( void lem1.1 ) BAC $.
+    $( [17-Sep-2015] $)
 
-     tp encl tq encl juxt encl tp encl tq juxt encl juxt
-     tq encl tp encl juxt encl tq encl tp juxt encl juxt juxt
-     tp encl tq encl juxt encl tp encl tq juxt encl juxt tq encl tp juxt encl juxt
-     tp tq encl tp juxt encl juxt
+  $( The LoF I2 arithmetic initial. This is also directly derivable from the
+     base by plugging void values into c6.1, followed by two applications of 
+     c5.1. $)
+  i2.1  $p |- ( ( ) ) = $=
+    ( void c1.1 ) AB $.
+    $( [17-Sep-2015] $)
 
-     tp encl tq encl juxt encl tp encl tq juxt encl juxt
-     tq encl tp encl juxt encl tq encl tp juxt encl juxt juxt
-     tp encl tq encl juxt encl tp encl tq encl juxt encl juxt
-     tp encl tq juxt encl tq encl tp juxt encl juxt juxt
-     tp encl tq encl juxt encl tp encl tq juxt encl juxt tq encl tp juxt encl juxt
- 
-     tp encl tq encl juxt encl tp encl tq juxt encl juxt
-     tq encl tp encl juxt encl tq encl tp juxt encl juxt juxt
-                               $( p=((p)(q))((p)q)((q)(p))((q)p) $)
-     tp encl tq encl juxt encl tp encl tq juxt encl juxt
-     tp encl tq encl juxt encl tq encl tp juxt encl juxt juxt
-                                $( q=((p)(q))((p)q)((p)(q))((q)p) $)
-     tp encl tq encl juxt encl tp encl tq encl juxt encl juxt
-     tp encl tq juxt encl tq encl tp juxt encl juxt juxt
-                                $( r=((p)(q))((p)(q))((p)q)((q)p) $)    
-    
-    tq encl tp encl juxt encl                 $( p=((q)(p)) $)
-    tp encl tq encl juxt encl                 $( q=((p)(q)) $)
-    tp encl tq encl juxt encl tp encl tq juxt encl juxt $( u=((p)(q))((p)q) $)
-    tq encl tp juxt encl                                $( v=((q)p) $)
-    tq encl tp encl void void void void void cmmbx   $( $e=((q)(p))=((p)(q)) $)
-    subst $( ((p)(q))((p)q)((q)(p))((q)p)=((p)(q))((p)q)((p)(q))((q)p)  $)
+  $( One of the two equations from Base_0. $)
+  j1.1  $p |- ( ( p ) p ) = $=
+    ( encl juxt void c1.1 subr ax-cmm i2.1 subb1 quad c6.1 eucr ax-beq trans )
+    ABZACZBDBZBZDPQOOBZCZPQSAOAEFSOCZTQSOGROCBZRACBZCUAQUBSUCORDDODDHIRDDADDHIJ
+    QAKLLLMHN $.
+    $( [17-Sep-2015] $)
 
-    tp encl tq juxt encl                $( p=((p)q) $)
-    tp encl tq encl juxt encl           $( q=((p)(q)) $)
-    tp encl tq encl juxt encl  void  tq encl tp juxt encl  $( u v w $)
-    
-    cmmx       $( ((p)(q))((p)q)((p)(q))((q)p)=((p)(q))((p)(q))((p)q)((q)p) $)
-    
-    trans   $( ((p)(q))((p)q)((q)(p))((q)p)=((p)(q))((p)(q))((p)q)((q)p) $)
-    
-    tp encl tq encl juxt encl tp encl tq encl juxt encl juxt
-    tp encl tq encl juxt encl
-    tp encl tq juxt encl tq encl tp juxt encl juxt
-    tp encl tq encl juxt encl
-    c5.1                       $( ((p)(q))((p)(q))=((p)(q)) $)
-    
-    ax-sub    $( ((p)(q))((p)(q))((p)q)((q)p)=((p)(q))((p)q)((q)p) $)
-    trans   $( ((p)(q))((p)q)((q)(p))((q)p)=((p)(q))((p)q)((q)p) $)
+  c4.1  $p |- ( ( p ) q ) p = p $=
+    ( encl juxt void c6.1 substr c5.1 subr eucr trans ) ACZBDCZADZLBCDCZMDZAPMD
+    NPPAEMABFZGMMDMOMHIJQK $.
+    $( [18-Sep-2015] $)
 
-    tp encl tq encl juxt encl tp encl tq juxt encl juxt 
-    tp
-    tq encl tp juxt encl 
-    tp tq c6.1 $( ((p)(q))((p)q)=p $)
-    ax-sub  $( ((p)(q))((p)q)((q)p)=p((q)p) $)
+  $( Corollary of c4.1 $)
+  c4cor.1  $p |- ( p  q ) ( p ) = ( p ) $=
+    ( encl juxt void c1.1 subb1 c4.1 eucr ) ACZCZBDCJDABDCJDJKAEBEJAFGJBHI $.
+    $( [18-Sep-2015] $)
 
-    trans $( ((p)(q))((p)q)((q)(p))((q)p)=p((q)p) $)
+  $( Corollary of c6.1 $)
+  c6cor.1  $p |- ( ( p ) q ) ( p  q ) = ( q ) $= 
+    ( juxt void encl ax-cmm c1.1 c6.1 repbx ) BACZABCDDAEZBCZEDBEZBAFBKCZLDDDJE
+    MBKFMEZBDANEDMBGZOBDKDOACEMPMAHIIII $.
+    $( [22-Sep-2015] $) 
 
-    tp encl tq encl juxt encl tp encl tq juxt encl juxt     $( p $)
-    tp                                                      $( q $)
-    tq encl tp encl juxt encl tq encl tp juxt encl juxt     $( r $)
-    tq                                                      $( s $)
-    tp tq c6.1 tq tp c6.1 quad           $( ((p)(q))((p)q)((q)(p))((q)p)=pq $)
+  c7.1  $p |- ( ( ( p ) q ) r ) = ( p r ) ( ( q ) r )  $= 
+    ( juxt encl void ax-cmm c4cor.1 c6cor.1 c4.1 c1.1 c6.1 repbx eucr quad c5.1
+    cmmbx trans rep sym ) ACDZEZBEZCDZEDAEZBDEZCDZEZCUCDZUDFFUBFUHCUCGCADZUAFFF
+    UIEZUHCAGUIUEDZEUKDUKUJEZFUHUIUEHUECDZUCDZULFFUMUKUHUEUIGUKUMUOEZDZDUQUKDFF
+    UHUKUQGUJBDEZUMDUMUKUPUHUJBHUKURDZUMDUPDUHUHDUHUSUHUQUHUFABDZEZDUCCFFURUHAB
+    IUGCUFDZFVAFURUHUFCGZUFADACBUGVADEZFUHABJUGVBFUTVDFUHVCUHEZUGFUTVDFUHUGKZVE
+    UGFVAFVEUTDEUHVFUHUTLMMMMMMBUEDEZUCDUCUNFUMFUHBUEHUNUFDUCDZUNVGDUCDFFUMFUHU
+    EBFFFUNUCQUMUGUEDUCDEZDUMVHEDUHUFUEFCUCUMFQUEUCDZEZUFDZACFFVIUHABLUFVKDVLCF
+    FVIUHUFVKGUGVBFVKFVIUHVCVEUGFVJUGVKDEFUHVFVEUGFVKFVEVJDEUHVFUHVJLMMMMMNMMOU
+    HPRSSMSMMT $.
+    $( [23-Sep-2015] $)
 
-    eucr 
-    $.  
-
-  c1.1   $p |- ( ( p ) ) = p  $=
-    void tp c1lem.1
-    $.
-
+  $( The second of the two equations from Base_0. This completes the proof
+     that Base_1 is equivalent to Base_0. $)
+  j2.1  $p |- ( ( p ) ( q ) ) r = ( ( p r ) ( q r ) ) $= 
+               $( ( p r ) ( ( ( q ) ) r ) =  $= $)
+    ( encl juxt c1.1 c7.1 void subb1 trans ax-beq eucr ) ADBDZEDCEZDZDNACEDZBCE
+    DEZDNFOQOPMDZCEDEQAMCGRBHCPHBFIJKL $.
+    $( [23-Sep-2015] $)
 
