@@ -356,16 +356,15 @@ $)
 
   $( Modified transposition $)
   c8.0  $p |- ( ( p ) ( q s ) ( r s ) ) = 
-                ( ( p ) ( q ) ( r ) ) ( ( p ) ( s ) ) $=
-    ( encl juxt void c1.0 subb1 j2.0 ax-beq subb3 eucr c7.0 cmmbx quad trans ) 
-    AEZBDFEZFCDFEZFEZBEZCEZFZEDFZEZRFEZRUBFUCFEZRDEZFEZFZRSTFZEZEZFEUAUGUNULRGG
-    GULHIUNUFRGGGUMUEBCDJKLMUGUDRFEZUIRFEZFUKUDDRNUOUHUPUJUDRGGGGGOUIRGGGGGOPQQ 
-    $.
+              ( ( p ) ( q ) ( r ) ) ( ( p ) ( s ) ) $=
+    ( encl juxt void c1.0 j2.0 ax-beq subb3 repbx c7.0 cmmbx quad trans ) AEZBD
+    FEZFCDFEZFEBEZCEZFZEDFZEZQFEZQTFUAFEZQDEZFEZFZRSFZEZEZUJQGGGUEUJHULUDQGGGUK
+    UCBCDIJKLUEUBQFEZUGQFEZFUIUBDQMUMUFUNUHUBQGGGGGNUGQGGGGGNOPP $.
     $( [6-Sep-2015] $)
 
   $( Crosstransposition $)
   c9.0  $p |- ( ( ( q ) ( p ) ) ( ( r ) ( p ) ) ( ( s ) p ) ( ( t ) p ) ) =
-                ( ( p ) q r ) ( p s t )  $=
+              ( ( p ) q r ) ( p s t )  $=
     ( encl juxt c1.0 j2.0 quadbx trans eucr subb3 c8.0 subb1 c2.0 cmmbx void 
     ax-beq c6.0 ) BFZAFZGFZCFZUBGFZGZDFZAGFZGEFZAGFZGFDEGZFZAGZFZUCGUEGFZUBBGCG
     FZADGEGFZGZUHUJGZUNUFRRRUSFZFUSUNUSHUTUMUTUGFZUIFZGFAGUMUGUIAIVADVBERRRRADH
