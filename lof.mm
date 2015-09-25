@@ -465,7 +465,8 @@ $( =======================================================================
      System_2 
   
      Having shown that C5 and C6 form a basis, I now show that C6 alone
-     suffices. $)
+     suffices. The derivation ends at the point where c5.2 is proved, since
+     that establishes the equivalence of Basis_2 with Basis_1. $)
 
   $( Basis_2 --------------------------------------------- $)
 
@@ -485,6 +486,22 @@ $( =======================================================================
     tp void lem1.2
     $.
 
-  c1.2  $p |- ( ( p ) ) = p $= ?
-    
+  c1.2  $p |-  ( ( p ) ) = p $= 
+    ( encl juxt void ax-cmm lem1.2 c6.2 repbx rep eucr ) ABZKBZBZCZBZKLCZBCLALK
+    CZPDDODLLKEMKCZNDDDQBZLMKESRBZCTSCDDLSTEMLCQDDDTLLKFLKGHIHHALGJ $.
+    $( [25-Sep-2015] $)
+
+  j1.2  $p |- ( ( p ) p ) = $=
+    ( encl juxt void b3.2 ax-beq c1.2 trans ) ABACZBDBZBDIJAEFDGH $.
+    $( [25-Sep-2015] $)
+
+  lem2.2  $p |- ( p  p ) = ( ( ( p ) ) ( ( p ) ) ) $=
+    ( encl juxt void c1.2 sym id repbx ) ABBZICBAACBZAIIDDDJIAAEFZAIDADDJKJGHHF
     $.
+    $( [25-Sep-2015] $)
+
+  c5.2  $p |- p p = p $=
+    ( encl juxt void c6.2 lem2.2 j1.2 sym c1.2 repbx eucr ) ABZBZAACZAMMCBZMLCB
+    ZCLDDDDNLLENBZODPDDNAFDPQDDDNPDLGHNIJJJAIK $.
+    $( [25-Sep-2015] $)
+
