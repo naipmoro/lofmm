@@ -264,8 +264,8 @@ $)
   p IFF q       <=>    (((p) (q)) (p q))  
 
   Unless otherwise noted, I use the first interpretation (juxtaposition as
-  disjunction). When referencing the second interpretation, I refer to it as
-  the 'dual interpretation' or just the 'dual'. Spencer-Brown begins with the 
+  disjunction). When refering to the second interpretation, I call it the
+  'dual interpretation' or just the 'dual'. Spencer-Brown begins with the 
   axioms:
 
   J1. Position                 ((p) p) = 
@@ -285,20 +285,21 @@ $)
                                ((r) a b) (r x y)
 
   One of the goals of lof.mm is establishing different bases (initial 
-  axioms) for the algebra. Since I wish to do this in one file, I need a
-  way to reference the same theorems in different base systems. Retaining
+  axioms) for the algebra. Since I aim to do this in one file, I need a
+  way to reference the same theorems in different basis systems. Retaining
   Spencer-Brown's original numbering scheme for cross-referencing, I label 
-  the theorems as ck.n (jk.n), where ck (jk) refers to LoF's Ck (Jk) and n 
-  refers to the base system under consideration. In other words, ck.n = ck.m 
-  (jk.n = jk.m) for all n, m. LoF's system will have n = 0.
+  the theorems as ck.n (jk.n), where ck (jk) refers to LoF's Ck (Jk) and
+  n refers to the basis under consideration. In other words, ck.n = ck.m 
+  (jk.n = jk.m) for all n, m. LoF's system is n = 0.
 
   ========================================================================== 
   
   System_0 
+
   This version follows LoF but doesn't attempt to mimic its specific steps. 
   For example, theorem C5 is derived before C4. $)  
 
-  $( System_0 base -------------------------------------------- $)
+  $( Basis_0 -------------------------------------------- $)
   
   $( Position $)
   j1.0  $a |- ( ( p ) p ) = $.
@@ -306,7 +307,7 @@ $)
   $( Transposition $)
   j2.0  $a |- ( ( p r ) ( q r ) ) = ( ( p ) ( q ) ) r $.
 
-  $( System_0 Consequences ------------------------------------ $)
+  $( System_0 consequences ------------------------------------ $)
 
   $( Reflexion $)
   c1.0  $p |- ( ( p ) ) =  p $=
@@ -379,17 +380,19 @@ $)
   $( =======================================================================
      
      System_1
+
      Although System_0 is the only one demonstrated by SB, and so can be
-     considered canonical, he mentions the possibility of proceeding from 
-     a base of C5 and C6 (instead of J1 and J2), but dismisses it as 'both 
-     difficult and tedious' [LoF, p.89]. Readers can decide for themselves 
-     whether System_1 is any more complicated than System_0. The virtue of 
-     this base, as noted by SB, is the need for only two distinct variables. 
+     considered canonical, he does mention the possibility of proceeding 
+     from a basis of C5 and C6 (instead of J1 and J2), only to dismiss it
+     as 'both difficult and tedious' [LoF, p.89]. Readers can decide for 
+     themselves whether System_1 is any more complicated than System_0. 
+     The virtue of this basis, as noted by SB, is the need for only two 
+     distinct variables. 
 
      The derivation below ends at the point where both j1.1 and j2.1 are 
-     proved, since that establishes c5.1 and c6.1 as a legitimate base. $)
+     proved, since that establishes c5.1 and c6.1 as a legitimate basis. $)
   
-  $( Sytem_1 base --------------------------------------------- $)
+  $( Basis_1 --------------------------------------------- $)
 
   c5.1  $a |- p p = p $.
   c6.1  $a |- ( ( p ) ( q ) ) ( ( p ) q ) = p $.
@@ -409,13 +412,13 @@ $)
     $( [17-Sep-2015] $)
 
   $( The LoF I2 arithmetic initial. This is also directly derivable from the
-     base by plugging void values into c6.1, followed by two applications of 
+     basis by plugging void values into c6.1, followed by two applications of 
      c5.1. $)
   i2.1  $p |- ( ( ) ) = $=
     ( void c1.1 ) AB $.
     $( [17-Sep-2015] $)
 
-  $( One of the two equations from Base_0. $)
+  $( One of the two equations from Basis_0. $)
   j1.1  $p |- ( ( p ) p ) = $=
     ( encl juxt void c1.1 subr ax-cmm i2.1 subb1 quad c6.1 eucr ax-beq trans )
     ABZACZBDBZBZDPQOOBZCZPQSAOAEFSOCZTQSOGROCBZRACBZCUAQUBSUCORDDODDHIRDDADDHIJ
@@ -450,11 +453,38 @@ $)
     HPRSSMSMMT $.
     $( [23-Sep-2015] $)
 
-  $( The second of the two equations from Base_0. This completes the proof
-     that Base_1 is equivalent to Base_0. $)
+  $( The second of the two equations from Basis_0. This completes the proof
+     that Basis_1 is equivalent to Basis_0. $)
   j2.1  $p |- ( ( p ) ( q ) ) r = ( ( p r ) ( q r ) ) $= 
-               $( ( p r ) ( ( ( q ) ) r ) =  $= $)
     ( encl juxt c1.1 c7.1 void subb1 trans ax-beq eucr ) ADBDZEDCEZDZDNACEDZBCE
     DEZDNFOQOPMDZCEDEQAMCGRBHCPHBFIJKL $.
     $( [23-Sep-2015] $)
 
+$( =======================================================================
+     
+     System_2 
+  
+     Having shown that C5 and C6 form a basis, I now show that C6 alone
+     suffices. $)
+
+  $( Basis_2 --------------------------------------------- $)
+
+  c6.2  $a |- ( ( p ) ( q ) ) ( ( p ) q ) = p $.
+
+  $( System_2 consequences ------------------------------------ $)
+
+  lem1.2  $p |- ( p ) p = ( q ) q $=
+    ( encl juxt void c6.2 ax-cmm quad subb1 eucr subst trans cmmx sym rep repbx
+    ax-beq ) BCZBDACZADZRSCZDZCZRSDZCDBRETBSFSRDZUDEERUCDETSRGUARDZUBEERUECZTUA
+    RGRCZUADZCZUHSDZCZDZREUFCZUGDTRSFTUMUNDUGDZTUJUNDZULDUGDUOTUPSUHDZCZUGDZDZU
+    PULUGDDUAUHDZCUNDZUSDTUTVBSUSASRFARFHVAUIEEEUNURDUGDUAUHGIJURULUPUGUQUKSUHG
+    QKLUNULUJEUGMLNOPPON $.
+    $( [24-Sep-2015] $)
+
+  b3.2  $p |- ( p ) p = ( ) $=
+    tp void lem1.2
+    $.
+
+  c1.2  $p |- ( ( p ) ) = p $= ?
+    
+    $.
