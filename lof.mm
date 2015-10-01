@@ -46,7 +46,7 @@ $)
   tx  $f form x $.
   ty  $f form y $.
 
-  $( Recursive Definition of Form -----------------------------
+  $( Inductive Definition of Form -----------------------------
      1. Empty space is a form.
      2. If p is a form, enclosing it in parentheses is a form. 
      3. If p and q are forms, juxtaposing them is a form. 
@@ -72,7 +72,7 @@ $)
     euc.2   $e |- r = q   $.
     $( Two things equal to the same thing are equal to each other. This is
        Euclid's first Common Notion and, in an equational logic, this and 
-       its sibling (transitivity) are the main engine of derivation. $)
+       its sibling, transitivity, are the main engine of derivation. $)
     ax-euc  $a |- p = r   $.  
   $}
    
@@ -93,7 +93,7 @@ $)
   ${  
     sub.1   $e |- p = q $.
     $( Juxtaposing the same form with equal forms leaves equal forms. $)
-    ax-sub  $a |- p r = q r $.  
+    ax-sub  $a |- p v = q v $.  
   $}
  
   $( Commutativity of LoF. $)
@@ -146,7 +146,7 @@ $)
   ${  
     subr.1  $e |- p = q $.
     $( A commuted version of ax-sub $)
-    subr    $p |- r p = r q $= 
+    subr    $p |- u p = u q $= 
       ( juxt ax-sub ax-cmm eucr ) BCEZCAEZCBEACEIJABCDFACGHBCGH $.
       $( [2-Sep-2015] $)
   $}
@@ -252,7 +252,7 @@ $)
   p IMPLIES q   <=>    (p) q
   p IFF q       <=>    ((p) (q)) (p q)
   
-  The system is self-dual. If we interchange T and F, the algebraic laws 
+  The algebra is self-dual. If we interchange T and F, the algebraic laws 
   continue to hold, with juxtaposition now interpreted as conjunction:
 
   T             <=>    
@@ -285,8 +285,8 @@ $)
                                ((r) a b) (r x y)
 
   One of the goals of lof.mm is establishing different bases (initial 
-  axioms) for the algebra. Since I aim to do this in one file, I need a
-  way to reference the same theorems in different basis systems. Retaining
+  axioms) for the algebra. Since I aim to do this in one file, I need
+  a way to reference the same theorems in the different bases. Retaining
   Spencer-Brown's original numbering scheme for cross-referencing, I label 
   the theorems as ck.n (jk.n), where ck (jk) refers to LoF's Ck (Jk) and
   n refers to the basis under consideration. In other words, ck.n = ck.m 
@@ -382,12 +382,11 @@ $)
      System_1
 
      Although System_0 is the only one demonstrated by SB, and so can be
-     considered canonical, he does mention the possibility of proceeding 
-     from a basis of C5 and C6 (instead of J1 and J2), only to dismiss it
-     as 'both difficult and tedious' [LoF, p.89]. Readers can decide for 
-     themselves whether System_1 is any more complicated than System_0. 
-     The virtue of this basis, as noted by SB, is the need for only two 
-     distinct variables. 
+     considered canonical, he mentions in his notes an alternate basis of 
+     C5 and C6, but suggests the derivation is 'both difficult and tedious' 
+     [LoF, p.89]. Readers can decide for themselves whether System_1 is any 
+     more complicated than System_0. The virtue of this basis, as noted by SB, 
+     is the need for only two distinct variables. 
 
      The derivation below ends at the point where both j1.1 and j2.1 are 
      proved, since that establishes c5.1 and c6.1 as a legitimate basis. $)
@@ -454,7 +453,7 @@ $)
     $( [23-Sep-2015] $)
 
   $( The second of the two equations from Basis_0. This completes the proof
-     that Basis_1 is equivalent to Basis_0. $)
+     that Basis_1 is at least equivalent to Basis_0. $)
   j2.1  $p |- ( ( p ) ( q ) ) r = ( ( p r ) ( q r ) ) $= 
     ( encl juxt c1.1 c7.1 void subb1 trans ax-beq eucr ) ADBDZEDCEZDZDNACEDZBCE
     DEZDNFOQOPMDZCEDEQAMCGRBHCPHBFIJKL $.
@@ -466,7 +465,7 @@ $( =======================================================================
   
      Having shown that C5 and C6 form a basis, I now show that C6 alone
      suffices. The derivation ends at the point where c5.2 is proved, since
-     that establishes the equivalence of Basis_2 with Basis_1. $)
+     that establishes that Basis_2 is at least as powerful as Basis_1. $)
 
   $( Basis_2 --------------------------------------------- $)
 
@@ -474,6 +473,7 @@ $( =======================================================================
 
   $( System_2 consequences ------------------------------------ $)
 
+  $( An important lemma used in the proof of c1.2. $)
   lem1.2  $p |- ( p ) p = ( q ) q $=
     ( encl juxt void c6.2 ax-cmm quad subb1 eucr subst trans cmmx sym rep repbx
     ax-beq ) BCZBDACZADZRSCZDZCZRSDZCDBRETBSFSRDZUDEERUCDETSRGUARDZUBEERUECZTUA
@@ -482,6 +482,7 @@ $( =======================================================================
     QKLUNULUJEUGMLNOPPON $.
     $( [24-Sep-2015] $)
 
+  $( This is Meguire's axiom B3. $)
   b3.2  $p |- ( p ) p = ( ) $=
     tp void lem1.2
     $.
@@ -504,4 +505,33 @@ $( =======================================================================
     ( encl juxt void c6.2 lem2.2 j1.2 sym c1.2 repbx eucr ) ABZBZAACZAMMCBZMLCB
     ZCLDDDDNLLENBZODPDDNAFDPQDDDNPDLGHNIJJJAIK $.
     $( [25-Sep-2015] $)
+
+  $( ======================================================================= 
+
+     System_3  
+
+     Investigating the Robbins algebra. $)
+
+  $( Basis_3 --------------------------------------------- $)
+
+  robbins  $a |- ( ( ( p ) q ) ( p q ) ) = q $.
+
+  $( System_3 consequences ------------------------------------ $)
+
+  lem1.3  $p |- ( ( ( p ) ) ( p ) ) =  $=
+    ( void robbins ) ABC $.
+    $( [30-Sep-2015] $)
+
+  lem2.3  $p |- ( ( ( p ) ( p ) ) ) = ( p ) $=
+    ( encl juxt void lem1.3 robbins repbx ) ABZBHCBDDHHCBDDHAEHHFG $.
+    $( [30-Sep-2015] $)
+
+  lem3.3  $p |- ( ( ( p ) q ) ( p q ) ) = ( ( ( p ) ) ( p ) ) q $= 
+    ( encl juxt robbins void lem1.3 ax-sub ax-euc ) ACZBDCABDCDCBJCJDCZBDABEKFB
+    AGHI $.
+    $( [30-Sep-2015] $)
+
+  lem4.3  $p |- ( ( ( p ) ) ( p ) ) = ( ( ( q ) ) ( q ) ) $=
+    ( encl juxt void lem1.3 ax-euc ) ACZCHDCEBCZCIDCAFBFG $.
+    $( [1-Oct-2015] $)
 
