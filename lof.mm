@@ -182,10 +182,21 @@ $)
   ${
     repbx.1  $e |- p = q $.
     repbx.2  $e |- w ( u p v ) x = y $.
-    $( Direct substitution into an bounded-form equation. $)
+    $( Direct substitution into an bounded form. $)
     repbx    $p |- w ( u q v ) x = y $= 
       ( juxt encl subb1 eucr ) ECAJDJKJFJECBJDJKJFJGABCDEFHLIM $.
       $( [18-Sep-2015] $)
+  $}
+
+  ${
+    repb2.1  $e |- p = q $.
+    repb2.2  $e |- ( ( u p v ) ) = y $.
+    $( Direct substitution into a double-bounded-form. $)
+    repb2    $p |- ( ( u q v ) ) = y $= 
+      ( juxt encl void subb1 ax-beq eucr ) CAHDHIZICBHDHIZIENOABCDJJFKLGM $.
+      $( [3-Oct-2015] $)
+
+     
   $}
 
   ${ 
@@ -534,4 +545,30 @@ $( =======================================================================
   lem4.3  $p |- ( ( ( p ) ) ( p ) ) = ( ( ( q ) ) ( q ) ) $=
     ( encl juxt void lem1.3 ax-euc ) ACZCHDCEBCZCIDCAFBFG $.
     $( [1-Oct-2015] $)
+
+  lem5.3  $p |- ( ( ( ( p ) ) ( ( p ) ) ) ) = ( ( p ) ) $= 
+    ( encl juxt void lem1.3 ax-cmm ax-beq robbins repbx ) ABZBZJCZBZDKKCBZDDDKA
+    EJKCZBMNDDDKOLJKFGJKHII $.
+    $( [2-Oct-2015] $)
+
+  lem6.3  $p |- ( ( ( ( p ) )  p ) ) = ( ( p ) ) $= 
+    ( encl juxt void ax-cmm ax-beq lem1.3 robbins repbx rep ) AABZBZCZBZBLACZBZ
+    BDDLNPMOALEFFLKCZBZDDNDDLAGKLCZBRDNDDLSQKLEFALHIIJ $.
+    $( [2-Oct-2015] $)
+
+  lem7.3  $p |- ( ( ( ( p ) ) ( p ) ) ) = ( ) $=
+    ( encl juxt void lem1.3 ax-beq ) ABZBGCBDAEF $.
+    $( [2-Oct-2015] $)
+
+  lem8.3  $p |- ( ( ( ) ( ( p ) ) ( p ) ) ) = ( ) $=
+    ( encl juxt void lem7.3 ax-sub ax-beq lem6.3 trans eucr ) ABZBZKCZBBZMCZBZB
+    DBZLCKCZBZBQPSORNQMAEZFGGNLCKCBBNQMHTIJ $.
+    $( [3-Oct-2015] $)
+
+
+  lem9.3  $p |- ( ( ( ) ) ) = ( )  $= 
+    ( void encl juxt lem8.3 lem1.3 lem3.3 repbx ax-beq sym lem7.3 repb2 trans
+    tp ) ABZMBZBZCOCBZBZNAANMDRBZBNBNCBZPCOCZBZBNSUBRUAPOCZBAQAAAUAMEAUCFGHHATA
+    UCNTAAEIMJKLK $.
+    $( [3-Oct-2015] $)
 
