@@ -182,22 +182,22 @@ $)
   ${
     repbx.1  $e |- p = q $.
     repbx.2  $e |- w ( u p v ) x = y $.
-    $( Direct substitution into an bounded form. $)
+    $( Direct substitution into an bounded-form equation. $)
     repbx    $p |- w ( u q v ) x = y $= 
       ( juxt encl subb1 eucr ) ECAJDJKJFJECBJDJKJFJGABCDEFHLIM $.
       $( [18-Sep-2015] $)
   $}
 
+  $( This theorem allows a slightly quicker proof of lem3.3.
   ${
     repbd.1  $e |- p = q $.
     repbd.2  $e |- ( ( u p v ) ) = y $.
-    $( Direct substitution into a double-bounded-form. $)
+    @( Direct substitution into a double bounded-form equation. @)
     repbd    $p |- ( ( u q v ) ) = y $= 
       ( juxt encl void subb1 ax-beq eucr ) CAHDHIZICBHDHIZIENOABCDJJFKLGM $.
-      $( [3-Oct-2015] $)
-
-     
+      @( [3-Oct-2015] @)    
   $}
+  $)
 
   ${ 
     quad.1  $e |- p = q $.
@@ -521,11 +521,13 @@ $( =======================================================================
 
      System_3  
 
-     Here I derive C6 from the Robbins equation, demonstrating that
-     a Robbins algebra is a boolean algebra. $)
+     Deriving C6 from the Robbins equation, demonstrating that a Robbins
+     algebra is a boolean algebra. $)
 
   $( Basis_3 --------------------------------------------- $)
 
+  $( A more familiar form of the Robbins equation would be
+     ((p q) (p (q))) = p but I prefer this form. $)
   robbins  $a |- ( ( ( p ) q ) ( p q ) ) = q $.
 
   $( System_3 consequences ------------------------------------ $)
@@ -543,15 +545,17 @@ $( =======================================================================
     ( encl juxt void j1.3 robbins repbx ) ABZACBDHBACBDDDAAEHAFG $.
     $( [5-Oct-2015] $)
 
-  lem3.3  $p |- ( (  ( ( p ) ) p ) ) = ( ( p ) ) $=
-    ( encl juxt void ax-cmm lem1.3 ax-beq robbins repbx repbd ) AABZBZCZLACDDLA
-    LELKCZBZDDMBZDDLAFKLCZBODPDDLQNKLEGALHIIJ $.
-    $( [5-Oct-2015] $)
-
-  lem6.3  $p |- ( ( ( ( p ) )  p ) ) = ( ( p ) ) $= 
+  lem3.3  $p |- ( ( ( ( p ) )  p ) ) = ( ( p ) ) $= 
     ( encl juxt void ax-cmm ax-beq lem1.3 robbins repbx rep ) AABZBZCZBZBLACZBZ
     BDDLNPMOALEFFLKCZBZDDNDDLAGKLCZBRDNDDLSQKLEFALHIIJ $.
     $( [2-Oct-2015] $)  
+
+  $( A quicker proof of lem3.3 using repbd.
+  lem3.3  $p |- ( (  ( ( p ) ) p ) ) = ( ( p ) ) $=
+    ( encl juxt void ax-cmm lem1.3 ax-beq robbins repbx repbd ) AABZBZCZLACDDLA
+    LELKCZBZDDMBZDDLAFKLCZBODPDDLQNKLEGALHIIJ $.
+    @( [5-Oct-2015] @)
+  $)
 
   c1.3  $p |- ( ( p ) ) = p $=
     ( encl juxt lem3.3 lem2.3 eucr ) ABBZACBBGAADAEF $.
@@ -561,48 +565,7 @@ $( =======================================================================
     ( encl juxt void ax-cmm c1.3 robbins ax-beq eucr trans repbx ) BACZDZMBDEEM
     BCZDZCEABMFOMDZPEEENCZAOMFQCRDZMCZASCZCSTSGUAMBMHIJAGKLL $.
     $( [5-Oct-2015] $)
-
-
-  $(
-  lem2.3  @p |- ( ( ( p ) ( p ) ) ) = ( p ) @=
-    ( encl juxt void lem1.3 robbins repbx ) ABZBHCBDDHHCBDDHAEHHFG @.
-    @( [30-Sep-2015] @)
-
-  lem3.3  @p |- ( ( ( p ) q ) ( p q ) ) = ( ( ( p ) ) ( p ) ) q @= 
-    ( encl juxt robbins void lem1.3 ax-sub ax-euc ) ACZBDCABDCDCBJCJDCZBDABEKFB
-    AGHI @.
-    @( [30-Sep-2015] @)
-
-  lem4.3  @p |- ( ( ( p ) ) ( p ) ) = ( ( ( q ) ) ( q ) ) @=
-    ( encl juxt void lem1.3 ax-euc ) ACZCHDCEBCZCIDCAFBFG @.
-    @( [1-Oct-2015] @)
-
-  lem5.3  @p |- ( ( ( ( p ) ) ( ( p ) ) ) ) = ( ( p ) ) @= 
-    ( encl juxt void lem1.3 ax-cmm ax-beq robbins repbx ) ABZBZJCZBZDKKCBZDDDKA
-    EJKCZBMNDDDKOLJKFGJKHII @.
-    @( [2-Oct-2015] @)
-
-  lem6.3  @p |- ( ( ( ( p ) )  p ) ) = ( ( p ) ) @= 
-    ( encl juxt void ax-cmm ax-beq lem1.3 robbins repbx rep ) AABZBZCZBZBLACZBZ
-    BDDLNPMOALEFFLKCZBZDDNDDLAGKLCZBRDNDDLSQKLEFALHIIJ @.
-    @( [2-Oct-2015] @)
-
-  lem7.3  @p |- ( ( ( ( p ) ) ( p ) ) ) = ( ) @=
-    ( encl juxt void lem1.3 ax-beq ) ABZBGCBDAEF @.
-    @( [2-Oct-2015] @)
-
-  lem8.3  @p |- ( ( ( ) ( ( p ) ) ( p ) ) ) = ( ) @=
-    ( encl juxt void lem7.3 ax-sub ax-beq lem6.3 trans eucr ) ABZBZKCZBBZMCZBZB
-    DBZLCKCZBZBQPSORNQMAEZFGGNLCKCBBNQMHTIJ @.
-    @( [3-Oct-2015] @)
-
-  lem9.3  @p |- ( ( ( ) ) ) = ( )  @= 
-    ( void encl juxt lem8.3 lem1.3 lem3.3 repbx ax-beq sym lem7.3 repb2 trans
-    tp ) ABZMBZBZCOCBZBZNAANMDRBZBNBNCBZPCOCZBZBNSUBRUAPOCZBAQAAAUAMEAUCFGHHATA
-    UCNTAAEIMJKLK @.
-    @( [3-Oct-2015] @)
-
-  $)
+  
 
 
 
