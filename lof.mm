@@ -189,10 +189,10 @@ $)
   $}
 
   ${
-    repb2.1  $e |- p = q $.
-    repb2.2  $e |- ( ( u p v ) ) = y $.
+    repbd.1  $e |- p = q $.
+    repbd.2  $e |- ( ( u p v ) ) = y $.
     $( Direct substitution into a double-bounded-form. $)
-    repb2    $p |- ( ( u q v ) ) = y $= 
+    repbd    $p |- ( ( u q v ) ) = y $= 
       ( juxt encl void subb1 ax-beq eucr ) CAHDHIZICBHDHIZIENOABCDJJFKLGM $.
       $( [3-Oct-2015] $)
 
@@ -521,7 +521,8 @@ $( =======================================================================
 
      System_3  
 
-     Investigating the Robbins algebra. $)
+     Here I derive C6 from the Robbins equation, demonstrating that
+     a Robbins algebra is a boolean algebra. $)
 
   $( Basis_3 --------------------------------------------- $)
 
@@ -533,42 +534,76 @@ $( =======================================================================
     ( void robbins ) ABC $.
     $( [30-Sep-2015] $)
 
-  lem2.3  $p |- ( ( ( p ) ( p ) ) ) = ( p ) $=
-    ( encl juxt void lem1.3 robbins repbx ) ABZBHCBDDHHCBDDHAEHHFG $.
-    $( [30-Sep-2015] $)
+  j1.3  $p |- ( ( p ) p ) = $=
+    ( tq encl juxt void robbins sym ax-beq quad lem1.3 trans ) ACZADZCBCADCBADC
+    DZCZCZODZCEMQLPAOAOOABAFGZHRIHNJK $.
+    $( [4-Oct-2015] $)
 
-  lem3.3  $p |- ( ( ( p ) q ) ( p q ) ) = ( ( ( p ) ) ( p ) ) q $= 
-    ( encl juxt robbins void lem1.3 ax-sub ax-euc ) ACZBDCABDCDCBJCJDCZBDABEKFB
-    AGHI $.
-    $( [30-Sep-2015] $)
+  lem2.3  $p |- ( ( ( ( p ) ) p ) ) = p $=
+    ( encl juxt void j1.3 robbins repbx ) ABZACBDHBACBDDDAAEHAFG $.
+    $( [5-Oct-2015] $)
 
-  lem4.3  $p |- ( ( ( p ) ) ( p ) ) = ( ( ( q ) ) ( q ) ) $=
-    ( encl juxt void lem1.3 ax-euc ) ACZCHDCEBCZCIDCAFBFG $.
-    $( [1-Oct-2015] $)
-
-  lem5.3  $p |- ( ( ( ( p ) ) ( ( p ) ) ) ) = ( ( p ) ) $= 
-    ( encl juxt void lem1.3 ax-cmm ax-beq robbins repbx ) ABZBZJCZBZDKKCBZDDDKA
-    EJKCZBMNDDDKOLJKFGJKHII $.
-    $( [2-Oct-2015] $)
+  lem3.3  $p |- ( (  ( ( p ) ) p ) ) = ( ( p ) ) $=
+    ( encl juxt void ax-cmm lem1.3 ax-beq robbins repbx repbd ) AABZBZCZLACDDLA
+    LELKCZBZDDMBZDDLAFKLCZBODPDDLQNKLEGALHIIJ $.
+    $( [5-Oct-2015] $)
 
   lem6.3  $p |- ( ( ( ( p ) )  p ) ) = ( ( p ) ) $= 
     ( encl juxt void ax-cmm ax-beq lem1.3 robbins repbx rep ) AABZBZCZBZBLACZBZ
     BDDLNPMOALEFFLKCZBZDDNDDLAGKLCZBRDNDDLSQKLEFALHIIJ $.
-    $( [2-Oct-2015] $)
+    $( [2-Oct-2015] $)  
 
-  lem7.3  $p |- ( ( ( ( p ) ) ( p ) ) ) = ( ) $=
-    ( encl juxt void lem1.3 ax-beq ) ABZBGCBDAEF $.
-    $( [2-Oct-2015] $)
+  c1.3  $p |- ( ( p ) ) = p $=
+    ( encl juxt lem3.3 lem2.3 eucr ) ABBZACBBGAADAEF $.
+    $( [5-Oct-2015] $)
 
-  lem8.3  $p |- ( ( ( ) ( ( p ) ) ( p ) ) ) = ( ) $=
+  c6.3  $p |- ( ( p ) ( q ) ) ( ( p ) q ) = p $=
+    ( encl juxt void ax-cmm c1.3 robbins ax-beq eucr trans repbx ) BACZDZMBDEEM
+    BCZDZCEABMFOMDZPEEENCZAOMFQCRDZMCZASCZCSTSGUAMBMHIJAGKLL $.
+    $( [5-Oct-2015] $)
+
+
+  $(
+  lem2.3  @p |- ( ( ( p ) ( p ) ) ) = ( p ) @=
+    ( encl juxt void lem1.3 robbins repbx ) ABZBHCBDDHHCBDDHAEHHFG @.
+    @( [30-Sep-2015] @)
+
+  lem3.3  @p |- ( ( ( p ) q ) ( p q ) ) = ( ( ( p ) ) ( p ) ) q @= 
+    ( encl juxt robbins void lem1.3 ax-sub ax-euc ) ACZBDCABDCDCBJCJDCZBDABEKFB
+    AGHI @.
+    @( [30-Sep-2015] @)
+
+  lem4.3  @p |- ( ( ( p ) ) ( p ) ) = ( ( ( q ) ) ( q ) ) @=
+    ( encl juxt void lem1.3 ax-euc ) ACZCHDCEBCZCIDCAFBFG @.
+    @( [1-Oct-2015] @)
+
+  lem5.3  @p |- ( ( ( ( p ) ) ( ( p ) ) ) ) = ( ( p ) ) @= 
+    ( encl juxt void lem1.3 ax-cmm ax-beq robbins repbx ) ABZBZJCZBZDKKCBZDDDKA
+    EJKCZBMNDDDKOLJKFGJKHII @.
+    @( [2-Oct-2015] @)
+
+  lem6.3  @p |- ( ( ( ( p ) )  p ) ) = ( ( p ) ) @= 
+    ( encl juxt void ax-cmm ax-beq lem1.3 robbins repbx rep ) AABZBZCZBZBLACZBZ
+    BDDLNPMOALEFFLKCZBZDDNDDLAGKLCZBRDNDDLSQKLEFALHIIJ @.
+    @( [2-Oct-2015] @)
+
+  lem7.3  @p |- ( ( ( ( p ) ) ( p ) ) ) = ( ) @=
+    ( encl juxt void lem1.3 ax-beq ) ABZBGCBDAEF @.
+    @( [2-Oct-2015] @)
+
+  lem8.3  @p |- ( ( ( ) ( ( p ) ) ( p ) ) ) = ( ) @=
     ( encl juxt void lem7.3 ax-sub ax-beq lem6.3 trans eucr ) ABZBZKCZBBZMCZBZB
-    DBZLCKCZBZBQPSORNQMAEZFGGNLCKCBBNQMHTIJ $.
-    $( [3-Oct-2015] $)
+    DBZLCKCZBZBQPSORNQMAEZFGGNLCKCBBNQMHTIJ @.
+    @( [3-Oct-2015] @)
 
-
-  lem9.3  $p |- ( ( ( ) ) ) = ( )  $= 
+  lem9.3  @p |- ( ( ( ) ) ) = ( )  @= 
     ( void encl juxt lem8.3 lem1.3 lem3.3 repbx ax-beq sym lem7.3 repb2 trans
     tp ) ABZMBZBZCOCBZBZNAANMDRBZBNBNCBZPCOCZBZBNSUBRUAPOCZBAQAAAUAMEAUCFGHHATA
-    UCNTAAEIMJKLK $.
-    $( [3-Oct-2015] $)
+    UCNTAAEIMJKLK @.
+    @( [3-Oct-2015] @)
+
+  $)
+
+
+
 
