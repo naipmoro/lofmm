@@ -12,20 +12,26 @@ $(
   From the perspective of metamath, it is a non-trivial example of a system 
   that requires, indeed is based on, the empty substitution.
 
-  LoF is a 2D topological notation in which closed curves (boundaries) are the
-  symbols under investigation, and in which the only properties of interest
-  are whether a given boundary is inside or outside of another boundary,
+  LoF is a 2-dimensional notation in which closed curves (boundaries) are the
+  symbols under investigation, and in which the only property of interest
+  is whether a given boundary is inside or outside of another boundary,
   intersecting boundaries not being allowed. Variables p q r ... will range 
   over possible arrangements of boundaries (which we call 'forms'). It is now 
-  common to call LoF a 'boundary algebra'. 
+  common to call LoF a 'boundary algebra'. In LoF all boundaries are
+  considered equivalent.
 
-  Given the topological nature of the system, its operations are implicitly
-  commutative. Transferring this to a linear notation involves compromises. 
+  Given the topological nature of LoF, its operations are implicitly
+  commutative; transferring this to a linear notation involves compromises. 
+  Appreciating these compromises, particularly within the context of
+  metamath's radically formalist approach, was a driving force in this
+  exercise.
+
   As has become standard, I use matching parentheses (...) to represent 
-  boundaries. And I will need to explicitly state the commutative property. 
+  boundaries. And I need to explicitly state the commutative property. 
   The ramifications of this last point are felt throughout the ensuing 
   derivations, as properties that are obvious in the 2D notation have to be 
-  spelled out case by case in auxiliary theorems.  
+  spelled out case by case in auxiliary theorems. This is due to an inability
+  to formulate general statements of commutativity within the system.
 $)
 
   $( constants $)
@@ -46,7 +52,15 @@ $)
   tx  $f form x $.
   ty  $f form y $.
 
-  $( Inductive Definition of Form -----------------------------
+  $( Axioms ---------------------------------------------------
+     In keeping with the spirit of LoF's austerity, I aimed for the most
+     minimal formalism possible. I start with the five constant symbols listed
+     above and seven basic axioms: three to provide a recursive definition of
+     'form', three common notions (so to speak) to power symbol manipulation,
+     and a commutativity axiom. Metamath does not distinguish definitions from
+     proper axioms.
+
+  $( Recursive Definition of Form -----------------------------
      1. Empty space is a form.
      2. If p is a form, enclosing it in parentheses is a form. 
      3. If p and q are forms, juxtaposing them is a form. 
@@ -62,9 +76,9 @@ $)
   juxt  $a form p q $.     
 
 
-  $( Common Axioms --------------------------------------------   
+  $( Common Notions --------------------------------------------   
      One goal of lof.mm is exploring the minimal basis for a boundary algebra.
-     The next 4 axioms are the required machinery of symbol manipulation. 
+     The next 3 axioms are the required machinery of symbol manipulation. 
   $)
       
   ${  
@@ -96,11 +110,13 @@ $)
     ax-sub  $a |- p v = q v $.  
   $}
  
-  $( Commutativity of LoF. $)
+  $( Commutativity of LoF --------------------------------------------
+     Note that associativity holds by default despite our system lacking
+     the means to even state it. $)
   ax-cmm  $a |- p q = q p $.
   
  
-  $( Consequences from the common axioms ----------------------
+  $( Theorems --------------------------------------------------------
 
      The symbol '=' is never defined but it will turn out to obey the expected
      laws of an equivalence relation. Specifically, from the common notion 
@@ -248,7 +264,8 @@ $)
   $( ==========================================================================
                               Laws of Form  
   
-  The 'arithmetic' of LoF consists of two equations [LoF, p. 12]:
+  LoF can be considered a prolonged deduction from two initial 'arithmetic'
+  equations [_LoF_, p. 12]:
 
   I1. Number   () () = ()
   I2. Order    (())  =   
@@ -274,10 +291,11 @@ $)
   p IMPLIES q   <=>    (p (q))
   p IFF q       <=>    (((p) (q)) (p q))  
 
-  Unless otherwise noted, I use the first interpretation (juxtaposition as
-  disjunction). When refering to the second interpretation, I call it the
-  'dual interpretation' or just the 'dual'. Spencer-Brown begins with the 
-  axioms:
+  In keeping with standard practice, I use the first interpretation
+  (juxtaposition as disjunction). When refering to the second interpretation,
+  I call it the 'dual interpretation' or just the 'dual'.
+
+  Spencer-Brown begins with the two axioms:
 
   J1. Position                 ((p) p) = 
   J2. Transposition            ((p r) (q r)) = ((p) (q)) r
@@ -295,13 +313,16 @@ $)
   C9. Crosstransposition       (((b) (r)) ((a) (r)) ((x) r) ((y) r)) = 
                                ((r) a b) (r x y)
 
-  One of the goals of lof.mm is establishing different bases (initial 
-  axioms) for the algebra. Since I aim to do this in one file, I need
-  a way to reference the same theorems in the different bases. Retaining
-  Spencer-Brown's original numbering scheme for cross-referencing, I label 
-  the theorems as ck.n (jk.n), where ck (jk) refers to LoF's Ck (Jk) and
-  n refers to the basis under consideration. In other words, ck.n = ck.m 
-  (jk.n = jk.m) for all n, m. LoF's system is n = 0.
+  To see that J1 and J2 constitute a complete set of axioms, refer to
+  chapter 9 of LoF [pp. 50-52].
+
+  One of the goals of lof.mm was to establish different bases (initial 
+  axioms) for the algebra. To do this in one file, I needed a way to reference
+  the same theorems in the different bases. Retaining Spencer-Brown's original
+  numbering scheme for cross-referencing, I label the theorems as ck.n (jk.n),
+  where ck (jk) refers to LoF's Ck (Jk) and n refers to the basis under
+  consideration. In other words, ck.n = ck.m  (jk.n = jk.m) for all n, m.
+  LoF's system is n = 0.
 
   ========================================================================== 
   
@@ -321,7 +342,7 @@ $)
   $( System_0 consequences ------------------------------------ $)
 
   $( Reflexion $)
-  c1.0  $p |- ( ( p ) ) =  p $=
+  c1.0  $p |- ( ( p ) ) = p $=
     ( encl juxt void j1.0 ax-sub sym j2.0 ax-euc cmmbx subb1 trans quadbx ) ABZ
     BZOACBZNACBZCBZAOAOCBZBZROONCBZSCBZTONOCBZSCBZUBOUAOCZUDUEOUADONEZFGNAOHIUC
     UADSDDNODDDDDJKLUADDSDDUFKLSPDQDDDDDAODDDDDJQDAEGMLROBOCBZACAONAHUGDAOEFLL 
@@ -493,7 +514,7 @@ $( =======================================================================
     QKLUNULUJEUGMLNOPPON $.
     $( [24-Sep-2015] $)
 
-  $( This is Meguire's axiom B3. $)
+  $( This is axiom B3 from Meguire. $)
   b3.2  $p |- ( p ) p = ( ) $=
     tp void lem1.2
     $.
@@ -526,8 +547,8 @@ $( =======================================================================
 
   $( Basis_3 --------------------------------------------- $)
 
-  $( A more familiar form of the Robbins equation would be
-     ((p q) (p (q))) = p but I prefer this form. $)
+  $( The more familiar form of the Robbins equation is
+     ((p q) (p (q))) = p, but I prefer this form. $)
   robbins  $a |- ( ( ( p ) q ) ( p q ) ) = q $.
 
   $( System_3 consequences ------------------------------------ $)
@@ -550,7 +571,7 @@ $( =======================================================================
     BDDLNPMOALEFFLKCZBZDDNDDLAGKLCZBRDNDDLSQKLEFALHIIJ $.
     $( [2-Oct-2015] $)  
 
-  $( A quicker proof of lem3.3 using repbd.
+  $( A shorter proof of lem3.3 using repbd.
   lem3.3  $p |- ( (  ( ( p ) ) p ) ) = ( ( p ) ) $=
     ( encl juxt void ax-cmm lem1.3 ax-beq robbins repbx repbd ) AABZBZCZLACDDLA
     LELKCZBZDDMBZDDLAFKLCZBODPDDLQNKLEGALHIIJ $.
