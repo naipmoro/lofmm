@@ -7,10 +7,14 @@ $(
   Spencer-Brown, G. (1969) Laws of Form (Allen & Unwin, London),
   hereafter cited as LoF. Spencer-Brown will be cited as SB.
 
-  The algebra of LoF has a number of models, most significantly Boolean 
+  The algebra of LoF has a number of models, most significantly boolean 
   algebra and sentential logic, so it may be of some interest to logicians. 
   From the perspective of metamath, it is a non-trivial example of a system 
   that requires, indeed is based on, the empty substitution.
+
+  Access to the empty substitution, in conjunction with metamath's radical
+  formalism, allows a representation that closely matches _LoF's_ actual
+  expressions.
 
   LoF is a 2-dimensional notation in which closed curves (boundaries) are the
   symbols under investigation, and in which the only property of interest
@@ -20,18 +24,17 @@ $(
   common to call LoF a 'boundary algebra'. In LoF all boundaries are
   considered equivalent.
 
-  Given the topological nature of LoF, its operations are implicitly
-  commutative; transferring this to a linear notation involves compromises. 
-  Appreciating these compromises, particularly within the context of
-  metamath's radically formalist approach, was a driving force in this
-  exercise.
+  Given the topological nature of _LoF_, its operations are implicitly
+  commutative; transferring this to a linear notation involves compromises.
+  Understanding the compromises better, seeing the cost of linearity, largely
+  motivated this exercise.
 
   As has become standard, I use matching parentheses (...) to represent 
   boundaries. And I need to explicitly state the commutative property. 
   The ramifications of this last point are felt throughout the ensuing 
   derivations, as properties that are obvious in the 2D notation have to be 
-  spelled out case by case in auxiliary theorems. This is due to an inability
-  to formulate general statements of commutativity within the system.
+  spelled out case by case in auxiliary theorems. The system as formulated
+  is simply unable to prove general statements of commutativity.
 $)
 
   $( constants $)
@@ -59,6 +62,7 @@ $)
      'form', three common notions (so to speak) to power symbol manipulation,
      and a commutativity axiom. Metamath does not distinguish definitions from
      proper axioms.
+  $)
 
   $( Recursive Definition of Form -----------------------------
      1. Empty space is a form.
@@ -95,7 +99,8 @@ $)
      (e.g., applying the same operation) to equal things leaves equal things. 
      Applying this to LoF's two operations, enclosure and juxtaposition,
      leads to the next two axioms (looked at differently, these can also be
-     seen as substitution/replacement rules). $)
+     seen as substitution/replacement rules).
+  $)
   
   ${  
     beq.1   $e |- p = q $.
@@ -111,20 +116,20 @@ $)
   $}
  
   $( Commutativity of LoF --------------------------------------------
-     Note that associativity holds by default despite our system lacking
-     the means to even state it. $)
+     Note that associativity holds despite our system lacking the means
+     to even state it. $)
   ax-cmm  $a |- p q = q p $.
   
  
   $( Theorems --------------------------------------------------------
-
      The symbol '=' is never defined but it will turn out to obey the expected
      laws of an equivalence relation. Specifically, from the common notion 
      that two things equal to the same thing are equal to each other and from 
      the commutativity of LoF, we derive the reflexivity, symmetry, and 
      transitivity of '='. Note that such a derivation is not possible in a
      traditional formal system without additional axioms -- it is the ability 
-     to reference the empty (or void) form that allows it here. $)
+     to reference the empty (or void) form that allows it here.
+  $)
 
   $( '=' is reflexive. $)
   id  $p |- p = p  $=
@@ -148,7 +153,14 @@ $)
       $( [2-Sep-2015] $)
   $}
  
-  $( Now a series of auxiliary theorems. $)
+  $( The axioms and theorems so far have been transparent, succinct, and
+     powerful (they embody boolean algebra, after all), but applying them
+     would be impractical without further theorems. While this is no different
+     from any other formal system, here these auxiliary theorems have a
+     peculiar feeling of inconsequence: they are often tiresome (and sometimes
+     ugly) commutative elaborations of previous statements, whose only adhoc
+     utility is to ease the derivation of particular propositions.
+  $)
   
   ${  
     eucr.1  $e |- p = q $.
@@ -317,7 +329,7 @@ $)
   chapter 9 of LoF [pp. 50-52].
 
   One of the goals of lof.mm was to establish different bases (initial 
-  axioms) for the algebra. To do this in one file, I needed a way to reference
+  axioms) for the algebra. To do this in one file, I need a way to reference
   the same theorems in the different bases. Retaining Spencer-Brown's original
   numbering scheme for cross-referencing, I label the theorems as ck.n (jk.n),
   where ck (jk) refers to LoF's Ck (Jk) and n refers to the basis under
@@ -421,7 +433,7 @@ $)
      is the need for only two distinct variables. 
 
      The derivation below ends at the point where both j1.1 and j2.1 are 
-     proved, since that establishes c5.1 and c6.1 as a legitimate basis. $)
+     proved, since that establishes c5.1 and c6.1 as a complete basis. $)
   
   $( Basis_1 --------------------------------------------- $)
 
@@ -485,7 +497,7 @@ $)
     $( [23-Sep-2015] $)
 
   $( The second of the two equations from Basis_0. This completes the proof
-     that Basis_1 is at least equivalent to Basis_0. $)
+     that Basis_1 is at least as powerful as Basis_0. $)
   j2.1  $p |- ( ( p ) ( q ) ) r = ( ( p r ) ( q r ) ) $= 
     ( encl juxt c1.1 c7.1 void subb1 trans ax-beq eucr ) ADBDZEDCEZDZDNACEDZBCE
     DEZDNFOQOPMDZCEDEQAMCGRBHCPHBFIJKL $.
