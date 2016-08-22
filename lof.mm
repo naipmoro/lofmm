@@ -24,10 +24,10 @@ $(
   common to call LoF a 'boundary algebra'. In LoF all boundaries are
   considered equivalent.
 
-  Given the topological nature of _LoF_, its operations are implicitly
-  commutative; transferring this to a linear notation involves compromises.
-  Understanding the compromises better, seeing the cost of linearity, largely
-  motivated this exercise.
+  The topology of _LoF_ implicitly imposes commutativity on its operations
+  and transferring this to a linear notation involves compromises. To better
+  understand the compromises and see the cost of linearity was a major
+  motivation of this exercise.
 
   As has become standard, I use matching parentheses (...) to represent 
   boundaries. And I need to explicitly state the commutative property. 
@@ -518,7 +518,7 @@ $( =======================================================================
   $( System_2 consequences ------------------------------------ $)
 
   $( An important lemma used in the proof of c1.2. $)
-  lem1.2  $p |- ( p ) p = ( q ) q $=
+  lem2.2  $p |- ( p ) p = ( q ) q $=
     ( encl juxt void c6.2 ax-cmm quad subb1 eucr subst trans cmmx sym rep repbx
     ax-beq ) BCZBDACZADZRSCZDZCZRSDZCDBRETBSFSRDZUDEERUCDETSRGUARDZUBEERUECZTUA
     RGRCZUADZCZUHSDZCZDZREUFCZUGDTRSFTUMUNDUGDZTUJUNDZULDUGDUOTUPSUHDZCZUGDZDZU
@@ -528,11 +528,11 @@ $( =======================================================================
 
   $( This is axiom B3 from Meguire. $)
   b3.2  $p |- ( p ) p = ( ) $=
-    tp void lem1.2
-    $.
+    ( void lem2.2 ) ABC $.
+    $( [18-Aug-2016] $)
 
   c1.2  $p |-  ( ( p ) ) = p $= 
-    ( encl juxt void ax-cmm lem1.2 c6.2 repbx rep eucr ) ABZKBZBZCZBZKLCZBCLALK
+    ( encl juxt void ax-cmm lem2.2 c6.2 repbx rep eucr ) ABZKBZBZCZBZKLCZBCLALK
     CZPDDODLLKEMKCZNDDDQBZLMKESRBZCTSCDDLSTEMLCQDDDTLLKFLKGHIHHALGJ $.
     $( [25-Sep-2015] $)
 
@@ -540,13 +540,13 @@ $( =======================================================================
     ( encl juxt void b3.2 ax-beq c1.2 trans ) ABACZBDBZBDIJAEFDGH $.
     $( [25-Sep-2015] $)
 
-  lem2.2  $p |- ( p  p ) = ( ( ( p ) ) ( ( p ) ) ) $=
+  lem3.2  $p |- ( p  p ) = ( ( ( p ) ) ( ( p ) ) ) $=
     ( encl juxt void c1.2 sym id repbx ) ABBZICBAACBZAIIDDDJIAAEFZAIDADDJKJGHHF
     $.
     $( [25-Sep-2015] $)
 
   c5.2  $p |- p p = p $=
-    ( encl juxt void c6.2 lem2.2 j1.2 sym c1.2 repbx eucr ) ABZBZAACZAMMCBZMLCB
+    ( encl juxt void c6.2 lem3.2 j1.2 sym c1.2 repbx eucr ) ABZBZAACZAMMCBZMLCB
     ZCLDDDDNLLENBZODPDDNAFDPQDDDNPDLGHNIJJJAIK $.
     $( [25-Sep-2015] $)
 
@@ -565,33 +565,33 @@ $( =======================================================================
 
   $( System_3 consequences ------------------------------------ $)
 
-  lem1.3  $p |- ( ( ( p ) ) ( p ) ) =  $=
+  lem4.3  $p |- ( ( ( p ) ) ( p ) ) =  $=
     ( void robbins ) ABC $.
     $( [30-Sep-2015] $)
 
   j1.3  $p |- ( ( p ) p ) = $=
-    ( tq encl juxt void robbins sym ax-beq quad lem1.3 trans ) ACZADZCBCADCBADC
+    ( tq encl juxt void robbins sym ax-beq quad lem4.3 trans ) ACZADZCBCADCBADC
     DZCZCZODZCEMQLPAOAOOABAFGZHRIHNJK $.
     $( [4-Oct-2015] $)
 
-  lem2.3  $p |- ( ( ( ( p ) ) p ) ) = p $=
+  lem5.3  $p |- ( ( ( ( p ) ) p ) ) = p $=
     ( encl juxt void j1.3 robbins repbx ) ABZACBDHBACBDDDAAEHAFG $.
     $( [5-Oct-2015] $)
 
-  lem3.3  $p |- ( ( ( ( p ) )  p ) ) = ( ( p ) ) $= 
-    ( encl juxt void ax-cmm ax-beq lem1.3 robbins repbx rep ) AABZBZCZBZBLACZBZ
+  lem6.3  $p |- ( ( ( ( p ) )  p ) ) = ( ( p ) ) $= 
+    ( encl juxt void ax-cmm ax-beq lem4.3 robbins repbx rep ) AABZBZCZBZBLACZBZ
     BDDLNPMOALEFFLKCZBZDDNDDLAGKLCZBRDNDDLSQKLEFALHIIJ $.
     $( [2-Oct-2015] $)  
 
-  $( A shorter proof of lem3.3 using repbd.
-  lem3.3  $p |- ( (  ( ( p ) ) p ) ) = ( ( p ) ) $=
-    ( encl juxt void ax-cmm lem1.3 ax-beq robbins repbx repbd ) AABZBZCZLACDDLA
+  $( A shorter proof of lem6.3 using repbd.
+  lem6.3  $p |- ( (  ( ( p ) ) p ) ) = ( ( p ) ) $=
+    ( encl juxt void ax-cmm lem4.3 ax-beq robbins repbx repbd ) AABZBZCZLACDDLA
     LELKCZBZDDMBZDDLAFKLCZBODPDDLQNKLEGALHIIJ $.
     @( [5-Oct-2015] @)
   $)
 
   c1.3  $p |- ( ( p ) ) = p $=
-    ( encl juxt lem3.3 lem2.3 eucr ) ABBZACBBGAADAEF $.
+    ( encl juxt lem6.3 lem5.3 eucr ) ABBZACBBGAADAEF $.
     $( [5-Oct-2015] $)
 
   c6.3  $p |- ( ( p ) ( q ) ) ( ( p ) q ) = p $=
