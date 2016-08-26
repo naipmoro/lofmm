@@ -246,12 +246,9 @@ $)
   $}
  
   $( Extended commutativity $)
-  cmmx  $p  |- u p v q w = u q v p w  $= 
-    tp tv juxt tq juxt tq tv juxt tp juxt tu tw
-    tp tq tq tp tv
-    tp tq ax-cmm  
-    ins
-    subst $.
+  cmmx  $p  |- u p v q w = u q v p w  $=
+    ( juxt ax-cmm ins subst ) ADFBFBDFAFCEABBADABGHI $.
+    $( [3-Sep-2015] $)
 
   $( Bounded and extended commutativity $)
   cmmbx  $p |- x ( u p v q w ) y = x ( u q v p w ) y $= 
