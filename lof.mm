@@ -5,7 +5,7 @@ $(
 
   lof.mm presents metamath derivations of the Primary Algebra from
   Spencer-Brown, G. (1969) Laws of Form (Allen & Unwin, London),
-  hereafter cited as LoF. Spencer-Brown will be cited as SB.
+  hereafter cited as LoF.
 
   The algebra of LoF has a number of models, most significantly boolean 
   algebra and sentential logic, so it may be of some interest to logicians. 
@@ -116,7 +116,7 @@ $)
   $}
  
   $( Commutativity of LoF --------------------------------------------
-     Note that associativity holds despite our system lacking the means
+     Associativity holds despite our system lacking the means
      to even state it. $)
   ax-cmm  $a |- p q = q p $.
   
@@ -264,11 +264,18 @@ $)
       $( [3-Sep-2015] $)
   $}
 
-  $( It's hard to know where to stop with auxiliary theorems. If we choose 
+  $( It's hard to know where to stop with auxiliary theorems. Had we choosen 
      to prove the two additional statements:
-         $p |- x ( v p u ) w = w ( u r v ) x $.
-         $p |- x ( v q u ) w = w ( u r v ) x $.
-     we can reduce the proof of c9.0 by a hundred steps. $)
+     
+    tranxb.1  $e |- p = q $.
+    tranxb.2  $e |- r = q $.
+    tranxb    $p |- x ( v p u ) w = w ( u r v ) x $.
+    
+    tranrxb.1  $e |- p = q $.
+    tranrxb.2  $e |- p = r $.
+    tranrxb    $p |- x ( v q u ) w = w ( u r v ) x $.
+
+    we could have reduced the proof of c9.0 by a hundred steps. $)
 
   $( ==========================================================================
                               Laws of Form  
@@ -422,12 +429,12 @@ $)
      
      System_1
 
-     Although System_0 is the only one demonstrated by SB, and so can be
-     considered canonical, he mentions in his notes an alternate basis of 
-     C5 and C6, but suggests the derivation is 'both difficult and tedious' 
+     Although System_0 is the only one demonstrated by Spencer-Brown, and so
+     can be considered canonical, he mentions in his notes an alternate basis
+     of C5 and C6, but suggests the derivation is 'both difficult and tedious' 
      [LoF, p.89]. Readers can decide for themselves whether System_1 is any 
-     more complicated than System_0. The virtue of this basis, as noted by SB, 
-     is the need for only two distinct variables. 
+     more complicated than System_0. The virtue of this basis, as noted by
+     Spencer-Brown, is the need for only two distinct variables. 
 
      The derivation below ends at the point where both j1.1 and j2.1 are 
      proved, since that establishes c5.1 and c6.1 as a complete basis. $)
@@ -581,7 +588,7 @@ $( =======================================================================
     $( [2-Oct-2015] $)  
 
   $( A shorter proof of lem6.3 using repbd.
-  lem6.3  $p |- ( (  ( ( p ) ) p ) ) = ( ( p ) ) $=
+  lem6.3  $p |- ( ( ( ( p ) ) p ) ) = ( ( p ) ) $=
     ( encl juxt void ax-cmm lem4.3 ax-beq robbins repbx repbd ) AABZBZCZLACDDLA
     LELKCZBZDDMBZDDLAFKLCZBODPDDLQNKLEGALHIIJ $.
     @( [5-Oct-2015] @)
