@@ -522,13 +522,64 @@ $( =======================================================================
   $( System_2 consequences ------------------------------------ $)
 
   $( An important lemma used in the proof of c1.2. $)
+  $(
   lem2.2  $p |- ( p ) p = ( q ) q $=
     ( encl juxt void c6.2 ax-cmm quad subb1 eucr subst trans cmmx sym rep repbx
     ax-beq ) BCZBDACZADZRSCZDZCZRSDZCDBRETBSFSRDZUDEERUCDETSRGUARDZUBEERUECZTUA
     RGRCZUADZCZUHSDZCZDZREUFCZUGDTRSFTUMUNDUGDZTUJUNDZULDUGDUOTUPSUHDZCZUGDZDZU
     PULUGDDUAUHDZCUNDZUSDTUTVBSUSASRFARFHVAUIEEEUNURDUGDUAUHGIJURULUPUGUQUKSUHG
     QKLUNULUJEUGMLNOPPON $.
-    $( [24-Sep-2015] $)
+    @( [24-Sep-2015] @)
+  $)
+
+  lem2.2x $p |- ( ( ( p ) ) ( ( q ) ) ) ( ( ( p ) ) ( q ) ) = ( p )  $=
+    tp encl tq encl c6.2
+    $.
+  
+  lem2.2  $p |- ( p ) p = ( q ) q $=
+    tq encl tq juxt tp encl tp juxt tq encl tp encl encl juxt encl tq encl tp
+    encl juxt encl juxt tq tq encl void tp encl tp juxt tq tp encl c6.2
+
+    tp encl
+    tq encl juxt tq encl tp encl juxt void void tq encl tq encl tp encl encl
+    juxt encl juxt void tp encl tp juxt tp encl tq encl ax-cmm
+
+    tp encl encl tq
+    encl juxt tq encl tp encl encl juxt void void tq encl tp encl tq encl juxt
+    encl tp encl tp juxt tp encl encl tq encl ax-cmm
+
+    tq encl encl tp encl encl
+    juxt encl tq encl encl tp encl juxt encl juxt tq encl void tp encl encl tq
+    encl juxt encl tp encl tq encl juxt encl juxt tp encl tp juxt tq encl tp
+    encl c6.2
+
+    tp encl tp juxt tq encl encl tp encl encl juxt encl tq encl encl
+    tp encl juxt encl juxt tp encl encl tq encl juxt encl juxt tp encl tq encl
+    juxt encl juxt tp encl tp juxt tq encl encl tp encl encl juxt encl tp encl
+    encl tq encl juxt encl juxt tq encl encl tp encl juxt encl juxt tp encl tq
+    encl juxt encl juxt tq encl encl tp encl encl juxt encl tq encl encl tp
+    encl juxt encl juxt tp encl encl tq encl juxt encl juxt tp encl tq encl
+    juxt encl juxt tp encl tp juxt tq encl encl tp encl encl juxt encl tp encl
+    encl tq encl juxt encl juxt tp encl tq encl encl juxt encl tp encl tq encl
+    juxt encl juxt juxt tq encl encl tp encl encl juxt encl tp encl encl tq
+    encl juxt encl juxt tq encl encl tp encl juxt encl tp encl tq encl juxt
+    encl juxt juxt tp encl encl tq encl encl juxt encl tp encl encl tq encl
+    juxt encl juxt tp encl tq encl encl juxt encl tp encl tq encl juxt encl
+    juxt juxt tp encl tp juxt tq encl encl tp encl encl juxt encl tp encl encl
+    tq encl juxt encl juxt tp encl tq encl encl juxt encl tp encl tq encl juxt
+    encl juxt juxt tp encl encl tq encl encl juxt encl tp encl encl tq encl
+    juxt encl juxt tp encl tp encl tq encl encl juxt encl tp encl tq encl juxt
+    encl juxt tp tp encl tq encl c6.2 tp tq encl c6.2 quad tp encl encl tq encl
+    encl juxt tq encl encl tp encl encl juxt void void void tp encl encl tq
+    encl juxt encl tp encl tq encl encl juxt encl juxt tp encl tq encl juxt
+    encl juxt tp encl encl tq encl encl ax-cmm subb1 eucr tp encl tq encl encl
+    juxt encl tq encl encl tp encl juxt encl tq encl encl tp encl encl juxt
+    encl tp encl encl tq encl juxt encl juxt tp encl tq encl juxt encl tp encl
+    tq encl encl juxt tq encl encl tp encl juxt tp encl tq encl encl ax-cmm
+    ax-beq subst trans tp encl encl tq encl juxt encl tq encl encl tp encl juxt
+    encl tq encl encl tp encl encl juxt encl void tp encl tq encl juxt encl
+    cmmx trans sym rep repbx repbx rep sym $.
+
 
   $( This is axiom B3 from Meguire. $)
   b3.2  $p |- ( p ) p = ( ) $=
@@ -564,39 +615,22 @@ $( =======================================================================
   $( Basis_3 --------------------------------------------- $)
 
   $( The more familiar form of the Robbins equation is
-     ((p q) (p (q))) = p, but I prefer this form. $)
+     ((p q) (p (q))) = p, but for this exercise I'll be using this
+     equivalent form: $)
   robbins  $a |- ( ( ( p ) q ) ( p q ) ) = q $.
 
   $( System_3 consequences ------------------------------------ $)
 
-  lem4.3  $p |- ( ( ( p ) ) ( p ) ) =  $=
-    ( void robbins ) ABC $.
-    $( [30-Sep-2015] $)
-
   j1.3  $p |- ( ( p ) p ) = $=
-    ( tq encl juxt void robbins sym ax-beq quad lem4.3 trans ) ACZADZCBCADCBADC
-    DZCZCZODZCEMQLPAOAOOABAFGZHRIHNJK $.
-    $( [4-Oct-2015] $)
-
-  lem5.3  $p |- ( ( ( ( p ) ) p ) ) = p $=
-    ( encl juxt void j1.3 robbins repbx ) ABZACBDHBACBDDDAAEHAFG $.
-    $( [5-Oct-2015] $)
-
-  lem6.3  $p |- ( ( ( ( p ) )  p ) ) = ( ( p ) ) $= 
-    ( encl juxt void ax-cmm ax-beq lem4.3 robbins repbx rep ) AABZBZCZBZBLACZBZ
-    BDDLNPMOALEFFLKCZBZDDNDDLAGKLCZBRDNDDLSQKLEFALHIIJ $.
-    $( [2-Oct-2015] $)  
-
-  $( A shorter proof of lem6.3 using repbd.
-  lem6.3  $p |- ( ( ( ( p ) ) p ) ) = ( ( p ) ) $=
-    ( encl juxt void ax-cmm lem4.3 ax-beq robbins repbx repbd ) AABZBZCZLACDDLA
-    LELKCZBZDDMBZDDLAFKLCZBODPDDLQNKLEGALHIIJ $.
-    @( [5-Oct-2015] @)
-  $)
+    ( tq encl juxt void robbins sym ax-beq quad trans ) ACZADZCBCADCBADCDZCZCZN
+    DZCELPKOANANNABAFGZHQIHMEFJ $.
+    $( [8-Dec-2016] $)
 
   c1.3  $p |- ( ( p ) ) = p $=
-    ( encl juxt lem6.3 lem5.3 eucr ) ABBZACBBGAADAEF $.
-    $( [5-Oct-2015] $)
+    ( encl juxt void ax-cmm ax-beq robbins repbx rep j1.3 eucr ) ABZBZACZBZBZMA
+    AMCZBZBPDDMROQNAMEFFMLCZBZDDRDDMADGLMCZBTDRDDMUASLMEFAMGHHILACBDODDDAAJLAGH
+    K $.
+    $( [8-Dec-2016] $)
 
   c6.3  $p |- ( ( p ) ( q ) ) ( ( p ) q ) = p $=
     ( encl juxt void ax-cmm c1.3 robbins ax-beq eucr trans repbx ) BACZDZMBDEEM
