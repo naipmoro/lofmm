@@ -564,7 +564,7 @@ $( =======================================================================
   $( Basis_3 --------------------------------------------- $)
 
   $( The more familiar form of the Robbins equation is
-     ((p q) (p (q))) = p, but for this exercise I'll be using this
+     ((p q) (p (q))) = p, but for this exercise I'll be using the
      equivalent form: $)
   robbins  $a |- ( ( ( p ) q ) ( p q ) ) = q $.
 
