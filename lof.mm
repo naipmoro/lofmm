@@ -275,7 +275,7 @@ $)
     tranrxb.2  $e |- p = r $.
     tranrxb    $p |- x ( v q u ) w = w ( u r v ) x $.
 
-    we could have reduced the proof of c9.0 by a hundred steps. $)
+    we could have reduced the proof of theorem c9.0 by a hundred steps. $)
 
   $( ==========================================================================
                               Laws of Form  
@@ -522,64 +522,13 @@ $( =======================================================================
   $( System_2 consequences ------------------------------------ $)
 
   $( An important lemma used in the proof of c1.2. $)
-  $(
   lem2.2  $p |- ( p ) p = ( q ) q $=
     ( encl juxt void c6.2 ax-cmm quad subb1 eucr subst trans cmmx sym rep repbx
     ax-beq ) BCZBDACZADZRSCZDZCZRSDZCDBRETBSFSRDZUDEERUCDETSRGUARDZUBEERUECZTUA
     RGRCZUADZCZUHSDZCZDZREUFCZUGDTRSFTUMUNDUGDZTUJUNDZULDUGDUOTUPSUHDZCZUGDZDZU
     PULUGDDUAUHDZCUNDZUSDTUTVBSUSASRFARFHVAUIEEEUNURDUGDUAUHGIJURULUPUGUQUKSUHG
     QKLUNULUJEUGMLNOPPON $.
-    @( [24-Sep-2015] @)
-  $)
-
-  lem2.2x $p |- ( ( ( p ) ) ( ( q ) ) ) ( ( ( p ) ) ( q ) ) = ( p )  $=
-    tp encl tq encl c6.2
-    $.
-  
-  lem2.2  $p |- ( p ) p = ( q ) q $=
-    tq encl tq juxt tp encl tp juxt tq encl tp encl encl juxt encl tq encl tp
-    encl juxt encl juxt tq tq encl void tp encl tp juxt tq tp encl c6.2
-
-    tp encl
-    tq encl juxt tq encl tp encl juxt void void tq encl tq encl tp encl encl
-    juxt encl juxt void tp encl tp juxt tp encl tq encl ax-cmm
-
-    tp encl encl tq
-    encl juxt tq encl tp encl encl juxt void void tq encl tp encl tq encl juxt
-    encl tp encl tp juxt tp encl encl tq encl ax-cmm
-
-    tq encl encl tp encl encl
-    juxt encl tq encl encl tp encl juxt encl juxt tq encl void tp encl encl tq
-    encl juxt encl tp encl tq encl juxt encl juxt tp encl tp juxt tq encl tp
-    encl c6.2
-
-    tp encl tp juxt tq encl encl tp encl encl juxt encl tq encl encl
-    tp encl juxt encl juxt tp encl encl tq encl juxt encl juxt tp encl tq encl
-    juxt encl juxt tp encl tp juxt tq encl encl tp encl encl juxt encl tp encl
-    encl tq encl juxt encl juxt tq encl encl tp encl juxt encl juxt tp encl tq
-    encl juxt encl juxt tq encl encl tp encl encl juxt encl tq encl encl tp
-    encl juxt encl juxt tp encl encl tq encl juxt encl juxt tp encl tq encl
-    juxt encl juxt tp encl tp juxt tq encl encl tp encl encl juxt encl tp encl
-    encl tq encl juxt encl juxt tp encl tq encl encl juxt encl tp encl tq encl
-    juxt encl juxt juxt tq encl encl tp encl encl juxt encl tp encl encl tq
-    encl juxt encl juxt tq encl encl tp encl juxt encl tp encl tq encl juxt
-    encl juxt juxt tp encl encl tq encl encl juxt encl tp encl encl tq encl
-    juxt encl juxt tp encl tq encl encl juxt encl tp encl tq encl juxt encl
-    juxt juxt tp encl tp juxt tq encl encl tp encl encl juxt encl tp encl encl
-    tq encl juxt encl juxt tp encl tq encl encl juxt encl tp encl tq encl juxt
-    encl juxt juxt tp encl encl tq encl encl juxt encl tp encl encl tq encl
-    juxt encl juxt tp encl tp encl tq encl encl juxt encl tp encl tq encl juxt
-    encl juxt tp tp encl tq encl c6.2 tp tq encl c6.2 quad tp encl encl tq encl
-    encl juxt tq encl encl tp encl encl juxt void void void tp encl encl tq
-    encl juxt encl tp encl tq encl encl juxt encl juxt tp encl tq encl juxt
-    encl juxt tp encl encl tq encl encl ax-cmm subb1 eucr tp encl tq encl encl
-    juxt encl tq encl encl tp encl juxt encl tq encl encl tp encl encl juxt
-    encl tp encl encl tq encl juxt encl juxt tp encl tq encl juxt encl tp encl
-    tq encl encl juxt tq encl encl tp encl juxt tp encl tq encl encl ax-cmm
-    ax-beq subst trans tp encl encl tq encl juxt encl tq encl encl tp encl juxt
-    encl tq encl encl tp encl encl juxt encl void tp encl tq encl juxt encl
-    cmmx trans sym rep repbx repbx rep sym $.
-
+    $( [24-Sep-2015] $)
 
   $( This is axiom B3 from Meguire. $)
   b3.2  $p |- ( p ) p = ( ) $=
