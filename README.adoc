@@ -69,12 +69,17 @@ All proofs in the database were verified in 0.01 s.
 In keeping with the spirit of _LoF's_ austerity, I aimed for the most
 minimal formalism possible. I start with five constant symbols: +
 
+*(* {nbsp}{nbsp}{nbsp} *)* {nbsp}{nbsp}{nbsp} *=* {nbsp}{nbsp}{nbsp}
+*|-* {nbsp}{nbsp}{nbsp} *form*
+
+////
 [none]
 -  *(*
 -  *)*
 -  *=*
 -  *|-*
 -  *form*
+////
 
 and seven basic axioms -- three to provide a recursive definition of 'form',
 three common notions (so to speak) to power symbol manipulation, and a
