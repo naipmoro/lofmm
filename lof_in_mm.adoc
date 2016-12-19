@@ -1,0 +1,874 @@
+== _Laws of Form_ in Metamath
+:source-highlighter: highlight.js
+:stem:
+:math:
+:table-caption!:
+:lofmm: https://github.com/naipmoro/lofmm/blob/master/lof.mm
+:mm: http://metamath.org
+
+{lofmm}[lof.mm] presents {mm}[metamath] derivations of the Primary Algebra
+from Spencer-Brown, G. (1969) _Laws of Form_ (Allen & Unwin, London),
+hereafter cited as _LoF_.
+
+The algebra of _LoF_ has a number of models, most significantly boolean 
+algebra and sentential logic, so it may be of some interest to logicians. 
+From the perspective of metamath, it is a non-trivial example of a system 
+that requires, indeed is based on, the 'empty substitution'.
+
+Access to the empty substitution, in conjunction with metamath's radical
+formalism, allows a representation that closely matches _LoF's_ actual
+expressions.
+
+_LoF_ is a 2-dimensional notation in which closed curves (boundaries) are
+the symbols under investigation, and in which the only property of interest
+is whether a given boundary is inside or outside of another boundary,
+intersecting boundaries not being allowed. Variables _p q r ..._ will range 
+over possible arrangements of boundaries (which we call _forms_). It is now 
+common to call _LoF_ a _boundary algebra_. In _LoF_ all boundaries are
+considered equivalent.
+
+The topology of _LoF_ implicitly imposes commutativity on its operations
+and transferring this to a linear notation involves compromises. To better
+understand the compromises and see the cost of linearity was a major
+motivation of this exercise.
+
+As has become standard, I use matching parentheses (...) to represent 
+boundaries. And I need to explicitly state the commutative property. 
+The ramifications of this last point are felt throughout the ensuing 
+derivations, as properties that are obvious in the 2D notation have to
+be spelled out case by case in auxiliary theorems. The system as formulated
+is simply unable to prove general statements of commutativity.
+
+////
+Although the seven axioms presented below are simple, transparent, and
+adequate to the task, they lack the power to prove meta-theorems.
+////
+
+If metamath is installed on your system, you can confirm
+the correctness of the formal derivations in lof.mm by starting the
+program, reading in the file, and verifying the steps:
+
+----
+$ metamath
+Metamath - Version 0.131 10-Jun-2016          Type HELP for help, EXIT to exit.
+MM> read lof.mm
+Reading source file "lof.mm"...
+592 lines (22102 characters) were read from "lof.mm".
+The source has 114 statements; 13 are $a and 43 are $p.
+SET EMPTY_SUBSTITUTION was turned ON (allowed) for this database.
+No errors were found.  However, proofs were not checked.  Type VERIFY PROOF *
+if you want to check them.
+MM> verify proof *
+0 10%  20%  30%  40%  50%  60%  70%  80%  90% 100%
+..................................................
+All proofs in the database were verified in 0.01 s.
+----
+
+=== Axioms
+
+In keeping with the spirit of _LoF's_ austerity, I aimed for the most
+minimal formalism possible. I start with five constant symbols: +
+
+*(* {nbsp}{nbsp}{nbsp} *)* {nbsp}{nbsp}{nbsp} *=* {nbsp}{nbsp}{nbsp}
+*|-* {nbsp}{nbsp}{nbsp} *form*
+
+////
+[none]
+-  *(*
+-  *)*
+-  *=*
+-  *|-*
+-  *form*
+////
+
+and seven basic axioms -- three to provide a recursive definition of 'form',
+three common notions (so to speak) to power symbol manipulation, and a
+commutativity axiom. Metamath does not distinguish definitions from proper
+axioms.
+
+.Recursive Definition of Form
+[horizontal]
+void:: Empty space is a form.
+encl:: If *_p_* is a form, enclosing it in parentheses *_(p)_* is a form. 
+juxt:: If *_p_* and *_q_* are forms, juxtaposing them as *_p q_* is a form. 
+ 
+.Common Notions
+[horizontal]
+ax-euc:: Two things equal to the same thing are equal to each
+    other. This is Euclid's first Common Notion and, in an equational logic,
+    this and its sibling, transitivity, are the main engine of derivation.
+    Formally, +
+    *_p = q_* & *_r = q_* {nbsp} _->_ {nbsp} *_p = r_*.
+
+Euclid's second and third Common Notions are specific to quantity, 
+so not exactly common. We can rephrase them as: doing the same thing 
+(e.g., applying the same operation) to equal things leaves equal things. 
+Applying this to _LoF's_ two operations, enclosure and juxtaposition,
+leads to the next two axioms (looked at differently, these can also be
+seen as substitution/replacement rules).
+
+//[start=2]
+[horizontal]
+ax-beq:: Enclosing equal forms leaves equal forms. We can consider this a 
+    definition of boundary equality: +
+    *_p = q_* {nbsp} _->_ {nbsp} *_(p) = (q)_*.
+ax-sub:: Juxtaposing the same form with equal forms leaves equal forms: +
+    *_p = q_* {nbsp} _->_ {nbsp} *_p v = q v_*.
+    
+.Commutativity of _LoF_
+[horizontal]
+ax-cmm:: *_p q = q p_*
+
+Associativity is found to hold despite our system lacking the means to
+even state it.
+
+=== Theorems
+
+The symbol '=' is never defined but it will turn out to obey the expected
+laws of an equivalence relation. Specifically, from the common notion 
+that two things equal to the same thing are equal to each other and from 
+the commutativity of _LoF_, we derive the reflexivity, symmetry, and 
+transitivity of '='. Note that such a derivation is not possible in a
+traditional formal system without additional axioms -- it is the ability 
+to reference the empty (or _void_) form that allows it here. For the actual
+derivations, see the source file.
+
+[horizontal]
+id:: *_p=p_*
+sym:: *_p=q_* {nbsp}  _->_ {nbsp} *_q=p_*
+trans::  *_p=q_* & *_q=r_* {nbsp} _->_ {nbsp} *_p=r_*
+
+The axioms and theorems so far have been transparent, succinct, and
+powerful (they embody boolean algebra, after all), but applying them
+would be impractical without further theorems. While this is no different
+from any other formal system, here these auxiliary theorems have a
+peculiar feeling of inconsequence: they are often tiresome (and sometimes
+ugly) commutative elaborations of previous statements, whose only adhoc
+utility is to ease the derivation of particular propositions.
+
+I state these below without further comment.
+
+.Auxiliary theorems
+[horizontal]
+eucr:: *_p=q_* & *_p=r_* {nbsp} _->_ {nbsp}  *_q=r_*
+subr:: *_p=q_* {nbsp} _->_ {nbsp} *_u p = u q_*
+subst:: *_p=q_* {nbsp} _->_ {nbsp} *_u p v = u q v_*
+substr:: *_p=q_* {nbsp} _->_ {nbsp} *_u p v = v q u_*
+subb1:: *_p=q_* {nbsp} _->_ {nbsp} *_w ( u p v ) x = w ( u q v ) x_*
+subb3:: *_p=q_* {nbsp} _->_ {nbsp} *_w ( u p v ) x = w ( v q u ) x_*
+rep:: *_p=q_* & *_u p v = y_* {nbsp} _->_ {nbsp} *_u q v = y_*
+repbx:: *_p=q_* & *_w (u p v) x = y_* {nbsp} _->_ {nbsp} *_w (u q v) x = y_*
+quad:: *_p=q_* & *_r=s_* {nbsp} _->_ {nbsp} *_p r = q s_*
+ins:: *_p q = r s_* {nbsp} _->_ {nbsp} *_p v q = r v s_*
+cmmx:: *_u p v q w = u q v p w_*
+cmmbx:: *_x ( u p v q w ) y = x ( u q v p w ) y_*
+quadbx:: *_p q = r s_* {nbsp} _->_ {nbsp} *_x ( u p v r w ) y = x ( u q v s w ) y_*
+
+It's hard to know where to stop with auxiliary theorems. Had we chosen 
+to prove the two additional statements:
+[none]
+- *_p=q_* & *_r=q_* {nbsp} _->_ {nbsp} *_x ( v p u ) w = w ( u r v ) x_*
+- *_p=q_* & *_p=r_* {nbsp} _->_ {nbsp} *_x ( v q u ) w = w ( u r v ) x_*
+
+we could have reduced significantly the proof of theorem _c9.0_.
+
+== _Laws of Form_
+_LoF_ can be considered a prolonged deduction from two initial 'arithmetic'
+equations [_LoF_, p. 12]:
+
+////
+[literal]
+----
+   I1. Number   () () = ()
+   I2. Order    (())  =   
+----
+////
+
+--
+[cols="<4e,>2e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|I1. Number   |( )  ( ) |= |( )
+|I2. Order    |( ( ) ) |= |{blank}
+|===
+--
+
+As mentioned, one of the models of _LoF_ is sentential logic:
+
+[cols="<4e,^1,^6e",grid="none",frame="none",width="40%"]
+|===
+|{nbsp}{nbsp}T |&equiv;     |( )
+|{nbsp}{nbsp}F |&equiv;     |{blank} 
+|&not;p        |&equiv;     |( p )
+|p &or; q      |&equiv;     |p q   
+|p &and; q     |&equiv;     |( ( p ) ( q ) )   
+|p -> q        |&equiv;     |( p ) q
+|p &harr; q    |&equiv;     |( ( p ) ( q ) ) ( p q )
+|===
+
+The algebra is self-dual. If we interchange _T_ and _F_, the algebraic laws 
+continue to hold, with juxtaposition now interpreted as conjunction:
+
+[cols="<4e,^1,^6e",grid="none",frame="none",width="40%"]
+|===
+|{nbsp}{nbsp}T |&equiv;     |{blank}
+|{nbsp}{nbsp}F |&equiv;     |( )
+|&not;p        |&equiv;     |( p )
+|p &or; q      |&equiv;     |( ( p ) ( q ) )
+|p &and; q     |&equiv;     |p q
+|p -> q        |&equiv;     |( p ( q ) )
+|p &harr; q    |&equiv;     |( ( ( p ) ( q ) ) ( p q ) )
+|===
+
+In keeping with standard practice, I use the first interpretation
+(juxtaposition as disjunction). When refering to the second interpretation,
+I call it the 'dual interpretation'.
+
+Spencer-Brown begins with the two axioms:
+////
+[literal]
+----
+  J1. Position                 ((p) p) = 
+  J2. Transposition            ((p r) (q r)) = ((p) (q)) r
+----
+////
+
+[cols="<25e,>25e,^1,<20e",grid="none",frame="none",width="80%"]
+|===
+|J1. Position          |((p) p) |= |{blank}
+|J2. Transposition     |\((p r) (q r)) |= |\((p) (q)) r
+|===
+
+and deduces the following consequences [_LoF_, pp. 28-35]:
+
+////
+[literal]
+----
+  C1. Reflexion                ((a)) = a
+  C2. Generation               (a b) b = (a) b
+  C3. Integration              () a = ()
+  C4. Occultation              ((a) b) a = a
+  C5. Iteration                a a = a
+  C6. Extension                ((a) (b)) ((a) b) = a
+  C7. Echelon                  (((a) b) c) = (a c) ((b) c)
+  C8. Modified transposition   ((a) (b r) (c r)) = ((a) (b) (c)) ((a) (r))
+  C9. Crosstransposition       (((b) (r)) ((a) (r)) ((x) r) ((y) r)) = 
+                               ((r) a b) (r x y)
+----
+////
+
+[cols="<25e,>26e,^1,<20e",grid="none",frame="none",width="80%"]
+|===
+|C1. Reflexion  |\((a))|=|a
+|C2. Generation |(a b) b |= |(a) b
+|C3. Integration |() a |= |()
+|C4. Occultation |((a) b) a |= |a
+|C5. Iteration  |a a |= |a
+|C6. Extension  |\((a) (b)) ((a) b) |= |a
+|C7. Echelon   |(((a) b) c) |= |(a c) ((b) c)
+|C8. Modified transposition |\((a) (b r) (c r)) |= |\((a) (b) (c)) \((a) (r))
+|C9. Crosstransposition |\(((b) (r)) \((a) (r)) \((x) r) ((y) r)) |=|((r) a b) (r x y)
+|===
+
+To see that _J1_ and _J2_ constitute a complete set of axioms, refer to
+chapter 9 of _LoF_ [pp. 50-52].
+
+One of the goals of lof.mm was to establish different bases (initial 
+axioms) for the algebra. To do this in one file, I need a way to reference
+the same theorems in the different bases. Retaining Spencer-Brown's original
+numbering scheme for cross-referencing, I label the theorems as _ck.n (jk.n)_,
+where _ck (jk)_ refers to _LoF's_ _Ck (Jk)_ and _n_ refers to the basis under
+consideration. In other words, _ck.n = ck.m  (jk.n = jk.m)_ for all _n, m_.
+_LoF's_ system is _n = 0_.
+
+=== Summary of Results
+
+
+==== System~0~
+
+This version follows _LoF_ and was the original proof of concept, so not
+much more needs to be said. There is one difference -- theorem *C5* is derived
+before *C4* -- and so for those interested, I show the derivation below, as
+expressed by metamath.
+
+First the axioms:
+
+.Basis~0~
+[cols="<2s,>4e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|j1.0  |( ( p ) p ) |= |{blank}
+|j2.0  |( ( p r ) ( q r ) ) |= |( ( p ) ( q ) ) r
+|===
+
+and the first two theorems:
+
+.Theorems~0~
+[cols="<2s,>4e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c1.0  |( ( p ) ) |= |p
+|c2.0  |( p q ) q |= |( p ) q
+|===
+
+////
+Here's the proof of c5.0 latexmath:[\;\;\;\;\; p \,p = p]
+
+[latexmath]
+++++
+\begin{align}
+     1 && &  ( ( p ) p ) p = ( ( p ) ) p   & \text{c2.0} \notag
+  \\ 2 && &  ( ( p ) ) = p                 & \text{c1.0} \notag
+  \\ 3 && &  ( ( p ) ) p = p \,p           & \text{2,subst} \notag
+  \\ 4 && &  ( ( p ) p ) p = p \,p         & \text{1,3,trans} \notag
+  \\ 5 && &  ( ( p ) p ) =                 & \text{j1.0} \notag
+  \\ 6 && &  ( ( p ) p ) p = p             & \text{5,subst} \notag
+  \\ 7 && &  p \,p = p                     & \text{4,6,eucr} \notag
+\end{align}
+++++
+////
+
+.Proof of c5.0
+[cols="<1,<4,<3",grid="none",frame="none",width="50%"]
+|===
+|1 |( ( p ) p ) p = ( ( p ) ) p  |(*c2.0*)
+|2 |( ( p ) ) = p                |(*c1.0*)
+|3 |( ( p ) ) p = p p            |(2, *subst*)
+|4 |( ( p ) p ) p = p p          |(1,3, *trans*)
+|5 |( ( p ) p ) =                |(*j1.0*)
+|6 |( ( p ) p ) p = p            |(5, *subst*)
+|7 |p p = p                      |(4,6, *eucr*)
+|===
+
+==== System~1~
+
+Although System~0~ is the only one demonstrated by Spencer-Brown, and so
+can be considered canonical, he mentions in his notes an alternate basis
+of *C5* and *C6*, but suggests the derivation is 'both difficult and tedious' 
+[_LoF_, p.89]. Readers can decide for themselves whether System~1~ is any 
+more complicated than System~0~. The virtue of this basis, as noted by
+Spencer-Brown, is the need for only two distinct variables. 
+
+The derivation below ends at the point where both *j1.1* and *j2.1* are 
+proved, since that establishes *c5.1* and *c6.1* as a complete basis.
+
+.Basis~1~
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c5.1  |p p |= |p 
+|c6.1  |( ( p ) ( q ) ) ( ( p ) q ) |= |p
+|===
+
+The following lemma is crucial for the proof of *c1.1* Under the dual
+interpretation, it is mildly reminiscent of modus ponens: +
+
+(p &and; (p -> q)) &harr; (p &and; q)
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|lem1.1 |p ( ( q ) p ) |= |p q
+|===
+
+.Proof of lem1.1
+[cols="<1,<10,<3",grid="none",frame="none",width="60%"]
+|===
+| 1  |( ( q ) ( p ) ) = ( ( p ) ( q ) ) |(*cmmbx*)
+| 2  v|( ( p ) ( q ) ) ( ( p ) q ) ( ( q ) ( p ) ) ( ( q ) p )
+     = ( ( p ) ( q ) ) ( ( p ) q ) ( ( p ) ( q ) ) ( ( q ) p ) |(1 *subst*)
+| 3  v|( ( p ) ( q ) ) ( ( p ) q ) ( ( p ) ( q ) ) ( ( q ) p )
+     = ( ( p ) ( q ) ) ( ( p ) ( q ) ) ( ( p ) q ) ( ( q ) p ) |(*cmmx*)
+| 4  v|( ( p ) ( q ) ) ( ( p ) q ) ( ( q ) ( p ) ) ( ( q ) p )
+     = ( ( p ) ( q ) ) ( ( p ) ( q ) ) ( ( p ) q ) ( ( q ) p ) |(2,3 *trans*)
+| 5  |( ( p ) ( q ) ) ( ( p ) ( q ) ) = ( ( p ) ( q ) ) |(*c5.1*)
+| 6  v|( ( p ) ( q ) ) ( ( p ) ( q ) ) ( ( p ) q ) ( ( q ) p )
+     = ( ( p ) ( q ) ) ( ( p ) q ) ( ( q ) p ) |(5 *ax-sub*)
+| 7  v|( ( p ) ( q ) ) ( ( p ) q ) ( ( q ) ( p ) ) ( ( q ) p )
+     = ( ( p ) ( q ) ) ( ( p ) q ) ( ( q ) p ) |(4,6 *trans* )
+| 8  |( ( p ) ( q ) ) ( ( p ) q ) = p |(*c6.1*)
+| 9  |( ( p ) ( q ) ) ( ( p ) q ) ( ( q ) p ) = p ( ( q ) p ) |(8 *ax-sub*)
+|10  v|( ( p ) ( q ) ) ( ( p ) q ) ( ( q ) ( p ) ) ( ( q ) p )
+     = p ( ( q ) p ) |(7,9 *trans*)
+|11  |( ( q ) ( p ) ) ( ( q ) p ) = q |(*c6.1*)
+|12  v|( ( p ) ( q ) ) ( ( p ) q ) ( ( q ) ( p ) ) ( ( q ) p )
+     = p q | (8,11 *quad*)
+|13  |p ( ( q ) p ) = p q |(10,12 *eucr*)
+|===
+
+If we now plug _void_ values into *lem1.1's* _p_ variable, we
+immediately prove:
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c1.1 |( ( p ) ) |= |p 
+|===
+
+And plugging _void_ values into *c1.1's* _p_ variable immediately
+proves the *I2* arithmetic initial:
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|i2.1 |( ( ) ) |= |{blank} 
+|===
+
+*I2* is also directly derivable from the basis by plugging _void_ values
+into *c6.1*, followed by two applications of *c5.1*. We now prove one of
+the two equations from Basis~0~, *J1*.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|j1.1 |( ( p ) p ) |= |{blank}
+|===
+
+.Proof of j1.1
+[cols="<1,<10,<4",grid="none",frame="none",width="60%"]
+|===
+| 1  |( ( p ) ) = p |(*c1.1*)
+| 2  |( p ) ( ( p ) ) = ( p ) p |(1 *subr*)
+| 3  |( ( p ) ) ( p ) = ( p ) ( ( p ) ) |(*ax-cmm*)
+| 4  |( ( ) ) = {blank} |(*i2.1*)
+| 5  |( ( ( ) ) ( p ) ) = ( ( p ) ) |(4 *subb1*)
+
+| 6  |( ( ( ) ) p ) = ( p ) |(4 *subb1*)
+| 7  |( ( ( ) ) ( p ) ) ( ( ( ) ) p ) = ( ( p ) ) ( p ) |(5,6 *quad*)
+| 8  |( ( ( ) ) ( p ) ) ( ( ( ) ) p ) = ( ) |(*c6.1*)
+| 9  |( ( p ) ) ( p ) = ( ) |(7,8 *eucr*)
+|10  |( p ) ( ( p ) ) = ( ) |(3,9 *eucr*)
+|11  |( p ) p = ( ) |(2,10 *eucr*)
+|12  |( ( p ) p ) = ( ( ) ) |(11 *ax-beq*)
+|13  |( ( p ) p ) = {blank} |(12,4 *trans*)
+|===
+
+We now prove *C4*.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c4.1 |( ( p ) q ) p |= |p
+|===
+
+.Proof of c4.1
+[cols="<1,<10,<4",grid="none",frame="none",width="60%"]
+|===
+|1  |( ( p ) ( q ) ) ( ( p ) q ) = p |(*c6.1*)
+|2  |( ( p ) ( q ) ) ( ( p ) q ) ( ( p ) q ) = ( ( p ) q ) p |(1 *substr*)
+|3  |( ( p ) q ) ( ( p ) q ) = ( ( p ) q ) |(*c5.1*)
+|4  v|( ( p ) ( q ) ) ( ( p ) q ) ( ( p ) q )
+    = ( ( p ) ( q ) ) ( ( p ) q ) |(3 *subr*)
+|5  |( ( p ) q ) p = ( ( p ) ( q ) ) ( ( p ) q ) |(2,4 *eucr*)
+|6  |( ( p ) q ) p = p |(5,1 *trans*)
+|===
+
+We will need this corollary of *c4.1*:
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c4cor.1 |( p q ) ( p ) |= |( p )
+|===
+
+.Proof of c4cor.1
+[cols="<1,<10,<4",grid="none",frame="none",width="60%"]
+|===
+|1  |( ( p ) ) = p |(*c1.1*)
+|2  |( ( ( p ) ) q ) ( p ) = ( p q ) ( p ) |(1 *subb1*)
+|3  |( ( ( p ) ) q ) ( p ) = ( p ) |(*c4.1*)
+|4  |( p q ) ( p ) = ( p ) |(2,3 *eucr*)
+|===
+
+And this corollary of *c6.1*:
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c6cor.1 |( ( p ) q ) ( p q ) |= |( q )
+|===
+
+.Proof of c6cor.1
+[cols="<1,<10,<4",grid="none",frame="none",width="60%"]
+|===
+|1 | q p = p q |(*ax-cmm*)
+|2 | q ( p ) = ( p ) q |(*ax-cmm*)
+|3 | ( ( q ) ) = q |(*c1.1*)
+|4 | ( ( ( q ) ) ( p ) ) ( ( ( q ) ) p ) = ( q ) |(*c6.1*)
+|5 | ( q ( p ) ) ( ( ( q ) ) p ) = ( q ) |(3,4 *repbx*)
+|6 | ( q ( p ) ) ( q p ) = ( q ) |(3,5 *repbx*)
+|7 | ( ( p ) q ) ( q p ) = ( q ) |(2,6 *repbx*)
+|8 | ( ( p ) q ) ( p q ) = ( q ) |(1,7 *repbx*)
+|===
+
+We prove *C7*.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c7.1 |( ( ( p ) q ) r ) |= |( p r ) ( ( q ) r )
+|===
+
+Beyond a certain length, proofs become dominated by commutations and
+substitutions of equal forms, making them practically unreadable. The full
+41-step version of c7.1 is an example (have metamath execute `'show proof c7.1
+/lemmon /renumber /no_repeated_steps'` to see all the steps). Below is a much
+condensed version where rearrangement of terms and substitution of equals go
+unmentioned.
+
+.Condensed proof of c7.1
+[cols="<1,<10,<5",grid="none",frame="none",width="75%"]
+|===
+| 1 v| ( ( ( ( ( p ) q ) r ) ) ( p q ) ) ( ( ( ( ( p ) q ) r ) ) p q ) 
+    = ( ( ( p ) q ) r ) |(*c6.1*)
+| 2 v| ( ( ( p ) q ) r ( p q ) ) ( ( ( p ) q ) p r q ) 
+    = ( ( ( p ) q ) r ) |(*c1.1* twice)
+| 3 | ( ( q ) r ) ( ( ( p ) q ) p r q ) = ( ( ( p ) q ) r ) |(*c6cor.1*)
+| 4 | ( ( q ) r ) ( p r q ) = ( ( ( p ) q ) r ) |(*c4.1*)
+| 5 v| ( ( ( ( ( p ) q ) r ) ) ( ( p ) ( q ) ) ) ( ( ( ( ( p ) q ) r ) ) ( p ) ( q ) ) 
+    = ( ( ( p ) q ) r ) |(*c6.1*)
+| 6 v| ( ( ( p ) q ) r ( ( p ) ( q ) ) ) ( ( ( p ) q ) r ( p ) ( q ) ) 
+    = ( ( ( p ) q ) r ) |(*c1.1* twice)
+| 7 | ( p r ) ( ( ( p ) q ) r ( p ) ( q ) ) = ( ( ( p ) q ) r ) |(*c6.1*)
+| 8 | ( p r ) ( ( p ) ( q ) r ) = ( ( ( p ) q ) r ) |(*c4cor.1*)
+| 9 v| ( p r ) ( p r q ) ( ( q ) r ) ( ( p ) ( q ) r ) 
+    = ( ( ( p ) q ) r ) ( ( ( p ) q ) r ) |(4,8 *quad*)
+|10 v| ( p r ) ( p r q ) ( ( q ) r ) ( ( p ) ( q ) r ) 
+    = ( ( ( p ) q ) r ) |(*c5.1*)
+|11 | ( ( ( p ) q ) r ) = ( p r ) ( ( q ) r ) |(*c4.1* twice)
+|===
+
+////
+.Proof of c7.1
+[cols="<1,<10,<5",grid="none",frame="none",width="75%"]
+|===
+| 1 | r ( q ) = ( q ) r |(*ax-cmm*)
+| 2 | r p = p r |(*ax-cmm*)
+| 3 | ( r ( q ) ( p ) ) ( r ( q ) ) = ( r ( q ) ) |(*c4cor.1*)
+| 4 | ( p ) r ( q ) = r ( q ) ( p ) |(*ax-cmm*)
+| 5 v| ( r ( q ) ) ( r p ) ( ( p ) r ( q ) )
+    = ( r p ) ( ( p ) r ( q ) ) ( r ( q ) ) |(*ax-cmm*)
+| 6 | ( r p q ) ( r p ) = ( r p ) |(*c4cor.1*)
+| 7 | ( ( p ) q ) ( p q ) = ( q ) |(*c6cor.1*)
+| 8 | ( ( p ) q ) r = r ( ( p ) q ) |(*ax-cmm*)
+| 9 | ( ( p ) q ) p = p |(*c4.1*)
+|10 | ( ( p ) q ) r = r ( ( p ) q ) |(*ax-cmm*)
+|11 | ( ( ( ( p ) q ) r ) ) = ( ( p ) q ) r | (*c1.1*)
+|12 | ( ( ( ( p ) q ) r ) ) = ( ( p ) q ) r |(*c1.1*)
+|13 v| ( ( ( ( ( p ) q ) r ) ) ( p q ) ) ( ( ( ( ( p ) q ) r ) ) p q )
+    = ( ( ( p ) q ) r ) |(*c6.1*)
+|14 v| ( ( ( p ) q ) r ( p q ) ) ( ( ( ( ( p ) q ) r ) ) p q )
+    = ( ( ( p ) q ) r ) |(12,13 *repbx*)
+|15 v| ( ( ( p ) q ) r ( p q ) ) ( ( ( p ) q ) r p q )
+    = ( ( ( p ) q ) r ) |(11,14 *repbx*)
+|16 v| ( ( ( p ) q ) r ( p q ) ) ( r ( ( p ) q ) p q )
+    = ( ( ( p ) q ) r ) |(10,15 *repbx*)
+|17 v| ( ( ( p ) q ) r ( p q ) ) ( r p q )
+    = ( ( ( p ) q ) r ) |(9,16 *repbx*)
+|18 v| ( r ( ( p ) q ) ( p q ) ) ( r p q )
+    = ( ( ( p ) q ) r ) |(8,17 *repbx*)
+|19 | ( r ( q ) ) ( r p q ) = ( ( ( p ) q ) r ) |(7,18 *repbx*)
+|20 | ( q ( p ) ) ( q ) = ( q ) |(*c4cor.1*)
+|21 | ( p ) r ( ( p ) q ) ( q ) = ( p ) r ( q ( p ) ) ( q ) |(*cmmbx*)
+|22 v| ( r p ) ( ( ( p ) q ) r ( p ) ( q ) )
+    = ( r p ) ( ( p ) r ( ( p ) q ) ( q ) ) |(*cmmbx*)
+|23 | ( ( p ) ( q ) ) ( ( p ) q ) = p |(*c6.1*)
+|24 v| ( ( p ) q ) ( ( p ) ( q ) )
+    = ( ( p ) ( q ) ) ( ( p ) q ) |(*ax-cmm*)
+|25 | ( ( p ) q ) r = r ( ( p ) q ) |(*ax-cmm*)
+|26 | ( ( ( ( p ) q ) r ) ) = ( ( p ) q ) r | (*c1.1*)
+|27 | ( ( ( ( p ) q ) r ) ) = ( ( p ) q ) r | (*c1.1*)
+|28 v|( ( ( ( ( p ) q ) r ) ) ( ( p ) ( q ) ) )
+    ( ( ( ( ( p ) q ) r ) ) ( p ) ( q ) )
+    = ( ( ( p ) q ) r ) |(*c6.1*)
+|29 v| ( ( ( p ) q ) r ( ( p ) ( q ) ) )
+    ( ( ( ( ( p ) q ) r ) ) ( p ) ( q ) ) = ( ( ( p ) q ) r ) |(27,28 *repbx*)
+|30 v| ( ( ( p ) q ) r ( ( p ) ( q ) ) )
+    ( ( ( p ) q ) r ( p ) ( q ) ) = ( ( ( p ) q ) r ) |(26,29 *repbx*)
+|31 v| ( r ( ( p ) q ) ( ( p ) ( q ) ) )
+    ( ( ( p ) q ) r ( p ) ( q ) ) = ( ( ( p ) q ) r ) |(25,30 *repbx*)
+|32 v| ( r ( ( p ) ( q ) ) ( ( p ) q ) )
+    ( ( ( p ) q ) r ( p ) ( q ) ) = ( ( ( p ) q ) r ) |(24,31 *repbx*)
+|33 | ( r p ) ( ( ( p ) q ) r ( p ) ( q ) ) = ( ( ( p ) q ) r ) |(23,32 *repbx*)
+|34 | ( r p ) ( ( p ) r ( ( p ) q ) ( q ) ) = ( ( ( p ) q ) r ) |(22,33 *eucr*)
+|35 | ( r p ) ( ( p ) r ( q ( p ) ) ( q ) ) = ( ( ( p ) q ) r ) |(21,34 *repbx*)
+|36 | ( r p ) ( ( p ) r ( q ) ) = ( ( ( p ) q ) r ) |(20,35 *repbx*)
+|37 v| ( r ( q ) ) ( r p q ) ( r p ) ( ( p ) r ( q ) )
+    = ( ( ( p ) q ) r ) ( ( ( p ) q ) r ) |(19,36 *quad*)
+|38 | ( ( ( p ) q ) r ) ( ( ( p ) q ) r ) = ( ( ( p ) q ) r ) |(*c5.1*)
+|39 v| ( r ( q ) ) ( r p q ) ( r p ) ( ( p ) r ( q ) )
+    = ( ( ( p ) q ) r ) |(37,38 *trans*)
+|40 | ( r ( q ) ) ( r p ) ( ( p ) r ( q ) ) = ( ( ( p ) q ) r ) |(6,39 *rep*)
+|41 | ( r p ) ( ( p ) r ( q ) ) ( r ( q ) ) = ( ( ( p ) q ) r ) |(5,40 *rep*)
+|42 | ( r p ) ( r ( q ) ( p ) ) ( r ( q ) ) = ( ( ( p ) q ) r ) |(4,41 *repbx*)
+|43 | ( r p ) ( r ( q ) ) = ( ( ( p ) q ) r ) |(3,42 *rep*)
+|44 | ( p r ) ( r ( q ) ) = ( ( ( p ) q ) r ) |(2,43 *repbx*)
+|45 | ( p r ) ( ( q ) r ) = ( ( ( p ) q ) r ) |(1,44 *repbx*)
+|46 | ( ( ( p ) q ) r ) = ( p r ) ( ( q ) r ) |(45 *sym*)
+|===
+////
+
+We can now prove the second of the two equations from Basis~0~, *J2*.
+This completes the proof that Basis~1~ is at least as powerful as Basis~0~.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|j2.1 |( ( p ) ( q ) ) r |= |( ( p r ) ( q r ) )
+|===
+
+.Proof of j2.1
+[cols="<1,<10,<4",grid="none",frame="none",width="60%"]
+|===
+|1  |( ( ( ( p ) ( q ) ) r ) ) = ( ( p ) ( q ) ) r |(*c1.1*)
+|2  |( ( ( p ) ( q ) ) r ) = ( p r ) ( ( ( q ) ) r ) |(*c7.1*)
+|3  |( ( q ) ) = q |(*c1.1*)
+|4  |( p r ) ( ( ( q ) ) r ) = ( p r ) ( q r ) |(3 *subb1*)
+|5  |( ( ( p ) ( q ) ) r ) = ( p r ) ( q r ) |(2,4 *trans*)
+|6  |( ( ( ( p ) ( q ) ) r ) ) = ( ( p r ) ( q r ) ) |(5 *ax-beq*)
+|7  |( ( p ) ( q ) ) r = ( ( p r ) ( q r ) ) |(1,6 *eucr*)
+|===
+
+==== System~2~
+
+Having shown that *C5* and *C6* form a basis, I now show that *C6* alone
+suffices. The derivation ends at the point where *c5.2* is proved, since
+that establishes that Basis~2~ is at least as powerful as Basis~1~.
+
+.Basis~2~
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c6.2  |( ( p ) ( q ) ) ( ( p ) q ) |= |p
+|===
+
+An important lemma used in the proof of *c1.2*:
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|lem2.2 |( p ) p |= |( q ) q
+|===
+
+This is a condensed proof.
+
+.Condensed proof of lem2.2
+[cols="<1,<10,<3",grid="none",frame="none",width="65%"]
+|===
+| 1 | ( ( ( p ) ) ( ( q ) ) ) ( ( ( p ) ) ( q ) ) = ( p ) |(*c6.2*)
+| 2 | ( ( p ) ( ( q ) ) ) ( ( p ) ( q ) ) = p |(*c6.2*)
+| 3 | ( ( ( q ) ) ( ( p ) ) ) ( ( ( q ) ) ( p ) ) = ( q ) |(*c6.2*)
+| 4 | ( ( q ) ( ( p ) ) ) ( ( q ) ( p ) ) = q |(*c6.2*)
+| 5 v| ( ( ( p ) ) ( ( q ) ) ) ( ( ( p ) ) ( q ) )
+    ( ( p ) ( ( q ) ) ) ( ( p ) ( q ) ) = ( p ) p |(1,2 *quad*)
+| 6 v| ( ( ( p ) ) ( ( q ) ) ) ( ( ( p ) ) ( q ) )
+    ( ( p ) ( ( q ) ) ) ( ( q ) ( p ) ) = ( q ) q |(3,4 *quad*)
+| 7 | ( p ) p = ( q ) q |(5,6 *euc*)
+|===
+
+////
+.Proof of lem2.2
+[cols="<1,<10,<3",grid="none",frame="none",width="65%"]
+|===
+| 1  | ( ( q ) ( ( p ) ) ) ( ( q ) ( p ) ) = q |(*c6.2*)
+| 2  | ( p ) ( q ) = ( q ) ( p ) |(*ax-cmm*)
+| 3  | ( ( p ) ) ( q ) = ( q ) ( ( p ) ) |(*ax-cmm*)
+| 4  | ( ( ( q ) ) ( ( p ) ) ) ( ( ( q ) ) ( p ) ) = ( q ) |(*c6.2*)
+| 5  | ( ( ( p ) ) ( ( q ) ) ) ( ( ( p ) ) ( q ) ) = ( p ) |(*c6.2*)
+| 6  | ( ( p ) ( ( q ) ) ) ( ( p ) ( q ) ) = p |(*c6.2*)
+| 7 v| ( ( ( p ) ) ( ( q ) ) ) ( ( ( p ) ) ( q ) )
+    ( ( p ) ( ( q ) ) ) ( ( p ) ( q ) )
+    = ( p ) p |(5,6 *quad*)
+| 8  | ( ( p ) ) ( ( q ) ) = ( ( q ) ) ( ( p ) ) |(*ax-cmm*)
+| 9 v| ( ( ( p ) ) ( ( q ) ) ) ( ( ( p ) ) ( q ) )
+    ( ( p ) ( ( q ) ) ) ( ( p ) ( q ) )
+    = ( ( ( q ) ) ( ( p ) ) ) ( ( ( p ) ) ( q ) )
+    ( ( p ) ( ( q ) ) ) ( ( p ) ( q ) ) |(8 *subb1*)
+|10 v| ( p ) p
+    = ( ( ( q ) ) ( ( p ) ) ) ( ( ( p ) ) ( q ) )
+    ( ( p ) ( ( q ) ) ) ( ( p ) ( q ) ) |(7,9 *eucr*)
+|11  | ( p ) ( ( q ) ) = ( ( q ) ) ( p ) |(*ax-cmm*)
+|12  | ( ( p ) ( ( q ) ) ) = ( ( ( q ) ) ( p ) ) |(11 *ax-beq*)
+|13 v| ( ( ( q ) ) ( ( p ) ) ) ( ( ( p ) ) ( q ) )
+    ( ( p ) ( ( q ) ) ) ( ( p ) ( q ) )
+    = ( ( ( q ) ) ( ( p ) ) ) ( ( ( p ) ) ( q ) )
+    ( ( ( q ) ) ( p ) ) ( ( p ) ( q ) ) |(12 *subst*)
+|14 v| ( p ) p
+    = ( ( ( q ) ) ( ( p ) ) ) ( ( ( p ) ) ( q ) )
+    ( ( ( q ) ) ( p ) ) ( ( p ) ( q ) ) |(10,13 *trans*)
+|15 v| ( ( ( q ) ) ( ( p ) ) ) ( ( ( p ) ) ( q ) )
+    ( ( ( q ) ) ( p ) ) ( ( p ) ( q ) )
+    = ( ( ( q ) ) ( ( p ) ) ) ( ( ( q ) ) ( p ) )
+    ( ( ( p ) ) ( q ) ) ( ( p ) ( q ) ) |(*cmmx*)
+|16 v| ( p ) p
+    = ( ( ( q ) ) ( ( p ) ) ) ( ( ( q ) ) ( p ) )
+    ( ( ( p ) ) ( q ) ) ( ( p ) ( q ) ) |(14,15 *trans*)
+|17 v| ( ( ( q ) ) ( ( p ) ) ) ( ( ( q ) ) ( p ) )
+    ( ( ( p ) ) ( q ) ) ( ( p ) ( q ) )
+    = ( p ) p |(16 *sym*)
+|18  | ( q ) ( ( ( p ) ) ( q ) ) ( ( p ) ( q ) ) = ( p ) p |(4,17 *rep*)
+|19  | ( q ) ( ( q ) ( ( p ) ) ) ( ( p ) ( q ) ) = ( p ) p |(3,18 *repbx*)
+|20  | ( q ) ( ( q ) ( ( p ) ) ) ( ( q ) ( p ) ) = ( p ) p |(2,19 *repbx*)
+|21  | ( q ) q = ( p ) p |(1,20 *rep*)
+|22  | ( p ) p = ( q ) q |(21 *sym*)
+|===
+////
+
+Axiom *B3* from Meguire (2007) _Boundary Algebra: A Simple Notation for
+Boolean Algebra and the Truth Functors_ follows immediately from
+*lem2.2* by plugging _void_ values into _q_.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|b3.2 |( p ) p |= |( )
+|===
+
+Now we prove *c1.2*.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c1.2 |( ( p ) ) |= |p
+|===
+
+.Proof of c1.2
+[cols="<1,<10,<3",grid="none",frame="none",width="60%"]
+|===
+| 1 | ( ( p ) ) ( p ) = ( p ) ( ( p ) ) |(*ax-cmm*)
+| 2 | ( ( ( p ) ) ) ( p ) = ( p ) ( ( ( p ) ) ) |(*ax-cmm*)
+| 3 v| ( ( ( p ) ) ( p ) ) ( ( ( ( p ) ) ) ( p ) )
+    = ( ( ( ( p ) ) ) ( p ) ) ( ( ( p ) ) ( p ) ) |(*ax-cmm*)
+| 4 | ( ( ( p ) ) ) ( ( p ) ) = ( ( p ) ) ( p ) |(*lem2.2*)
+| 5 | ( ( ( ( p ) ) ) ( ( p ) ) ) ( ( ( ( p ) ) ) ( p ) )
+    = ( ( p ) ) |(*c6.2*)
+| 6 | ( ( ( p ) ) ( p ) ) ( ( ( ( p ) ) ) ( p ) ) = ( ( p ) ) |(4,5 *repbx*)
+| 7 | ( ( ( ( p ) ) ) ( p ) ) ( ( ( p ) ) ( p ) ) = ( ( p ) ) |(3,6 *rep*)
+| 8 | ( ( p ) ( ( ( p ) ) ) ) ( ( ( p ) ) ( p ) ) = ( ( p ) ) |(2,7 *repbx*)
+| 9 | ( ( p ) ( ( ( p ) ) ) ) ( ( p ) ( ( p ) ) ) = ( ( p ) ) |(1,8 *repbx*)
+|10 | ( ( p ) ( ( ( p ) ) ) ) ( ( p ) ( ( p ) ) ) = p |(*c6.2*)
+|11 | ( ( p ) ) = p |(9,10 *eucr*)
+|===
+
+Next we prove *J1*.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|j1.2 |( ( p ) p ) |= |{blank}
+|===
+
+.Proof of j1.2
+[cols="<1,<10,<3",grid="none",frame="none",width="60%"]
+|===
+| 1 | ( p ) p = ( ) |(*b3.2*)
+| 2 | ( ( p ) p ) = ( ( ) ) |(1 *ax-beq*)
+| 3 | ( ( ) ) = {blank} |(*c1.2*)
+| 4 | ( ( p ) p ) = {blank} |(2,3 *trans*)
+|===
+
+Another lemma.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|lem3.2 |( p p ) |= |( ( ( p ) ) ( ( p ) ) )
+|===
+
+.Proof of lem3.2
+[cols="<1,<10,<3",grid="none",frame="none",width="60%"]
+|===
+| 1 | ( ( p ) ) = p |(*c1.2*)
+| 2 | p = ( ( p ) ) |(1 *sym*)
+| 3 | ( p p ) = ( p p ) |(*id*)
+| 4 | ( ( ( p ) ) p ) = ( p p ) |(2,3 *repbx*)
+| 5 | ( ( ( p ) ) ( ( p ) ) ) = ( p p ) |(2,4 *repbx*)
+| 6 | ( p p ) = ( ( ( p ) ) ( ( p ) ) ) |(5 *sym*)
+|===
+
+We can finally prove *C5*, which demonstrates that Basis~2~ is at least as
+strong as Basis~1~.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c5.2 |p p |= |p
+|===
+
+.Proof of c5.2
+[cols="<1,<10,<3",grid="none",frame="none",width="60%"]
+|===
+| 1 | ( ( ( p ) ) ( ( p ) ) ) ( ( ( p ) ) ( p ) ) = ( p ) |(*c6.2*)
+| 2 | ( p p ) = ( ( ( p ) ) ( ( p ) ) ) |(*lem3.2*)
+| 3 | ( ( ( p ) ) ( p ) ) = {blank} |(*j1.2*)
+| 4 | {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp} = ( ( ( p ) ) ( p ) ) |(3 *sym*)
+| 5 | ( ( p p ) ) = p p |(*c1.2*)
+| 6 | ( ( p p ) ( ( ( p ) ) ( p ) ) ) = p p |(4,5 *repbx*)
+| 7 | ( ( ( ( p ) ) ( ( p ) ) ) ( ( ( p ) ) ( p ) ) ) = p p |(2,6 *repbx*)
+| 8 | ( ( p ) ) = p p |(1,7 *repbx*)
+| 9 | ( ( p ) ) = p |(*c1.2*)
+|10 | p p = p |(8,9 *eucr*)
+|===
+
+==== System~3~
+
+Here we derive *C6* from the Robbins equation, demonstrating that a Robbins
+algebra is a boolean algebra. The more familiar form of the Robbins equation
+is  _\((p q) (p (q))) = p_, but for this exercise I'll be using the
+equivalent form:
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|robbins |( ( ( p ) q ) ( p q ) ) |= |q
+|===
+
+First we prove *J1*.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|j1.3 |( ( p ) p ) |= |{blank}
+|===
+
+.Proof of j1.3
+[cols="<1,<10,<3",grid="none",frame="none",width="60%"]
+|===
+| 1 | ( ( ( q ) p ) ( q p ) ) = p |(*robbins*)
+| 2 | p = ( ( ( q ) p ) ( q p ) ) |(1 *sym*)
+| 3 | ( p ) = ( ( ( ( q ) p ) ( q p ) ) ) | (2 *ax-beq*)
+| 4 v| ( p ) p
+    = ( ( ( ( q ) p ) ( q p ) ) ) ( ( ( q ) p ) ( q p ) ) |(3,2 *quad*)
+| 5 v| ( ( p ) p )
+    = ( ( ( ( ( q ) p ) ( q p ) ) ) ( ( ( q ) p ) ( q p ) ) ) |(4 *ax-beq*)
+| 6 | ( ( ( ( ( q ) p ) ( q p ) ) ) ( ( ( q ) p ) ( q p ) ) ) = |(*robbins*)
+| 7 | ( ( p ) p ) = {blank} |(5,6 *trans*)
+|===
+
+Next we prove *C1*.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c1.3 | ( ( p ) ) |= |p
+|===
+
+.Proof of c1.3
+[cols="<1,<10,<4",grid="none",frame="none",width="60%"]
+|===
+| 1 | p ( ( p ) ) = ( ( p ) ) p |(*ax-cmm*)
+| 2 | ( p ( ( p ) ) ) = ( ( ( p ) ) p ) |(1 *ax-beq*)
+| 3 | ( ( p ( ( p ) ) ) ) = ( ( ( ( p ) ) p ) ) |(2 *ax-beq*)
+| 4 | ( ( ( p ) ) ( p ) ) = {blank} |(*robbins*)
+| 5 | ( p ) ( ( p ) ) = ( ( p ) ) ( p ) |(*ax-cmm*)
+| 6 | ( ( p ) ( ( p ) ) ) = ( ( ( p ) ) ( p ) ) |(5 *ax-beq*)
+| 7 | ( ( ( p ) ( ( p ) ) ) ( p ( ( p ) ) ) ) = ( ( p ) ) |(*robbins*)
+| 8 | ( ( ( ( p ) ) ( p ) ) ( p ( ( p ) ) ) ) = ( ( p ) ) |(6,7 *repbx*)
+| 9 | ( ( p ( ( p ) ) ) ) = ( ( p ) ) |(4,8 *repbx*)
+|10 | ( ( ( ( p ) ) p ) ) = ( ( p ) ) |(3,9 *rep*)
+|11 | ( ( p ) p ) = {blank} |(*j1.3*)
+|12 | ( ( ( ( p ) ) p ) ( ( p ) p ) ) = p |(*robbins*)
+|13 | ( ( ( ( p ) ) p ) ) = p |(11,12 *repbx*)
+|14 | ( ( p ) ) = p |(10,13 *eucr*)
+|===
+
+We now prove *C6*, demonstrating that the Robbins algebra is at least as
+powerful as boolean algebra.
+
+[cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
+|===
+|c6.3 |( ( p ) ( q ) ) ( ( p ) q ) |= |p
+|===
+
+.Proof of c6.3
+[cols="<1,<10,<3",grid="none",frame="none",width="60%"]
+|===
+| 1 | q ( p ) = ( p ) q |(*ax-cmm*)
+| 2 | ( q ) ( p ) = ( p ) ( q ) |(*ax-cmm*)
+| 3 | ( ( ( ( q ) ( p ) ) ( q ( p ) ) ) ) = ( ( q ) ( p ) ) ( q ( p ) ) |(*c1.3*)
+| 4 | ( ( ( q ) ( p ) ) ( q ( p ) ) ) = ( p ) |(*robbins*)
+| 5 | ( ( ( ( q ) ( p ) ) ( q ( p ) ) ) ) = ( ( p ) ) |(4 *ax-beq*)
+| 6 | ( ( q ) ( p ) ) ( q ( p ) ) = ( ( p ) ) |(3,5 *eucr*)
+| 7 | ( ( p ) ) = p |(*c1.3*)
+| 8 | ( ( q ) ( p ) ) ( q ( p ) ) = p |(6,7 *trans*)
+| 9 | ( ( p ) ( q ) ) ( q ( p ) ) = p |(2,8 *repbx*)
+|10 | ( ( p ) ( q ) ) ( ( p ) q ) = p |(1,9 *repbx*)
+|===
