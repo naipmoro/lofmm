@@ -431,10 +431,10 @@ from Spencer-Brown, G. (1969) <em>Laws of Form</em> (Allen &amp; Unwin, London),
 hereafter cited as <em>LoF</em>.</p>
 </div>
 <div class="paragraph">
-<p>The algebra of <em>LoF</em> has a number of models, most significantly boolean
+<p>The algebra of <em>LoF</em> has a number of models, most significantly Boolean
 algebra and sentential logic, so it may be of some interest to logicians.
 From the perspective of metamath, it is a non-trivial example of a system
-that requires, indeed is based on, the 'empty substitution'.</p>
+that requires, indeed is based on, the <em>empty substitution</em>.</p>
 </div>
 <div class="paragraph">
 <p>Access to the empty substitution, in conjunction with metamath&#8217;s radical
@@ -464,6 +464,16 @@ derivations, as properties that are obvious in the 2D notation have to
 be spelled out case by case in auxiliary theorems. The system as formulated
 is simply unable to prove general statements of commutativity.</p>
 </div>
+<div class="sect2">
+<h3 id="_synopsis">Synopsis</h3>
+<div class="paragraph">
+<p>Since my derivation of the Primary Algebra (PA) follows Spencer-Brown rather
+closely, I spend little time on it here. I do provide a full demonstration
+that an alternate basis of <strong>C5</strong> and <strong>C6</strong> is equivalent to PA. I then show
+that <strong>C6</strong> alone is adequate. Finally, I show that <strong>C6</strong> is derivable from the
+Robbins axiom, implying that a Robbins algebra is a Boolean algebra
+<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup>.</p>
+</div>
 <div class="paragraph">
 <p>If metamath is installed on your system, you can confirm
 the correctness of the formal derivations in lof.mm by starting the
@@ -484,6 +494,16 @@ MM&gt; verify proof *
 0 10%  20%  30%  40%  50%  60%  70%  80%  90% 100%
 ..................................................
 All proofs in the database were verified in 0.01 s.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To see the actual steps in the proof of a particular proposition,
+for example <em>c3.0</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>MM&gt; show proof c3.0 /lemmon /renumber /no_repeated_steps</pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -639,7 +659,7 @@ trans
 </div>
 <div class="paragraph">
 <p>The axioms and theorems so far have been transparent, succinct, and
-powerful (they embody boolean algebra, after all), but applying them
+powerful (they embody Boolean algebra, after all), but applying them
 would be impractical without further theorems. While this is no different
 from any other formal system, here these auxiliary theorems have a
 peculiar feeling of inconsequence: they are often tiresome (and sometimes
@@ -814,7 +834,7 @@ equations [<em>LoF</em>, p. 12]:</p>
 <div class="paragraph">
 <p>As mentioned, one of the models of <em>LoF</em> is sentential logic:</p>
 </div>
-<table class="tableblock frame-none grid-none" style="width: 50%;">
+<table class="tableblock frame-none grid-none" style="width: 40%;">
 <colgroup>
 <col style="width: 36.3636%;">
 <col style="width: 9.0909%;">
@@ -822,38 +842,38 @@ equations [<em>LoF</em>, p. 12]:</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>T</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&#160;&#160;T</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>( )</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>F</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&#160;&#160;F</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>~p</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&not;p</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>( p )</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p V q</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p &or; q</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>p q</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p &amp; q</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p &and; q</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>( ( p ) ( q ) )</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>p &#8594; q</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>( p ) q</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p iff q</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p &harr; q</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>( ( p ) ( q ) ) ( p q )</em></p></td>
 </tr>
 </tbody>
@@ -862,7 +882,7 @@ equations [<em>LoF</em>, p. 12]:</p>
 <p>The algebra is self-dual. If we interchange <em>T</em> and <em>F</em>, the algebraic laws
 continue to hold, with juxtaposition now interpreted as conjunction:</p>
 </div>
-<table class="tableblock frame-none grid-none" style="width: 50%;">
+<table class="tableblock frame-none grid-none" style="width: 40%;">
 <colgroup>
 <col style="width: 36.3636%;">
 <col style="width: 9.0909%;">
@@ -870,38 +890,38 @@ continue to hold, with juxtaposition now interpreted as conjunction:</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>T</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&#160;&#160;T</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>F</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&#160;&#160;F</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>( )</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>~p</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&not;p</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>( p )</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p V q</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p &or; q</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>( ( p ) ( q ) )</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p &amp; q</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p &and; q</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>p q</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>p &#8594; q</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>( p ( q ) )</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p iff q</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><=></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>p &harr; q</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&equiv;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><em>( ( ( p ) ( q ) ) ( p q ) )</em></p></td>
 </tr>
 </tbody>
@@ -1019,7 +1039,7 @@ consideration. In other words, <em>ck.n = ck.m  (jk.n = jk.m)</em> for all <em>n
 <div class="sect2">
 <h3 id="_summary_of_results">Summary of Results</h3>
 <div class="sect3">
-<h4 id="_system_sub_0_sub">System<sub>0</sub></h4>
+<h4 id="__em_system_sub_0_sub_em"><em>System<sub>0</sub></em></h4>
 <div class="paragraph">
 <p>This version follows <em>LoF</em> and was the original proof of concept, so not
 much more needs to be said. There is one difference&#8201;&#8212;&#8201;theorem <strong>C5</strong> is derived
@@ -1125,13 +1145,13 @@ expressed by metamath.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_system_sub_1_sub">System<sub>1</sub></h4>
+<h4 id="__em_system_sub_1_sub_em"><em>System<sub>1</sub></em></h4>
 <div class="paragraph">
-<p>Although System<sub>0</sub> is the only one demonstrated by Spencer-Brown, and so
+<p>Although <em>System<sub>0</sub></em> is the only one demonstrated by Spencer-Brown, and so
 can be considered canonical, he mentions in his notes an alternate basis
 of <strong>C5</strong> and <strong>C6</strong>, but suggests the derivation is 'both difficult and tedious'
-[<em>LoF</em>, p.89]. Readers can decide for themselves whether System<sub>1</sub> is any
-more complicated than System<sub>0</sub>. The virtue of this basis, as noted by
+[<em>LoF</em>, p.89]. Readers can decide for themselves whether <em>System<sub>1</sub></em> is any
+more complicated than <em>System<sub>0</sub></em>. The virtue of this basis, as noted by
 Spencer-Brown, is the need for only two distinct variables.</p>
 </div>
 <div class="paragraph">
@@ -1166,7 +1186,7 @@ proved, since that establishes <strong>c5.1</strong> and <strong>c6.1</strong> a
 interpretation, it is mildly reminiscent of modus ponens:<br></p>
 </div>
 <div class="paragraph">
-<p>(p &amp; (p &#8594; q)) <em>iff</em> (p &amp; q)</p>
+<p>(p &and; (p &#8594; q)) &harr; (p &and; q)</p>
 </div>
 <table class="tableblock frame-none grid-none" style="width: 50%;">
 <colgroup>
@@ -1309,7 +1329,7 @@ proves the <strong>I2</strong> arithmetic initial:</p>
 <div class="paragraph">
 <p><strong>I2</strong> is also directly derivable from the basis by plugging <em>void</em> values
 into <strong>c6.1</strong>, followed by two applications of <strong>c5.1</strong>. We now prove one of
-the two equations from Basis<sub>0</sub>, <strong>J1</strong>.</p>
+the two equations from <em>Basis<sub>0</sub></em>, <strong>J1</strong>.</p>
 </div>
 <table class="tableblock frame-none grid-none" style="width: 50%;">
 <colgroup>
@@ -1679,8 +1699,9 @@ unmentioned.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>We can now prove the second of the two equations from Basis<sub>0</sub>, <strong>J2</strong>.
-This completes the proof that Basis<sub>1</sub> is at least as powerful as Basis<sub>0</sub>.</p>
+<p>We can now prove the second of the two equations from <em>Basis<sub>0</sub></em>, <strong>J2</strong>.
+This completes the proof that <em>Basis<sub>1</sub></em> is at least as powerful as
+<em>Basis<sub>0</sub></em>.</p>
 </div>
 <table class="tableblock frame-none grid-none" style="width: 50%;">
 <colgroup>
@@ -1745,11 +1766,11 @@ This completes the proof that Basis<sub>1</sub> is at least as powerful as Basis
 </table>
 </div>
 <div class="sect3">
-<h4 id="_system_sub_2_sub">System<sub>2</sub></h4>
+<h4 id="__em_system_sub_2_sub_em"><em>System<sub>2</sub></em></h4>
 <div class="paragraph">
 <p>Having shown that <strong>C5</strong> and <strong>C6</strong> form a basis, I now show that <strong>C6</strong> alone
 suffices. The derivation ends at the point where <strong>c5.2</strong> is proved, since
-that establishes that Basis<sub>2</sub> is at least as powerful as Basis<sub>1</sub>.</p>
+that establishes that <em>Basis<sub>2</sub></em> is at least as powerful as <em>Basis<sub>1</sub></em>.</p>
 </div>
 <table class="tableblock frame-none grid-none" style="width: 50%;">
 <caption class="title">Basis<sub>2</sub></caption>
@@ -2053,8 +2074,8 @@ Boolean Algebra and the Truth Functors</em> follows immediately from
 </tbody>
 </table>
 <div class="paragraph">
-<p>We can finally prove <strong>C5</strong>, which demonstrates that Basis<sub>2</sub> is at least as
-strong as Basis<sub>1</sub>.</p>
+<p>We can finally prove <strong>C5</strong>, which demonstrates that <em>Basis<sub>2</sub></em> is at least
+as strong as <em>Basis<sub>1</sub></em>.</p>
 </div>
 <table class="tableblock frame-none grid-none" style="width: 50%;">
 <colgroup>
@@ -2134,10 +2155,10 @@ strong as Basis<sub>1</sub>.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_system_sub_3_sub">System<sub>3</sub></h4>
+<h4 id="__em_system_sub_3_sub_em"><em>System<sub>3</sub></em></h4>
 <div class="paragraph">
 <p>Here we derive <strong>C6</strong> from the Robbins equation, demonstrating that a Robbins
-algebra is a boolean algebra. The more familiar form of the Robbins equation
+algebra is a Boolean algebra. The more familiar form of the Robbins equation
 is  <em>((p q) (p (q))) = p</em>, but for this exercise I&#8217;ll be using the
 equivalent form:</p>
 </div>
@@ -2324,7 +2345,7 @@ equivalent form:</p>
 </table>
 <div class="paragraph">
 <p>We now prove <strong>C6</strong>, demonstrating that the Robbins algebra is at least as
-powerful as boolean algebra.</p>
+powerful as Boolean algebra.</p>
 </div>
 <table class="tableblock frame-none grid-none" style="width: 50%;">
 <colgroup>
@@ -2404,12 +2425,30 @@ powerful as boolean algebra.</p>
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_todo">TODO</h3>
+<div class="paragraph">
+<p>Since <em>p = q</em> is equivalent to <em>( ( p ) ( q ) ) ( p q )</em>, '=' can be removed
+from the list of constant symbols.</p>
 </div>
+<div class="paragraph">
+<p>Although the derivations presented here are correct&#8201;&#8212;&#8201;metamath sees to
+that&#8201;&#8212;&#8201;I do not pretend they are optimal, and improvements by way of pull
+requests will be gratefully accepted.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. To be clear, this is not an alternative to the 1996 computer proof that Robbins algebras are Boolean (W. McCune, "Solution of the Robbins Problem", JAR 19(3), 263&#8212;&#8203;276 (1997)). <em>LoF</em> has a natural identity element, the void, and S. Winkler showed in the early 1990&#8217;s that the existence of such an element sufficed to turn a Robbins algebra into a Boolean algebra (S. Winker, "Robbins Algebra: Conditions That Make a Near-Boolean Algebra Boolean", J. Automated Reasoning 6(4), 465&#8212;&#8203;489 (1990) and "Absorption and idempotency criteria for a problem in near-Boolean algebras", J. Algebra 153(2), 414&#8212;&#8203;423 (1992)).
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-12-10 17:36:42 EST
+Last updated 2016-12-20 17:58:33 EST
 </div>
 </div>
 <script type="text/x-mathjax-config">
