@@ -891,6 +891,6 @@ from the list of constant symbols.
 
 Although the derivations presented here are correct -- metamath sees to
 that -- I do not pretend they are optimal, and improvements by way of pull
-requests will be gratefully accepted.
+requests are encouraged.
 
  
