@@ -10,10 +10,10 @@
 from Spencer-Brown, G. (1969) _Laws of Form_ (Allen & Unwin, London),
 hereafter cited as _LoF_.
 
-The algebra of _LoF_ has a number of models, most significantly boolean 
+The algebra of _LoF_ has a number of models, most significantly Boolean 
 algebra and sentential logic, so it may be of some interest to logicians. 
 From the perspective of metamath, it is a non-trivial example of a system 
-that requires, indeed is based on, the 'empty substitution'.
+that requires, indeed is based on, the _empty substitution_.
 
 Access to the empty substitution, in conjunction with metamath's radical
 formalism, allows a representation that closely matches _LoF's_ actual
@@ -39,10 +39,22 @@ derivations, as properties that are obvious in the 2D notation have to
 be spelled out case by case in auxiliary theorems. The system as formulated
 is simply unable to prove general statements of commutativity.
 
-////
-Although the seven axioms presented below are simple, transparent, and
-adequate to the task, they lack the power to prove meta-theorems.
-////
+=== Synopsis
+
+Since my derivation of the Primary Algebra (PA) follows Spencer-Brown rather
+closely, I spend little time on it here. I do provide a full demonstration
+that an alternate basis of *C5* and *C6* is equivalent to PA. I then show
+that *C6* alone is adequate. Finally, I show that *C6* is derivable from the
+Robbins axiom, implying that a Robbins algebra is a Boolean algebra 
+footnote:[To be clear, this is not an alternative to the 1996 computer proof
+that Robbins algebras are Boolean (W. McCune, "Solution of the Robbins Problem", 
+JAR 19(3), 263--276 (1997)). _LoF_ has a natural identity element, the void, 
+and S. Winkler showed in the early 1990's that the existence of such an
+element sufficed to turn a Robbins algebra into a Boolean algebra 
+(S. Winker, "Robbins Algebra: Conditions That Make a Near-Boolean Algebra 
+Boolean", J. Automated Reasoning 6(4), 465--489 (1990) and
+"Absorption and idempotency criteria for a problem in near-Boolean algebras", 
+J. Algebra 153(2), 414--423 (1992)).].
 
 If metamath is installed on your system, you can confirm
 the correctness of the formal derivations in lof.mm by starting the
@@ -64,6 +76,13 @@ MM> verify proof *
 All proofs in the database were verified in 0.01 s.
 ----
 
+To see the actual steps in the proof of a particular proposition,
+for example _c3.0_:
+----
+MM> show proof c3.0 /lemmon /renumber /no_repeated_steps
+----
+
+
 === Axioms
 
 In keeping with the spirit of _LoF's_ austerity, I aimed for the most
@@ -71,15 +90,6 @@ minimal formalism possible. I start with five constant symbols: +
 
 *(* {nbsp}{nbsp}{nbsp} *)* {nbsp}{nbsp}{nbsp} *=* {nbsp}{nbsp}{nbsp}
 *|-* {nbsp}{nbsp}{nbsp} *form*
-
-////
-[none]
--  *(*
--  *)*
--  *=*
--  *|-*
--  *form*
-////
 
 and seven basic axioms -- three to provide a recursive definition of 'form',
 three common notions (so to speak) to power symbol manipulation, and a
@@ -139,7 +149,7 @@ sym:: *_p=q_* {nbsp}  _->_ {nbsp} *_q=p_*
 trans::  *_p=q_* & *_q=r_* {nbsp} _->_ {nbsp} *_p=r_*
 
 The axioms and theorems so far have been transparent, succinct, and
-powerful (they embody boolean algebra, after all), but applying them
+powerful (they embody Boolean algebra, after all), but applying them
 would be impractical without further theorems. While this is no different
 from any other formal system, here these auxiliary theorems have a
 peculiar feeling of inconsequence: they are often tiresome (and sometimes
@@ -283,7 +293,7 @@ _LoF's_ system is _n = 0_.
 === Summary of Results
 
 
-==== System~0~
+==== _System~0~_
 
 This version follows _LoF_ and was the original proof of concept, so not
 much more needs to be said. There is one difference -- theorem *C5* is derived
@@ -337,13 +347,13 @@ Here's the proof of c5.0 latexmath:[\;\;\;\;\; p \,p = p]
 |7 |p p = p                      |(4,6, *eucr*)
 |===
 
-==== System~1~
+==== _System~1~_
 
-Although System~0~ is the only one demonstrated by Spencer-Brown, and so
+Although _System~0~_ is the only one demonstrated by Spencer-Brown, and so
 can be considered canonical, he mentions in his notes an alternate basis
 of *C5* and *C6*, but suggests the derivation is 'both difficult and tedious' 
-[_LoF_, p.89]. Readers can decide for themselves whether System~1~ is any 
-more complicated than System~0~. The virtue of this basis, as noted by
+[_LoF_, p.89]. Readers can decide for themselves whether _System~1~_ is any 
+more complicated than _System~0~_. The virtue of this basis, as noted by
 Spencer-Brown, is the need for only two distinct variables. 
 
 The derivation below ends at the point where both *j1.1* and *j2.1* are 
@@ -409,7 +419,7 @@ proves the *I2* arithmetic initial:
 
 *I2* is also directly derivable from the basis by plugging _void_ values
 into *c6.1*, followed by two applications of *c5.1*. We now prove one of
-the two equations from Basis~0~, *J1*.
+the two equations from _Basis~0~_, *J1*.
 
 [cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
 |===
@@ -596,8 +606,9 @@ unmentioned.
 |===
 ////
 
-We can now prove the second of the two equations from Basis~0~, *J2*.
-This completes the proof that Basis~1~ is at least as powerful as Basis~0~.
+We can now prove the second of the two equations from _Basis~0~_, *J2*.
+This completes the proof that _Basis~1~_ is at least as powerful as
+_Basis~0~_.
 
 [cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
 |===
@@ -616,11 +627,11 @@ This completes the proof that Basis~1~ is at least as powerful as Basis~0~.
 |7  |( ( p ) ( q ) ) r = ( ( p r ) ( q r ) ) |(1,6 *eucr*)
 |===
 
-==== System~2~
+==== _System~2~_
 
 Having shown that *C5* and *C6* form a basis, I now show that *C6* alone
 suffices. The derivation ends at the point where *c5.2* is proved, since
-that establishes that Basis~2~ is at least as powerful as Basis~1~.
+that establishes that _Basis~2~_ is at least as powerful as _Basis~1~_.
 
 .Basis~2~
 
@@ -768,8 +779,8 @@ Another lemma.
 | 6 | ( p p ) = ( ( ( p ) ) ( ( p ) ) ) |(5 *sym*)
 |===
 
-We can finally prove *C5*, which demonstrates that Basis~2~ is at least as
-strong as Basis~1~.
+We can finally prove *C5*, which demonstrates that _Basis~2~_ is at least
+as strong as _Basis~1~_.
 
 [cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
 |===
@@ -791,10 +802,10 @@ strong as Basis~1~.
 |10 | p p = p |(8,9 *eucr*)
 |===
 
-==== System~3~
+==== _System~3~_
 
 Here we derive *C6* from the Robbins equation, demonstrating that a Robbins
-algebra is a boolean algebra. The more familiar form of the Robbins equation
+algebra is a Boolean algebra. The more familiar form of the Robbins equation
 is  _\((p q) (p (q))) = p_, but for this exercise I'll be using the
 equivalent form:
 
@@ -851,7 +862,7 @@ Next we prove *C1*.
 |===
 
 We now prove *C6*, demonstrating that the Robbins algebra is at least as
-powerful as boolean algebra.
+powerful as Boolean algebra.
 
 [cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
 |===
@@ -872,3 +883,14 @@ powerful as boolean algebra.
 | 9 | ( ( p ) ( q ) ) ( q ( p ) ) = p |(2,8 *repbx*)
 |10 | ( ( p ) ( q ) ) ( ( p ) q ) = p |(1,9 *repbx*)
 |===
+
+=== TODO
+
+Since _p = q_ is equivalent to _( ( p ) ( q ) ) ( p q )_, '=' can be removed
+from the list of constant symbols.
+
+Although the derivations presented here are correct -- metamath sees to
+that -- I do not pretend they are optimal, and improvements by way of pull
+requests will be gratefully accepted.
+
+ 
