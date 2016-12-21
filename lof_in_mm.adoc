@@ -11,9 +11,14 @@ from Spencer-Brown, G. (1969) _Laws of Form_ (Allen & Unwin, London),
 hereafter cited as _LoF_.
 
 The algebra of _LoF_ has a number of models, most significantly Boolean 
-algebra and sentential logic, so it may be of some interest to logicians. 
-From the perspective of metamath, it is a non-trivial example of a system 
-that requires, indeed is based on, the _empty substitution_.
+algebra 
+footnote:["...we consider Brown's algebraic axioms and show that 
+they are synonymous with the axioms for Boolean algebra." Paul Cull & 
+William Frank, "Flaws of Form", International Journal of General
+Systems, 5:4, 201--211 (1979).] 
+and sentential logic, so it may be of some interest
+to logicians. From the perspective of metamath, it is a non-trivial example
+of a system that requires, indeed is based on, the _empty substitution_.
 
 Access to the empty substitution, in conjunction with metamath's radical
 formalism, allows a representation that closely matches _LoF's_ actual
@@ -47,14 +52,16 @@ that an alternate basis of *C5* and *C6* is equivalent to PA. I then show
 that *C6* alone is adequate. Finally, I show that *C6* is derivable from the
 Robbins axiom, implying that a Robbins algebra is a Boolean algebra 
 footnote:[To be clear, this is not an alternative to the 1996 computer proof
-that Robbins algebras are Boolean (W. McCune, "Solution of the Robbins Problem", 
-JAR 19(3), 263--276 (1997)). _LoF_ has a natural identity element, the void, 
-and S. Winkler showed in the early 1990's that the existence of such an
-element sufficed to turn a Robbins algebra into a Boolean algebra 
+that Robbins algebras are Boolean (W. McCune, "Solution of the Robbins 
+Problem", JAR 19(3), 263--276 (1997)). _LoF_ has a natural identity element, 
+the _void_, and Steven Winkler showed in the early 1990s that the existence of
+such an element sufficed to turn a Robbins algebra into a Boolean algebra 
 (S. Winker, "Robbins Algebra: Conditions That Make a Near-Boolean Algebra 
-Boolean", J. Automated Reasoning 6(4), 465--489 (1990) and
-"Absorption and idempotency criteria for a problem in near-Boolean algebras", 
-J. Algebra 153(2), 414--423 (1992)).].
+Boolean", J. Automated Reasoning 6(4), 465--489 (1990) and "Absorption and 
+idempotency criteria for a problem in near-Boolean algebras", J. Algebra
+153(2), 414--423 (1992)). 
+See http://homepages.math.uic.edu/~kauffman/Robbins.htm for a _LoF_-inspired
+derivation by Louis Kauffman that does _not_ take the void as given.].
 
 If metamath is installed on your system, you can confirm
 the correctness of the formal derivations in lof.mm by starting the
@@ -77,7 +84,7 @@ All proofs in the database were verified in 0.01 s.
 ----
 
 To see the actual steps in the proof of a particular proposition,
-for example _c3.0_:
+for example _c3.0_, execute:
 ----
 MM> show proof c3.0 /lemmon /renumber /no_repeated_steps
 ----
@@ -711,8 +718,11 @@ This is a condensed proof.
 |===
 ////
 
-Axiom *B3* from Meguire (2007) _Boundary Algebra: A Simple Notation for
-Boolean Algebra and the Truth Functors_ follows immediately from
+Axiom *B3* from Meguire
+footnote:[P. Meguire, "Boundary Algebra: A Simple Notation for Boolean 
+Algebra and the Truth Functors" (2007),
+http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.143.8171 .]
+follows immediately from
 *lem2.2* by plugging _void_ values into _q_.
 
 [cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
@@ -886,11 +896,16 @@ powerful as Boolean algebra.
 
 === TODO
 
-Since _p = q_ is equivalent to _( ( p ) ( q ) ) ( p q )_, '=' can be removed
-from the list of constant symbols.
+- Since _p = q_ is equivalent to _( ( p ) ( q ) ) ( p q )_, '=' can be
+  eliminated from the list of symbols.
 
-Although the derivations presented here are correct -- metamath sees to
-that -- I do not pretend they are optimal, and improvements by way of pull
-requests are encouraged.
+- Find the simplest formal system that would permit proofs of _LoF_
+  metatheorems, such as: +
+  _( (P~1~) (P~2~) ... (P~n~) ) Q = ( (P~1~ Q) (P~2~ Q) ... (P~n~ Q) )_. +
+  The machinery of induction would be enough, but is there a simpler system?
+
+- Although the derivations presented here are correct -- metamath sees to
+  that -- I do not pretend they are optimal, and improvements via pull
+  requests are encouraged.
 
  

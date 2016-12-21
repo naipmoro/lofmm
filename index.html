@@ -432,9 +432,11 @@ hereafter cited as <em>LoF</em>.</p>
 </div>
 <div class="paragraph">
 <p>The algebra of <em>LoF</em> has a number of models, most significantly Boolean
-algebra and sentential logic, so it may be of some interest to logicians.
-From the perspective of metamath, it is a non-trivial example of a system
-that requires, indeed is based on, the <em>empty substitution</em>.</p>
+algebra
+<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup>
+and sentential logic, so it may be of some interest
+to logicians. From the perspective of metamath, it is a non-trivial example
+of a system that requires, indeed is based on, the <em>empty substitution</em>.</p>
 </div>
 <div class="paragraph">
 <p>Access to the empty substitution, in conjunction with metamath&#8217;s radical
@@ -472,7 +474,7 @@ closely, I spend little time on it here. I do provide a full demonstration
 that an alternate basis of <strong>C5</strong> and <strong>C6</strong> is equivalent to PA. I then show
 that <strong>C6</strong> alone is adequate. Finally, I show that <strong>C6</strong> is derivable from the
 Robbins axiom, implying that a Robbins algebra is a Boolean algebra
-<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup>.</p>
+<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup>.</p>
 </div>
 <div class="paragraph">
 <p>If metamath is installed on your system, you can confirm
@@ -498,7 +500,7 @@ All proofs in the database were verified in 0.01 s.</pre>
 </div>
 <div class="paragraph">
 <p>To see the actual steps in the proof of a particular proposition,
-for example <em>c3.0</em>:</p>
+for example <em>c3.0</em>, execute:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1859,8 +1861,9 @@ that establishes that <em>Basis<sub>2</sub></em> is at least as powerful as <em>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Axiom <strong>B3</strong> from Meguire (2007) <em>Boundary Algebra: A Simple Notation for
-Boolean Algebra and the Truth Functors</em> follows immediately from
+<p>Axiom <strong>B3</strong> from Meguire
+<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup>
+follows immediately from
 <strong>lem2.2</strong> by plugging <em>void</em> values into <em>q</em>.</p>
 </div>
 <table class="tableblock frame-none grid-none" style="width: 50%;">
@@ -2427,14 +2430,24 @@ powerful as Boolean algebra.</p>
 </div>
 <div class="sect2">
 <h3 id="_todo">TODO</h3>
-<div class="paragraph">
-<p>Since <em>p = q</em> is equivalent to <em>( ( p ) ( q ) ) ( p q )</em>, '=' can be removed
-from the list of constant symbols.</p>
-</div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
+<p>Since <em>p = q</em> is equivalent to <em>( ( p ) ( q ) ) ( p q )</em>, '=' can be
+eliminated from the list of symbols.</p>
+</li>
+<li>
+<p>Find the simplest formal system that would permit proofs of <em>LoF</em>
+metatheorems, such as:<br>
+<em>( (P<sub>1</sub>) (P<sub>2</sub>) &#8230;&#8203; (P<sub>n</sub>) ) Q = ( (P<sub>1</sub> Q) (P<sub>2</sub> Q) &#8230;&#8203; (P<sub>n</sub> Q) )</em>.<br>
+The machinery of induction would be enough, but is there a simpler system?</p>
+</li>
+<li>
 <p>Although the derivations presented here are correct&#8201;&#8212;&#8201;metamath sees to
-that&#8201;&#8212;&#8201;I do not pretend they are optimal, and improvements by way of pull
+that&#8201;&#8212;&#8201;I do not pretend they are optimal, and improvements via pull
 requests are encouraged.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2443,12 +2456,18 @@ requests are encouraged.</p>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnote_1">
-<a href="#_footnoteref_1">1</a>. To be clear, this is not an alternative to the 1996 computer proof that Robbins algebras are Boolean (W. McCune, "Solution of the Robbins Problem", JAR 19(3), 263&#8212;&#8203;276 (1997)). <em>LoF</em> has a natural identity element, the void, and S. Winkler showed in the early 1990&#8217;s that the existence of such an element sufficed to turn a Robbins algebra into a Boolean algebra (S. Winker, "Robbins Algebra: Conditions That Make a Near-Boolean Algebra Boolean", J. Automated Reasoning 6(4), 465&#8212;&#8203;489 (1990) and "Absorption and idempotency criteria for a problem in near-Boolean algebras", J. Algebra 153(2), 414&#8212;&#8203;423 (1992)).
+<a href="#_footnoteref_1">1</a>. "&#8230;&#8203;we consider Brown&#8217;s algebraic axioms and show that they are synonymous with the axioms for Boolean algebra." Paul Cull &amp; William Frank, "Flaws of Form", International Journal of General Systems, 5:4, 201&#8212;&#8203;211 (1979).
+</div>
+<div class="footnote" id="_footnote_2">
+<a href="#_footnoteref_2">2</a>. To be clear, this is not an alternative to the 1996 computer proof that Robbins algebras are Boolean (W. McCune, "Solution of the Robbins Problem", JAR 19(3), 263&#8212;&#8203;276 (1997)). <em>LoF</em> has a natural identity element, the <em>void</em>, and Steven Winkler showed in the early 1990s that the existence of such an element sufficed to turn a Robbins algebra into a Boolean algebra (S. Winker, "Robbins Algebra: Conditions That Make a Near-Boolean Algebra Boolean", J. Automated Reasoning 6(4), 465&#8212;&#8203;489 (1990) and "Absorption and idempotency criteria for a problem in near-Boolean algebras", J. Algebra 153(2), 414&#8212;&#8203;423 (1992)). See <a href="http://homepages.math.uic.edu/~kauffman/Robbins.htm" class="bare">http://homepages.math.uic.edu/~kauffman/Robbins.htm</a> for a <em>LoF</em>-inspired derivation by Louis Kauffman that does <em>not</em> take the void as given.
+</div>
+<div class="footnote" id="_footnote_3">
+<a href="#_footnoteref_3">3</a>. P. Meguire, "Boundary Algebra: A Simple Notation for Boolean Algebra and the Truth Functors" (2007), <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.143.8171" class="bare">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.143.8171</a> .
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-12-20 18:34:29 EST
+Last updated 2016-12-21 14:56:37 EST
 </div>
 </div>
 <script type="text/x-mathjax-config">
