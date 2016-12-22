@@ -902,7 +902,7 @@ powerful as Boolean algebra.
 - Find the simplest formal system that would permit proofs of _LoF_
   metatheorems, such as: +
   _( (P~1~) (P~2~) ... (P~n~) ) Q = ( (P~1~ Q) (P~2~ Q) ... (P~n~ Q) )_. +
-  The machinery of induction would be enough, but is there a simpler system?
+  Adding induction would be enough, but is there a simpler system?
 
 - Although the derivations presented here are correct -- metamath sees to
   that -- I do not pretend they are optimal, and improvements via pull
