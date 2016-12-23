@@ -7,7 +7,7 @@ $(
   Spencer-Brown, G. (1969) Laws of Form (Allen & Unwin, London),
   hereafter cited as LoF.
 
-  The algebra of LoF has a number of models, most significantly boolean 
+  The algebra of LoF has a number of models, most significantly Boolean 
   algebra and sentential logic, so it may be of some interest to logicians. 
   From the perspective of metamath, it is a non-trivial example of a system 
   that requires, indeed is based on, the empty substitution.
@@ -24,7 +24,7 @@ $(
   common to call LoF a 'boundary algebra'. In LoF all boundaries are
   considered equivalent.
 
-  The topology of _LoF_ implicitly imposes commutativity on its operations
+  The topology of LoF implicitly imposes commutativity on its operations
   and transferring this to a linear notation involves compromises. To better
   understand the compromises and see the cost of linearity was a major
   motivation of this exercise.
@@ -154,7 +154,7 @@ $)
   $}
  
   $( The axioms and theorems so far have been transparent, succinct, and
-     powerful (they embody boolean algebra, after all), but applying them
+     powerful (they embody Boolean algebra, after all), but applying them
      would be impractical without further theorems. While this is no different
      from any other formal system, here these auxiliary theorems have a
      peculiar feeling of inconsequence: they are often tiresome (and sometimes
@@ -275,13 +275,13 @@ $)
     tranrxb.2  $e |- p = r $.
     tranrxb    $p |- x ( v q u ) w = w ( u r v ) x $.
 
-    we could have reduced the proof of theorem c9.0 by a hundred steps. $)
+    we could have reduced significantly the proof of theorem c9.0. $)
 
   $( ==========================================================================
                               Laws of Form  
   
   LoF can be considered a prolonged deduction from two initial 'arithmetic'
-  equations [_LoF_, p. 12]:
+  equations [LoF, p. 12]:
 
   I1. Number   () () = ()
   I2. Order    (())  =   
@@ -392,9 +392,9 @@ $)
 
   $( Extension $)
   c6.0  $p |- ( ( p ) ( q ) ) ( ( p ) q ) = p  $=
-    ( encl juxt c1.0 void cmmbx quadbx j2.0 trans ax-beq j1.0 subb1 eucr) ACZBC
-    ZDCZOBDCZDZOCZASCZCZSTSEUBPCPDCZODZCTUAUDUAPODCZBODCZDCUDQUERUFFFFFFOPFFFFF
-    GOBFFFFFGHPBOIJKUCFFOFFPLMJNAEJ $.
+    ( encl juxt c1.0 void cmmbx quadbx j2.0 trans ax-beq j1.0 subb1 eucr ) ACZB
+    CZDCZOBDCZDZOCZASCZCZSTSEUBPCPDCZODZCTUAUDUAPODCZBODCZDCUDQUERUFFFFFFOPFFFF
+    FGOBFFFFFGHPBOIJKUCFFOFFPLMJNAEJ $.
     $( [6-Sep-2015] $)
 
   $( Echelon $)
@@ -559,7 +559,7 @@ $( =======================================================================
      System_3  
 
      Deriving C6 from the Robbins equation, demonstrating that a Robbins
-     algebra is a boolean algebra. $)
+     algebra is a Boolean algebra. $)
 
   $( Basis_3 --------------------------------------------- $)
 
