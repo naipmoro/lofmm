@@ -1,5 +1,5 @@
 $( 
-  lof.mm    version 0.1.0    Copyright (C) 2015 naipmoro
+  lof.mm    version 0.1.1    Copyright (C) 2015 naipmoro
   This file is made available under the MIT License: 
   http://opensource.org/licenses/MIT
 
@@ -13,7 +13,7 @@ $(
   that requires, indeed is based on, the empty substitution.
 
   Access to the empty substitution, in conjunction with metamath's radical
-  formalism, allows a representation that closely matches _LoF's_ actual
+  formalism, allows a representation that closely matches LoF's actual
   expressions.
 
   LoF is a 2-dimensional notation in which closed curves (boundaries) are the
@@ -585,8 +585,44 @@ $( =======================================================================
     ( encl juxt void ax-cmm c1.3 robbins ax-beq eucr trans repbx ) BACZDZMBDEEM
     BCZDZCEABMFOMDZPEEENCZAOMFQCRDZMCZASCZCSTSGUAMBMHIJAGKLL $.
     $( [5-Oct-2015] $)
+
+  $( ======================================================================= 
+                         Topics in Laws of Form
+
+  Associativity of logical connectives
+
+  Since LoF lacks the concept of associativity, proving that a model
+  of LoF has associative connectives may involve meta-reasoning. For
+  example, the proof that (p OR q) OR r = p OR (q OR r) only requires
+  that we show:
+
+  p q r = p q r
+
+  which is easy to do in LoF! Under the dual interpretation this also
+  proves the associativity of conjunction, but I will prove that more
+  directly. Since p & q corresponds to ((p)(q)), we need to show that
+  ((((p)(q))) (r)) = ((p) (((q)(r)))). Consider the left side of that
+  equation -- it evaluates to ((p)(q)(r)), a form symmetric in the
+  three variables: $)
+
+  conj3  $p |- ( ( ( ( p ) ( q ) ) ) ( r ) ) = ( ( p ) ( q ) ( r ) ) $=
+    ( encl juxt void c1.0 subb1 ) ADBDEZDDIFCDFFIGH $.
+    $( [29-Dec-2016] $)
+
+  $( This shows that the permutation of variables in the LHS is irrelevant.
+  Specifically, ((((q)(r))) (p)), which is equal to ((p) (((q)(r)))) by
+  commutation, will evaluate to the same form as ((((p)(q))) (r)). This
+  completes the proof. I call this meta-reasoning because we're using an
+  undefined, intuitive concept of symmetry. Below is the full-length
+  formal proof. $)
+
+  $( Associativity of conjunction $)
+  conj-assc $p |- ( ( ( ( p ) ( q ) ) ) ( r ) ) = ( ( p ) ( ( ( q ) ( r ) ) ) )
+            $=
+    ( encl juxt conj3 void ax-cmm subb1 trans ax-euc ax-beq ) ADZBDZEZDDCDZEDZN
+    PEZDDZMEZDZMSEZDQOPEZDZUAABCFUARMEZDUDBCAFUEUCGGGGRMHIJKTUBSMHLJ $.
+    $( [29-Dec-2016] $)
+
   
-
-
-
+  
 
