@@ -593,28 +593,24 @@ $( =======================================================================
 
   Since LoF lacks the concept of associativity, proving that a model
   of LoF has associative connectives may involve meta-reasoning. For
-  example, the proof that (p OR q) OR r = p OR (q OR r) only requires
-  that we show:
-
-  p q r = p q r
-
-  which is easy to do in LoF! Under the dual interpretation this also
-  proves the associativity of conjunction, but I will prove that more
-  directly. Since p & q corresponds to ((p)(q)), we need to show that
-  ((((p)(q))) (r)) = ((p) (((q)(r)))). Consider the left side of that
-  equation -- it evaluates to ((p)(q)(r)), a form symmetric in the
-  three variables: $)
+  example, the proof of (p V q) V r = p V (q V r) corresponds to the
+  equation p q r = p q r, which is easy to prove in LoF! Under the dual
+  interpretation this also proves the associativity of conjunction, but
+  now I will prove that more directly. Since p & q corresponds to
+  ((p)(q)), we need to show that ((((p)(q))) (r)) = ((p) (((q)(r)))).
+  Consider the left side of that equation -- it evaluates to ((p)(q)(r)),
+  a form symmetric in the three variables: $)
 
   conj3  $p |- ( ( ( ( p ) ( q ) ) ) ( r ) ) = ( ( p ) ( q ) ( r ) ) $=
     ( encl juxt void c1.0 subb1 ) ADBDEZDDIFCDFFIGH $.
     $( [29-Dec-2016] $)
 
-  $( This shows that the permutation of variables in the LHS is irrelevant.
-  Specifically, ((((q)(r))) (p)), which is equal to ((p) (((q)(r)))) by
-  commutation, will evaluate to the same form as ((((p)(q))) (r)). This
-  completes the proof. I call this meta-reasoning because we're using an
-  undefined, intuitive concept of symmetry. Below is the full-length
-  formal proof. $)
+  $( This shows that a permutation of variables in the LHS leaves the
+  result unchanged. Specifically, ((((q)(r))) (p)), which is equal to
+  ((p) (((q)(r)))) by commutation, will evaluate to the same form as
+  ((((p)(q))) (r)). This completes the proof. I call this meta-reasoning
+  because we're using an undefined, intuitive notion of symmetry. Below
+  is the full-length formal proof. $)
 
   $( Associativity of conjunction $)
   conj-assc $p |- ( ( ( ( p ) ( q ) ) ) ( r ) ) = ( ( p ) ( ( ( q ) ( r ) ) ) )

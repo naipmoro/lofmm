@@ -917,12 +917,12 @@ three variables:
 [This and subsequent proofs will be omitted. See the source file or
 utilize metamath's proof-disply capabilities.]
 
-This shows that a permutation of variables in the LHS is irrelevant.
-Specifically, _\((((q)(r))) (p))_, which is equal to _\((p) (((q)(r))))_ by
-commutation, will evaluate to the same form as _\((((p)(q))) (r))_. This
-completes the proof. I call this meta-reasoning because we're using an
-undefined, intuitive notion of symmetry. See the source for the full-length
-formal proof.
+This shows that a permutation of variables in the LHS leaves the result
+unchanged. Specifically, _\((((q)(r))) (p))_, which is equal to
+_\((p) (((q)(r))))_ by commutation, will evaluate to the same form as
+_\((((p)(q))) (r))_. This completes the proof. I call this meta-reasoning
+because we're using an undefined, intuitive notion of symmetry. See the
+source for a full-length formal proof.
 
 .Associativity of conjunction
 [cols="<2s,>5e,^1,<5e",grid="none",frame="none",width="60%"]
@@ -969,18 +969,5 @@ the source for the full proof:
 |===
 
 
-=== TODO
-
-- Since _p = q_ is equivalent to _( ( p ) ( q ) ) ( p q )_, '=' can be
-  eliminated from the list of symbols.
-
-- Find the simplest formal system that would permit proofs of _LoF_
-  metatheorems, such as: +
-  _( (P~1~) (P~2~) ... (P~n~) ) Q = ( (P~1~ Q) (P~2~ Q) ... (P~n~ Q) )_. +
-  Adding induction would be enough, but is there a simpler system?
-
-- Although the derivations presented here are correct -- metamath sees to
-  that -- I do not pretend they are optimal, and improvements via pull
-  requests are encouraged.
 
  
