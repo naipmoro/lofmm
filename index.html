@@ -2428,27 +2428,135 @@ powerful as Boolean algebra.</p>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_todo">TODO</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Since <em>p = q</em> is equivalent to <em>( ( p ) ( q ) ) ( p q )</em>, '=' can be
-eliminated from the list of symbols.</p>
-</li>
-<li>
-<p>Find the simplest formal system that would permit proofs of <em>LoF</em>
-metatheorems, such as:<br>
-<em>( (P<sub>1</sub>) (P<sub>2</sub>) &#8230;&#8203; (P<sub>n</sub>) ) Q = ( (P<sub>1</sub> Q) (P<sub>2</sub> Q) &#8230;&#8203; (P<sub>n</sub> Q) )</em>.<br>
-Adding induction would be enough, but is there a simpler system?</p>
-</li>
-<li>
-<p>Although the derivations presented here are correct&#8201;&#8212;&#8201;metamath sees to
-that&#8201;&#8212;&#8201;I do not pretend they are optimal, and improvements via pull
-requests are encouraged.</p>
-</li>
-</ul>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_topics_in_em_laws_of_form_em">Topics in <em>Laws of Form</em></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_associativity_of_logical_connectives">Associativity of logical connectives</h3>
+<div class="paragraph">
+<p>Since <em>LoF</em> lacks the concept of associativity, proving that a model
+of <em>LoF</em> has associative connectives may involve meta-reasoning. For
+example, the proof of &#160; <em>(p &or; q) &or; r = p &or; (q &or; r)</em> &#160;
+corresponds to the equation  &#160;  <em>p q r = p q r</em> ,
+which is easy to prove in <em>LoF</em>! Under the dual interpretation this also
+proves the associativity of conjunction, but now I will prove that more
+directly. Since &#160; <em>p &and; q</em> &#160; corresponds to <em>((p)(q))</em>, we
+need to show that <em>((((p)(q))) (r)) = ((p) (((q)(r))))</em>. Consider the
+left side of that equation&#8201;&#8212;&#8201;it evaluates to a form symmetric in the
+three variables:</p>
+</div>
+<table class="tableblock frame-none grid-none" style="width: 60%;">
+<colgroup>
+<col style="width: 15.3846%;">
+<col style="width: 38.4615%;">
+<col style="width: 7.6923%;">
+<col style="width: 38.4616%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>conj3</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><em>( ( ( ( p ) ( q ) ) ) ( r ) )</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>( ( p ) ( q ) ( r ) )</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>[This and subsequent proofs will be omitted. See the source file or
+utilize metamath&#8217;s proof-disply capabilities.]</p>
+</div>
+<div class="paragraph">
+<p>This shows that a permutation of variables in the LHS leaves the result
+unchanged. Specifically, <em>((((q)(r))) (p))</em>, which is equal to
+<em>((p) (((q)(r))))</em> by commutation, will evaluate to the same form as
+<em>((((p)(q))) (r))</em>. This completes the proof. I call this meta-reasoning
+because we&#8217;re using an undefined, intuitive notion of symmetry. See the
+source for a full-length formal proof.</p>
+</div>
+<table class="tableblock frame-none grid-none" style="width: 60%;">
+<caption class="title">Associativity of conjunction</caption>
+<colgroup>
+<col style="width: 15.3846%;">
+<col style="width: 38.4615%;">
+<col style="width: 7.6923%;">
+<col style="width: 38.4616%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>conj-assc</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><em>( ( ( ( p ) ( q ) ) ) ( r ) )</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>( ( p ) ( ( ( q ) ( r ) ) ) )</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Now I turn to proving the associativity of the biconditional,
+&#160; <em>(p &harr; q) &harr; r = p &harr; (q &harr; r)</em>.
+I had earlier taken for granted that &#160; <em>p &harr; q</em>, transcribed as
+<em>(((p)q) ((q)p))</em>, was equivalent to <em>((p)(q)) (p q)</em>. See the source
+for a proof of that.</p>
+</div>
+<table class="tableblock frame-none grid-none" style="width: 60%;">
+<caption class="title">Normal form of the biconditional</caption>
+<colgroup>
+<col style="width: 15.3846%;">
+<col style="width: 38.4615%;">
+<col style="width: 7.6923%;">
+<col style="width: 38.4616%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>bicond</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><em>( ( ( p ) q ) ( ( q ) p ) )</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>( ( p ) ( q ) ) ( p q )</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Let &#160;  <em>A</em> =  <em>p &harr; q</em>  = <em>((p)(q)) (p q)</em> &#160; and &#160;
+            <em>B</em> =  <em>q &harr; r</em>  = <em>((q)(r)) (q r)</em>.
+Proving that the biconditional associates amounts to proving:<br>
+<em>((A)(r)) (A r) = ((p)(B)) (p B)</em> &#160;, i.e.,<br>
+<em>((((p)(q)) (p q))(r)) (((p)(q)) (p q) r) =
+  ((p)(((q)(r)) (q r))) (p q)(r (q r))</em><br>
+Consider the left side of that equation&#8201;&#8212;&#8201;as in the case of conjunction,
+it evaluates to a form symmetric in the three variables:</p>
+</div>
+<table class="tableblock frame-none grid-none" style="width: 60%;">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>bic3</strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="verse">( ( ( ( p ) ( q ) ) ( p q ) ) ( r ) ) ( ( ( p ) ( q ) ) ( p q ) r )
+ = ( ( p ) ( q ) ( r ) ) ( p q ( r ) ) ( p ( q ) r ) ( ( p ) q r )</div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This completes the informal proof that the biconditional associates. See
+the source for the full proof:</p>
+</div>
+<table class="tableblock frame-none grid-none" style="width: 60%;">
+<caption class="title">Associativity of the biconditional</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>bicond-assc</strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="verse">( ( ( ( p ) ( q ) ) ( p q ) ) ( r ) ) ( ( ( p ) ( q ) ) ( p q ) r )
+ = ( ( p ) ( ( ( q ) ( r ) ) ( q r ) ) ) ( p ( ( q ) ( r ) ) ( q r ) )</div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -2467,7 +2575,7 @@ requests are encouraged.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-12-21 22:09:13 EST
+Last updated 2016-12-30 14:12:57 EST
 </div>
 </div>
 <script type="text/x-mathjax-config">
