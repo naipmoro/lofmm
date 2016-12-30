@@ -880,7 +880,7 @@ powerful as Boolean algebra.
 |===
 
 .Proof of c6.3
-[cols="<1,<10,<3",grid="none",frame="none",width="60%"]
+[cols="<1,<10,<3",grid="none",frame="none",width="65%"]
 |===
 | 1 | q ( p ) = ( p ) q |(*ax-cmm*)
 | 2 | ( q ) ( p ) = ( p ) ( q ) |(*ax-cmm*)
