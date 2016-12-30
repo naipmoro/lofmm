@@ -288,24 +288,24 @@ $)
   
   As mentioned, one of the models of LoF is sentential logic:
    
-  T             <=>    ()
-  F             <=>     
-  NOT p         <=>    (p)
-  p OR q        <=>    p q   
-  p AND q       <=>    ((p) (q))   
-  p IMPLIES q   <=>    (p) q
-  p IFF q       <=>    ((p) (q)) (p q)
+  T         <=>    ()
+  F         <=>     
+  ~p        <=>    (p)
+  p V q     <=>    p q   
+  p & q     <=>    ((p) (q))   
+  p -> q    <=>    (p) q
+  p <-> q   <=>    ((p) (q)) (p q)
   
   The algebra is self-dual. If we interchange T and F, the algebraic laws 
   continue to hold, with juxtaposition now interpreted as conjunction:
 
-  T             <=>    
-  F             <=>    ()
-  NOT p         <=>    (p)
-  p OR q        <=>    ((p) (q))
-  p AND q       <=>    p q
-  p IMPLIES q   <=>    (p (q))
-  p IFF q       <=>    (((p) (q)) (p q))  
+  T         <=>    
+  F         <=>    ()
+  ~p        <=>    (p)
+  p V q     <=>    ((p) (q))
+  p & q     <=>    p q
+  p -> q    <=>    (p (q))
+  p <-> q   <=>    (((p) (q)) (p q))  
 
   In keeping with standard practice, I use the first interpretation
   (juxtaposition as disjunction). When refering to the second interpretation,
@@ -596,7 +596,7 @@ $( =======================================================================
   example, the proof of (p V q) V r = p V (q V r) corresponds to the
   equation p q r = p q r, which is easy to prove in LoF! Under the dual
   interpretation this also proves the associativity of conjunction, but
-  now I will prove that more directly. Since p & q corresponds to
+  here I will prove that more directly. Since p & q corresponds to
   ((p)(q)), we need to show that ((((p)(q))) (r)) = ((p) (((q)(r)))).
   Consider the left side of that equation -- it evaluates to ((p)(q)(r)),
   a form symmetric in the three variables: $)
@@ -674,8 +674,8 @@ $( =======================================================================
 
   $( The associativity of the biconditional $)
   bicond-assc  $p |-
-      ( ( ( ( p ) ( q ) ) ( p q ) ) ( r ) )   ( ( ( p ) ( q ) ) ( p q ) r ) =
-      ( ( p ) ( ( ( q ) ( r ) ) ( q r ) ) )  ( p ( ( q ) ( r ) ) ( q r ) ) $=
+      ( ( ( ( p ) ( q ) ) ( p q ) ) ( r ) ) ( ( ( p ) ( q ) ) ( p q ) r ) =
+      ( ( p ) ( ( ( q ) ( r ) ) ( q r ) ) ) ( p ( ( q ) ( r ) ) ( q r ) ) $=
   ( encl juxt bic3 bic3x ax-euc void cmmbx trans ) ADZBDZEZDABEZDEZDCDZEDPCED
     EZMQEDZBCEDZEZDZLEDUAAEDZEZLUBEDZASETEDEZRNQEDOQEDEAMECEDELBECEDEUDABCFABCG
     HUDUEUCEUFUBLIIIIUCJUAAIIIUEIJKK $.

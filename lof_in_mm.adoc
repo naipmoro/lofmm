@@ -903,7 +903,7 @@ of _LoF_ has associative connectives may involve meta-reasoning. For
 example, the proof of {nbsp} _(p &or; q) &or; r = p &or; (q &or; r)_ {nbsp}
 corresponds to the equation  {nbsp}  _p q r = p q r_ ,
 which is easy to prove in _LoF_! Under the dual interpretation this also
-proves the associativity of conjunction, but now I will prove that more
+proves the associativity of conjunction, but here I will prove that more
 directly. Since {nbsp} _p &and; q_ {nbsp} corresponds to _\((p)(q))_, we
 need to show that _\((((p)(q))) (r)) = \((p) (((q)(r))))_. Consider the
 left side of that equation -- it evaluates to a form symmetric in the
