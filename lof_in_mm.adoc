@@ -915,7 +915,7 @@ three variables:
 |===
 
 [This and subsequent proofs will be omitted. See the source file or
-utilize metamath's proof-disply capabilities.]
+utilize metamath's proof-display capabilities.]
 
 This shows that a permutation of variables in the LHS leaves the result
 unchanged. Specifically, _\((((q)(r))) (p))_, which is equal to
