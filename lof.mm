@@ -623,6 +623,66 @@ $( =======================================================================
     PEZDDZMEZDZMSEZDQOPEZDZUAABCFUARMEZDUDBCAFUEUCGGGGRMHIJKTUBSMHLJ $.
     $( [29-Dec-2016] $)
 
-  
-  
+  $( Now I turn to proving the associativity of the biconditional:
+  (p<->q)<->r = p<->(q<->r). I had earlier taken for granted that p<->q,
+  transcribed as (((p)q) ((q)p)), was equivalent to ((p)(q)) (p q). Here
+  I prove it: $)
 
+  bicond  $p |- ( ( ( p ) q ) ( ( q ) p ) ) = ( ( p ) ( q ) ) ( p q ) $=
+    ( encl juxt void ax-cmm ax-beq subb1 c1.0 c6.0 cmmbx c9.0 eucr ) BACZDZCZBC
+    ZADCZDZCZNBDZCZRDCNQDCABDCDZPUBEREEOUABNFGHQCZNDCZRDZCZTUCUFSUDBENERBIHGECZ
+    NDCZUHADCZDZUEDRDCZUGUCUKEEUFEEEAJHUIUEDRDUJDCULUCUFUJUIEEEEKAEQBELMMMM $.
+    $( [29-Dec-2016] $)
+
+  $( Next I'll need the following two lemmas: $)
+
+  c2lem1  $p |- ( q ( p q ) r ) = ( ( p ) q r ) $=
+    ( juxt encl void cmmx c2.0 ax-sub trans ax-beq ) BABDEZDCDZAEBDZCDZMLBDZCDO
+    BLFFCGPNCABHIJK $.
+    $( [29-Dec-2016] $)
+
+  c2lem2  $p |- ( p ( p q ) r ) = ( p ( q ) r ) $=
+    ( juxt encl void cmmbx cmmx trans c2.0 ax-sub ax-beq ) AABDEDCDZABEZDCDZMNA
+    DZCDZOMBADEZADZCDZQMARDCDTABFFFACGARFFCHISPCBAJKINAFFCHIL $.
+    $( [29-Dec-2016] $)
+
+  $( Let A = p<->q = ((p)(q)) (p q) and
+         B = q<->r = ((q)(r)) (q r).
+  Proving that the biconditional associates amounts to proving:
+      ((A)(r)) (A r) = ((p)(B)) (p B), i.e.,
+      ((((p)(q)) (p q))(r)) (((p)(q)) (p q) r) =
+      ((p)(((q)(r)) (q r))) (p ((q)(r)) (q r)).
+  Consider the left side of that equation -- as in the case of conjunction,
+  it evaluates to a form symmetric in the three variables: $)
+
+  bic3  $p |-
+      ( ( ( ( p ) ( q ) ) ( p q ) ) ( r ) ) ( ( ( p ) ( q ) ) ( p q ) r ) = 
+      ( ( p ) ( q ) ( r ) ) ( p q ( r ) ) ( p ( q ) r ) ( ( p ) q r ) $=
+    ( encl juxt j2.0 ax-beq c1.0 eucr quad c2lem2 subst trans c2lem1 subr ) ADZ
+    BDZEZDABEZDZEZDCDZEZDZUACEZDZEZRUBEDSUBEDEZAQECEDZEZBTECEDZEUJPBECEDZEUGUHA
+    TECEDZUKEZEUHUIUKEEUDUHUFUNUHDZDUDUHUOUCRSUBFGUHHIUNDZDUFUNUPUEABTCEFGUNHIJ
+    UMUIUHUKABCKLMUKULUJABCNOM $.
+    $( [29-Dec-2016] $)
+
+  $( This completes the informal proof that the biconditional associates.
+  Below is the formal proof. First, we need a permuted version of bic3. $)
+
+  bic3x  $p |-
+      ( ( ( ( q ) ( r ) ) ( q r ) ) ( p ) ) ( ( ( q ) ( r ) ) ( q r ) p ) =
+      ( ( p ) ( q ) ( r ) ) ( p q ( r ) ) ( p ( q ) r ) ( ( p ) q r ) $=
+    ( encl juxt bic3 void cmmbx trans cmmx ) BDZCDZEZDBCEZDEZDADZEDOAEDEZPKELED
+    ZPBECEDZEZAKECEDZEABELEDZEZRUBEUAESEQTUBEZUAEZUCQUDKCEZAEDZEZUEQTBLEZAEDZEU
+    GEZUHQRNPEDZEUJEUGEZUKQMPEDULEUJEUGEUMBCAFMPGGGGULUJEUGEHINPGGGRUJUGEHIUIAG
+    GGTUGHIUFAGGGUDGHIUBUATGGJISUBRUAGJI $.
+    $( [29-Dec-2016] $)
+
+  $( The associativity of the biconditional $)
+  bicond-assc  $p |-
+      ( ( ( ( p ) ( q ) ) ( p q ) ) ( r ) )   ( ( ( p ) ( q ) ) ( p q ) r ) =
+      ( ( p ) ( ( ( q ) ( r ) ) ( q r ) ) )  ( p ( ( q ) ( r ) ) ( q r ) ) $=
+  ( encl juxt bic3 bic3x ax-euc void cmmbx trans ) ADZBDZEZDABEZDEZDCDZEDPCED
+    EZMQEDZBCEDZEZDZLEDUAAEDZEZLUBEDZASETEDEZRNQEDOQEDEAMECEDELBECEDEUDABCFABCG
+    HUDUEUCEUFUBLIIIIUCJUAAIIIUEIJKK $.
+    $( [29-Dec-2016] $)
+
+    

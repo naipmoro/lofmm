@@ -894,6 +894,81 @@ powerful as Boolean algebra.
 |10 | ( ( p ) ( q ) ) ( ( p ) q ) = p |(1,9 *repbx*)
 |===
 
+== Topics in _Laws of Form_
+
+=== Associativity of logical connectives
+
+Since _LoF_ lacks the concept of associativity, proving that a model
+of _LoF_ has associative connectives may involve meta-reasoning. For
+example, the proof of {nbsp} _(p &or; q) &or; r = p &or; (q &or; r)_ {nbsp}
+corresponds to the equation  {nbsp}  _p q r = p q r_ ,
+which is easy to prove in _LoF_! Under the dual interpretation this also
+proves the associativity of conjunction, but now I will prove that more
+directly. Since {nbsp} _p &and; q_ {nbsp} corresponds to _\((p)(q))_, we
+need to show that _\((((p)(q))) (r)) = \((p) (((q)(r))))_. Consider the
+left side of that equation -- it evaluates to a form symmetric in the
+three variables:
+
+[cols="<2s,>5e,^1,<5e",grid="none",frame="none",width="60%"]
+|===
+|conj3 |( ( ( ( p ) ( q ) ) ) ( r ) ) |= |( ( p ) ( q ) ( r ) )
+|===
+
+[This and subsequent proofs will be omitted. See the source file or
+utilize metamath's proof-disply capabilities.]
+
+This shows that a permutation of variables in the LHS is irrelevant.
+Specifically, _\((((q)(r))) (p))_, which is equal to _\((p) (((q)(r))))_ by
+commutation, will evaluate to the same form as _\((((p)(q))) (r))_. This
+completes the proof. I call this meta-reasoning because we're using an
+undefined, intuitive notion of symmetry. See the source for the full-length
+formal proof.
+
+.Associativity of conjunction
+[cols="<2s,>5e,^1,<5e",grid="none",frame="none",width="60%"]
+|===
+|conj-assc |( ( ( ( p ) ( q ) ) ) ( r ) ) |= |( ( p ) ( ( ( q ) ( r ) ) ) )
+|===
+
+Now I turn to proving the associativity of the biconditional,
+{nbsp} _(p &harr; q) &harr; r = p &harr; (q &harr; r)_.
+I had earlier taken for granted that {nbsp} _p &harr; q_, transcribed as
+_\(((p)q) ((q)p))_, was equivalent to _\((p)(q)) (p q)_. See the source
+for a proof of that.
+
+.Normal form of the biconditional
+[cols="<2s,>5e,^1,<5e",grid="none",frame="none",width="60%"]
+|===
+|bicond |( ( ( p ) q ) ( ( q ) p ) ) |= |( ( p ) ( q ) ) ( p q )
+|===
+
+Let {nbsp}  _A_ =  _p &harr; q_  = _\((p)(q)) (p q)_ {nbsp} and {nbsp} 
+            _B_ =  _q &harr; r_  = _\((q)(r)) (q r)_. 
+Proving that the biconditional associates amounts to proving: +
+_\((A)(r)) (A r) = \((p)(B)) (p B)_ {nbsp}, i.e., +
+_\((((p)(q)) (p q))(r)) \(((p)(q)) (p q) r) =
+  \((p)(((q)(r)) (q r))) (p ((q)(r)) (q r))_ +
+Consider the left side of that equation -- as in the case of conjunction,
+it evaluates to a form symmetric in the three variables:
+
+[cols="<2s,<10e",grid="none",frame="none",width="60%"]
+|===
+|bic3 v|( ( ( ( p ) ( q ) ) ( p q ) ) ( r ) ) ( ( ( p ) ( q ) ) ( p q ) r )
+ = ( ( p ) ( q ) ( r ) ) ( p q ( r ) ) ( p ( q ) r ) ( ( p ) q r )
+|===
+
+This completes the informal proof that the biconditional associates. See
+the source for the full proof:
+
+.Associativity of the biconditional
+[cols="<2s,<10e",grid="none",frame="none",width="60%"]
+|===
+|bicond-assc
+ v|( ( ( ( p ) ( q ) ) ( p q ) ) ( r ) ) ( ( ( p ) ( q ) ) ( p q ) r )
+ = ( ( p ) ( ( ( q ) ( r ) ) ( q r ) ) ) ( p ( ( q ) ( r ) ) ( q r ) )
+|===
+
+
 === TODO
 
 - Since _p = q_ is equivalent to _( ( p ) ( q ) ) ( p q )_, '=' can be
