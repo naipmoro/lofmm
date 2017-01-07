@@ -922,7 +922,7 @@ unchanged. Specifically, _\((((q)(r))) (p))_, which is equal to
 _\((p) (((q)(r))))_ by commutation, will evaluate to the same form as
 _\((((p)(q))) (r))_. This completes the proof. I call this meta-reasoning
 because we're using an undefined, intuitive notion of symmetry. See the
-source for a full-length formal proof.
+source for a full formal proof.
 
 .Associativity of conjunction
 [cols="<2s,>5e,^1,<5e",grid="none",frame="none",width="60%"]
@@ -933,8 +933,8 @@ source for a full-length formal proof.
 Now I turn to proving the associativity of the biconditional,
 {nbsp} _(p &harr; q) &harr; r = p &harr; (q &harr; r)_.
 I had earlier taken for granted that {nbsp} _p &harr; q_, transcribed as
-_\(((p)q) ((q)p))_, was equivalent to _\((p)(q)) (p q)_. See the source
-for a proof of that.
+_\(((p)q) ((q)p))_, was equivalent to _\((p)(q)) (p q)_. Here I prove it
+(see the source).
 
 .Normal form of the biconditional
 [cols="<2s,>5e,^1,<5e",grid="none",frame="none",width="60%"]
