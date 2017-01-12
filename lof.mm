@@ -309,7 +309,7 @@ $)
 
   In keeping with standard practice, I use the first interpretation
   (juxtaposition as disjunction). When refering to the second interpretation,
-  I call it the 'dual interpretation' or just the 'dual'.
+  I call it the 'dual interpretation'.
 
   Spencer-Brown begins with the two axioms:
 
@@ -676,7 +676,7 @@ $( =======================================================================
   bicond-assc  $p |-
       ( ( ( ( p ) ( q ) ) ( p q ) ) ( r ) ) ( ( ( p ) ( q ) ) ( p q ) r ) =
       ( ( p ) ( ( ( q ) ( r ) ) ( q r ) ) ) ( p ( ( q ) ( r ) ) ( q r ) ) $=
-  ( encl juxt bic3 bic3x ax-euc void cmmbx trans ) ADZBDZEZDABEZDEZDCDZEDPCED
+    ( encl juxt bic3 bic3x ax-euc void cmmbx trans ) ADZBDZEZDABEZDEZDCDZEDPCED
     EZMQEDZBCEDZEZDZLEDUAAEDZEZLUBEDZASETEDEZRNQEDOQEDEAMECEDELBECEDEUDABCFABCG
     HUDUEUCEUFUBLIIIIUCJUAAIIIUEIJKK $.
     $( [29-Dec-2016] $)
