@@ -179,7 +179,7 @@ quad:: *_p=q_* & *_r=s_* {nbsp} _->_ {nbsp} *_p r = q s_*
 ins:: *_p q = r s_* {nbsp} _->_ {nbsp} *_p v q = r v s_*
 cmmx:: *_u p v q w = u q v p w_*
 cmmbx:: *_x ( u p v q w ) y = x ( u q v p w ) y_*
-quadbx:: *_p q = r s_* {nbsp} _->_ {nbsp} *_x ( u p v r w ) y = x ( u q v s w ) y_*
+quadbx:: *_p=q_* & *_r=s_* {nbsp} _->_ {nbsp} *_x ( u p v r w ) y = x ( u q v s w ) y_*
 
 It's hard to know where to stop with auxiliary theorems. Had we chosen 
 to prove the two additional statements:
