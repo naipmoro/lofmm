@@ -872,7 +872,8 @@ Next we prove *C1*.
 |===
 
 We now prove *C6*, demonstrating that the Robbins algebra is at least as
-powerful as Boolean algebra.
+powerful as Boolean algebra. The original proof was simplified by Armahedi
+Mahzar.
 
 [cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
 |===
@@ -880,6 +881,22 @@ powerful as Boolean algebra.
 |===
 
 .Proof of c6.3
+[cols="<1,<10,<3",grid="none",frame="none",width="65%"]
+|===
+| 1 | ( ( p ) ( q ) ) ( q ( p ) ) = ( ( p ) ( q ) ) ( ( p ) q ) |(*cmmbx*)
+| 2 | ( ( q ) ( p ) ) ( q ( p ) ) = ( ( p ) ( q ) ) ( q ( p ) ) |(*cmmbx*)
+| 3 | ( ( ( ( q ) ( p ) ) ( q ( p ) ) ) ) = ( ( q ) ( p ) ) ( q ( p ) ) |(*c1.3*)
+| 4 | ( ( ( q ) ( p ) ) ( q ( p ) ) ) = ( p ) |(*robbins*)
+| 5 | ( ( ( ( q ) ( p ) ) ( q ( p ) ) ) ) = ( ( p ) ) |(4 *ax-beq*)
+| 6 | ( ( p ) ) = p |(*c1.3*)
+| 7 | ( ( ( ( q ) ( p ) ) ( q ( p ) ) ) ) = p |(5,6 *trans*)
+| 8 | ( ( q ) ( p ) ) ( q ( p ) ) = p |(3,7 *eucr*)
+| 9 | ( ( p ) ( q ) ) ( q ( p ) ) = p |(2,8 *eucr*)
+|10 | ( ( p ) ( q ) ) ( ( p ) q ) = p |(1,9 *eucr*)
+|===
+
+////
+.Original proof of c6.3
 [cols="<1,<10,<3",grid="none",frame="none",width="65%"]
 |===
 | 1 | q ( p ) = ( p ) q |(*ax-cmm*)
@@ -893,6 +910,7 @@ powerful as Boolean algebra.
 | 9 | ( ( p ) ( q ) ) ( q ( p ) ) = p |(2,8 *repbx*)
 |10 | ( ( p ) ( q ) ) ( ( p ) q ) = p |(1,9 *repbx*)
 |===
+////
 
 == Topics in _Laws of Form_
 
