@@ -581,10 +581,17 @@ $( =======================================================================
     K $.
     $( [8-Dec-2016] $)
 
-  c6.3  $p |- ( ( p ) ( q ) ) ( ( p ) q ) = p $=
+  $( Original proof by Naip Moro. $)
+  c6.3orig  $p |- ( ( p ) ( q ) ) ( ( p ) q ) = p $=
     ( encl juxt void ax-cmm c1.3 robbins ax-beq eucr trans repbx ) BACZDZMBDEEM
     BCZDZCEABMFOMDZPEEENCZAOMFQCRDZMCZASCZCSTSGUAMBMHIJAGKLL $.
     $( [5-Oct-2015] $)
+
+  $( This is a conceptually simpler proof suggested by Armahedi Mahzar. $)
+  c6.3  $p |- ( ( p ) ( q ) ) ( ( p ) q ) = p $=
+    ( encl juxt void cmmbx c1.3 robbins ax-beq trans eucr ) ACZBCZDCZBLDCZDZNLB
+    DCDABLEEENEFMLDCODZPAMLEEEEOFQCZCZQAQGSLCARLBLHIAGJKKK $.
+    $( [27-Jan-2017] $)
 
   $( =======================================================================
                          Topics in Laws of Form
