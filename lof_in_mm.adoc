@@ -872,8 +872,8 @@ Next we prove *C1*.
 |===
 
 We now prove *C6*, demonstrating that the Robbins algebra is at least as
-powerful as Boolean algebra. The original proof was simplified by Armahedi
-Mahzar.
+powerful as Boolean algebra. The original proof was simplified according to
+suggestions by Armahedi Mahzar.
 
 [cols="<2s,>5e,^1,<4e",grid="none",frame="none",width="50%"]
 |===
