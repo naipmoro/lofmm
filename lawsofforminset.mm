@@ -2201,12 +2201,16 @@ $( =======================================================================
 
   $( ---------------- PROPOSITIONAL LOGIC ---------------- $)
 
-  $( The constants of classical propositional logic. $)
-  $c ( ) -> -. $.
+  $( Declare the primitive constant symbols for propositional calculus. $)
+  $c ( $.  $( Left parenthesis $)
+  $c ) $.  $( Right parenthesis $)
+  $c -> $. $( Right arrow (read:  "implies") $)
+  $c -. $. $( Right handle (read:  "not") $)
+  
   $( PLEASE PUT DESCRIPTION HERE. $)
-  wimp $a wff ( ph -> ps ) $.
+  wi $a wff ( ph -> ps ) $.
   $( PLEASE PUT DESCRIPTION HERE. $)
-  wneg $a wff -. ph $.
+  wn $a wff -. ph $.
 
   
   $( Define classical implication in terms of LoF. $)
@@ -2218,19 +2222,19 @@ $( =======================================================================
 
   
   ax-1 $p |- ( ph -> ( ps -> ph ) ) $=
-    wph wps wph wimp wimp
+    wph wps wph wi wi
     
-    wph wps wph wimp wimp
+    wph wps wph wi wi
     wph lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
     lofdf-void lofdf-encl
 
-    wph wps wph wimp wimp
-    wph lofdf-encl wps wph wimp lofdf-juxt
+    wph wps wph wi wi
+    wph lofdf-encl wps wph wi lofdf-juxt
     wph lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
-    wph wps wph wimp
+    wph wps wph wi
     lofdf-imp 
     
-    wps wph wimp   wps lofdf-encl wph lofdf-juxt
+    wps wph wi   wps lofdf-encl wph lofdf-juxt
     wph lofdf-encl
     wps wph lofdf-imp
     lofsubr
@@ -2243,15 +2247,15 @@ $( =======================================================================
     $.
 
   ax-2 $p |- ( ( ph -> ( ps -> ch ) ) -> ( ( ph -> ps ) -> ( ph -> ch ) ) ) $=
-    wph wps wch wimp wimp wph wps wimp wph wch wimp wimp wimp
+    wph wps wch wi wi wph wps wi wph wch wi wi wi
 
-    wph wps wch wimp wimp wph wps wimp wph wch wimp wimp wimp
+    wph wps wch wi wi wph wps wi wph wch wi wi wi
     wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-juxt lofdf-encl
       wph  lofdf-encl lofdf-juxt wps lofdf-encl lofdf-juxt
       wch lofdf-juxt
     lofdf-void lofdf-encl
 
-    wph wps wch wimp wimp wph wps wimp wph wch wimp wimp wimp
+    wph wps wch wi wi wph wps wi wph wch wi wi wi
     wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-juxt lofdf-encl
       wps  lofdf-encl lofdf-juxt wph lofdf-encl lofdf-juxt
       wch lofdf-juxt
@@ -2260,7 +2264,7 @@ $( =======================================================================
       wch lofdf-juxt
 
 
-    wph wps wch wimp wimp wph wps wimp wph wch wimp wimp wimp
+    wph wps wch wi wi wph wps wi wph wch wi wi wi
     wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-juxt lofdf-encl
       wph lofdf-encl wps lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl lofdf-juxt
       wch lofdf-juxt
@@ -2268,51 +2272,51 @@ $( =======================================================================
       wps  lofdf-encl lofdf-juxt wph lofdf-encl lofdf-juxt
       wch lofdf-juxt
 
-    wps wch wimp
+    wps wch wi
     wps lofdf-encl wch lofdf-juxt
     wph lofdf-encl
     lofdf-void lofdf-void
     wph lofdf-encl wps lofdf-juxt lofdf-encl wph lofdf-encl lofdf-juxt wch lofdf-juxt
-    wph wps wch wimp wimp wph wps wimp wph wch wimp wimp wimp
+    wph wps wch wi wi wph wps wi wph wch wi wi wi
 
     wps wch lofdf-imp
 
-    wph wps wch wimp wimp
-    wph lofdf-encl wps wch wimp lofdf-juxt
+    wph wps wch wi wi
+    wph lofdf-encl wps wch wi lofdf-juxt
     lofdf-void lofdf-void lofdf-void
     wph lofdf-encl wps lofdf-juxt lofdf-encl wph lofdf-encl lofdf-juxt wch lofdf-juxt
-    wph wps wch wimp wimp wph wps wimp wph wch wimp wimp wimp
+    wph wps wch wi wi wph wps wi wph wch wi wi wi
 
-    wph wps wch wimp  lofdf-imp
+    wph wps wch wi  lofdf-imp
 
-    wph wps wimp
+    wph wps wi
     wph lofdf-encl wps lofdf-juxt
     lofdf-void lofdf-void
-    wph wps wch wimp wimp lofdf-encl
+    wph wps wch wi wi lofdf-encl
     wph lofdf-encl wch lofdf-juxt
-    wph wps wch wimp wimp wph wps wimp wph wch wimp wimp wimp
+    wph wps wch wi wi wph wps wi wph wch wi wi wi
 
     wph wps lofdf-imp
     
 
-    wph wch wimp      wph lofdf-encl wch lofdf-juxt
-    wph wps wch wimp wimp lofdf-encl wph wps wimp lofdf-encl lofdf-juxt
+    wph wch wi      wph lofdf-encl wch lofdf-juxt
+    wph wps wch wi wi lofdf-encl wph wps wi lofdf-encl lofdf-juxt
     lofdf-void
-    wph wps wch wimp wimp wph wps wimp wph wch wimp wimp wimp
+    wph wps wch wi wi wph wps wi wph wch wi wi wi
 
     wph wch lofdf-imp
 
-    wph wps wimp   wph wch wimp  wimp
-    wph wps wimp lofdf-encl wph wch wimp lofdf-juxt
-    wph wps wch wimp wimp lofdf-encl
+    wph wps wi   wph wch wi  wi
+    wph wps wi lofdf-encl wph wch wi lofdf-juxt
+    wph wps wch wi wi lofdf-encl
     lofdf-void
-    wph wps wch wimp wimp wph wps wimp wph wch wimp wimp wimp
+    wph wps wch wi wi wph wps wi wph wch wi wi wi
     
-    wph wps wimp   wph wch wimp 
+    wph wps wi   wph wch wi 
     lofdf-imp
        
-    wph wps wch wimp wimp
-    wph wps wimp wph wch wimp wimp
+    wph wps wch wi wi
+    wph wps wi wph wch wi wi
     lofdf-imp
     
      lofreps
@@ -2346,59 +2350,59 @@ $( =======================================================================
 
   ax-3 $p |- ( ( -. ph -> -. ps ) -> ( ps -> ph ) )
        $=
-    wph wneg wps wneg wimp wps wph wimp wimp
+    wph wn wps wn wi wps wph wi wi
 
-    wph wneg wps wneg wimp wps wph wimp wimp
+    wph wn wps wn wi wps wph wi wi
     wph lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
     lofdf-void lofdf-encl
     
-    wph wneg wps wneg wimp wps wph wimp wimp
+    wph wn wps wn wi wps wph wi wi
     wph lofdf-encl lofdf-encl lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
     wph lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
 
-    wph wneg wps wneg wimp wps wph wimp wimp
+    wph wn wps wn wi wps wph wi wi
     wph lofdf-encl lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl
       wps lofdf-encl lofdf-juxt wph lofdf-juxt
     wph lofdf-encl lofdf-encl lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
 
-    wps wneg
+    wps wn
     wps lofdf-encl
     wph lofdf-encl lofdf-encl
     lofdf-void
     lofdf-void
     wps lofdf-encl wph lofdf-juxt
-    wph wneg wps wneg wimp wps wph wimp wimp
+    wph wn wps wn wi wps wph wi wi
 
     wps lofdf-neg
 
-    wph wneg lofdf-encl
+    wph wn lofdf-encl
     wph lofdf-encl lofdf-encl
     lofdf-void
-    wps wneg
+    wps wn
     lofdf-void
     wps lofdf-encl wph lofdf-juxt
-    wph wneg wps wneg wimp wps wph wimp wimp
+    wph wn wps wn wi wps wph wi wi
 
-    wph wneg wph lofdf-encl   
+    wph wn wph lofdf-encl   
     wph lofdf-neg lofbeq 
 
-    wph wneg wps wneg wimp
-    wph wneg lofdf-encl wps wneg lofdf-juxt
+    wph wn wps wn wi
+    wph wn lofdf-encl wps wn lofdf-juxt
     lofdf-void lofdf-void lofdf-void
     wps lofdf-encl wph lofdf-juxt
-    wph wneg wps wneg wimp wps wph wimp wimp
+    wph wn wps wn wi wps wph wi wi
 
-    wph wneg wps wneg lofdf-imp 
+    wph wn wps wn lofdf-imp 
 
-    wps wph wimp
+    wps wph wi
     wps lofdf-encl wph lofdf-juxt
-    wph wneg wps wneg wimp lofdf-encl
+    wph wn wps wn wi lofdf-encl
     lofdf-void
-    wph wneg wps wneg wimp wps wph wimp wimp
+    wph wn wps wn wi wps wph wi wi
 
     wps wph lofdf-imp
 
-    wph wneg wps wneg wimp wps wph wimp 
+    wph wn wps wn wi wps wph wi 
     lofdf-imp
     lofreps
  
@@ -2433,12 +2437,12 @@ $( =======================================================================
     ax-mp $p |- ps $=
     wph wps
     wph lofdf-encl wps lofdf-juxt
-    wph wps wimp
+    wph wps wi
     wph lofdf-encl wps lofdf-juxt
     lofdf-void lofdf-encl
 
     wph wps lofdf-imp 
-    wph wps wimp  maj lofintr
+    wph wps wi  maj lofintr
     lofeucr
     lofelim
     min
