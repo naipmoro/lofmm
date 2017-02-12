@@ -6,13 +6,32 @@ $(
   This file is made available under the MIT License:
   http://opensource.org/licenses/MIT
 
-  lof.mm presents metamath derivations of the Primary Algebra from
-  Spencer-Brown, G. (1969) Laws of Form (Allen & Unwin, London),
-  hereafter cited as LoF.
+  This file contains verbatim excerpts from set.mm 
+  (found at https://github.com/metamath/set.mm/blob/master/set.mm) which 
+  is released under the CC0 1.0 Universal public domain license.
 $)
 
-  $( Declare the primitive constant symbols for Spencer-Brown's boundary
-     calculus. $)
+$(
+  -----------------------------------------------------------------------------
+                               INTRODUCTION
+  -----------------------------------------------------------------------------
+
+  In [Moro] I presented metamath derivations of Spencer-Brown's Primary Algebra
+  (details of PA can be found in chapter 6 of [Spencer-Brown]).  lof.mm was a 
+  stand-alone project that, for reasons of readability, was not written to be 
+  compatible with set.mm, metamath's ongoing formalization of mathematics.  
+  Here I present a version which is more than just compatible: I end up 
+  deriving set.mm's propositional calculus from PA.  There is nothing
+  surprising in this -- classical propositional logic is one of the 
+  interpretations of PA (Boolean algebra is another).  The real interest lies 
+  in the means of derivation.
+  
+  PA is an equational system while propositional logic is implicational.
+  
+
+$)
+
+  $( Declare the primitive constant symbols for the Primary Algebra. $)
   $c `[ $. $( Left bracket $)
   $c `] $. $( Right bracket $)
   $c wff $. $( Well-formed formula symbol (read:  "the following symbol
@@ -128,25 +147,25 @@ $)
      transitivity of '='.  Note that such a derivation is not possible in a
      traditional formal system without additional axioms -- it is the ability
      to reference the empty (or void) form that allows it here. $)
-  lofidU $p |- `[ `[ ph `] `[ ph `] `] `[ ph ph `] $=
+  lofidu $p |- `[ `[ ph `] `[ ph `] `] `[ ph ph `] $=
     wph lofdf-void lofax-cmm $.
     $( [26-Jan-2017] $)
 
 
   ${
-    lofsymU.1 $e |- `[ `[ ph `] `[ ps `] `] `[ ph ps `] $.
+    lofsymu.1 $e |- `[ `[ ph `] `[ ps `] `] `[ ph ps `] $.
     $( '=' is symmetric. $)
-    lofsymU $p |- `[ `[ ps `] `[ ph `] `] `[ ps ph `] $=
-      wps wps wph wps lofidU lofsymU.1 lofax-euc $.
+    lofsymu $p |- `[ `[ ps `] `[ ph `] `] `[ ps ph `] $=
+      wps wps wph wps lofidu lofsymu.1 lofax-euc $.
       $( [26-Jan-2017] $)
   $}
 
   ${
-    loftransU.1 $e |- `[ `[ ph `] `[ ps `] `] `[ ph ps `] $.
-    loftransU.2 $e |- `[ `[ ps `] `[ ch `] `] `[ ps ch `] $.
+    loftransu.1 $e |- `[ `[ ph `] `[ ps `] `] `[ ph ps `] $.
+    loftransu.2 $e |- `[ `[ ps `] `[ ch `] `] `[ ps ch `] $.
     $( '=' is transitive. $)
-    loftransU $p |- `[ `[ ph `] `[ ch `] `] `[ ph ch `] $=
-      wph wps wch loftransU.1 wps wch loftransU.2 lofsymU lofax-euc $.
+    loftransu $p |- `[ `[ ph `] `[ ch `] `] `[ ph ch `] $=
+      wph wps wch loftransu.1 wps wch loftransu.2 lofsymu lofax-euc $.
       $( [26-Jan-2017] $)
   $}
 
@@ -349,17 +368,17 @@ $)
     $.
   $}
 
-  $( This theorem allows a slightly quicker proof of lem3.3.
+  
   ${
     lofrepbd.1  $e |- ph `= ps $.
     lofrepbd.2  $e |- `[ `[ et ph ze `] `] `= mu $.
-    @( Direct substitution into a double bounded-form equation. @)
+    $( Direct substitution into a double bounded-form equation. $)
     lofrepbd    $p |- `[ `[ et ps ze `] `] `= mu $=
       ( lofdf-juxt lofdf-encl lofdf-void lofsubb1 lofbeq lofeucr ) CAHDHIZICBHD
       HIZIENOABCDJJFKLGM $.
-      @( [3-Oct-2015] @)
+      $( [3-Oct-2015] $)
   $}
-  $)
+  
 
   ${
     lofquad.1 $e |- ph `= ps $.
@@ -2449,4 +2468,17 @@ $( =======================================================================
     lofmp
     $.
   $}
- 
+
+  
+
+$(
+  ----------------------------------------------------------------------------
+                                 REFERENCES
+  ----------------------------------------------------------------------------
+
+  1. [Moro] Moro, Naip, "lof.mm", Metamath file (2016); available at 
+     https://github.com/naipmoro/lofmm/blob/master/lof.mm .
+  2. [Spencer-Brown] Spencer-Brown, George, "Laws of Form", Allen & Unwin,
+     London (1969).
+  3. 
+$)
