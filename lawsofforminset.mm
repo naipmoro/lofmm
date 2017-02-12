@@ -2074,8 +2074,8 @@ $( =======================================================================
   $( LoF Deduction Theorems $)
 
   ${
-    lofax-ded.1 $e |- ph `= ps $.
-    lofax-ded.2 $e |- ph $.
+    lofax-ded.1 $e |- ph $.
+    lofax-ded.2 $e |- ph `= ps $.
     lofax-ded   $a |- ps $.
   $}
 
@@ -2083,13 +2083,19 @@ $( =======================================================================
     lofelim.1 $e |- ph `= `[ `] $.
     $( If ` ph ` equals the marked state (i.e., truth), we can assert ` ph ` . $)
     lofelim   $p |- ph $=
+    
     wph lofdf-encl lofdf-void lofdf-encl lofdf-encl lofdf-juxt lofdf-encl
     wph lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
     wph
-    wph lofelimeq
+
     wph lofdf-void lofdf-encl
     lofelim.1
     lofdf-NtoU
+
+    wph lofelimeq
+    
+    
+    
     lofax-ded
     $.
   $}
@@ -2103,11 +2109,15 @@ $( =======================================================================
     wph
     wph lofdf-encl lofdf-void lofdf-encl lofdf-encl lofdf-juxt lofdf-encl
     wph lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
+
+    lofintr.1
+
     wph lofdf-encl lofdf-void lofdf-encl lofdf-encl lofdf-juxt lofdf-encl
     wph lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
     wph
+    
     wph lofelimeq lofsym
-    lofintr.1
+    
     lofax-ded
     lofdf-UtoN
     $.
