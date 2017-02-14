@@ -18,7 +18,7 @@ $(
 
   In [Moro] I presented metamath derivations of Spencer-Brown's Primary Algebra
   (details of PA can be found in chapter 6 of [Spencer-Brown]).  lof.mm was a 
-  stand-alone project that, for reasons of readability, was not written to be 
+  stand-alone project that, for maximum readability, was not written to be 
   compatible with set.mm, metamath's ongoing formalization of mathematics.  
   Here I present a version which is more than just compatible: I end up 
   deriving set.mm's propositional calculus from PA.  There is nothing
@@ -32,7 +32,7 @@ $(
 $)
 
   $( Declare the primitive constant symbols for the Primary Algebra. $)
-  $c `[ $. $( Left bracket $)
+  $c [` $. $( Left bracket $)
   $c `] $. $( Right bracket $)
   $c wff $. $( Well-formed formula symbol (read:  "the following symbol
                sequence is a wff") $)
@@ -102,8 +102,8 @@ $)
   $( Empty space is a wff. $)
   lofdf-void $a wff $.
 
-  $( If ` ph ` is a wff, then ` `[ ph `] ` is a wff. $)
-  lofdf-encl $a wff `[ ph `] $.
+  $( If ` ph ` is a wff, then ` [` ph `] ` is a wff. $)
+  lofdf-encl $a wff [` ph `] $.
 
   $( If ` ph ` and ` ps ` are wffs, then ` ph ps ` is a wff. $)
   lofdf-juxt $a wff ph ps $.
@@ -115,28 +115,28 @@ $)
   $)
 
   ${
-    lofax-euc.1 $e |- `[ `[ ph `] `[ ps `] `] `[ ph ps `] $.
-    lofax-euc.2 $e |- `[ `[ ch `] `[ ps `] `] `[ ch ps `] $.
+    lofax-euc.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
+    lofax-euc.2 $e |- [` [` ch `] [` ps `] `] [` ch ps `] $.
     $( We read this as:  If ` ph ` is equivalent to ` ps ` and ` ch ` is
        equivalent to ` ps ` , then we can assert that ` ph ` is equivalent to
        ` ch ` . $)
-    lofax-euc $a |- `[ `[ ph `] `[ ch `] `] `[ ph ch `] $.
+    lofax-euc $a |- [` [` ph `] [` ch `] `] [` ph ch `] $.
   $}
 
   ${
-    lofax-beq.1 $e |- `[ `[ ph `] `[ ps `] `] `[ ph ps `] $.
+    lofax-beq.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
     $( PLEASE PUT DESCRIPTION HERE. $)
-    lofax-beq $a |- `[ `[ `[ ph `] `] `[ `[ ps `] `] `] `[ `[ ph `] `[ ps `] `]
+    lofax-beq $a |- [` [` [` ph `] `] [` [` ps `] `] `] [` [` ph `] [` ps `] `]
     $.
   $}
 
   ${
-    lofax-sub.1 $e |- `[ `[ ph `] `[ ps `] `] `[ ph ps `] $.
+    lofax-sub.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
     $( PLEASE PUT DESCRIPTION HERE. $)
-    lofax-sub $a |- `[ `[ ph ze `] `[ ps ze `] `] `[ ph ze ps ze `] $.
+    lofax-sub $a |- [` [` ph ze `] [` ps ze `] `] [` ph ze ps ze `] $.
   $}
   $( PLEASE PUT DESCRIPTION HERE. $)
-  lofax-cmm $a |- `[ `[ ph ps `] `[ ps ph `] `] `[ ph ps ps ph `] $.
+  lofax-cmm $a |- [` [` ph ps `] [` ps ph `] `] [` ph ps ps ph `] $.
 
 
   $( Theorems -------------------------------------------------------- The
@@ -147,51 +147,51 @@ $)
      transitivity of '='.  Note that such a derivation is not possible in a
      traditional formal system without additional axioms -- it is the ability
      to reference the empty (or void) form that allows it here. $)
-  lofidu $p |- `[ `[ ph `] `[ ph `] `] `[ ph ph `] $=
+  lofidu $p |- [` [` ph `] [` ph `] `] [` ph ph `] $=
     wph lofdf-void lofax-cmm $.
     $( [26-Jan-2017] $)
 
 
   ${
-    lofsymu.1 $e |- `[ `[ ph `] `[ ps `] `] `[ ph ps `] $.
+    lofsymu.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
     $( '=' is symmetric. $)
-    lofsymu $p |- `[ `[ ps `] `[ ph `] `] `[ ps ph `] $=
+    lofsymu $p |- [` [` ps `] [` ph `] `] [` ps ph `] $=
       wps wps wph wps lofidu lofsymu.1 lofax-euc $.
       $( [26-Jan-2017] $)
   $}
 
   ${
-    loftransu.1 $e |- `[ `[ ph `] `[ ps `] `] `[ ph ps `] $.
-    loftransu.2 $e |- `[ `[ ps `] `[ ch `] `] `[ ps ch `] $.
+    loftransu.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
+    loftransu.2 $e |- [` [` ps `] [` ch `] `] [` ps ch `] $.
     $( '=' is transitive. $)
-    loftransu $p |- `[ `[ ph `] `[ ch `] `] `[ ph ch `] $=
+    loftransu $p |- [` [` ph `] [` ch `] `] [` ph ch `] $=
       wph wps wch loftransu.1 wps wch loftransu.2 lofsymu lofax-euc $.
       $( [26-Jan-2017] $)
   $}
 
   $( Introducing the notion of lof equality. $)
-  $c `= $.
+  $c .= $.
 
   ${
-    lofdf-equiv.1 $e |- ph `= ps $.
+    lofdf-equiv.1 $e |- ph .= ps $.
     $( What equality means in terms of LoF's unitary formalism. $)
-    lofdf-equiv $a |- `[ `[ ph `] `[ ps `] `] `[ ph ps `] $.
+    lofdf-equiv $a |- [` [` ph `] [` ps `] `] [` ph ps `] $.
   $}
 
   ${
-    lofdf-uni.1 $e |- `[ `[ ph `] `[ ps `] `] `[ ph ps `] $.
+    lofdf-uni.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
     $( Translating LoF unitary form into normal form. $)
-    lofdf-uni $a |- ph `= ps $.
+    lofdf-uni $a |- ph .= ps $.
   $}
 
 
   ${
-    lofeuc.1 $e |- ph `= ps $.
-    lofeuc.2 $e |- ch `= ps $.
+    lofeuc.1 $e |- ph .= ps $.
+    lofeuc.2 $e |- ch .= ps $.
     $( Two things equal to the same thing are equal to each other.  This is
        Euclid's first Common Notion and, in an equational logic, this and its
        sibling, transitivity, are the main engine of derivation. $)
-    lofeuc $p |- ph `= ch $=
+    lofeuc $p |- ph .= ch $=
       wph wch wph wps wch wph wps lofeuc.1 lofdf-equiv wch wps lofeuc.2
       lofdf-equiv lofax-euc lofdf-uni $.
       $( [26-Jan-2017] $)
@@ -199,9 +199,9 @@ $)
 
 
   ${
-    lofbeq.1 $e  |- ph `= ps $.
+    lofbeq.1 $e  |- ph .= ps $.
     $( Enclosing equal forms leaves equal forms. $)
-    lofbeq $p |- `[ ph `] `= `[ ps `] $=
+    lofbeq $p |- [` ph `] .= [` ps `] $=
       wph lofdf-encl wps lofdf-encl wph wps wph wps lofbeq.1 lofdf-equiv
       lofax-beq lofdf-uni $.
       $( [26-Jan-2017] $)
@@ -209,16 +209,16 @@ $)
 
 
   ${
-    lofsub.1 $e |- ph `= ps $.
+    lofsub.1 $e |- ph .= ps $.
     $( Juxtaposing the same form with equal forms leaves equal forms. $)
-    lofsub $p |- ph ze `= ps ze $=
+    lofsub $p |- ph ze .= ps ze $=
       wph wze lofdf-juxt wps wze lofdf-juxt wph wps wze wph wps lofsub.1
       lofdf-equiv lofax-sub lofdf-uni $.
       $( [26-Jan-2017] $)
   $}
 
   $( Commutativity of LoF. $)
-  lofcmm $p |- ph ps `= ps ph $=
+  lofcmm $p |- ph ps .= ps ph $=
     wph wps lofdf-juxt wps wph lofdf-juxt wph wps lofax-cmm lofdf-uni $.
     $( [26-Jan-2017] $)
 
@@ -230,23 +230,23 @@ $)
      to reference the empty (or void) form that allows it here. $)
 
   $( ` ` = ` is reflexive. $)
-  lofid $p |- ph `= ph $=
+  lofid $p |- ph .= ph $=
     wph lofdf-void lofcmm $.
     $( [6-Sep-2015] $)
 
   ${
-    lofsym.1 $e |- ph `= ps $.
+    lofsym.1 $e |- ph .= ps $.
     $( ` ` = ` is symmetric. $)
-    lofsym $p |- ps `= ph $=
+    lofsym $p |- ps .= ph $=
       wps wps wph wps lofid lofsym.1 lofeuc $.
       $( [2-Sep-2015] $)
   $}
 
   ${
-    loftrans.1 $e |- ph `= ps $.
-    loftrans.2 $e |- ps `= ch $.
+    loftrans.1 $e |- ph .= ps $.
+    loftrans.2 $e |- ps .= ch $.
     $( ` ` = ` is transitive. $)
-    loftrans $p |- ph `= ch $=
+    loftrans $p |- ph .= ch $=
       wph wps wch loftrans.1 wps wch loftrans.2 lofsym lofeuc $.
       $( [2-Sep-2015] $)
   $}
@@ -261,18 +261,18 @@ $)
   $)
 
   ${
-    lofeucr.1 $e |- ph `= ps $.
-    lofeucr.2 $e |- ph `= ch $.
+    lofeucr.1 $e |- ph .= ps $.
+    lofeucr.2 $e |- ph .= ch $.
     $( A commuted - or reversed - version of ~ lofeuc. $)
-    lofeucr $p |- ps `= ch $=
+    lofeucr $p |- ps .= ch $=
       wps wph wch wph wps lofeucr.1 lofsym lofeucr.2 loftrans $.
       $( [2-Sep-2015] $)
   $}
 
   ${
-    lofsubr.1 $e |- ph `= ps $.
+    lofsubr.1 $e |- ph .= ps $.
     $( A commuted version of lofsub. $)
-    lofsubr $p |- et ph `= et ps $=
+    lofsubr $p |- et ph .= et ps $=
       wps wet lofdf-juxt wet wph lofdf-juxt wet wps lofdf-juxt wph wet
       lofdf-juxt wps wet lofdf-juxt wet wph lofdf-juxt wph wps wet lofsubr.1
       lofsub wph wet lofcmm lofeucr wps wet lofcmm lofeucr $.
@@ -282,14 +282,14 @@ $)
   $( More versions of the substitution principle. Our lack of access to the
      implicit commutativity of 2D forces us to spell out each case. $)
   ${
-    lofsubst.1 $e |- ph `= ps $.
+    lofsubst.1 $e |- ph .= ps $.
     $( PLEASE PUT DESCRIPTION HERE. $)
-    lofsubst $p |- et ph ze `= et ps ze $=
+    lofsubst $p |- et ph ze .= et ps ze $=
       wph wze lofdf-juxt wps wze lofdf-juxt wet wph wps wze lofsubst.1 lofsub
       lofsubr $.
       
     $( [2-Sep-2015] $)
-    lofsubstr $p |- et ph ze `= ze ps et $=
+    lofsubstr $p |- et ph ze .= ze ps et $=
       wet wph lofdf-juxt wze lofdf-juxt wet wze lofdf-juxt wps lofdf-juxt wze
       wps lofdf-juxt wet lofdf-juxt wph wze lofdf-juxt wze wps lofdf-juxt wet
       wph wze lofdf-juxt wps wze lofdf-juxt wze wps lofdf-juxt wph wps wze
@@ -297,14 +297,14 @@ $)
       lofcmm loftrans $.
       
     $( [2-Sep-2015] $)
-    lofsubb1 $p |- si `[ et ph ze `] rh `= si `[ et ps ze `] rh $=
+    lofsubb1 $p |- si [` et ph ze `] rh .= si [` et ps ze `] rh $=
       wet wph lofdf-juxt wze lofdf-juxt lofdf-encl wet wps lofdf-juxt wze
       lofdf-juxt lofdf-encl wsi wrh wet wph lofdf-juxt wze lofdf-juxt wet wps
       lofdf-juxt wze lofdf-juxt wph wps wet wze lofsubst.1 lofsubst lofbeq
       lofsubst $.
       
     $( [2-Sep-2015] $)
-    lofsubb2 $p |- si `[ et ph ze `] rh `= si `[ ze ps et `] rh $=
+    lofsubb2 $p |- si [` et ph ze `] rh .= si [` ze ps et `] rh $=
       wet wph lofdf-juxt wze lofdf-juxt lofdf-encl wze wps lofdf-juxt wet
       lofdf-juxt lofdf-encl wsi wrh wet wph lofdf-juxt wze lofdf-juxt wze wps
       lofdf-juxt wet lofdf-juxt wph wps wet wze lofsubst.1 lofsubstr lofbeq
@@ -313,20 +313,20 @@ $)
   $}
 
   ${
-    lofrep.1 $e |- ph `= ps $.
-    lofrep.2 $e |- et ph ze `= mu $.
+    lofrep.1 $e |- ph .= ps $.
+    lofrep.2 $e |- et ph ze .= mu $.
     $( Direct substitution into an equation. $)
-    lofrep $p |- et ps ze `= mu $=
+    lofrep $p |- et ps ze .= mu $=
       wet wph lofdf-juxt wze lofdf-juxt wet wps lofdf-juxt wze lofdf-juxt wmu
       wph wps wet wze lofrep.1 lofsubst lofrep.2 lofeucr $.
       $( [18-Sep-2015] $)
   $}
 
   ${
-    lofreps.1 $e |- ph `= ps $.
-    lofreps.2 $e |- mu `= et ph ze $.
+    lofreps.1 $e |- ph .= ps $.
+    lofreps.2 $e |- mu .= et ph ze $.
     $( Direct substitution into a switched equation. $)
-    lofreps $p |- mu `= et ps ze $=
+    lofreps $p |- mu .= et ps ze $=
 
     wet wps lofdf-juxt wze lofdf-juxt   wmu
     wph wps wet wze wmu
@@ -339,10 +339,10 @@ $)
   $}
 
   ${
-    lofrepbx.1 $e |- ph `= ps $.
-    lofrepbx.2 $e |- si `[ et ph ze `] rh `= mu $.
+    lofrepbx.1 $e |- ph .= ps $.
+    lofrepbx.2 $e |- si [` et ph ze `] rh .= mu $.
     $( Direct substitution into a bounded-form equation. $)
-    lofrepbx $p |- si `[ et ps ze `] rh `= mu $=
+    lofrepbx $p |- si [` et ps ze `] rh .= mu $=
       wsi wet wph lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wrh
       lofdf-juxt wsi wet wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
       wrh lofdf-juxt wmu wph wps wet wze wsi wrh lofrepbx.1 lofsubb1 lofrepbx.2
@@ -351,10 +351,10 @@ $)
   $}
 
   ${
-    lofrepbxs.1 $e |- ph `= ps $.
-    lofrepbxs.2 $e |- mu `= si `[ et ph ze `] rh $.
+    lofrepbxs.1 $e |- ph .= ps $.
+    lofrepbxs.2 $e |- mu .= si [` et ph ze `] rh $.
     $( Direct substitution into a switched bounded-form equation. $)
-    lofrepbxs $p |- mu `= si `[ et ps ze `] rh $=
+    lofrepbxs $p |- mu .= si [` et ps ze `] rh $=
     wsi wet wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wrh lofdf-juxt
     wmu
     wph wps
@@ -370,10 +370,10 @@ $)
 
   
   ${
-    lofrepbd.1  $e |- ph `= ps $.
-    lofrepbd.2  $e |- `[ `[ et ph ze `] `] `= mu $.
+    lofrepbd.1  $e |- ph .= ps $.
+    lofrepbd.2  $e |- [` [` et ph ze `] `] .= mu $.
     $( Direct substitution into a double bounded-form equation. $)
-    lofrepbd    $p |- `[ `[ et ps ze `] `] `= mu $=
+    lofrepbd    $p |- [` [` et ps ze `] `] .= mu $=
       ( lofdf-juxt lofdf-encl lofdf-void lofsubb1 lofbeq lofeucr ) CAHDHIZICBHD
       HIZIENOABCDJJFKLGM $.
       $( [3-Oct-2015] $)
@@ -381,10 +381,10 @@ $)
   
 
   ${
-    lofquad.1 $e |- ph `= ps $.
-    lofquad.2 $e |- ch `= th $.
+    lofquad.1 $e |- ph .= ps $.
+    lofquad.2 $e |- ch .= th $.
     $( Double substitution of equivalent forms. $)
-    lofquad $p |- ph ch `= ps th $=
+    lofquad $p |- ph ch .= ps th $=
       wph wch lofdf-juxt wps wch lofdf-juxt wps wth lofdf-juxt wph wps
       lofdf-void wch lofquad.1 lofsubst wch wth wps lofdf-void lofquad.2
       lofsubst loftrans $.
@@ -392,9 +392,9 @@ $)
   $}
 
   ${
-    lofins.1 $e |- ph ps `= ch th $.
+    lofins.1 $e |- ph ps .= ch th $.
     $( Insert the same form into two equivalent forms. $)
-    lofins $p |- ph ze ps `= ch ze th $=
+    lofins $p |- ph ze ps .= ch ze th $=
       wph wze lofdf-juxt wps lofdf-juxt wze wch lofdf-juxt wth lofdf-juxt wch
       wze lofdf-juxt wth lofdf-juxt wph wze lofdf-juxt wps lofdf-juxt wze wph
       lofdf-juxt wps lofdf-juxt wze wch lofdf-juxt wth lofdf-juxt wph wze
@@ -405,22 +405,22 @@ $)
   $}
 
   $( Extended commutativity. $)
-  lofcmmx $p  |- et ph ze ps si `= et ps ze ph si $=
+  lofcmmx $p  |- et ph ze ps si .= et ps ze ph si $=
     wph wze lofdf-juxt wps lofdf-juxt wps wze lofdf-juxt wph lofdf-juxt wet wsi
     wph wps wps wph wze wph wps lofcmm lofins lofsubst $.
     $( [3-Sep-2015] $)
 
   $( Bounded and extended commutativity. $)
-  lofcmmbx $p |- rh `[ et ph ze ps si `] mu `= rh `[ et ps ze ph si `] mu $=
+  lofcmmbx $p |- rh [` et ph ze ps si `] mu .= rh [` et ps ze ph si `] mu $=
     wph wze lofdf-juxt wps lofdf-juxt wps wze lofdf-juxt wph lofdf-juxt wet wsi
     wrh wmu wze wze wph wps wze lofid lofsubstr lofsubb1 $.
     $( [2-Sep-2015] $)
 
   ${
-    lofquadbx.1 $e |- ph `= ps $.
-    lofquadbx.2 $e |- ch `= th $.
+    lofquadbx.1 $e |- ph .= ps $.
+    lofquadbx.2 $e |- ch .= th $.
     $( Double substitution into a bounded and extended form. $)
-    lofquadbx $p |- rh `[ et ph ze ch si `] mu `= rh `[ et ps ze th si `] mu $=
+    lofquadbx $p |- rh [` et ph ze ch si `] mu .= rh [` et ps ze th si `] mu $=
       wph wze lofdf-juxt wch lofdf-juxt wps wze lofdf-juxt wth lofdf-juxt wet
       wsi wrh wmu wph wch wps wth wze wph wps wch wth lofquadbx.1 lofquadbx.2
       lofquad lofins lofsubb1 $.
@@ -431,27 +431,27 @@ $)
 
      to prove the two additional statements:
 
-     tranxb.1  $e |- ph `= ps $.
-     tranxb.2  $e |- ch `= ps $.
-     tranxb    $p |- rh ( ze ph et ) si `= si ( et ch ze ) rh $.
+     tranxb.1  $e |- ph .= ps $.
+     tranxb.2  $e |- ch .= ps $.
+     tranxb    $p |- rh ( ze ph et ) si .= si ( et ch ze ) rh $.
 
-     tranrxb.1  $e |- ph `= ps $.
-     tranrxb.2  $e |- ph `= ch $.
-     tranrxb    $p |- rh ( ze ps et ) si `= si ( et ch ze ) rh $.
+     tranrxb.1  $e |- ph .= ps $.
+     tranrxb.2  $e |- ph .= ch $.
+     tranrxb    $p |- rh ( ze ps et ) si .= si ( et ch ze ) rh $.
 
      we could have reduced significantly the proof of theorem c9.0. $)
 
 
   $( Position. $)
-  lofj1 $a |- `[ `[ ph `] ph `] `= $.
+  lofj1 $a |- [` [` ph `] ph `] .= $.
 
   $( Transposition. $)
-  lofj2 $a |- `[ `[ ph ch `] `[ ps ch `] `] `= `[ `[ ph `] `[ ps `] `] ch $.
+  lofj2 $a |- [` [` ph ch `] [` ps ch `] `] .= [` [` ph `] [` ps `] `] ch $.
 
   $( System_0 consequences ------------------------------------ $)
 
   $( Reflexion. $)
-  lofc1 $p |- `[ `[ ph `] `] `= ph $=
+  lofc1 $p |- [` [` ph `] `] .= ph $=
     wph lofdf-encl lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-juxt
     lofdf-encl wph lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl
     wph wph lofdf-encl lofdf-encl wph wph lofdf-encl lofdf-encl lofdf-juxt
@@ -494,7 +494,7 @@ $)
     $( [6-Sep-2015] $)
 
   $( Generation. $)
-  lofc2 $p |- `[ ph ps `] ps `= `[ ph `] ps $=
+  lofc2 $p |- [` ph ps `] ps .= [` ph `] ps $=
     wph lofdf-encl wps lofdf-juxt lofdf-encl wps lofdf-encl wps lofdf-juxt
     lofdf-encl lofdf-juxt lofdf-encl wph wps lofdf-juxt lofdf-encl wps
     lofdf-juxt wph lofdf-encl wps lofdf-juxt wph lofdf-encl wps lofdf-juxt
@@ -512,7 +512,7 @@ $)
     $( [6-Sep-2015] $)
 
   $( Integration. $)
-  lofc3 $p |- `[ `] ph `= `[ `] $=
+  lofc3 $p |- [` `] ph .= [` `] $=
     wph lofdf-encl wph lofdf-juxt lofdf-void lofdf-encl wph lofdf-juxt
     lofdf-void lofdf-encl lofdf-void wph lofc2 wph lofdf-encl wph lofdf-juxt
     lofdf-encl lofdf-encl wph lofdf-encl wph lofdf-juxt lofdf-void lofdf-encl
@@ -521,7 +521,7 @@ $)
     $( [6-Sep-2015] $)
 
   $( Iteration. $)
-  lofc5 $p |- ph ph `= ph $=
+  lofc5 $p |- ph ph .= ph $=
     wph lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-juxt wph wph lofdf-juxt
     wph wph lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-juxt wph lofdf-encl
     lofdf-encl wph lofdf-juxt wph wph lofdf-juxt wph lofdf-encl wph lofc2 wph
@@ -531,7 +531,7 @@ $)
     $( [6-Sep-2015] $)
 
   $( Occultation. $)
-  lofc4 $p |- `[ `[ ph `] ps `] ph `= ph $=
+  lofc4 $p |- [` [` ph `] ps `] ph .= ph $=
     wph lofdf-encl wps lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-void
     lofdf-encl lofdf-encl wph lofdf-juxt wph wph lofdf-encl wps lofdf-juxt
     lofdf-encl wph lofdf-juxt lofdf-void lofdf-encl wps lofdf-encl lofdf-encl
@@ -558,7 +558,7 @@ $)
     $( [6-Sep-2015] $)
 
   $( Extension. $)
-  lofc6 $p |- `[ `[ ph `] `[ ps `] `] `[ `[ ph `] ps `] `= ph $=
+  lofc6 $p |- [` [` ph `] [` ps `] `] [` [` ph `] ps `] .= ph $=
     wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps
     lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl lofdf-encl wph wph
     lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps
@@ -590,7 +590,7 @@ $)
     $( [6-Sep-2015] $)
 
   $( Echelon. $)
-  lofc7 $p |- `[ `[ `[ ph `] ps `] ch `] `= `[ ph ch `] `[ `[ ps `] ch `] $=
+  lofc7 $p |- [` [` [` ph `] ps `] ch `] .= [` ph ch `] [` [` ps `] ch `] $=
     wph wch lofdf-juxt lofdf-encl wps lofdf-encl wch lofdf-juxt lofdf-encl
     lofdf-juxt lofdf-encl lofdf-encl wph lofdf-encl wps lofdf-juxt lofdf-encl
     wch lofdf-juxt lofdf-encl wph wch lofdf-juxt lofdf-encl wps lofdf-encl wch
@@ -609,8 +609,8 @@ $)
     $( [6-Sep-2015] $)
 
   $( Modified transposition. $)
-  lofc8 $p |- `[ `[ ph `] `[ ps th `] `[ ch th `] `] 
-             `= `[ `[ ph `] `[ ps `] `[ ch `] `] `[ `[ ph `] `[ th `] `] $=
+  lofc8 $p |- [` [` ph `] [` ps th `] [` ch th `] `] 
+             .= [` [` ph `] [` ps `] [` ch `] `] [` [` ph `] [` th `] `] $=
     wph lofdf-encl wps wth lofdf-juxt lofdf-encl lofdf-juxt wch wth lofdf-juxt
     lofdf-encl lofdf-juxt lofdf-encl wps lofdf-encl wch lofdf-encl lofdf-juxt
     lofdf-encl wth lofdf-juxt lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl
@@ -644,9 +644,9 @@ $)
     $( [6-Sep-2015] $)
 
   $( Crosstransposition. $)
-  lofc9 $p |- `[ `[ `[ ps `] `[ ph `] `] `[ `[ ch `] `[ ph `] `]
-             `[ `[ th `] ph `] `[ `[ ta `] ph `] `]
-             `= `[ `[ ph `] ps ch `] `[ ph th ta `] $=
+  lofc9 $p |- [` [` [` ps `] [` ph `] `] [` [` ch `] [` ph `] `]
+             [` [` th `] ph `] [` [` ta `] ph `] `]
+             .= [` [` ph `] ps ch `] [` ph th ta `] $=
     wps lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl wch lofdf-encl wph
     lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wth lofdf-encl wph lofdf-juxt
     lofdf-encl lofdf-juxt wta lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt
@@ -811,15 +811,15 @@ $)
      proved, since that establishes c5.1 and c6.1 as a complete basis. $)
 
   $( Basis_1 --------------------------------------------- $)
-  c5.1 $a |- ph ph `= ph $.
+  c5.1 $a |- ph ph .= ph $.
   $( PLEASE PUT DESCRIPTION HERE. $)
-  c6.1 $a |- `[ `[ ph `] `[ ps `] `] `[ `[ ph `] ps `] `= ph $.
+  c6.1 $a |- [` [` ph `] [` ps `] `] [` [` ph `] ps `] .= ph $.
 
   $( System_1 consequences ------------------------------------ $)
 
   $( Lemma for proof of c1.1.  Under the dual interpretation, this is mildly
-     reminiscent of modus ponens:  (p & (p -> q)) `= (p & q). $)
-  lem1.1 $p |- ph `[ `[ ps `] ph `] `= ph ps $=
+     reminiscent of modus ponens:  (p & (p -> q)) .= (p & q). $)
+  lem1.1 $p |- ph [` [` ps `] ph `] .= ph ps $=
     wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps
     lofdf-juxt lofdf-encl lofdf-juxt wps lofdf-encl wph lofdf-encl lofdf-juxt
     lofdf-encl wps lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt lofdf-juxt
@@ -869,19 +869,19 @@ $)
     lofeucr $.
     
   $( [17-Sep-2015] $)
-  c1.1 $p |- `[ `[ ph `] `] `= ph $=
+  c1.1 $p |- [` [` ph `] `] .= ph $=
     lofdf-void wph lem1.1 $.
     $( [17-Sep-2015] $)
 
   $( The LoF I2 arithmetic initial.  This is also directly derivable from the
      basis by plugging void values into c6.1, followed by two applications of
      c5.1. $)
-  i2.1 $p |- `[ `[ `] `] `= $=
+  i2.1 $p |- [` [` `] `] .= $=
     lofdf-void c1.1 $.
     $( [17-Sep-2015] $)
 
   $( One of the two equations from Basis_0. $)
-  j1.1 $p |- `[ `[ ph `] ph `] `= $=
+  j1.1 $p |- [` [` ph `] ph `] .= $=
     wph lofdf-encl wph lofdf-juxt lofdf-encl lofdf-void lofdf-encl lofdf-encl
     lofdf-void wph lofdf-encl wph lofdf-juxt lofdf-void lofdf-encl wph
     lofdf-encl wph lofdf-encl lofdf-encl lofdf-juxt wph lofdf-encl wph
@@ -901,7 +901,7 @@ $)
     loftrans $.
     
   $( [17-Sep-2015] $)
-  c4.1 $p |- `[ `[ ph `] ps `] ph `= ph $=
+  c4.1 $p |- [` [` ph `] ps `] ph .= ph $=
     wph lofdf-encl wps lofdf-juxt lofdf-encl wph lofdf-juxt wph lofdf-encl wps
     lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps lofdf-juxt lofdf-encl
     lofdf-juxt wph wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph
@@ -918,7 +918,7 @@ $)
     $( [18-Sep-2015] $)
 
   $( Corollary of c4.1 $)
-  c4cor.1 $p |- `[ ph ps `] `[ ph `] `= `[ ph `] $=
+  c4cor.1 $p |- [` ph ps `] [` ph `] .= [` ph `] $=
     wph lofdf-encl lofdf-encl wps lofdf-juxt lofdf-encl wph lofdf-encl
     lofdf-juxt wph wps lofdf-juxt lofdf-encl wph lofdf-encl lofdf-juxt wph
     lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-void wps lofdf-void wph
@@ -926,7 +926,7 @@ $)
     $( [18-Sep-2015] $)
 
   $( Corollary of c6.1 $)
-  c6cor.1 $p |- `[ `[ ph `] ps `] `[ ph ps `] `= `[ ps `] $=
+  c6cor.1 $p |- [` [` ph `] ps `] [` ph ps `] .= [` ps `] $=
     wps wph lofdf-juxt wph wps lofdf-juxt lofdf-void lofdf-void wph lofdf-encl
     wps lofdf-juxt lofdf-encl lofdf-void wps lofdf-encl wps wph lofcmm wps wph
     lofdf-encl lofdf-juxt wph lofdf-encl wps lofdf-juxt lofdf-void lofdf-void
@@ -938,7 +938,7 @@ $)
     wph c6.1 lofrepbx lofrepbx lofrepbx lofrepbx $.
     
   $( [22-Sep-2015] $)
-  c7.1 $p |- `[ `[ `[ ph `] ps `] ch `] `= `[ ph ch `] `[ `[ ps `] ch `] $=
+  c7.1 $p |- [` [` [` ph `] ps `] ch `] .= [` ph ch `] [` [` ps `] ch `] $=
     wph wch lofdf-juxt lofdf-encl wps lofdf-encl wch lofdf-juxt lofdf-encl
     lofdf-juxt wph lofdf-encl wps lofdf-juxt lofdf-encl wch lofdf-juxt
     lofdf-encl wch wps lofdf-encl lofdf-juxt wps lofdf-encl wch lofdf-juxt
@@ -1069,7 +1069,7 @@ $)
 
   $( The second of the two equations from Basis_0.  This completes the proof
      that Basis_1 is at least as powerful as Basis_0. $)
-  j2.1 $p |- `[ `[ ph `] `[ ps `] `] ch `= `[ `[ ph ch `] `[ ps ch `] `] $=
+  j2.1 $p |- [` [` ph `] [` ps `] `] ch .= [` [` ph ch `] [` ps ch `] `] $=
     wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wch lofdf-juxt
     lofdf-encl lofdf-encl wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl
     wch lofdf-juxt wph wch lofdf-juxt lofdf-encl wps wch lofdf-juxt lofdf-encl
@@ -1093,12 +1093,12 @@ $( =======================================================================
      that establishes that Basis_2 is at least as powerful as Basis_1. $)
 
   $( Basis_2 --------------------------------------------- $)
-  c6.2 $a |- `[ `[ ph `] `[ ps `] `] `[ `[ ph `] ps `] `= ph $.
+  c6.2 $a |- [` [` ph `] [` ps `] `] [` [` ph `] ps `] .= ph $.
 
   $( System_2 consequences ------------------------------------ $)
 
   $( An important lemma used in the proof of c1.2. $)
-  lem2.2 $p |- `[ ph `] ph `= `[ ps `] ps $=
+  lem2.2 $p |- [` ph `] ph .= [` ps `] ps $=
     wps lofdf-encl wps lofdf-juxt wph lofdf-encl wph lofdf-juxt wps lofdf-encl
     wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wps lofdf-encl wph
     lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wps wps lofdf-encl lofdf-void
@@ -1170,11 +1170,11 @@ $( =======================================================================
     $( [24-Sep-2015] $)
 
   $( This is axiom B3 from Meguire. $)
-  b3.2 $p |- `[ ph `] ph `= `[ `] $=
+  b3.2 $p |- [` ph `] ph .= [` `] $=
     wph lofdf-void lem2.2 $.
     
   $( [18-Aug-2016] $)
-  c1.2 $p |- `[ `[ ph `] `] `= ph $=
+  c1.2 $p |- [` [` ph `] `] .= ph $=
     wph lofdf-encl wph lofdf-encl lofdf-encl lofdf-encl lofdf-juxt lofdf-encl
     wph lofdf-encl wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
     wph lofdf-encl lofdf-encl wph wph lofdf-encl lofdf-encl wph lofdf-encl
@@ -1201,13 +1201,13 @@ $( =======================================================================
     lofeucr $.
     
   $( [25-Sep-2015] $)
-  j1.2 $p |- `[ `[ ph `] ph `] `= $=
+  j1.2 $p |- [` [` ph `] ph `] .= $=
     wph lofdf-encl wph lofdf-juxt lofdf-encl lofdf-void lofdf-encl lofdf-encl
     lofdf-void wph lofdf-encl wph lofdf-juxt lofdf-void lofdf-encl wph b3.2
     lofbeq lofdf-void c1.2 loftrans $.
     
   $( [25-Sep-2015] $)
-  lem3.2 $p |- `[ ph ph `] `= `[ `[ `[ ph `] `] `[ `[ ph `] `] `] $=
+  lem3.2 $p |- [` ph ph `] .= [` [` [` ph `] `] [` [` ph `] `] `] $=
     wph lofdf-encl lofdf-encl wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl
     wph wph lofdf-juxt lofdf-encl wph wph lofdf-encl lofdf-encl wph lofdf-encl
     lofdf-encl lofdf-void lofdf-void lofdf-void wph wph lofdf-juxt lofdf-encl
@@ -1217,7 +1217,7 @@ $( =======================================================================
     lofid lofrepbx lofrepbx lofsym $.
     
   $( [25-Sep-2015] $)
-  c5.2 $p |- ph ph `= ph $=
+  c5.2 $p |- ph ph .= ph $=
     wph lofdf-encl lofdf-encl wph wph lofdf-juxt wph wph lofdf-encl lofdf-encl
     wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl lofdf-encl
     wph lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl lofdf-void
@@ -1243,10 +1243,10 @@ $( =======================================================================
 
   $( The more familiar form of the Robbins equation is ((p q) (p (q)))
      ` = p, but for this exercise I'll be using the equivalent form: $)
-  robbins $a |- `[ `[ `[ ph `] ps `] `[ ph ps `] `] `= ps $.
+  robbins $a |- [` [` [` ph `] ps `] [` ph ps `] `] .= ps $.
 
   $( System_3 consequences ------------------------------------ $)
-  j1.3 $p |- `[ `[ ph `] ph `] `= $=
+  j1.3 $p |- [` [` ph `] ph `] .= $=
     wph lofdf-encl wph lofdf-juxt lofdf-encl wps lofdf-encl wph lofdf-juxt
     lofdf-encl wps wph lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl lofdf-encl
     wps lofdf-encl wph lofdf-juxt lofdf-encl wps wph lofdf-juxt lofdf-encl
@@ -1266,7 +1266,7 @@ $( =======================================================================
     lofdf-juxt lofdf-void robbins loftrans $.
     
   $( [8-Dec-2016] $)
-  c1.3 $p |- `[ `[ ph `] `] `= ph $=
+  c1.3 $p |- [` [` ph `] `] .= ph $=
     wph lofdf-encl lofdf-encl wph lofdf-juxt lofdf-encl lofdf-encl wph
     lofdf-encl lofdf-encl wph wph wph lofdf-encl lofdf-encl lofdf-juxt
     lofdf-encl lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-juxt lofdf-encl
@@ -1289,7 +1289,7 @@ $( =======================================================================
     lofeucr $.
     
   $( [8-Dec-2016] $)
-  c6.3 $p |- `[ `[ ph `] `[ ps `] `] `[ `[ ph `] ps `] `= ph $=
+  c6.3 $p |- [` [` ph `] [` ps `] `] [` [` ph `] ps `] .= ph $=
     wps wph lofdf-encl lofdf-juxt wph lofdf-encl wps lofdf-juxt lofdf-void
     lofdf-void wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl lofdf-void
     wph wps wph lofdf-encl lofcmm wps lofdf-encl wph lofdf-encl lofdf-juxt wph
@@ -1307,8 +1307,8 @@ $( =======================================================================
     lofdf-encl robbins lofbeq lofeucr wph c1.3 loftrans lofrepbx lofrepbx $.
     
   $( [5-Oct-2015] $)
-  robblem1.3 $p |- `[ `[ `[ `[ ps `] `[ ph `] `] `[ ps `[ ph `] `] `] `]
-                   `= `[ `[ ph `] `] $=
+  robblem1.3 $p |- [` [` [` [` ps `] [` ph `] `] [` ps [` ph `] `] `] `]
+                   .= [` [` ph `] `] $=
     wps lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl wps wph lofdf-encl
     lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps wph
     lofdf-encl robbins lofbeq $.
@@ -1329,8 +1329,8 @@ $( =======================================================================
      ((((p)(q))) (r)) = ((p) (((q)(r)))).  Consider the left side of that
      equation -- it evaluates to ((p)(q)(r)), a form symmetric in the three
      variables: $)
-  conj3 $p |- `[ `[ `[ `[ ph `] `[ ps `] `] `] `[ ch `] `]
-              `= `[ `[ ph `] `[ ps `] `[ ch `] `] $=
+  conj3 $p |- [` [` [` [` ph `] [` ps `] `] `] [` ch `] `]
+              .= [` [` ph `] [` ps `] [` ch `] `] $=
     wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl lofdf-encl wph
     lofdf-encl wps lofdf-encl lofdf-juxt lofdf-void wch lofdf-encl lofdf-void
     lofdf-void wph lofdf-encl wps lofdf-encl lofdf-juxt lofc1 lofsubb1 $.
@@ -1344,8 +1344,8 @@ $( =======================================================================
      is the full-length formal proof. $)
 
   $( Associativity of conjunction. $)
-  conj-assc $p |- `[ `[ `[ `[ ph `] `[ ps `] `] `] `[ ch `] `]
-                  `= `[ `[ ph `] `[ `[ `[ ps `] `[ ch `] `] `] `]
+  conj-assc $p |- [` [` [` [` ph `] [` ps `] `] `] [` ch `] `]
+                  .= [` [` ph `] [` [` [` ps `] [` ch `] `] `] `]
             $=
     wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl lofdf-encl wch
     lofdf-encl lofdf-juxt lofdf-encl wps lofdf-encl wch lofdf-encl lofdf-juxt
@@ -1372,8 +1372,8 @@ $( =======================================================================
   $( Now I turn to proving the associativity of the biconditional:  (p<->q)<->r
      = p<->(q<->r). I had earlier taken for granted that p<->q, transcribed as 
      (((p)q) ((q)p)), was equivalent to ((p)(q)) (p q). Here I prove it: $)
-  bicond $p |- `[ `[ `[ ph `] ps `] `[ `[ ps `] ph `] `]
-               `= `[ `[ ph `] `[ ps `] `] `[ ph ps `] $=
+  bicond $p |- [` [` [` ph `] ps `] [` [` ps `] ph `] `]
+               .= [` [` ph `] [` ps `] `] [` ph ps `] $=
     wps wph lofdf-encl lofdf-juxt lofdf-encl wps lofdf-encl wph lofdf-juxt
     lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps lofdf-juxt lofdf-encl
     wps lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wph
@@ -1419,7 +1419,7 @@ $( =======================================================================
     $( [29-Dec-2016] $)
 
   $( Next I'll need the following two lemmas: $)
-  c2lem1 $p |- `[ ps `[ ph ps `] ch `] `= `[ `[ ph `] ps ch `] $=
+  c2lem1 $p |- [` ps [` ph ps `] ch `] .= [` [` ph `] ps ch `] $=
     wps wph wps lofdf-juxt lofdf-encl lofdf-juxt wch lofdf-juxt wph lofdf-encl
     wps lofdf-juxt wch lofdf-juxt wps wph wps lofdf-juxt lofdf-encl lofdf-juxt
     wch lofdf-juxt wph wps lofdf-juxt lofdf-encl wps lofdf-juxt wch lofdf-juxt
@@ -1429,7 +1429,7 @@ $( =======================================================================
     loftrans lofbeq $.
     
   $( [29-Dec-2016] $)
-  c2lem2 $p |- `[ ph `[ ph ps `] ch `] `= `[ ph `[ ps `] ch `] $=
+  c2lem2 $p |- [` ph [` ph ps `] ch `] .= [` ph [` ps `] ch `] $=
     wph wph wps lofdf-juxt lofdf-encl lofdf-juxt wch lofdf-juxt wph wps
     lofdf-encl lofdf-juxt wch lofdf-juxt wph wph wps lofdf-juxt lofdf-encl
     lofdf-juxt wch lofdf-juxt wps lofdf-encl wph lofdf-juxt wch lofdf-juxt wph
@@ -1451,10 +1451,10 @@ $( =======================================================================
      = ((p)(((q)(r)) (q r))) (p ((q)(r)) (q r)). Consider the left side of 
      that equation -- as in the case of conjunction, it evaluates to a form 
      symmetric in the three variables: $)
-  bic3 $p |- `[ `[ `[ `[ ph `] `[ ps `] `] `[ ph ps `] `] `[ ch `] `]
-             `[ `[ `[ ph `] `[ ps `] `] `[ ph ps `] ch `]
-             `= `[ `[ ph `] `[ ps `] `[ ch `] `] `[ ph ps `[ ch `] `]
-                 `[ ph `[ ps `] ch `] `[ `[ ph `] ps ch `] $=
+  bic3 $p |- [` [` [` [` ph `] [` ps `] `] [` ph ps `] `] [` ch `] `]
+             [` [` [` ph `] [` ps `] `] [` ph ps `] ch `]
+             .= [` [` ph `] [` ps `] [` ch `] `] [` ph ps [` ch `] `]
+                 [` ph [` ps `] ch `] [` [` ph `] ps ch `] $=
     wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph wps lofdf-juxt
     lofdf-encl lofdf-juxt lofdf-encl wch lofdf-encl lofdf-juxt lofdf-encl wph
     lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph wps lofdf-juxt
@@ -1529,10 +1529,10 @@ $( =======================================================================
 
   $( This completes the informal proof that the biconditional associates.
      Below is the formal proof.  First, we need a permuted version of bic3. $)
-  bic3x $p |- `[ `[ `[ `[ ps `] `[ ch `] `] `[ ps ch `] `] `[ ph `] `]
-              `[ `[ `[ ps `] `[ ch `] `] `[ ps ch `] ph `]
-              `= `[ `[ ph `] `[ ps `] `[ ch `] `] `[ ph ps `[ ch `] `]
-                  `[ ph `[ ps `] ch `] `[ `[ ph `] ps ch `] $=
+  bic3x $p |- [` [` [` [` ps `] [` ch `] `] [` ps ch `] `] [` ph `] `]
+              [` [` [` ps `] [` ch `] `] [` ps ch `] ph `]
+              .= [` [` ph `] [` ps `] [` ch `] `] [` ph ps [` ch `] `]
+                  [` ph [` ps `] ch `] [` [` ph `] ps ch `] $=
     wps lofdf-encl wch lofdf-encl lofdf-juxt lofdf-encl wps wch lofdf-juxt
     lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl wps
     lofdf-encl wch lofdf-encl lofdf-juxt lofdf-encl wps wch lofdf-juxt
@@ -1633,10 +1633,10 @@ $( =======================================================================
     $( [29-Dec-2016] $)
 
   $( The associativity of the biconditional. $)
-  bicond-assc $p |- `[ `[ `[ `[ ph `] `[ ps `] `] `[ ph ps `] `] `[ ch `] `]
-                    `[ `[ `[ ph `] `[ ps `] `] `[ ph ps `] ch `]
-                    `= `[ `[ ph `] `[ `[ `[ ps `] `[ ch `] `] `[ ps ch `] `] `]
-                        `[ ph `[ `[ ps `] `[ ch `] `] `[ ps ch `] `] $=
+  bicond-assc $p |- [` [` [` [` ph `] [` ps `] `] [` ph ps `] `] [` ch `] `]
+                    [` [` [` ph `] [` ps `] `] [` ph ps `] ch `]
+                    .= [` [` ph `] [` [` [` ps `] [` ch `] `] [` ps ch `] `] `]
+                        [` ph [` [` ps `] [` ch `] `] [` ps ch `] `] $=
     wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph wps lofdf-juxt
     lofdf-encl lofdf-juxt lofdf-encl wch lofdf-encl lofdf-juxt lofdf-encl wph
     lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph wps lofdf-juxt
@@ -1689,23 +1689,23 @@ $( =======================================================================
   
   $( Versions of C1. $)
 
-  lofc1r $p |- ph `= `[ `[ ph `] `] $=
+  lofc1r $p |- ph .= [` [` ph `] `] $=
     wph lofdf-encl lofdf-encl  wph
     wph lofc1 lofsym  $.
 
-  lofc1x $p |- et `[ `[ ph `] `] ze `= et ph ze $=
+  lofc1x $p |- et [` [` ph `] `] ze .= et ph ze $=
     wph lofdf-encl lofdf-encl  wph
     wet wze
     wph lofc1 
     lofsubst  $.
 
-  lofc1rx $p |-  et ph ze `=  et `[ `[ ph `] `] ze  $=
+  lofc1rx $p |-  et ph ze .=  et [` [` ph `] `] ze  $=
     wph  wph lofdf-encl lofdf-encl
     wet wze
     wph lofc1r
     lofsubst   $.
 
-  lofc1bx $p |- si `[ et `[ `[ ph `] `] ze `] rh `= si `[ et ph ze `] rh $=
+  lofc1bx $p |- si [` et [` [` ph `] `] ze `] rh .= si [` et ph ze `] rh $=
     wet wph lofdf-encl lofdf-encl lofdf-juxt wze lofdf-juxt
     wet wph lofdf-juxt wze lofdf-juxt
     lofdf-void lofdf-void
@@ -1713,14 +1713,14 @@ $( =======================================================================
     wph wet wze lofc1x
     lofsubb1  $.
 
-  lofc1rbx $p |- si `[ et ph ze `] rh `=  si `[ et `[ `[ ph `] `] ze `] rh  $=
+  lofc1rbx $p |- si [` et ph ze `] rh .=  si [` et [` [` ph `] `] ze `] rh  $=
     wsi wet wph lofdf-encl lofdf-encl lofdf-juxt wze lofdf-juxt lofdf-encl
     lofdf-juxt wrh lofdf-juxt
     wsi wet wph lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wrh lofdf-juxt
     wph wet wze wsi wrh  lofc1bx lofsym  $.
   
   $( Versions of C2. $)
-  lofc2x $p |- et `[ ph ps ze `] si ps rh `= et `[ ph ze `] si ps rh $= 
+  lofc2x $p |- et [` ph ps ze `] si ps rh .= et [` ph ze `] si ps rh $= 
 
     wet wph wze lofdf-juxt lofdf-encl lofdf-juxt wsi
     lofdf-juxt wps lofdf-juxt wrh lofdf-juxt
@@ -1776,8 +1776,8 @@ $( =======================================================================
     lofsym
     $.
 
-  lofc2bx $p |- mu `[ et `[ ph ps ze `] si ps rh `] la
-                `= mu `[ et `[ ph ze `] si ps rh `] la $=
+  lofc2bx $p |- mu [` et [` ph ps ze `] si ps rh `] la
+                .= mu [` et [` ph ze `] si ps rh `] la $=
     wet wph wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
     wsi lofdf-juxt wps lofdf-juxt wrh lofdf-juxt
     wet wph wze lofdf-juxt lofdf-encl lofdf-juxt
@@ -1787,7 +1787,7 @@ $( =======================================================================
     lofc2x
     lofsubb1 $.
 
-  lofc2rx $p |-  et ps ze `[ ph ps si `] rh `= et ps ze `[ ph si `] rh $=
+  lofc2rx $p |-  et ps ze [` ph ps si `] rh .= et ps ze [` ph si `] rh $=
        
     wet wps lofdf-juxt wze lofdf-juxt  wph wps lofdf-juxt wsi lofdf-juxt
     lofdf-encl lofdf-juxt wrh lofdf-juxt
@@ -1827,8 +1827,8 @@ $( =======================================================================
     loftrans
      $.
 
-  lofc2rbx $p |- mu `[ et `[ ph ze `] si ps rh `] la
-                 `= mu `[ et `[ ph ps ze `] si ps rh `] la $=
+  lofc2rbx $p |- mu [` et [` ph ze `] si ps rh `] la
+                 .= mu [` et [` ph ps ze `] si ps rh `] la $=
     wmu wet wph wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
     wsi lofdf-juxt wps lofdf-juxt wrh lofdf-juxt lofdf-encl lofdf-juxt
     wla lofdf-juxt
@@ -1839,7 +1839,7 @@ $( =======================================================================
     lofc2bx
     lofsym $.
 
-  lofc2e $p |-  et `[ ph `] ze ph si `=  `[ `]  $=
+  lofc2e $p |-  et [` ph `] ze ph si .=  [` `]  $=
 
     wet wph lofdf-encl lofdf-juxt wze lofdf-juxt wph lofdf-juxt wsi lofdf-juxt
     wet lofdf-void lofdf-encl lofdf-juxt wze lofdf-juxt wph lofdf-juxt wsi lofdf-juxt
@@ -1861,7 +1861,7 @@ $( =======================================================================
     $.
   
   $( Versions of C3. $)
-  lofc3x $p |- ph `[ `] ps `= `[ `]  $= 
+  lofc3x $p |- ph [` `] ps .= [` `]  $= 
     wph lofdf-void lofdf-encl lofdf-juxt wps lofdf-juxt
     lofdf-void lofdf-encl wps lofdf-juxt wph lofdf-juxt
     lofdf-void lofdf-encl
@@ -1872,7 +1872,7 @@ $( =======================================================================
     loftrans
     $.
 
-  lofc3bx $p |- et `[ ph `[ `] ps `] ze `= et ze  $=
+  lofc3bx $p |- et [` ph [` `] ps `] ze .= et ze  $=
     
     wet wph lofdf-void lofdf-encl lofdf-juxt wps lofdf-juxt lofdf-encl
     lofdf-juxt wze lofdf-juxt
@@ -1892,7 +1892,7 @@ $( =======================================================================
     $.
 
   $( Versions of C4. $)
-  lofc4x $p |- si `[ et `[ ph `] ze `] rh ph mu `= si ph rh mu $=
+  lofc4x $p |- si [` et [` ph `] ze `] rh ph mu .= si ph rh mu $=
 
     wsi wet wph lofdf-encl lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
     wrh lofdf-juxt wph lofdf-juxt wmu lofdf-juxt
@@ -1939,7 +1939,7 @@ $( =======================================================================
     lofeuc
     $.
 
-  lofc4rx $p |- si ph rh mu `= si `[ et `[ ph `] ze `] rh ph mu $=
+  lofc4rx $p |- si ph rh mu .= si [` et [` ph `] ze `] rh ph mu $=
     wsi wet wph lofdf-encl lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
     wrh lofdf-juxt wph lofdf-juxt wmu lofdf-juxt
     wsi wph lofdf-juxt wrh lofdf-juxt wmu lofdf-juxt
@@ -1949,7 +1949,7 @@ $( =======================================================================
     $.
 
   $( Versions of C5. $)
-  lofc5x $p |- et ph ze ph si `= et ph ze si  $=
+  lofc5x $p |- et ph ze ph si .= et ph ze si  $=
                 
     wet wph lofdf-juxt wze lofdf-juxt wph lofdf-juxt wsi lofdf-juxt
     wet wph lofdf-juxt wph lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
@@ -1968,7 +1968,7 @@ $( =======================================================================
     lofeuc
     $.
 
-  lofc5rx $p |- et ph ze si `= et ph ze ph si $=
+  lofc5rx $p |- et ph ze si .= et ph ze ph si $=
     wet wph lofdf-juxt wze lofdf-juxt wph lofdf-juxt wsi lofdf-juxt
     wet wph lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
     wph wet wze wsi  lofc5x
@@ -1976,7 +1976,7 @@ $( =======================================================================
     $.
 
   $( Versions of J1. $)
-  lofj1x $p |-   rh `[ et `[ ph `] ze ph si `] mu `= rh mu $=
+  lofj1x $p |-   rh [` et [` ph `] ze ph si `] mu .= rh mu $=
                  
     wrh wet wph lofdf-encl lofdf-juxt wze lofdf-juxt wph lofdf-juxt
     wsi lofdf-juxt lofdf-encl lofdf-juxt wmu lofdf-juxt
@@ -1992,7 +1992,7 @@ $( =======================================================================
     loftrans
     $.
 
-  lofj1rx $p |- rh mu `= rh `[ et `[ ph `] ze ph si `] mu $=
+  lofj1rx $p |- rh mu .= rh [` et [` ph `] ze ph si `] mu $=
     wrh wet wph lofdf-encl lofdf-juxt wze lofdf-juxt wph lofdf-juxt
     wsi lofdf-juxt lofdf-encl lofdf-juxt wmu lofdf-juxt
     wrh wmu lofdf-juxt
@@ -2002,8 +2002,8 @@ $( =======================================================================
     $.
 
   $( Versions of J2. $)
-  lofj2x $p |- et `[ `[ ph ch `] `[ ps ch `] `] ze si
-               `= et `[ `[ ph `] `[ ps `] `] ze ch si $=    
+  lofj2x $p |- et [` [` ph ch `] [` ps ch `] `] ze si
+               .= et [` [` ph `] [` ps `] `] ze ch si $=    
 
     wet wph wch lofdf-juxt lofdf-encl wps wch lofdf-juxt lofdf-encl lofdf-juxt
     lofdf-encl lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
@@ -2028,8 +2028,8 @@ $( =======================================================================
     loftrans
     $.
 
-  lofj2rx $p |- et `[ `[ ph `] `[ ps `] `] ze ch si
-                `= et `[ `[ ph ch `] `[ ps ch `] `] ze si $=
+  lofj2rx $p |- et [` [` ph `] [` ps `] `] ze ch si
+                .= et [` [` ph ch `] [` ps ch `] `] ze si $=
     
     wet wph wch lofdf-juxt lofdf-encl wps wch lofdf-juxt lofdf-encl lofdf-juxt
     lofdf-encl lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
@@ -2042,7 +2042,7 @@ $( =======================================================================
     $.
 
     $( ---------------- MIXED THEOREMS ----------------- $)
-  lofelimeq $p |- `[ `[ ph `] `[ `[ `] `] `] `[ ph `[ `] `] `= ph $=
+  lofelimeq $p |- [` [` ph `] [` [` `] `] `] [` ph [` `] `] .= ph $=
     wph lofdf-encl lofdf-void lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wph
     lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt lofdf-void
     lofdf-encl lofdf-encl wph lofdf-juxt wph wph lofdf-encl lofdf-void
@@ -2075,7 +2075,7 @@ $( =======================================================================
 
   ${
     lofax-ded.1 $e |- ph $.
-    lofax-ded.2 $e |- ph `= ps $.
+    lofax-ded.2 $e |- ph .= ps $.
     $( If we assert both ` ph ` and that ` ph ` is equivalent to ` ps ` ,
        we can assert just ` ps ` . $)
     lofax-ded   $a |- ps $.
@@ -2083,7 +2083,7 @@ $( =======================================================================
 
   $( Truth equivalence elimination.  $)
   ${
-    lofelim.1 $e |- ph `= `[ `] $.
+    lofelim.1 $e |- ph .= [` `] $.
     $( If ` ph ` is equivalent to True, we can assert ` ph ` . $)
     lofelim   $p |- ph $=
     
@@ -2108,7 +2108,7 @@ $( =======================================================================
     lofintr.1 $e |- ph $.
     $( If we can assert ` ph ` , then we can assert that ` ph ` is
        equivalent to True. $)
-    lofintr   $p |- ph `= `[ `]  $=
+    lofintr   $p |- ph .= [` `]  $=
     wph lofdf-void lofdf-encl
     wph
     wph lofdf-encl lofdf-void lofdf-encl lofdf-encl lofdf-juxt lofdf-encl
@@ -2128,8 +2128,8 @@ $( =======================================================================
   $}
 
   ${
-    lofeucrelim.1 $e |- ph `= ps $.
-    lofeucrelim.2 $e |- ph `= `[ `] $.
+    lofeucrelim.1 $e |- ph .= ps $.
+    lofeucrelim.2 $e |- ph .= [` `] $.
     lofeucrelim   $p |- ps $=
       wps
       wph wps lofdf-void lofdf-encl
@@ -2139,8 +2139,8 @@ $( =======================================================================
   $}
 
   ${
-    loftranselim.1 $e |- ph `= ps $.
-    loftranselim.2 $e |- ps `= `[ `] $.
+    loftranselim.1 $e |- ph .= ps $.
+    loftranselim.2 $e |- ps .= [` `] $.
     loftranselim   $p |- ph $=
       wph
       wph wps lofdf-void lofdf-encl
@@ -2152,7 +2152,7 @@ $( =======================================================================
   ${
     lofand.1 $e |- ph $.
     lofand.2 $e |- ps $.
-    lofand   $p |- `[ `[ ph `] `[ ps `] `] $=
+    lofand   $p |- [` [` ph `] [` ps `] `] $=
 
     wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl
 
@@ -2192,7 +2192,7 @@ $( =======================================================================
 
   ${   
     lofmp.1 $e |- ph $.
-    lofmp.2 $e |- `[ ph `] ps $.
+    lofmp.2 $e |- [` ph `] ps $.
     lofmp   $p |- ps  $=
 
     wps
@@ -2230,11 +2230,11 @@ $( =======================================================================
 
   
   $( Define classical implication in terms of LoF. $)
-  lofdf-imp $a |- ( ph -> ps ) `= `[ ph `] ps $.
+  lofdf-imp $a |- ( ph -> ps ) .= [` ph `] ps $.
 
 
   $( Define classical negation in terms of LoF. $)
-  lofdf-neg $a |- -. ph `= `[ ph `] $.
+  lofdf-neg $a |- -. ph .= [` ph `] $.
 
   
   ax-1 $p |- ( ph -> ( ps -> ph ) ) $=
