@@ -1,13 +1,13 @@
 $(
-  lofset.mm    
-  version 0.1.0    
+  lofset.mm
+  version 0.1.0
   Copyright (C) 2017 naipmoro
 
   This file is made available under the MIT License:
   http://opensource.org/licenses/MIT
 
-  This file contains verbatim excerpts from set.mm 
-  (found at https://github.com/metamath/set.mm/blob/master/set.mm) which 
+  This file contains verbatim excerpts from set.mm
+  (found at https://github.com/metamath/set.mm/blob/master/set.mm) which
   is released under the CC0 1.0 Universal public domain license.
 $)
 
@@ -29,11 +29,11 @@ $(
   First a note about notation.  To avoid conflict with set.mm, I use grave
   accented brackets, "[`" and "`]" to represent the boundary (or "cross") of
   LoF.  This seemed to me to broadcast the least visual noise (readers may
-  disagree).  Similarly I use ".=" for the equals sign.  
-  
+  disagree).  Similarly I use ".=" for the equals sign.
+
   LoF is typically presented as an equational logic (although I show that,
   technically speaking, equations can be avoided).  In other words, axioms and
-  theorems are in the form P .= Q.  Transitioning from this to the 
+  theorems are in the form P .= Q.  Transitioning from this to the
   implicational form that traditionally characterizes classical propositional
   logic can be done in various ways.  I believe the technique chosen here is
   the simplest, relying on the single additional axiom ~ lofax-ded , the
@@ -114,10 +114,10 @@ $(
   -----------------------------------------------------------------------------
 $)
 
-  $( Empty space is a wff.   $)
+  $( Empty space is a wff. $)
   lofdf-void $a wff $.
 
-  $( If ` ph ` is a wff, so is ` [` ph `] ` . $)
+  $( If ` ph ` is a wff, so is ` [ ` ph ` ] ` . $)
   lofdf-encl $a wff [` ph `] $.
 
   $( If ` ph ` and ` ps ` are wffs, so is ` ph ps ` .  This rule introduces
@@ -134,14 +134,14 @@ $(
 
   In [Moro] equality, represented by "=", was one of the primitive constants of
   the language.  But the symbol is superfluous, as in a Boolean system equality
-  and equivalence are synonyms.  Let us interpret the form 
+  and equivalence are synonyms.  Let us interpret the form
   ` [` [` ph `] [` ps `] `] [` ph ps `] ` to mean " ` ph ` equals (or is
   equivalent to) ` ps ` ".  All of LoF can be expressed accordingly, and I will
   call this the "unitary form" of LoF.  Below I state the four primitive rules
   of LoF derivation and a handful of associated theorems in this form, as a
   demonstration that it can be done.  What is theoretically possible is not
   always cognitively palatable, so I subsequently jettison this approach and
-  return to explicit equations, what I call LoF's "normal form". 
+  return to explicit equations, what I call LoF's "normal form".
 $)
 
   ${
@@ -155,7 +155,7 @@ $)
   ${
     lofax-beq.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
     $( We read this rule as:  "If ` ph ` is equal to ` ps ` , then we can
-       assert that ` [` ph `] ` is equal to ` [` ps `] ` ". $)
+       assert that ` [ ` ph ` ] ` is equal to ` [ ` ps ` ] ` ". $)
     lofax-beq $a |- [` [` [` ph `] `] [` [` ps `] `] `] [` [` ph `] [` ps `] `]
     $.
   $}
@@ -166,7 +166,7 @@ $)
        assert that ` ph ze ` is equal to ` ps ze ` ". $)
     lofax-sub $a |- [` [` ph ze `] [` ps ze `] `] [` ph ze ps ze `] $.
   $}
-  
+
   $( We read this rule as:  " ` ph ps ` is equal to ` ps ph ` ". $)
   lofax-cmm $a |- [` [` ph ps `] [` ps ph `] `] [` ph ps ps ph `] $.
 
@@ -178,7 +178,7 @@ $)
 
   $( We read this theorem as:  " ` ph ` is equal to ` ph ` ". $)
   lofidu $p |- [` [` ph `] [` ph `] `] [` ph ph `] $=
-    wph lofdf-void lofax-cmm $.
+    ( lofdf-void lofax-cmm ) ABC $.
     $( [26-Jan-2017] $)
 
   ${
@@ -186,7 +186,7 @@ $)
     $( We read this theorem as:  "If ` ph ` is equal to ` ps ` , then we can
        assert that ` ps ` is equal to ` ph ` ". $)
     lofsymu $p |- [` [` ps `] [` ph `] `] [` ps ph `] $=
-      wps wps wph wps lofidu lofsymu.1 lofax-euc $.
+      ( lofidu lofax-euc ) BBABDCE $.
       $( [26-Jan-2017] $)
   $}
 
@@ -194,10 +194,10 @@ $)
     loftransu.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
     loftransu.2 $e |- [` [` ps `] [` ch `] `] [` ps ch `] $.
     $( We read this theorem as:  "If ` ph ` is equal to ` ps ` and ` ps ` is
-       equal to ` ch ` , then we can assert that ` ph ` is equal to ` ch ` ".
-    $)
+       equal to ` ch ` , then we can assert that ` ph ` is equal to
+       ` ch ` ". $)
     loftransu $p |- [` [` ph `] [` ch `] `] [` ph ch `] $=
-      wph wps wch loftransu.1 wps wch loftransu.2 lofsymu lofax-euc $.
+      ( lofsymu lofax-euc ) ABCDBCEFG $.
       $( [26-Jan-2017] $)
   $}
 
@@ -234,8 +234,7 @@ $)
        Euclid's first Common Notion and, in an equational logic, this and its
        sibling, transitivity, are the main engine of derivation. $)
     lofeuc $p |- ph .= ch $=
-      wph wch wph wps wch wph wps lofeuc.1 lofdf-equiv wch wps lofeuc.2
-      lofdf-equiv lofax-euc lofdf-uni $.
+      ( lofdf-equiv lofax-euc lofdf-uni ) ACABCABDFCBEFGH $.
       $( [26-Jan-2017] $)
   $}
 
@@ -244,8 +243,7 @@ $)
     lofbeq.1 $e  |- ph .= ps $.
     $( Enclosing equal forms leaves equal forms. $)
     lofbeq $p |- [` ph `] .= [` ps `] $=
-      wph lofdf-encl wps lofdf-encl wph wps wph wps lofbeq.1 lofdf-equiv
-      lofax-beq lofdf-uni $.
+      ( lofdf-encl lofdf-equiv lofax-beq lofdf-uni ) ADBDABABCEFG $.
       $( [26-Jan-2017] $)
   $}
 
@@ -254,14 +252,13 @@ $)
     lofsub.1 $e |- ph .= ps $.
     $( Juxtaposing the same form with equal forms leaves equal forms. $)
     lofsub $p |- ph ze .= ps ze $=
-      wph wze lofdf-juxt wps wze lofdf-juxt wph wps wze wph wps lofsub.1
-      lofdf-equiv lofax-sub lofdf-uni $.
+      ( lofdf-juxt lofdf-equiv lofax-sub lofdf-uni ) ACEBCEABCABDFGH $.
       $( [26-Jan-2017] $)
   $}
 
   $( Commutativity of LoF. $)
   lofcmm $p |- ph ps .= ps ph $=
-    wph wps lofdf-juxt wps wph lofdf-juxt wph wps lofax-cmm lofdf-uni $.
+    ( lofdf-juxt lofax-cmm lofdf-uni ) ABCBACABDE $.
     $( [26-Jan-2017] $)
 
   $( From the common notion that two
@@ -273,23 +270,23 @@ $)
 
   $( ` .= ` is reflexive. $)
   lofid $p |- ph .= ph $=
-    wph lofdf-void lofcmm $.
+    ( lofdf-void lofcmm ) ABC $.
     $( [6-Sep-2015] $)
 
   ${
     lofsym.1 $e |- ph .= ps $.
     $( ` .= ` is symmetric. $)
     lofsym $p |- ps .= ph $=
-      wps wps wph wps lofid lofsym.1 lofeuc $.
+      ( lofid lofeuc ) BBABDCE $.
       $( [2-Sep-2015] $)
   $}
 
   ${
     loftrans.1 $e |- ph .= ps $.
     loftrans.2 $e |- ps .= ch $.
-    $( ` ` = ` is transitive. $)
+    $( ` .= ` is transitive. $)
     loftrans $p |- ph .= ch $=
-      wph wps wch loftrans.1 wps wch loftrans.2 lofsym lofeuc $.
+      ( lofsym lofeuc ) ABCDBCEFG $.
       $( [2-Sep-2015] $)
   $}
 
@@ -307,7 +304,7 @@ $)
     lofeucr.2 $e |- ph .= ch $.
     $( A commuted - or reversed - version of ~ lofeuc. $)
     lofeucr $p |- ps .= ch $=
-      wps wph wch wph wps lofeucr.1 lofsym lofeucr.2 loftrans $.
+      ( lofsym loftrans ) BACABDFEG $.
       $( [2-Sep-2015] $)
   $}
 
@@ -315,9 +312,7 @@ $)
     lofsubr.1 $e |- ph .= ps $.
     $( A commuted version of lofsub. $)
     lofsubr $p |- et ph .= et ps $=
-      wps wet lofdf-juxt wet wph lofdf-juxt wet wps lofdf-juxt wph wet
-      lofdf-juxt wps wet lofdf-juxt wet wph lofdf-juxt wph wps wet lofsubr.1
-      lofsub wph wet lofcmm lofeucr wps wet lofcmm lofeucr $.
+      ( lofdf-juxt lofsub lofcmm lofeucr ) BCEZCAEZCBEACEIJABCDFACGHBCGH $.
       $( [2-Sep-2015] $)
   $}
 
@@ -327,30 +322,21 @@ $)
     lofsubst.1 $e |- ph .= ps $.
     $( PLEASE PUT DESCRIPTION HERE. $)
     lofsubst $p |- et ph ze .= et ps ze $=
-      wph wze lofdf-juxt wps wze lofdf-juxt wet wph wps wze lofsubst.1 lofsub
-      lofsubr $.
+      ( lofdf-juxt lofsub lofsubr ) ADFBDFCABDEGH $.
       
     $( [2-Sep-2015] $)
     lofsubstr $p |- et ph ze .= ze ps et $=
-      wet wph lofdf-juxt wze lofdf-juxt wet wze lofdf-juxt wps lofdf-juxt wze
-      wps lofdf-juxt wet lofdf-juxt wph wze lofdf-juxt wze wps lofdf-juxt wet
-      wph wze lofdf-juxt wps wze lofdf-juxt wze wps lofdf-juxt wph wps wze
-      lofsubst.1 lofsub wps wze lofcmm loftrans lofsubr wet wze wps lofdf-juxt
-      lofcmm loftrans $.
+      ( lofdf-juxt lofsub lofcmm loftrans lofsubr ) CAFDFCDFBFDBFZCFADFZKCLBDFK
+      ABDEGBDHIJCKHI $.
       
     $( [2-Sep-2015] $)
     lofsubb1 $p |- si [` et ph ze `] rh .= si [` et ps ze `] rh $=
-      wet wph lofdf-juxt wze lofdf-juxt lofdf-encl wet wps lofdf-juxt wze
-      lofdf-juxt lofdf-encl wsi wrh wet wph lofdf-juxt wze lofdf-juxt wet wps
-      lofdf-juxt wze lofdf-juxt wph wps wet wze lofsubst.1 lofsubst lofbeq
-      lofsubst $.
+      ( lofdf-juxt lofdf-encl lofsubst lofbeq ) CAHDHZICBHDHZIEFLMABCDGJKJ $.
       
     $( [2-Sep-2015] $)
     lofsubb2 $p |- si [` et ph ze `] rh .= si [` ze ps et `] rh $=
-      wet wph lofdf-juxt wze lofdf-juxt lofdf-encl wze wps lofdf-juxt wet
-      lofdf-juxt lofdf-encl wsi wrh wet wph lofdf-juxt wze lofdf-juxt wze wps
-      lofdf-juxt wet lofdf-juxt wph wps wet wze lofsubst.1 lofsubstr lofbeq
-      lofsubst $.
+      ( lofdf-juxt lofdf-encl lofsubstr lofbeq lofsubst ) CAHDHZIDBHCHZIEFMNABC
+      DGJKL $.
       $( [2-Sep-2015] $)
   $}
 
@@ -359,8 +345,7 @@ $)
     lofrep.2 $e |- et ph ze .= mu $.
     $( Direct substitution into an equation. $)
     lofrep $p |- et ps ze .= mu $=
-      wet wph lofdf-juxt wze lofdf-juxt wet wps lofdf-juxt wze lofdf-juxt wmu
-      wph wps wet wze lofrep.1 lofsubst lofrep.2 lofeucr $.
+      ( lofdf-juxt lofsubst lofeucr ) CAHDHCBHDHEABCDFIGJ $.
       $( [18-Sep-2015] $)
   $}
 
@@ -369,15 +354,8 @@ $)
     lofreps.2 $e |- mu .= et ph ze $.
     $( Direct substitution into a switched equation. $)
     lofreps $p |- mu .= et ps ze $=
-
-    wet wps lofdf-juxt wze lofdf-juxt   wmu
-    wph wps wet wze wmu
-    lofreps.1
-    wmu wet wph lofdf-juxt wze lofdf-juxt
-    lofreps.2 lofsym
-    lofrep
-    lofsym
-    $.
+      ( lofdf-juxt lofsym lofrep ) CBHDHEABCDEFECAHDHGIJI $.
+      $( [14-Feb-2017] $)
   $}
 
   ${
@@ -385,10 +363,8 @@ $)
     lofrepbx.2 $e |- si [` et ph ze `] rh .= mu $.
     $( Direct substitution into a bounded-form equation. $)
     lofrepbx $p |- si [` et ps ze `] rh .= mu $=
-      wsi wet wph lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wrh
-      lofdf-juxt wsi wet wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-      wrh lofdf-juxt wmu wph wps wet wze wsi wrh lofrepbx.1 lofsubb1 lofrepbx.2
-      lofeucr $.
+      ( lofdf-juxt lofdf-encl lofsubb1 lofeucr ) ECAJDJKJFJECBJDJKJFJGABCDEFHLI
+      M $.
       $( [18-Sep-2015] $)
   $}
 
@@ -397,38 +373,28 @@ $)
     lofrepbxs.2 $e |- mu .= si [` et ph ze `] rh $.
     $( Direct substitution into a switched bounded-form equation. $)
     lofrepbxs $p |- mu .= si [` et ps ze `] rh $=
-    wsi wet wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wrh lofdf-juxt
-    wmu
-    wph wps
-    wet wze wsi wrh wmu
-    
-    lofrepbxs.1
-    wmu  wsi wet wph lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wrh lofdf-juxt
-    lofrepbxs.2 lofsym
-    lofrepbx
-    lofsym
-    $.
+      ( lofdf-juxt lofdf-encl lofsym lofrepbx ) ECBJDJKJFJGABCDEFGHGECAJDJKJFJI
+      LML $.
+      $( [14-Feb-2017] $)
   $}
-  
+
   ${
-    lofrepbd.1  $e |- ph .= ps $.
-    lofrepbd.2  $e |- [` [` et ph ze `] `] .= mu $.
+    lofrepbd.1 $e |- ph .= ps $.
+    lofrepbd.2 $e |- [` [` et ph ze `] `] .= mu $.
     $( Direct substitution into a double bounded-form equation. $)
-    lofrepbd    $p |- [` [` et ps ze `] `] .= mu $=
+    lofrepbd $p |- [` [` et ps ze `] `] .= mu $=
       ( lofdf-juxt lofdf-encl lofdf-void lofsubb1 lofbeq lofeucr ) CAHDHIZICBHD
       HIZIENOABCDJJFKLGM $.
       $( [3-Oct-2015] $)
   $}
-  
+
 
   ${
     lofquad.1 $e |- ph .= ps $.
     lofquad.2 $e |- ch .= th $.
     $( Double substitution of equivalent forms. $)
     lofquad $p |- ph ch .= ps th $=
-      wph wch lofdf-juxt wps wch lofdf-juxt wps wth lofdf-juxt wph wps
-      lofdf-void wch lofquad.1 lofsubst wch wth wps lofdf-void lofquad.2
-      lofsubst loftrans $.
+      ( lofdf-juxt lofdf-void lofsubst loftrans ) ACGBCGBDGABHCEICDBHFIJ $.
       $( [2-Sep-2015] $)
   $}
 
@@ -436,25 +402,19 @@ $)
     lofins.1 $e |- ph ps .= ch th $.
     $( Insert the same form into two equivalent forms. $)
     lofins $p |- ph ze ps .= ch ze th $=
-      wph wze lofdf-juxt wps lofdf-juxt wze wch lofdf-juxt wth lofdf-juxt wch
-      wze lofdf-juxt wth lofdf-juxt wph wze lofdf-juxt wps lofdf-juxt wze wph
-      lofdf-juxt wps lofdf-juxt wze wch lofdf-juxt wth lofdf-juxt wph wze
-      lofdf-juxt wze wph lofdf-juxt wps wph wze lofcmm lofsub wph wps
-      lofdf-juxt wch wth lofdf-juxt wze lofins.1 lofsubr loftrans wze wch
-      lofdf-juxt wch wze lofdf-juxt wth wze wch lofcmm lofsub loftrans $.
+      ( lofdf-juxt lofcmm lofsub lofsubr loftrans ) AEGZBGZECGZDGZCEGZDGMEAGZBG
+      OLQBAEHIABGCDGEFJKNPDECHIK $.
       $( [3-Sep-2015] $)
   $}
 
   $( Extended commutativity. $)
   lofcmmx $p  |- et ph ze ps si .= et ps ze ph si $=
-    wph wze lofdf-juxt wps lofdf-juxt wps wze lofdf-juxt wph lofdf-juxt wet wsi
-    wph wps wps wph wze wph wps lofcmm lofins lofsubst $.
+    ( lofdf-juxt lofcmm lofins lofsubst ) ADFBFBDFAFCEABBADABGHI $.
     $( [3-Sep-2015] $)
 
   $( Bounded and extended commutativity. $)
   lofcmmbx $p |- rh [` et ph ze ps si `] mu .= rh [` et ps ze ph si `] mu $=
-    wph wze lofdf-juxt wps lofdf-juxt wps wze lofdf-juxt wph lofdf-juxt wet wsi
-    wrh wmu wze wze wph wps wze lofid lofsubstr lofsubb1 $.
+    ( lofdf-juxt lofid lofsubstr lofsubb1 ) ADHBHBDHAHCEFGDDABDIJK $.
     $( [2-Sep-2015] $)
 
   ${
@@ -462,9 +422,7 @@ $)
     lofquadbx.2 $e |- ch .= th $.
     $( Double substitution into a bounded and extended form. $)
     lofquadbx $p |- rh [` et ph ze ch si `] mu .= rh [` et ps ze th si `] mu $=
-      wph wze lofdf-juxt wch lofdf-juxt wps wze lofdf-juxt wth lofdf-juxt wet
-      wsi wrh wmu wph wch wps wth wze wph wps wch wth lofquadbx.1 lofquadbx.2
-      lofquad lofins lofsubb1 $.
+      ( lofdf-juxt lofquad lofins lofsubb1 ) AFLCLBFLDLEGHIACBDFABCDJKMNO $.
       $( [3-Sep-2015] $)
   $}
 
@@ -488,773 +446,221 @@ $)
 
   $( Reflexion. $)
   lofc1 $p |- [` [` ph `] `] .= ph $=
-    wph lofdf-encl lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-juxt
-    lofdf-encl wph lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl
-    wph wph lofdf-encl lofdf-encl wph wph lofdf-encl lofdf-encl lofdf-juxt
-    lofdf-encl lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-juxt lofdf-encl
-    wph lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wph
-    lofdf-encl lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-encl lofdf-juxt
-    lofdf-encl wph wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-encl wph wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl lofdf-encl
-    wph lofdf-encl lofdf-encl wph lofdf-encl wph lofdf-encl lofdf-encl
-    lofdf-juxt lofdf-encl wph wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl
-    lofdf-juxt lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-encl lofdf-juxt
-    lofdf-encl wph wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-encl lofdf-encl wph
-    lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl lofdf-encl lofdf-juxt wph
-    lofdf-encl wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wph wph
-    lofdf-encl lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wph
-    lofdf-encl lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl
-    lofdf-encl lofdf-juxt wph lofdf-encl lofdf-encl wph lofdf-encl lofdf-encl
-    wph lofdf-encl lofdf-juxt lofdf-encl lofdf-void wph lofdf-encl lofdf-encl
-    wph lofdf-encl lofj1 lofsub lofsym wph lofdf-encl wph wph lofdf-encl
-    lofdf-encl lofj2 lofeuc wph lofdf-encl wph lofdf-encl lofdf-encl lofdf-juxt
-    lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl
-    lofdf-void wph wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl lofdf-void
-    lofdf-void wph lofdf-encl wph lofdf-encl lofdf-encl lofdf-void lofdf-void
-    lofdf-void lofdf-void lofdf-void lofcmmbx lofsubb1 loftrans wph lofdf-encl
-    lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl lofdf-void lofdf-void wph
-    wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl lofdf-void lofdf-void wph
-    lofdf-encl lofj1 lofsubb1 loftrans wph wph lofdf-encl lofdf-encl lofdf-juxt
-    lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-juxt lofdf-encl lofdf-void
-    wph lofdf-encl wph lofdf-juxt lofdf-encl lofdf-void lofdf-void lofdf-void
-    lofdf-void lofdf-void wph wph lofdf-encl lofdf-encl lofdf-void lofdf-void
-    lofdf-void lofdf-void lofdf-void lofcmmbx wph lofdf-encl wph lofdf-juxt
-    lofdf-encl lofdf-void wph lofj1 lofsym lofquadbx loftrans wph lofdf-encl
-    lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-encl wph lofdf-juxt
-    lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl lofdf-encl lofdf-encl wph
-    lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wph lofdf-juxt wph wph
-    lofdf-encl lofdf-encl wph lofdf-encl wph lofj2 wph lofdf-encl lofdf-encl
-    lofdf-encl wph lofdf-encl lofdf-encl lofdf-juxt lofdf-encl lofdf-void wph
-    wph lofdf-encl lofdf-encl lofj1 lofsub loftrans loftrans $.
+    ( lofdf-encl lofdf-juxt lofdf-void lofsub lofsym lofcmmbx lofsubb1 loftrans
+    lofj1 lofj2 lofeuc lofquadbx ) ABZBZOACBZNACBZCBZAOAOCBZBZROONCBZSCBZTONOCB
+    ZSCBZUBOUAOCZUDUEOUADONJZEFNAOKLUCUADSDDNODDDDDGHIUADDSDDUFHISPDQDDDDDAODDD
+    DDGQDAJFMIROBOCBZACAONAKUGDAOJEII $.
     $( [6-Sep-2015] $)
 
   $( Generation. $)
   lofc2 $p |- [` ph ps `] ps .= [` ph `] ps $=
-    wph lofdf-encl wps lofdf-juxt lofdf-encl wps lofdf-encl wps lofdf-juxt
-    lofdf-encl lofdf-juxt lofdf-encl wph wps lofdf-juxt lofdf-encl wps
-    lofdf-juxt wph lofdf-encl wps lofdf-juxt wph lofdf-encl wps lofdf-juxt
-    lofdf-encl wps lofdf-encl wps lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl
-    wph lofdf-encl lofdf-encl wps lofdf-encl lofdf-encl lofdf-juxt lofdf-encl
-    wps lofdf-juxt wph wps lofdf-juxt lofdf-encl wps lofdf-juxt wph lofdf-encl
-    wps lofdf-encl wps lofj2 wph lofdf-encl lofdf-encl wph wps lofdf-encl
-    lofdf-encl wps lofdf-void lofdf-void lofdf-void lofdf-void wps wph lofc1 wps
-    lofc1 lofquadbx loftrans wph lofdf-encl wps lofdf-juxt lofdf-encl wps
-    lofdf-encl wps lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl
-    wps lofdf-juxt lofdf-encl lofdf-encl wph lofdf-encl wps lofdf-juxt wps
-    lofdf-encl wps lofdf-juxt lofdf-encl lofdf-void wph lofdf-encl wps
-    lofdf-juxt lofdf-encl lofdf-void lofdf-void lofdf-void wps lofj1 lofsubb1
-    wph lofdf-encl wps lofdf-juxt lofc1 loftrans lofeucr $.
+    ( lofdf-encl lofdf-juxt lofj2 lofdf-void lofc1 lofquadbx loftrans lofsubb1
+    lofj1 lofeucr ) ACZBDZCZBCZBDCZDCZABDCBDZNRMCZPCZDCBDSMPBETAUABFFFFBAGBGHIR
+    OCNQFOFFFBKJNGIL $.
     $( [6-Sep-2015] $)
 
   $( Integration. $)
   lofc3 $p |- [` `] ph .= [` `] $=
-    wph lofdf-encl wph lofdf-juxt lofdf-void lofdf-encl wph lofdf-juxt
-    lofdf-void lofdf-encl lofdf-void wph lofc2 wph lofdf-encl wph lofdf-juxt
-    lofdf-encl lofdf-encl wph lofdf-encl wph lofdf-juxt lofdf-void lofdf-encl
-    wph lofdf-encl wph lofdf-juxt lofc1 wph lofdf-encl wph lofdf-juxt lofdf-encl
-    lofdf-void wph lofj1 lofbeq lofeucr lofeucr $.
+    ( lofdf-encl lofdf-juxt lofdf-void lofc2 lofc1 lofj1 lofbeq lofeucr ) ABACZ
+    DBZACKDAEJBZBJKJFLDAGHII $.
     $( [6-Sep-2015] $)
 
   $( Iteration. $)
   lofc5 $p |- ph ph .= ph $=
-    wph lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-juxt wph wph lofdf-juxt
-    wph wph lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-juxt wph lofdf-encl
-    lofdf-encl wph lofdf-juxt wph wph lofdf-juxt wph lofdf-encl wph lofc2 wph
-    lofdf-encl lofdf-encl wph lofdf-void wph wph lofc1 lofsubst loftrans wph
-    lofdf-encl wph lofdf-juxt lofdf-encl lofdf-void lofdf-void wph wph lofj1
-    lofsubst lofeucr $.
+    ( lofdf-encl lofdf-juxt lofc2 lofdf-void lofc1 lofsubst loftrans lofeucr
+    lofj1 ) ABZACBZACZAACZAMKBZACNKADOAEAAFGHLEEAAJGI $.
     $( [6-Sep-2015] $)
 
   $( Occultation. $)
   lofc4 $p |- [` [` ph `] ps `] ph .= ph $=
-    wph lofdf-encl wps lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-void
-    lofdf-encl lofdf-encl wph lofdf-juxt wph wph lofdf-encl wps lofdf-juxt
-    lofdf-encl wph lofdf-juxt lofdf-void lofdf-encl wps lofdf-encl lofdf-encl
-    lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-void lofdf-encl lofdf-encl wph
-    lofdf-juxt wph lofdf-encl wps lofdf-juxt lofdf-encl wph lofdf-juxt wph
-    lofdf-encl wps lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl
-    lofdf-void lofdf-encl wps lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wph
-    lofdf-juxt wph wph lofdf-juxt lofdf-encl wps lofdf-encl wph lofdf-juxt
-    lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps lofdf-juxt lofdf-encl
-    wph lofdf-juxt wph lofdf-encl wps lofdf-encl wph lofdf-juxt lofdf-encl
-    lofdf-juxt lofdf-encl wph wph lofdf-juxt lofdf-encl wps lofdf-encl wph
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps lofdf-encl
-    lofdf-encl lofdf-juxt lofdf-encl wph lofdf-juxt wph lofdf-encl wps
-    lofdf-juxt lofdf-encl wph lofdf-juxt wph wps lofdf-encl wph lofj2 wps
-    lofdf-encl lofdf-encl wps wph lofdf-encl lofdf-void lofdf-void wph wps lofc1
-    lofsubb1 loftrans wph wph lofdf-juxt lofdf-encl wph lofdf-encl lofdf-void
-    wps lofdf-encl wph lofdf-juxt lofdf-encl lofdf-void lofdf-void wph wph
-    lofdf-juxt wph lofdf-void lofdf-void lofdf-void lofdf-void wph lofc5
-    lofsubb1 lofsubb1 lofeucr lofdf-void wps lofdf-encl wph lofj2 loftrans
-    lofdf-void lofdf-encl wps lofdf-encl lofdf-encl lofdf-juxt lofdf-void
-    lofdf-encl lofdf-void lofdf-void lofdf-void wph wps lofdf-encl lofdf-encl
-    lofc3 lofsubb1 loftrans lofdf-void lofdf-encl lofdf-encl lofdf-void
-    lofdf-void wph lofdf-void lofc1 lofsubst loftrans $.
+    ( lofdf-encl lofdf-juxt lofdf-void lofj2 lofc1 lofsubb1 lofc5 lofeucr lofc3
+    loftrans lofsubst ) ACZBDCADZECZCZADZAOPBCZCZDZCADZRONSADCZDCZUBAADZCZUCDCZ
+    OUDUGNTDCADOASAFTBNEEABGHLUFNEUCEEUEAEEEEAIHHJESAFLUAPEEEATKHLQEEAEGML $.
     $( [6-Sep-2015] $)
 
   $( Corollary of c4 $)
   lofc4cor $p |- [` ph ps `] [` ph `] .= [` ph `] $=
-    wph lofdf-encl lofdf-encl wps lofdf-juxt lofdf-encl wph lofdf-encl
-    lofdf-juxt wph wps lofdf-juxt lofdf-encl wph lofdf-encl lofdf-juxt wph
-    lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-void wps lofdf-void wph
-    lofdf-encl wph lofc1 lofsubb1 wph lofdf-encl wps lofc4 lofeucr $.
+    ( lofdf-encl lofdf-juxt lofdf-void lofc1 lofsubb1 lofc4 lofeucr ) ACZCZBDCJ
+    DABDCJDJKAEBEJAFGJBHI $.
     $( [18-Sep-2015] $)
 
   $( Extension. $)
   lofc6 $p |- [` [` ph `] [` ps `] `] [` [` ph `] ps `] .= ph $=
-    wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps
-    lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl lofdf-encl wph wph
-    lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl lofdf-encl wph lofdf-encl wps
-    lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps lofdf-juxt lofdf-encl
-    lofdf-juxt wph lofdf-encl lofdf-encl wph lofdf-encl wps lofdf-encl
-    lofdf-juxt lofdf-encl wph lofdf-encl wps lofdf-juxt lofdf-encl lofdf-juxt
-    lofc1 wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl lofdf-encl wps lofdf-encl
-    lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl lofdf-juxt
-    lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-encl wps lofdf-encl
-    lofdf-juxt lofdf-encl wph lofdf-encl wps lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-encl wps lofdf-encl lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl
-    wph lofdf-encl lofdf-juxt wph lofdf-encl wps lofdf-encl lofdf-juxt
-    lofdf-encl wph lofdf-encl wps lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl
-    wps lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl wps wph lofdf-encl
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wps lofdf-encl lofdf-encl wps
-    lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl lofdf-juxt wph lofdf-encl
-    wps lofdf-encl lofdf-juxt lofdf-encl wps lofdf-encl wph lofdf-encl
-    lofdf-juxt lofdf-encl wph lofdf-encl wps lofdf-juxt lofdf-encl wps wph
-    lofdf-encl lofdf-juxt lofdf-encl lofdf-void lofdf-void lofdf-void
-    lofdf-void lofdf-void wph lofdf-encl wps lofdf-encl lofdf-void lofdf-void
-    lofdf-void lofdf-void lofdf-void lofcmmbx wph lofdf-encl wps lofdf-void
-    lofdf-void lofdf-void lofdf-void lofdf-void lofcmmbx lofquadbx wps
-    lofdf-encl wps wph lofdf-encl lofj2 loftrans lofbeq wps lofdf-encl
-    lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl lofdf-void lofdf-void wph
-    lofdf-encl lofdf-void lofdf-void wps lofdf-encl lofj1 lofsubb1 loftrans
-    lofeucr wph lofc1 loftrans $.
+    ( lofdf-encl lofdf-juxt lofc1 lofdf-void lofcmmbx lofquadbx loftrans lofbeq
+    lofj2 lofj1 lofsubb1 lofeucr ) ACZBCZDCZOBDCZDZOCZASCZCZSTSEUBPCPDCZODZCTUA
+    UDUAPODCZBODCZDCUDQUERUFFFFFFOPFFFFFGOBFFFFFGHPBOKIJUCFFOFFPLMINAEI $.
     $( [6-Sep-2015] $)
 
   $( Corollary of c6 $)
   lofc6cor $p |- [` [` ph `] ps `] [` ph ps `] .= [` ps `] $=
-    wps wph lofdf-juxt wph wps lofdf-juxt lofdf-void lofdf-void wph lofdf-encl
-    wps lofdf-juxt lofdf-encl lofdf-void wps lofdf-encl wps wph lofcmm wps wph
-    lofdf-encl lofdf-juxt wph lofdf-encl wps lofdf-juxt lofdf-void lofdf-void
-    lofdf-void wps wph lofdf-juxt lofdf-encl wps lofdf-encl wps wph lofdf-encl
-    lofcmm wps lofdf-encl lofdf-encl wps lofdf-void wph wps wph lofdf-encl
-    lofdf-juxt lofdf-encl lofdf-void wps lofdf-encl wps lofc1 wps lofdf-encl
-    lofdf-encl wps lofdf-void wph lofdf-encl lofdf-void wps lofdf-encl
-    lofdf-encl wph lofdf-juxt lofdf-encl wps lofdf-encl wps lofc1 wps lofdf-encl
-    wph lofc6 lofrepbx lofrepbx lofrepbx lofrepbx $.
+    ( lofdf-juxt lofdf-void lofdf-encl lofcmm lofc1 lofc6 lofrepbx ) BACZABCDDA
+    EZBCZEDBEZBAFBKCZLDDDJEMBKFMEZBDANEDMBGZOBDKDOACEMPMAHIIII $.
+    $( [14-Feb-2017] $)
 
   $( Echelon. $)
   lofc7 $p |- [` [` [` ph `] ps `] ch `] .= [` ph ch `] [` [` ps `] ch `] $=
-    wph wch lofdf-juxt lofdf-encl wps lofdf-encl wch lofdf-juxt lofdf-encl
-    lofdf-juxt lofdf-encl lofdf-encl wph lofdf-encl wps lofdf-juxt lofdf-encl
-    wch lofdf-juxt lofdf-encl wph wch lofdf-juxt lofdf-encl wps lofdf-encl wch
-    lofdf-juxt lofdf-encl lofdf-juxt wph wch lofdf-juxt lofdf-encl wps
-    lofdf-encl wch lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl lofdf-encl wph
-    lofdf-encl wps lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wch lofdf-juxt
-    lofdf-encl wph lofdf-encl wps lofdf-juxt lofdf-encl wch lofdf-juxt
-    lofdf-encl wph wch lofdf-juxt lofdf-encl wps lofdf-encl wch lofdf-juxt
-    lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps lofdf-encl lofdf-encl
-    lofdf-juxt lofdf-encl wch lofdf-juxt wph wps lofdf-encl wch lofj2 lofbeq wph
-    lofdf-encl wps lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wch lofdf-juxt
-    wph lofdf-encl wps lofdf-juxt lofdf-encl wch lofdf-juxt wps lofdf-encl
-    lofdf-encl wps wph lofdf-encl lofdf-void lofdf-void wch wps lofc1 lofsubb1
-    lofbeq loftrans wph wch lofdf-juxt lofdf-encl wps lofdf-encl wch lofdf-juxt
-    lofdf-encl lofdf-juxt lofc1 lofeucr $.
+    ( lofdf-juxt lofdf-encl lofj2 lofbeq lofdf-void lofsubb1 loftrans lofeucr
+    lofc1 ) ACDEBEZCDEDZEZEZAEZBDECDZEZNPQMEZDECDZESOUAAMCFGUARTBQHHCBLIGJNLK
+    $.
     $( [6-Sep-2015] $)
 
   $( Modified transposition. $)
   lofc8 $p |- [` [` ph `] [` ps th `] [` ch th `] `] 
              .= [` [` ph `] [` ps `] [` ch `] `] [` [` ph `] [` th `] `] $=
-    wph lofdf-encl wps wth lofdf-juxt lofdf-encl lofdf-juxt wch wth lofdf-juxt
-    lofdf-encl lofdf-juxt lofdf-encl wps lofdf-encl wch lofdf-encl lofdf-juxt
-    lofdf-encl wth lofdf-juxt lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-encl lofdf-juxt
-    lofdf-encl wph lofdf-encl wth lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
-    wps wth lofdf-juxt lofdf-encl wch wth lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-encl lofdf-encl wps wth lofdf-juxt lofdf-encl wch wth lofdf-juxt
-    lofdf-encl lofdf-juxt wph lofdf-encl lofdf-void lofdf-void lofdf-void wps
-    lofdf-encl wch lofdf-encl lofdf-juxt lofdf-encl wth lofdf-juxt lofdf-encl
-    wph lofdf-encl lofdf-juxt lofdf-encl wps wth lofdf-juxt lofdf-encl wch wth
-    lofdf-juxt lofdf-encl lofdf-juxt lofc1 wps wth lofdf-juxt lofdf-encl wch wth
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl lofdf-encl wps lofdf-encl wch
-    lofdf-encl lofdf-juxt lofdf-encl wth lofdf-juxt lofdf-encl wph lofdf-encl
-    lofdf-void lofdf-void lofdf-void wps wth lofdf-juxt lofdf-encl wch wth
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wps lofdf-encl wch lofdf-encl
-    lofdf-juxt lofdf-encl wth lofdf-juxt wps wch wth lofj2 lofbeq lofsubb2
-    lofrepbx wps lofdf-encl wch lofdf-encl lofdf-juxt lofdf-encl wth lofdf-juxt
-    lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl wps lofdf-encl wch
-    lofdf-encl lofdf-juxt wph lofdf-encl lofdf-juxt lofdf-encl wth lofdf-encl
-    wph lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl wps
-    lofdf-encl lofdf-juxt wch lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl
-    wth lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wps lofdf-encl wch
-    lofdf-encl lofdf-juxt wth wph lofdf-encl lofc7 wps lofdf-encl wch lofdf-encl
-    lofdf-juxt wph lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wps
-    lofdf-encl lofdf-juxt wch lofdf-encl lofdf-juxt lofdf-encl wth lofdf-encl
-    wph lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl wth lofdf-encl
-    lofdf-juxt lofdf-encl wps lofdf-encl wch lofdf-encl lofdf-juxt wph
-    lofdf-encl lofdf-void lofdf-void lofdf-void lofdf-void lofdf-void lofcmmbx
-    wth lofdf-encl wph lofdf-encl lofdf-void lofdf-void lofdf-void lofdf-void
-    lofdf-void lofcmmbx lofquad loftrans loftrans $.
+    ( lofdf-encl lofdf-juxt lofc1 lofj2 lofbeq lofsubb2 lofrepbx lofc7 lofcmmbx
+    lofdf-void lofquad loftrans ) AEZBDFEZFCDFEZFEBEZCEZFZEDFZEZQFEZQTFUAFEZQDE
+    ZFEZFZRSFZEZEZUJQNNNUEUJGULUDQNNNUKUCBCDHIJKUEUBQFEZUGQFEZFUIUBDQLUMUFUNUHU
+    BQNNNNNMUGQNNNNNMOPP $.
     $( [6-Sep-2015] $)
 
   $( Crosstransposition. $)
   lofc9 $p |- [` [` [` ps `] [` ph `] `] [` [` ch `] [` ph `] `]
              [` [` th `] ph `] [` [` ta `] ph `] `]
              .= [` [` ph `] ps ch `] [` ph th ta `] $=
-    wps lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl wch lofdf-encl wph
-    lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wth lofdf-encl wph lofdf-juxt
-    lofdf-encl lofdf-juxt wta lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-encl wth wta lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wps
-    lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wch lofdf-encl
-    wph lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl
-    wps lofdf-juxt wch lofdf-juxt lofdf-encl wph wth lofdf-juxt wta lofdf-juxt
-    lofdf-encl lofdf-juxt wth lofdf-encl wph lofdf-juxt lofdf-encl wta
-    lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt wth wta lofdf-juxt
-    lofdf-encl wph lofdf-juxt lofdf-encl wps lofdf-encl wph lofdf-encl
-    lofdf-juxt lofdf-encl wch lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl
-    lofdf-juxt lofdf-void lofdf-void lofdf-void wth lofdf-encl wph lofdf-juxt
-    lofdf-encl wta lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl
-    lofdf-encl wth lofdf-encl wph lofdf-juxt lofdf-encl wta lofdf-encl wph
-    lofdf-juxt lofdf-encl lofdf-juxt wth wta lofdf-juxt lofdf-encl wph
-    lofdf-juxt lofdf-encl wth lofdf-encl wph lofdf-juxt lofdf-encl wta
-    lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt lofc1 wth lofdf-encl wph
-    lofdf-juxt lofdf-encl wta lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-encl wth wta lofdf-juxt lofdf-encl wph lofdf-juxt wth lofdf-encl wph
-    lofdf-juxt lofdf-encl wta lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-encl wth lofdf-encl lofdf-encl wta lofdf-encl lofdf-encl lofdf-juxt
-    lofdf-encl wph lofdf-juxt wth wta lofdf-juxt lofdf-encl wph lofdf-juxt wth
-    lofdf-encl wta lofdf-encl wph lofj2 wth lofdf-encl lofdf-encl wth wta
-    lofdf-encl lofdf-encl wta lofdf-void lofdf-void lofdf-void lofdf-void wph
-    wth lofc1 wta lofc1 lofquadbx loftrans lofbeq lofeucr lofsubb2 wth wta
-    lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wps lofdf-encl wph
-    lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wch lofdf-encl wph lofdf-encl
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wth wta lofdf-juxt lofdf-encl
-    wph lofdf-juxt lofdf-encl wps lofdf-juxt wch lofdf-juxt lofdf-encl wth wta
-    lofdf-juxt wph lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl wps
-    lofdf-juxt wch lofdf-juxt lofdf-encl wph wth lofdf-juxt wta lofdf-juxt
-    lofdf-encl lofdf-juxt wth wta lofdf-juxt lofdf-encl wph lofdf-juxt
-    lofdf-encl wps lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
-    wch lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl
-    wth wta lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wps lofdf-juxt wch
-    lofdf-juxt lofdf-encl wth wta lofdf-juxt lofdf-encl lofdf-encl wph
-    lofdf-juxt lofdf-encl lofdf-juxt wth wta lofdf-juxt lofdf-encl wph
-    lofdf-juxt lofdf-encl wps lofdf-juxt wch lofdf-juxt lofdf-encl wth wta
-    lofdf-juxt wph lofdf-juxt lofdf-encl lofdf-juxt wth wta lofdf-juxt
-    lofdf-encl wph lofdf-juxt lofdf-encl wps lofdf-encl wph lofdf-encl
-    lofdf-juxt lofdf-encl lofdf-juxt wch lofdf-encl wph lofdf-encl lofdf-juxt
-    lofdf-encl lofdf-juxt lofdf-encl wth wta lofdf-juxt lofdf-encl wph
-    lofdf-juxt lofdf-encl wps lofdf-juxt wch lofdf-juxt lofdf-encl wth wta
-    lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl
-    lofdf-juxt wth wta lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wps
-    lofdf-juxt wch lofdf-juxt lofdf-encl wth wta lofdf-juxt lofdf-encl
-    lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt wth wta lofdf-juxt
-    lofdf-encl wph lofdf-juxt lofdf-encl wps lofdf-encl wph lofdf-encl
-    lofdf-juxt lofdf-encl lofdf-juxt wch lofdf-encl wph lofdf-encl lofdf-juxt
-    lofdf-encl lofdf-juxt lofdf-encl wth wta lofdf-juxt lofdf-encl wph
-    lofdf-juxt lofdf-encl wps lofdf-juxt wch lofdf-juxt lofdf-encl wth wta
-    lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-encl lofdf-encl
-    lofdf-juxt lofdf-encl lofdf-juxt wth wta lofdf-juxt lofdf-encl wph
-    lofdf-juxt lofdf-encl wps lofdf-juxt wch lofdf-juxt lofdf-encl wth wta
-    lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl
-    lofdf-juxt wth wta lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wps
-    lofdf-encl wph lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wch lofdf-encl
-    wph lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wth wta
-    lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wps lofdf-encl lofdf-encl
-    lofdf-juxt wch lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wth wta
-    lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-encl lofdf-encl
-    lofdf-juxt lofdf-encl lofdf-juxt wth wta lofdf-juxt lofdf-encl wph
-    lofdf-juxt lofdf-encl wps lofdf-juxt wch lofdf-juxt lofdf-encl wth wta
-    lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-encl lofdf-encl
-    lofdf-juxt lofdf-encl lofdf-juxt wth wta lofdf-juxt lofdf-encl wph
-    lofdf-juxt wps lofdf-encl wch lofdf-encl wph lofdf-encl lofc8 wps lofdf-encl
-    lofdf-encl wps wch lofdf-encl lofdf-encl wch wth wta lofdf-juxt lofdf-encl
-    wph lofdf-juxt lofdf-encl lofdf-void lofdf-void lofdf-void wth wta
-    lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-encl lofdf-encl
-    lofdf-juxt lofdf-encl wps lofc1 wch lofc1 lofquadbx loftrans wph lofdf-encl
-    lofdf-encl wph wth wta lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl
-    lofdf-void wth wta lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wps
-    lofdf-juxt wch lofdf-juxt lofdf-encl lofdf-void wph lofc1 lofsubb1 loftrans
-    wth wta lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-juxt wth
-    wta lofdf-juxt lofdf-encl lofdf-encl wph lofdf-juxt lofdf-void lofdf-void
-    wth wta lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wps lofdf-juxt wch
-    lofdf-juxt lofdf-encl lofdf-void wth wta lofdf-juxt lofdf-encl wph lofc2
-    lofsubb1 loftrans wth wta lofdf-juxt lofdf-encl lofdf-encl wth wta
-    lofdf-juxt lofdf-void wph wth wta lofdf-juxt lofdf-encl wph lofdf-juxt
-    lofdf-encl wps lofdf-juxt wch lofdf-juxt lofdf-encl lofdf-void wth wta
-    lofdf-juxt lofc1 lofsubb1 loftrans wth wta lofdf-juxt lofdf-encl wph
-    lofdf-juxt lofdf-encl wps lofdf-juxt wch lofdf-juxt wth wta lofdf-juxt wph
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wth wta lofdf-juxt wph
-    lofdf-juxt lofdf-encl lofdf-juxt wth wta lofdf-juxt lofdf-encl wph
-    lofdf-juxt lofdf-encl wps lofdf-juxt wch lofdf-juxt lofdf-encl wth wta
-    lofdf-juxt wph lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl wps
-    lofdf-juxt wch lofdf-juxt lofdf-encl wph wth lofdf-juxt wta lofdf-juxt
-    lofdf-encl lofdf-juxt wth wta lofdf-juxt lofdf-encl wph lofdf-juxt
-    lofdf-encl wps lofdf-juxt wch lofdf-juxt wth wta lofdf-juxt wph lofdf-juxt
-    lofdf-encl lofc2 wth wta lofdf-juxt lofdf-encl wph lofdf-juxt lofdf-encl wps
-    lofdf-juxt wch lofdf-juxt wth wta lofdf-juxt wph lofdf-juxt lofdf-encl
-    lofdf-juxt lofdf-encl wth wta lofdf-juxt wph lofdf-juxt lofdf-encl
-    lofdf-juxt wph wth wta lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wps
-    lofdf-juxt wch lofdf-juxt wph wth lofdf-juxt wta lofdf-juxt lofdf-encl
-    lofdf-juxt lofdf-encl wth wta lofdf-juxt wph lofdf-juxt lofdf-encl
-    lofdf-juxt wph lofdf-encl wps lofdf-juxt wch lofdf-juxt lofdf-encl wph wth
-    lofdf-juxt wta lofdf-juxt lofdf-encl lofdf-juxt wth wta lofdf-juxt
-    lofdf-encl wph lofdf-juxt lofdf-encl wph wth wta lofdf-juxt lofdf-encl
-    lofdf-juxt lofdf-encl wth wta lofdf-juxt wph lofdf-juxt lofdf-encl wph wth
-    lofdf-juxt wta lofdf-juxt lofdf-encl lofdf-void wps wch lofdf-juxt
-    lofdf-void lofdf-void wth wta lofdf-juxt wph lofdf-juxt lofdf-encl wth wta
-    lofdf-juxt lofdf-encl wph lofdf-void lofdf-void lofdf-void lofdf-void
-    lofdf-void lofcmmbx wth wta lofdf-juxt wph lofdf-void lofdf-void lofdf-void
-    lofdf-void lofdf-void lofcmmbx lofquadbx wph lofdf-encl lofdf-encl wth wta
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wps lofdf-juxt wch lofdf-juxt
-    wph lofdf-encl lofdf-encl wth lofdf-juxt wta lofdf-juxt lofdf-encl
-    lofdf-juxt lofdf-encl wth wta lofdf-juxt wph lofdf-juxt lofdf-encl
-    lofdf-juxt wph wth wta lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wps
-    lofdf-juxt wch lofdf-juxt wph wth lofdf-juxt wta lofdf-juxt lofdf-encl
-    lofdf-juxt lofdf-encl wth wta lofdf-juxt wph lofdf-juxt lofdf-encl
-    lofdf-juxt wph lofdf-encl wps lofdf-juxt wch lofdf-juxt lofdf-encl wph wth
-    lofdf-juxt wta lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl lofdf-encl
-    wth wta lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wps lofdf-juxt wch
-    lofdf-juxt wph wth wta lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wps
-    lofdf-juxt wch lofdf-juxt wph lofdf-encl lofdf-encl wth lofdf-juxt wta
-    lofdf-juxt lofdf-encl wph wth lofdf-juxt wta lofdf-juxt lofdf-encl
-    lofdf-void lofdf-void lofdf-void lofdf-void wth wta lofdf-juxt wph
-    lofdf-juxt lofdf-encl wph lofdf-encl lofdf-encl wph lofdf-void wth wta
-    lofdf-juxt lofdf-encl lofdf-void wps wch lofdf-juxt wph lofc1 lofsubb1 wph
-    lofdf-encl lofdf-encl wph lofdf-void wth wta lofdf-juxt lofdf-void
-    lofdf-void wph lofc1 lofsubb1 lofquadbx wph lofdf-encl lofdf-encl wth wta
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wps lofdf-juxt wch lofdf-juxt
-    wph lofdf-encl lofdf-encl wth lofdf-juxt wta lofdf-juxt lofdf-encl
-    lofdf-juxt lofdf-encl wth wta lofdf-juxt wph lofdf-juxt lofdf-encl
-    lofdf-juxt wph lofdf-encl lofdf-encl wth wta lofdf-juxt lofdf-encl
-    lofdf-juxt lofdf-encl wph lofdf-encl lofdf-encl wth lofdf-juxt wta
-    lofdf-juxt lofdf-encl lofdf-juxt wps lofdf-juxt wch lofdf-juxt lofdf-encl
-    wth wta lofdf-juxt wph lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl wps
-    lofdf-juxt wch lofdf-juxt lofdf-encl wph wth lofdf-juxt wta lofdf-juxt
-    lofdf-encl lofdf-juxt wps wch lofdf-juxt wph lofdf-encl lofdf-encl wth
-    lofdf-juxt wta lofdf-juxt lofdf-encl wph lofdf-encl lofdf-encl wth wta
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl lofdf-void lofdf-void
-    lofdf-void wth wta lofdf-juxt wph lofdf-juxt lofdf-encl lofcmmbx wph
-    lofdf-encl lofdf-encl wth wta lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl
-    wph lofdf-encl lofdf-encl wth lofdf-juxt wta lofdf-juxt lofdf-encl
-    lofdf-juxt wps lofdf-juxt wch lofdf-juxt lofdf-encl wth wta lofdf-juxt wph
-    lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl wps lofdf-juxt wch
-    lofdf-juxt lofdf-encl wth wta lofdf-juxt wph lofdf-juxt lofdf-encl
-    lofdf-juxt wph lofdf-encl wps lofdf-juxt wch lofdf-juxt lofdf-encl wph wth
-    lofdf-juxt wta lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl lofdf-encl
-    wth wta lofdf-juxt lofdf-encl lofdf-juxt lofdf-encl wph lofdf-encl
-    lofdf-encl wth lofdf-juxt wta lofdf-juxt lofdf-encl lofdf-juxt wph
-    lofdf-encl lofdf-void wps wch lofdf-juxt lofdf-void wth wta lofdf-juxt wph
-    lofdf-juxt lofdf-encl wph lofdf-encl wth wta lofdf-juxt lofc6 lofsubb1 wth
-    wta lofdf-juxt wph lofdf-void lofdf-void lofdf-void wph lofdf-encl wps
-    lofdf-juxt wch lofdf-juxt lofdf-encl lofdf-void lofcmmbx loftrans loftrans
-    lofeucr loftrans lofeucr loftrans loftrans $.
+    ( lofdf-encl lofdf-juxt lofdf-void lofc1 lofquadbx loftrans lofbeq lofsubb2
+    lofj2 lofeucr lofc8 lofsubb1 lofc2 lofcmmbx lofc6 ) BFZAFZGFZCFZUBGFZGZDFZA
+    GFZGEFZAGFZGFDEGZFZAGZFZUCGUEGFZUBBGCGFZADGEGFZGZUHUJGZUNUFHHHUSFZFUSUNUSIU
+    TUMUTUGFZUIFZGFAGUMUGUIANVADVBEHHHHADIEIJKLOMUOUNBGCGZFZUKAGFZGZURUOVDULFZA
+    GZFGZVFUOVDUNAGZFGZVIUOVDUNUBFZGFZGZVKUOUNUAFZGUDFZGFVMGVNUMUAUDUBPVOBVPCUN
+    HHHVMBICIJKVLAUNHVDHAIZQKVJVHHHVDHULARQKVGUKHAVDHUKIQKVCVEGFVEGZVFURVCVERVR
+    AULGFZBGCGZUQGFVEGZURUNVSVEUQHBCGZHHVEULAHHHHHSUKAHHHHHSJVLULGFZBGCGZVLDGEG
+    FZGFVEGZWAURWDVTWEUQHHHHVEVLAHULHWBVQQVLAHUKHHVQQJWFWCWEGZBGCGFVEGZURWBWEWC
+    HHHVESWHUPVEGURWGUBHWBHVEUBUKTQUKAHHHUPHSKKOKOKK $.
     $( [6-Sep-2015] $)
 
   $( Intial I1. $)
-  lofi1 $p |- [` `] [` `] .= [` `]  $=
-    lofdf-void lofdf-encl lofc5
-    $.
+  lofi1 $p |- [` `] [` `] .= [` `] $=
+    ( lofdf-void lofdf-encl lofc5 ) ABC $.
+    $( [14-Feb-2017] $)
 
   $( Intial I2. $)
   lofi2 $p |- [` [` `] `] .= $=
-    lofdf-void lofj1
-    $.
+    ( lofdf-void lofj1 ) AB $.
+    $( [14-Feb-2017] $)
 
 $(
   -----------------------------------------------------------------------------
                       9. Generalizations of LoF consequences
   -----------------------------------------------------------------------------
 $)
- 
+
   $( Versions of C1. $)
-
   lofc1r $p |- ph .= [` [` ph `] `] $=
-    wph lofdf-encl lofdf-encl  wph
-    wph lofc1 lofsym  $.
-
+    ( lofdf-encl lofc1 lofsym ) ABBAACD $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
   lofc1x $p |- et [` [` ph `] `] ze .= et ph ze $=
-    wph lofdf-encl lofdf-encl  wph
-    wet wze
-    wph lofc1 
-    lofsubst  $.
-
-  lofc1rx $p |-  et ph ze .=  et [` [` ph `] `] ze  $=
-    wph  wph lofdf-encl lofdf-encl
-    wet wze
-    wph lofc1r
-    lofsubst   $.
-
+    ( lofdf-encl lofc1 lofsubst ) ADDABCAEF $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
+  lofc1rx $p |- et ph ze .= et [` [` ph `] `] ze $=
+    ( lofdf-encl lofc1r lofsubst ) AADDBCAEF $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
   lofc1bx $p |- si [` et [` [` ph `] `] ze `] rh .= si [` et ph ze `] rh $=
-    wet wph lofdf-encl lofdf-encl lofdf-juxt wze lofdf-juxt
-    wet wph lofdf-juxt wze lofdf-juxt
-    lofdf-void lofdf-void
-    wsi wrh
-    wph wet wze lofc1x
-    lofsubb1  $.
-
-  lofc1rbx $p |- si [` et ph ze `] rh .=  si [` et [` [` ph `] `] ze `] rh  $=
-    wsi wet wph lofdf-encl lofdf-encl lofdf-juxt wze lofdf-juxt lofdf-encl
-    lofdf-juxt wrh lofdf-juxt
-    wsi wet wph lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wrh lofdf-juxt
-    wph wet wze wsi wrh  lofc1bx lofsym  $.
-  
-  $( Versions of C2. $)
-  lofc2x $p |- et [` ph ps ze `] si ps rh .= et [` ph ze `] si ps rh $= 
-
-    wet wph wze lofdf-juxt lofdf-encl lofdf-juxt wsi
-    lofdf-juxt wps lofdf-juxt wrh lofdf-juxt
-
-    wet wph wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wsi
-    lofdf-juxt wps lofdf-juxt wrh lofdf-juxt
-
-    wps wsi lofdf-juxt
-    wsi wps lofdf-juxt
-    wet wph wze lofdf-juxt lofdf-encl lofdf-juxt
-    wrh
-    wet wph wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wsi
-    lofdf-juxt wps lofdf-juxt wrh lofdf-juxt
-
-    wps wsi lofcmm
-    
-    wph wze lofdf-juxt wps lofdf-juxt lofdf-encl wps lofdf-juxt
-    wph wze lofdf-juxt lofdf-encl wps lofdf-juxt
-    wet
-    wsi wrh lofdf-juxt
-    wet wph wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wsi
-    lofdf-juxt wps lofdf-juxt wrh lofdf-juxt
-
-    wph wze lofdf-juxt   wps
-    lofc2
-
-    wet wph wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wsi
-    lofdf-juxt wps lofdf-juxt wrh lofdf-juxt
-
-    wet wph wze lofdf-juxt wps lofdf-juxt lofdf-encl lofdf-juxt wps
-    lofdf-juxt wsi lofdf-juxt wrh lofdf-juxt
-
-    wet wph wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt wsi
-    lofdf-juxt wps lofdf-juxt wrh lofdf-juxt
-
-    wet wph wze lofdf-juxt wps lofdf-juxt lofdf-encl lofdf-juxt wsi
-    lofdf-juxt wps lofdf-juxt wrh lofdf-juxt
-
-    wet wph wze lofdf-juxt wps lofdf-juxt lofdf-encl lofdf-juxt wps
-    lofdf-juxt wsi lofdf-juxt wrh lofdf-juxt
-
-    wps wze wph lofdf-void lofdf-void wet wsi wps lofdf-juxt wrh lofdf-juxt
-    lofcmmbx
-    
-    wsi wps   wet wph wze lofdf-juxt wps lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-void wrh
-    lofcmmx
-    loftrans
-    lofsym
-
-    lofrep
-    lofrep
-    lofsym
+    ( lofdf-encl lofdf-juxt lofdf-void lofc1x lofsubb1 ) BAFFGCGBAGCGHHDEABCIJ
     $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
+  lofc1rbx $p |- si [` et ph ze `] rh .= si [` et [` [` ph `] `] ze `] rh $=
+    ( lofdf-encl lofdf-juxt lofc1bx lofsym ) DBAFFGCGFGEGDBAGCGFGEGABCDEHI $.
+    $( [14-Feb-2017] $)
 
+  $( Versions of C2. $)
+  lofc2x $p |- et [` ph ps ze `] si ps rh .= et [` ph ze `] si ps rh $=
+    ( lofdf-juxt lofdf-encl lofcmm lofdf-void lofcmmbx lofcmmx loftrans lofsym
+    lofc2 lofrep ) CADGZHZGZEGBGFGCABGDGHGEGBGFGZBEGEBGZSFTBEIQBGHZBGRBGCEFGTQB
+    OTCUBGZBGEGFGZTUCEGBGFGUDBDAJJCUAFGKEBUCJFLMNPPN $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
   lofc2bx $p |- mu [` et [` ph ps ze `] si ps rh `] la
                 .= mu [` et [` ph ze `] si ps rh `] la $=
-    wet wph wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-    wsi lofdf-juxt wps lofdf-juxt wrh lofdf-juxt
-    wet wph wze lofdf-juxt lofdf-encl lofdf-juxt
-    wsi lofdf-juxt wps lofdf-juxt wrh lofdf-juxt
-    lofdf-void lofdf-void wmu wla
-    wph wps wet wze wsi wrh
-    lofc2x
-    lofsubb1 $.
-
-  lofc2rx $p |-  et ps ze [` ph ps si `] rh .= et ps ze [` ph si `] rh $=
-       
-    wet wps lofdf-juxt wze lofdf-juxt  wph wps lofdf-juxt wsi lofdf-juxt
-    lofdf-encl lofdf-juxt wrh lofdf-juxt
-
-    wet wph  wsi lofdf-juxt lofdf-encl lofdf-juxt
-    wps lofdf-juxt wze lofdf-juxt wrh lofdf-juxt
-
-    wet wps lofdf-juxt wze lofdf-juxt  wph  wsi lofdf-juxt
-    lofdf-encl lofdf-juxt wrh lofdf-juxt
-
-    wet wps lofdf-juxt wze lofdf-juxt  wph wps lofdf-juxt wsi lofdf-juxt
-    lofdf-encl lofdf-juxt wrh lofdf-juxt
-
-    wet wph wps lofdf-juxt wsi lofdf-juxt lofdf-encl lofdf-juxt
-    wps lofdf-juxt wze lofdf-juxt wrh lofdf-juxt
-
-    wet wph  wsi lofdf-juxt lofdf-encl lofdf-juxt
-    wps lofdf-juxt wze lofdf-juxt wrh lofdf-juxt
-
-    wps wze lofdf-juxt
-    wph wps lofdf-juxt wsi lofdf-juxt lofdf-encl
-    wet
-    lofdf-void
-    wrh
-    lofcmmx   
-    
-    wph wps wet wsi lofdf-void wze wrh lofdf-juxt
-    lofc2x
-    loftrans
-    
-    wph wsi lofdf-juxt lofdf-encl
-    wps wze lofdf-juxt
-    wet
-    lofdf-void
-    wrh
-    lofcmmx
-    loftrans
-     $.
-
+    ( lofdf-juxt lofdf-encl lofdf-void lofc2x lofsubb1 ) CABIDIJIEIBIFICADIJIEI
+    BIFIKKGHABCDEFLM $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
+  lofc2rx $p |- et ps ze [` ph ps si `] rh .= et ps ze [` ph si `] rh $=
+    ( lofdf-juxt lofdf-encl lofdf-void lofcmmx lofc2x loftrans ) CBGDGZABGEGHZG
+    FGZCAEGHZGBGDGFGZMPGFGOCNGBGDGFGQBDGZNCIFJABCEIDFGKLPRCIFJL $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
   lofc2rbx $p |- mu [` et [` ph ze `] si ps rh `] la
                  .= mu [` et [` ph ps ze `] si ps rh `] la $=
-    wmu wet wph wps lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-    wsi lofdf-juxt wps lofdf-juxt wrh lofdf-juxt lofdf-encl lofdf-juxt
-    wla lofdf-juxt
-    wmu wet wph wze lofdf-juxt lofdf-encl lofdf-juxt
-    wsi lofdf-juxt wps lofdf-juxt wrh lofdf-juxt lofdf-encl lofdf-juxt
-    wla lofdf-juxt
-    wph wps wet wze wsi wrh wmu wla
-    lofc2bx
-    lofsym $.
+    ( lofdf-juxt lofdf-encl lofc2bx lofsym ) GCABIDIJIEIBIFIJIHIGCADIJIEIBIFIJI
+    HIABCDEFGHKL $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
+  lofc2e $p |- et [` ph `] ze ph si .= [` `] $=
+    ( lofdf-encl lofdf-juxt lofdf-void lofc2x lofcmmx lofc3 loftrans ) BAEFCFAF
+    DFBGEZFCFAFDFZLGABGCDHMLBFCFAFDFLBLGGCAFDFIBCFAFDFJKK $.
+    $( [14-Feb-2017] $)
 
-  lofc2e $p |-  et [` ph `] ze ph si .=  [` `]  $=
-
-    wet wph lofdf-encl lofdf-juxt wze lofdf-juxt wph lofdf-juxt wsi lofdf-juxt
-    wet lofdf-void lofdf-encl lofdf-juxt wze lofdf-juxt wph lofdf-juxt wsi lofdf-juxt
-    lofdf-void lofdf-encl
-
-    lofdf-void wph wet lofdf-void wze wsi
-    lofc2x
-    
-    wet lofdf-void lofdf-encl lofdf-juxt wze lofdf-juxt wph lofdf-juxt wsi lofdf-juxt
-    lofdf-void lofdf-encl wet lofdf-juxt wze lofdf-juxt wph lofdf-juxt wsi lofdf-juxt
-    lofdf-void lofdf-encl
-    wet lofdf-void lofdf-encl lofdf-void lofdf-void
-    wze wph lofdf-juxt wsi lofdf-juxt
-    lofcmmx
-    wet wze lofdf-juxt wph lofdf-juxt wsi lofdf-juxt
-    lofc3
-    loftrans
-    loftrans
-    $.
-  
   $( Versions of C3. $)
-  lofc3x $p |- ph [` `] ps .= [` `]  $= 
-    wph lofdf-void lofdf-encl lofdf-juxt wps lofdf-juxt
-    lofdf-void lofdf-encl wps lofdf-juxt wph lofdf-juxt
-    lofdf-void lofdf-encl
-
-    wph lofdf-void lofdf-encl wps lofdf-juxt lofcmm 
-    wps wph lofdf-juxt lofc3
-
-    loftrans
-    $.
-
-  lofc3bx $p |- et [` ph [` `] ps `] ze .= et ze  $=
-    
-    wet wph lofdf-void lofdf-encl lofdf-juxt wps lofdf-juxt lofdf-encl
-    lofdf-juxt wze lofdf-juxt
-    wet lofdf-void lofdf-encl lofdf-encl lofdf-juxt wze lofdf-juxt
-    wet wze lofdf-juxt
-    
-    wph lofdf-void lofdf-encl lofdf-juxt wps lofdf-juxt
-    lofdf-void lofdf-encl
-    lofdf-void lofdf-void wet wze
-    wph wps
-    lofc3x
-    lofsubb1
-
-    lofdf-void wet wze
-    lofc1x
-    loftrans 
-    $.
+  lofc3x $p |- ph [` `] ps .= [` `] $=
+    ( lofdf-void lofdf-encl lofdf-juxt lofcmm lofc3 loftrans ) ACDZEBEIBEZAEIAJ
+    FBAEGH $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
+  lofc3bx $p |- et [` ph [` `] ps `] ze .= et ze $=
+    ( lofdf-void lofdf-encl lofdf-juxt lofc3x lofsubb1 lofc1x loftrans ) CAEFZG
+    BGZFGDGCLFGDGCDGMLEECDABHIECDJK $.
+    $( [14-Feb-2017] $)
 
   $( Versions of C4. $)
   lofc4x $p |- si [` et [` ph `] ze `] rh ph mu .= si ph rh mu $=
-
-    wsi wet wph lofdf-encl lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-    wrh lofdf-juxt wph lofdf-juxt wmu lofdf-juxt
-
-    wsi wph lofdf-encl wet lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-    wph lofdf-juxt wrh lofdf-juxt wmu lofdf-juxt
-
-    wsi wph lofdf-juxt wrh lofdf-juxt wmu lofdf-juxt
-
-    
-    wsi wet wph lofdf-encl lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-    wrh lofdf-juxt wph lofdf-juxt wmu lofdf-juxt
-
-    wsi wph lofdf-encl wet lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-    wrh lofdf-juxt wph lofdf-juxt wmu lofdf-juxt
-
-    wsi wph lofdf-encl wet lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-    wph lofdf-juxt wrh lofdf-juxt wmu lofdf-juxt
-
-    wet wph lofdf-encl lofdf-void lofdf-void wze wsi
-    wrh wph lofdf-juxt wmu lofdf-juxt
-    lofcmmbx  
-    
-    wrh wph
-    wsi wph lofdf-encl wet lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-void wmu
-    lofcmmx
-    loftrans
-    
-    wph lofdf-encl wet lofdf-juxt wze lofdf-juxt lofdf-encl wph lofdf-juxt
-    wph
-    wsi
-    wrh wmu lofdf-juxt
-    wsi wph lofdf-encl wet lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-    wph lofdf-juxt wrh lofdf-juxt wmu lofdf-juxt
-
-    wph wet wze lofdf-juxt lofc4
-
-    wsi wph lofdf-encl wet lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-    wph lofdf-juxt wrh lofdf-juxt wmu lofdf-juxt
-    lofid
-
-    lofrep
-    lofeuc
-    $.
-
+    ( lofdf-encl lofdf-juxt lofcmmbx lofcmmx loftrans lofc4 lofid lofrep lofeuc
+    lofdf-void ) DBAGZHCHGHEHAHFHZDQBHCHGZHZAHEHFHZDAHEHFHRTEHAHFHUABQPPCDEAHFH
+    IEATPFJKSAHADEFHUAABCHLUAMNO $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
   lofc4rx $p |- si ph rh mu .= si [` et [` ph `] ze `] rh ph mu $=
-    wsi wet wph lofdf-encl lofdf-juxt wze lofdf-juxt lofdf-encl lofdf-juxt
-    wrh lofdf-juxt wph lofdf-juxt wmu lofdf-juxt
-    wsi wph lofdf-juxt wrh lofdf-juxt wmu lofdf-juxt
-    wph wet wze wsi wrh wmu
-    lofc4x
-    lofsym
-    $.
+    ( lofdf-encl lofdf-juxt lofc4x lofsym ) DBAGHCHGHEHAHFHDAHEHFHABCDEFIJ $.
+    $( [14-Feb-2017] $)
 
   $( Versions of C5. $)
-  lofc5x $p |- et ph ze ph si .= et ph ze si  $=
-                
-    wet wph lofdf-juxt wze lofdf-juxt wph lofdf-juxt wsi lofdf-juxt
-    wet wph lofdf-juxt wph lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
-    wet wph lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
-
-    wze wph wet wph lofdf-juxt lofdf-void wsi
-    lofcmmx
-
-    wph wph lofdf-juxt   wph
-    wet   wze wsi lofdf-juxt
-    wet wph lofdf-juxt wph lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
-    wph lofc5
-    wet wph lofdf-juxt wph lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
-    lofid
-    lofrep
-    lofeuc
-    $.
-
+  lofc5x $p |- et ph ze ph si .= et ph ze si $=
+    ( lofdf-juxt lofdf-void lofcmmx lofc5 lofid lofrep lofeuc ) BAEZCEZAEDELAEC
+    EDEZMDECALFDGAAEABCDENAHNIJK $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
   lofc5rx $p |- et ph ze si .= et ph ze ph si $=
-    wet wph lofdf-juxt wze lofdf-juxt wph lofdf-juxt wsi lofdf-juxt
-    wet wph lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
-    wph wet wze wsi  lofc5x
-    lofsym
-    $.
+    ( lofdf-juxt lofc5x lofsym ) BAECEZAEDEHDEABCDFG $.
+    $( [14-Feb-2017] $)
 
   $( Versions of J1. $)
-  lofj1x $p |-   rh [` et [` ph `] ze ph si `] mu .= rh mu $=
-                 
-    wrh wet wph lofdf-encl lofdf-juxt wze lofdf-juxt wph lofdf-juxt
-    wsi lofdf-juxt lofdf-encl lofdf-juxt wmu lofdf-juxt
-    wrh wet lofdf-void lofdf-encl lofdf-juxt wze lofdf-juxt wph lofdf-juxt
-    wsi lofdf-juxt lofdf-encl lofdf-juxt wmu lofdf-juxt
-    wrh wmu lofdf-juxt
-
-    lofdf-void wph wet lofdf-void wze wsi wrh wmu
-    lofc2bx
-    
-    wet wze wph lofdf-juxt wsi lofdf-juxt wrh wmu
-    lofc3bx
-    loftrans
-    $.
-
+  lofj1x $p |- rh [` et [` ph `] ze ph si `] mu .= rh mu $=
+    ( lofdf-encl lofdf-juxt lofdf-void lofc2bx lofc3bx loftrans ) EBAGHCHAHDHGH
+    FHEBIGHCHAHDHGHFHEFHIABICDEFJBCAHDHEFKL $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
   lofj1rx $p |- rh mu .= rh [` et [` ph `] ze ph si `] mu $=
-    wrh wet wph lofdf-encl lofdf-juxt wze lofdf-juxt wph lofdf-juxt
-    wsi lofdf-juxt lofdf-encl lofdf-juxt wmu lofdf-juxt
-    wrh wmu lofdf-juxt
-    wph wet wze wsi wrh wmu 
-    lofj1x
-    lofsym
-    $.
+    ( lofdf-encl lofdf-juxt lofj1x lofsym ) EBAGHCHAHDHGHFHEFHABCDEFIJ $.
+    $( [14-Feb-2017] $)
 
   $( Versions of J2. $)
   lofj2x $p |- et [` [` ph ch `] [` ps ch `] `] ze si
-               .= et [` [` ph `] [` ps `] `] ze ch si $=    
-
-    wet wph wch lofdf-juxt lofdf-encl wps wch lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-encl lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
-    wet wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
-    wch lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
-    wet wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
-    wze lofdf-juxt wch lofdf-juxt wsi lofdf-juxt
-
-    wph wch lofdf-juxt lofdf-encl wps wch lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-encl
-    wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl wch lofdf-juxt
-    wet wze wsi lofdf-juxt
-    wph wps wch          
-    lofj2
-    lofsubst
-    
-    wch wze
-    wet wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-void
-    wsi
-    lofcmmx
-    loftrans
-    $.
-
+               .= et [` [` ph `] [` ps `] `] ze ch si $=
+    ( lofdf-juxt lofdf-encl lofj2 lofsubst lofdf-void lofcmmx loftrans ) DACGHB
+    CGHGHZGEGFGDAHBHGHZGZCGEGFGPEGCGFGNOCGDEFGABCIJCEPKFLM $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
   lofj2rx $p |- et [` [` ph `] [` ps `] `] ze ch si
                 .= et [` [` ph ch `] [` ps ch `] `] ze si $=
-    
-    wet wph wch lofdf-juxt lofdf-encl wps wch lofdf-juxt lofdf-encl lofdf-juxt
-    lofdf-encl lofdf-juxt wze lofdf-juxt wsi lofdf-juxt
-    wet wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
-    wze lofdf-juxt wch lofdf-juxt wsi lofdf-juxt
-    
-    wph wps wch wet wze wsi
-    lofj2x
-    lofsym
-    $.
+    ( lofdf-juxt lofdf-encl lofj2x lofsym ) DACGHBCGHGHGEGFGDAHBHGHGEGCGFGABCDE
+    FIJ $.
+    $( [14-Feb-2017] $)
 
 $(
   -----------------------------------------------------------------------------
                         10. Implementing LoF deduction
   -----------------------------------------------------------------------------
-$)  
+$)
 
   $( ---------------- MIXED THEOREMS ----------------- $)
   lofelimeq $p |- [` [` ph `] [` [` `] `] `] [` ph [` `] `] .= ph $=
-    wph lofdf-encl lofdf-void lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wph
-    lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt lofdf-void
-    lofdf-encl lofdf-encl wph lofdf-juxt wph wph lofdf-encl lofdf-void
-    lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wph lofdf-void lofdf-encl
-    lofdf-juxt lofdf-encl lofdf-juxt lofdf-void lofdf-encl wph lofdf-juxt
-    lofdf-encl wph lofdf-juxt lofdf-void lofdf-encl lofdf-encl wph lofdf-juxt
-    wph lofdf-encl lofdf-void lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wph
-    lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-void
-    lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt lofdf-void lofdf-encl wph
-    lofdf-juxt lofdf-encl wph lofdf-juxt wph lofdf-encl lofdf-void lofdf-encl
-    lofdf-encl lofdf-juxt lofdf-encl wph lofdf-void lofdf-encl lofdf-juxt
-    lofdf-encl lofdf-juxt wph wph lofdf-void lofdf-encl lofdf-juxt lofdf-encl
-    lofdf-juxt wph lofdf-void lofdf-encl wph lofdf-juxt lofdf-encl lofdf-juxt
-    wph lofdf-encl lofdf-void lofdf-encl lofdf-encl lofdf-juxt lofdf-encl wph
-    lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl
-    lofdf-encl wph lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt wph
-    wph lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt lofdf-void
-    lofdf-encl lofdf-encl lofdf-void wph lofdf-encl lofdf-void lofdf-void wph
-    lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofi2 lofsubb1 wph lofdf-encl
-    lofdf-encl wph lofdf-void wph lofdf-void lofdf-encl lofdf-juxt lofdf-encl
-    wph lofc1 lofsubst loftrans wph lofdf-void lofdf-encl lofdf-void lofdf-void
-    lofdf-void wph lofdf-void lofcmmbx loftrans wph lofdf-void lofdf-encl wph
-    lofdf-juxt lofdf-encl lofcmm loftrans lofdf-void lofdf-encl wph lofc2
-    loftrans lofdf-void lofdf-encl lofdf-encl lofdf-void lofdf-void wph lofi2
-    lofsubst loftrans $.
+    ( lofdf-encl lofdf-void lofi2 lofsubb1 lofc1 lofsubst loftrans lofcmm lofc2
+    lofdf-juxt lofcmmbx ) ABZCBZBZKBANKBZKZOAKZAQNAKBZAKZRQASKZTQAPKZUAQMBZPKUB
+    OCMCCPDEUCACPAFGHANCCCACLHASIHNAJHOCCADGH $.
     $( [29-Jan-2017] $)
 
 
@@ -1264,141 +670,69 @@ $)
     lofax-ded.2 $e |- ph .= ps $.
     $( If we assert both ` ph ` and that ` ph ` is equal to ` ps ` , we can
        assert ` ps ` . $)
-    lofax-ded   $a |- ps $.
+    lofax-ded $a |- ps $.
   $}
 
   $( Truth equivalence elimination.  $)
   ${
     lofelim.1 $e |- ph .= [` `] $.
     $( If ` ph ` is equivalent to True, we can assert ` ph ` . $)
-    lofelim   $p |- ph $=
-    
-    wph lofdf-encl lofdf-void lofdf-encl lofdf-encl lofdf-juxt lofdf-encl
-    wph lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
-    wph
-
-    wph lofdf-void lofdf-encl
-    lofelim.1
-    lofdf-equiv
-
-    wph lofelimeq
-    
-    
-    
-    lofax-ded
-    $.
+    lofelim $p |- ph $=
+      ( lofdf-encl lofdf-void lofdf-juxt lofdf-equiv lofelimeq lofax-ded ) ACDC
+      ZCECAIECEAAIBFAGH $.
+      $( [14-Feb-2017] $)
   $}
 
   $( Truth equivalence introduction.  $)
   ${
     lofintr.1 $e |- ph $.
-    $( If we can assert ` ph ` , then we can assert that ` ph ` is
-       equivalent to True. $)
-    lofintr   $p |- ph .= [` `]  $=
-    wph lofdf-void lofdf-encl
-    wph
-    wph lofdf-encl lofdf-void lofdf-encl lofdf-encl lofdf-juxt lofdf-encl
-    wph lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
-
-    lofintr.1
-
-    wph lofdf-encl lofdf-void lofdf-encl lofdf-encl lofdf-juxt lofdf-encl
-    wph lofdf-void lofdf-encl lofdf-juxt lofdf-encl lofdf-juxt
-    wph
-    
-    wph lofelimeq lofsym
-    
-    lofax-ded
-    lofdf-uni
-    $.
+    $( If we can assert ` ph ` , then we can assert that ` ph ` is equivalent
+       to True. $)
+    lofintr $p |- ph .= [` `] $=
+      ( lofdf-void lofdf-encl lofdf-juxt lofelimeq lofsym lofax-ded lofdf-uni )
+      ACDZAADJDEDAJEDEZBKAAFGHI $.
+      $( [14-Feb-2017] $)
   $}
 
   ${
     lofeucrelim.1 $e |- ph .= ps $.
     lofeucrelim.2 $e |- ph .= [` `] $.
-    lofeucrelim   $p |- ps $=
-      wps
-      wph wps lofdf-void lofdf-encl
-      lofeucrelim.1 lofeucrelim.2 lofeucr
-      lofelim
-    $.
+    $( PLEASE PUT DESCRIPTION HERE. $)
+    lofeucrelim $p |- ps $=
+      ( lofdf-void lofdf-encl lofeucr lofelim ) BABEFCDGH $.
+      $( [14-Feb-2017] $)
   $}
 
   ${
     loftranselim.1 $e |- ph .= ps $.
     loftranselim.2 $e |- ps .= [` `] $.
-    loftranselim   $p |- ph $=
-      wph
-      wph wps lofdf-void lofdf-encl
-      loftranselim.1 loftranselim.2 loftrans
-      lofelim
-    $.
-  $}  
+    $( PLEASE PUT DESCRIPTION HERE. $)
+    loftranselim $p |- ph $=
+      ( lofdf-void lofdf-encl loftrans lofelim ) AABEFCDGH $.
+      $( [14-Feb-2017] $)
+  $}
 
   ${
     lofand.1 $e |- ph $.
     lofand.2 $e |- ps $.
-    lofand   $p |- [` [` ph `] [` ps `] `] $=
-
-    wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl
-
-    wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl
-    lofdf-void lofdf-encl wps lofdf-juxt lofdf-encl lofdf-juxt
-    wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl
-    lofdf-void lofdf-encl
-
-    lofdf-void wps
-    wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl
-    lofdf-void
-    lofc3bx
-    
-    wph lofdf-void lofdf-encl
-    lofdf-void wps
-    wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl
-    lofdf-void
-    lofdf-void lofdf-encl
-    wph lofand.1 lofintr
-    wph lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl
-    wph wps lofdf-juxt lofdf-encl lofdf-juxt
-    wph wps
-    wph lofdf-void lofdf-encl wps
-    wph lofand.1 lofintr
-    wps lofand.2 lofintr
-    lofeuc
-    lofdf-equiv
-    lofintr
-    lofrepbx
-    
-    lofeucr
-    lofelim
-    $.
+    $( PLEASE PUT DESCRIPTION HERE. $)
+    lofand $p |- [` [` ph `] [` ps `] `] $=
+      ( lofdf-encl lofdf-juxt lofdf-void lofc3bx lofintr lofeuc lofeucr lofelim
+      lofdf-equiv lofrepbx ) AEBEFEZOGEZBFEFOPGBOGHAPGBOGPACIZOABFEFABAPBQBDIJM
+      INKL $.
+      $( [14-Feb-2017] $)
   $}
 
-  
 
-  ${   
+  ${
     lofmp.1 $e |- ph $.
     lofmp.2 $e |- [` ph `] ps $.
-    lofmp   $p |- ps  $=
-
-    wps
-    wph lofdf-encl
-    lofdf-void
-    lofdf-void
-    wps
-    lofdf-void lofdf-encl
-    
-    wph lofdf-encl    lofdf-void lofdf-encl lofdf-encl    lofdf-void
-    wph lofdf-void lofdf-encl wph lofmp.1 lofintr lofbeq
-    lofdf-void lofc1
-    loftrans
-    
-    wph lofdf-encl wps lofdf-juxt  lofmp.2 lofintr
-
-    lofrep
-    lofelim
-    $.
-  $}  
+    $( PLEASE PUT DESCRIPTION HERE. $)
+    lofmp $p |- ps $=
+      ( lofdf-encl lofdf-void lofintr lofbeq loftrans lofdf-juxt lofrep lofelim
+      lofc1 ) BAEZFFBFEZNOEFAOACGHFMINBJDGKL $.
+      $( [14-Feb-2017] $)
+  $}
 
 $(
   -----------------------------------------------------------------------------
@@ -1411,13 +745,13 @@ $)
   $c ) $.  $( Right parenthesis $)
   $c -> $. $( Right arrow (read:  "implies") $)
   $c -. $. $( Right handle (read:  "not") $)
-  
+
   $( PLEASE PUT DESCRIPTION HERE. $)
   wi $a wff ( ph -> ps ) $.
   $( PLEASE PUT DESCRIPTION HERE. $)
   wn $a wff -. ph $.
 
-  
+
   $( Define classical implication in terms of LoF. $)
   lofdf-imp $a |- ( ph -> ps ) .= [` ph `] ps $.
 
@@ -1425,299 +759,53 @@ $)
   $( Define classical negation in terms of LoF. $)
   lofdf-neg $a |- -. ph .= [` ph `] $.
 
-$(
-  -----------------------------------------------------------------------------
-                 12. Propositional logic is superfluous (an example)
-  -----------------------------------------------------------------------------
-$)
+  $(
+-----------------------------------------------------------------------------
+     12.  Propositional logic is superfluous (an example)
+----------------------------------------------------------------------------- $)
+  lofpm2.18 $p |- ( ( -. ph -> ph ) -> ph ) $=
+    ( wn wi lofdf-encl lofdf-juxt lofdf-neg lofdf-imp lofrepbxs lofc2x loftrans
+    lofdf-void lofc1x lofreps lofc2e lofelim ) ABZACZACZRADZAEKDPSKARAFRPDZAEZD
+    AEZPAEZQUAKKKARPAGQAGHUBTDAEUCTAKKKKIPKALJJMAKKKNJO $.
+    $( [14-Feb-2017] $)
 
-  lofpm2.18 $p |-  ( ( -. ph -> ph ) -> ph ) $=
-    wph wn wph wi wph wi
-
-    wph wn wph wi wph wi
-    wph lofdf-encl wph lofdf-juxt
-    lofdf-void lofdf-encl
-
-    wph wn
-    wph lofdf-encl
-    lofdf-void
-    wph
-    wph wn wph wi wph wi
-    
-    wph lofdf-neg
-
-    wph wn wph wi wph wi
-    wph wn lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-juxt
-    wph wn wph lofdf-juxt
-                 
-    wph wn wph wi
-    wph wn lofdf-encl wph lofdf-juxt
-    lofdf-void lofdf-void lofdf-void wph
-    wph wn wph wi wph wi
-    wph wn wph  lofdf-imp              
-    wph wn wph wi wph               
-    lofdf-imp
-    lofrepbxs
-   
-    wph wn lofdf-encl wph lofdf-juxt lofdf-encl wph lofdf-juxt
-    wph wn lofdf-encl lofdf-encl wph lofdf-juxt
-    wph wn wph lofdf-juxt
-    
-    wph wn lofdf-encl
-    wph
-    lofdf-void  lofdf-void lofdf-void lofdf-void
-    lofc2x
-    
-    wph wn  lofdf-void wph  lofc1x
-    loftrans
-    loftrans
-    lofreps
-
-    wph lofdf-void lofdf-void lofdf-void  lofc2e
-    loftrans
-    lofelim
-    $.
-
-$(
-  -----------------------------------------------------------------------------
-                  12. Proving the axioms of propositional logic
-  -----------------------------------------------------------------------------
-$)
-
+  $(
+-----------------------------------------------------------------------------
+     13.  Proving the axioms of propositional logic
+----------------------------------------------------------------------------- $)
   ax-1 $p |- ( ph -> ( ps -> ph ) ) $=
-    wph wps wph wi wi
-    
-    wph wps wph wi wi
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
-    lofdf-void lofdf-encl
-
-    wph wps wph wi wi
-    wph lofdf-encl wps wph wi lofdf-juxt
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
-    wph wps wph wi
-    lofdf-imp 
-    
-    wps wph wi   wps lofdf-encl wph lofdf-juxt
-    wph lofdf-encl
-    wps wph lofdf-imp
-    lofsubr
-    loftrans
-
-    wph lofdf-void wps lofdf-encl lofdf-void
-    lofc2e
-    loftrans
-    lofelim
-    $.
-
+    ( wi lofdf-encl lofdf-juxt lofdf-void lofdf-imp lofsubr loftrans lofelim
+    lofc2e ) ABACZCZMADZBDZEAEZFDMNLEPALGLOAENBAGHIAFOFKIJ $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
   ax-2 $p |- ( ( ph -> ( ps -> ch ) ) -> ( ( ph -> ps ) -> ( ph -> ch ) ) ) $=
-    wph wps wch wi wi wph wps wi wph wch wi wi wi
-
-    wph wps wch wi wi wph wps wi wph wch wi wi wi
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-juxt lofdf-encl
-      wph  lofdf-encl lofdf-juxt wps lofdf-encl lofdf-juxt
-      wch lofdf-juxt
-    lofdf-void lofdf-encl
-
-    wph wps wch wi wi wph wps wi wph wch wi wi wi
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-juxt lofdf-encl
-      wps  lofdf-encl lofdf-juxt wph lofdf-encl lofdf-juxt
-      wch lofdf-juxt
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-juxt lofdf-encl
-      wph  lofdf-encl lofdf-juxt wps lofdf-encl lofdf-juxt
-      wch lofdf-juxt
-
-
-    wph wps wch wi wi wph wps wi wph wch wi wi wi
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-juxt lofdf-encl
-      wph lofdf-encl wps lofdf-juxt lofdf-encl lofdf-juxt wph lofdf-encl lofdf-juxt
-      wch lofdf-juxt
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-juxt lofdf-encl
-      wps  lofdf-encl lofdf-juxt wph lofdf-encl lofdf-juxt
-      wch lofdf-juxt
-
-    wps wch wi
-    wps lofdf-encl wch lofdf-juxt
-    wph lofdf-encl
-    lofdf-void lofdf-void
-    wph lofdf-encl wps lofdf-juxt lofdf-encl wph lofdf-encl lofdf-juxt wch lofdf-juxt
-    wph wps wch wi wi wph wps wi wph wch wi wi wi
-
-    wps wch lofdf-imp
-
-    wph wps wch wi wi
-    wph lofdf-encl wps wch wi lofdf-juxt
-    lofdf-void lofdf-void lofdf-void
-    wph lofdf-encl wps lofdf-juxt lofdf-encl wph lofdf-encl lofdf-juxt wch lofdf-juxt
-    wph wps wch wi wi wph wps wi wph wch wi wi wi
-
-    wph wps wch wi  lofdf-imp
-
-    wph wps wi
-    wph lofdf-encl wps lofdf-juxt
-    lofdf-void lofdf-void
-    wph wps wch wi wi lofdf-encl
-    wph lofdf-encl wch lofdf-juxt
-    wph wps wch wi wi wph wps wi wph wch wi wi wi
-
-    wph wps lofdf-imp
-    
-
-    wph wch wi      wph lofdf-encl wch lofdf-juxt
-    wph wps wch wi wi lofdf-encl wph wps wi lofdf-encl lofdf-juxt
-    lofdf-void
-    wph wps wch wi wi wph wps wi wph wch wi wi wi
-
-    wph wch lofdf-imp
-
-    wph wps wi   wph wch wi  wi
-    wph wps wi lofdf-encl wph wch wi lofdf-juxt
-    wph wps wch wi wi lofdf-encl
-    lofdf-void
-    wph wps wch wi wi wph wps wi wph wch wi wi wi
-    
-    wph wps wi   wph wch wi 
-    lofdf-imp
-       
-    wph wps wch wi wi
-    wph wps wi wph wch wi wi
-    lofdf-imp
-    
-     lofreps
-     lofreps
-     lofrepbxs
-     lofrepbxs
-     lofrepbxs
-    
-    lofdf-void wph lofdf-encl
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-juxt lofdf-encl
-    wps lofdf-void wch
-    lofc2x
-
-    loftrans
-    
-    wps lofdf-encl   wph lofdf-encl
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-juxt lofdf-encl
-    lofdf-void
-    wch
-    lofcmmx
-
-    loftrans
-    
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wch lofdf-juxt
-    lofdf-void lofdf-void lofdf-void
-    lofc2e
-
-    loftrans
-    lofelim
-    $.
-
+    ( lofdf-encl lofdf-juxt lofdf-imp lofreps lofrepbxs lofc2x loftrans lofcmmx
+    wi lofdf-void lofc2e lofelim ) ABCLZLZABLZACLZLZLZUAADZBDZECEZDZUBEUCECEZMD
+    UAUEUCEUBECEZUFUAUEUBBEZDZEUBECEUGPUCCEUBMMUIUBECEZUABCFQUBPEMMMUJUAAPFRUHM
+    MQDZUBCEZUAABFSULUKRDZEMUAACFTUMSEUKMUARSFQTFGGHHHMUBUEBMCIJUCUBUEMCKJUDMMM
+    NJO $.
+    $( [14-Feb-2017] $)
+  $( PLEASE PUT DESCRIPTION HERE. $)
   ax-3 $p |- ( ( -. ph -> -. ps ) -> ( ps -> ph ) )
        $=
-    wph wn wps wn wi wps wph wi wi
+    ( wn wi lofdf-encl lofdf-juxt lofdf-void lofdf-neg lofbeq lofdf-imp lofreps
+    lofrepbxs lofc2x loftrans lofc1bx lofc2e lofelim ) ACZBCZDZBADZDZUBAEZBEZFA
+    FZGEUBUCEZEUDFAFZUEUBUFUDFEUDFAFUGSUDUFGGUDAFZUBBHREZUFGSGUHUBRUCAHITUISFGG
+    GUHUBRSJUAUHTEGUBBAJTUAJKLLLUFUDGGGAMNAGGGUHONAGUDGPNQ $.
+    $( [14-Feb-2017] $)
 
-    wph wn wps wn wi wps wph wi wi
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
-    lofdf-void lofdf-encl
-    
-    wph wn wps wn wi wps wph wi wi
-    wph lofdf-encl lofdf-encl lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
-    wph lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
-
-    wph wn wps wn wi wps wph wi wi
-    wph lofdf-encl lofdf-encl wps lofdf-encl lofdf-juxt lofdf-encl
-      wps lofdf-encl lofdf-juxt wph lofdf-juxt
-    wph lofdf-encl lofdf-encl lofdf-encl wps lofdf-encl lofdf-juxt wph lofdf-juxt
-
-    wps wn
-    wps lofdf-encl
-    wph lofdf-encl lofdf-encl
-    lofdf-void
-    lofdf-void
-    wps lofdf-encl wph lofdf-juxt
-    wph wn wps wn wi wps wph wi wi
-
-    wps lofdf-neg
-
-    wph wn lofdf-encl
-    wph lofdf-encl lofdf-encl
-    lofdf-void
-    wps wn
-    lofdf-void
-    wps lofdf-encl wph lofdf-juxt
-    wph wn wps wn wi wps wph wi wi
-
-    wph wn wph lofdf-encl   
-    wph lofdf-neg lofbeq 
-
-    wph wn wps wn wi
-    wph wn lofdf-encl wps wn lofdf-juxt
-    lofdf-void lofdf-void lofdf-void
-    wps lofdf-encl wph lofdf-juxt
-    wph wn wps wn wi wps wph wi wi
-
-    wph wn wps wn lofdf-imp 
-
-    wps wph wi
-    wps lofdf-encl wph lofdf-juxt
-    wph wn wps wn wi lofdf-encl
-    lofdf-void
-    wph wn wps wn wi wps wph wi wi
-
-    wps wph lofdf-imp
-
-    wph wn wps wn wi wps wph wi 
-    lofdf-imp
-    lofreps
- 
-    lofrepbxs
-    lofrepbxs
-    lofrepbxs
-    
-    wph lofdf-encl lofdf-encl
-    wps lofdf-encl
-    lofdf-void lofdf-void lofdf-void wph
-    lofc2x
-
-    loftrans
-    
-    wph lofdf-void lofdf-void lofdf-void wps lofdf-encl wph lofdf-juxt
-    lofc1bx
-
-    loftrans
-    
-    wph lofdf-void wps lofdf-encl lofdf-void   
-    lofc2e
-
-    loftrans
-    lofelim
-    $.
-
-  
 
   ${
     $( Minor premise for modus ponens. $)
     min $e |- ph $.
     $( Major premise for modus ponens. $)
     maj $e |- ( ph -> ps ) $.
+    $( PLEASE PUT DESCRIPTION HERE. $)
     ax-mp $p |- ps $=
-    wph wps
-    min
-    wph lofdf-encl wps lofdf-juxt
-    wph wps wi
-    wph lofdf-encl wps lofdf-juxt
-    lofdf-void lofdf-encl
-
-    wph wps lofdf-imp 
-    wph wps wi  maj lofintr
-    lofeucr
-    lofelim
-    
-    lofmp
-    $.
+      ( lofdf-encl lofdf-juxt wi lofdf-void lofdf-imp lofintr lofeucr lofelim
+      lofmp ) ABCAEBFZABGZNHEABIODJKLM $.
+      $( [14-Feb-2017] $)
   $}
-
-  
- 
 
 $(
   ----------------------------------------------------------------------------
@@ -1728,5 +816,4 @@ $(
      https://github.com/naipmoro/lofmm/blob/master/lof.mm .
   2. [Spencer-Brown] Spencer-Brown, George, "Laws of Form", Allen & Unwin,
      London (1969).
-  3. 
 $)
