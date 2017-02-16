@@ -229,14 +229,14 @@ $)
      traditional formal system without additional axioms -- it is the ability
      to reference the empty (or void) form that allows it here. $)
 
-  $( ` ` = ` is reflexive. $)
+  $( ` .= ` is reflexive. $)
   lofid $p |- ph .= ph $=
     wph lofdf-void lofcmm $.
     $( [6-Sep-2015] $)
 
   ${
     lofsym.1 $e |- ph .= ps $.
-    $( ` ` = ` is symmetric. $)
+    $( ` .= ` is symmetric. $)
     lofsym $p |- ps .= ph $=
       wps wps wph wps lofid lofsym.1 lofeuc $.
       $( [2-Sep-2015] $)
@@ -245,7 +245,7 @@ $)
   ${
     loftrans.1 $e |- ph .= ps $.
     loftrans.2 $e |- ps .= ch $.
-    $( ` ` = ` is transitive. $)
+    $( ` .= ` is transitive. $)
     loftrans $p |- ph .= ch $=
       wph wps wch loftrans.1 wps wch loftrans.2 lofsym lofeuc $.
       $( [2-Sep-2015] $)

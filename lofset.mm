@@ -1,6 +1,6 @@
 $(
   lofset.mm
-  version 0.1.0
+  version 0.1.1
   Copyright (C) 2017 naipmoro
 
   This file is made available under the MIT License:
@@ -28,16 +28,16 @@ $(
 
   First a note about notation.  To avoid conflict with set.mm, I use grave
   accented brackets, "[`" and "`]" to represent the boundary (or "cross") of
-  LoF.  This seemed to me to broadcast the least visual noise (readers may
+  LoF.  This seemed to me to entail the least visual noise (readers may
   disagree).  Similarly I use ".=" for the equals sign.
 
-  LoF is typically presented as an equational logic (although I show that,
-  technically speaking, equations can be avoided).  In other words, axioms and
-  theorems are in the form P .= Q.  Transitioning from this to the
-  implicational form that traditionally characterizes classical propositional
-  logic can be done in various ways.  I believe the technique chosen here is
-  the simplest, relying on the single additional axiom ~ lofax-ded , the
-  equational analogue of modus ponens:
+  LoF is an example of an equational logic (although I show that, technically,
+  equations can be avoided).  In other words, axioms and theorems are in the
+  form P .= Q.  Transitioning from this to the implicational form
+  characteristic of classical propositional logic can be done in varying ways.
+  I believe the technique chosen here is among the simplest, relying on a
+  single additional axiom ~ lofax-ded , the equational analogue of modus
+  ponens:
 
   ${
     lofax-ded.1 $e |- ph $.
@@ -117,7 +117,10 @@ $)
   $( Empty space is a wff. $)
   lofdf-void $a wff $.
 
-  $( If ` ph ` is a wff, so is ` [ ` ph ` ] ` . $)
+  $( If ` ph ` is a wff, so is ` [ ` ph ` ] ` . We say that " ` ph ` is 
+     enclosed (or crossed)".  Combined with the previous definition, we see
+     that ` [` `] ` , ` [` [` `] `] ` ,  ` [` ... [` [` `] `] ... `] `  are all
+     wffs. $)
   lofdf-encl $a wff [` ph `] $.
 
   $( If ` ph ` and ` ps ` are wffs, so is ` ph ps ` .  This rule introduces
@@ -129,7 +132,7 @@ $)
 
 $(
   -----------------------------------------------------------------------------
-                  3. The four primitive rules of formal derivation
+                  3. The four primitive axioms of formal derivation
   -----------------------------------------------------------------------------
 
   In [Moro] equality, represented by "=", was one of the primitive constants of
@@ -147,44 +150,64 @@ $)
   ${
     lofax-euc.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
     lofax-euc.2 $e |- [` [` ch `] [` ps `] `] [` ch ps `] $.
-    $( We read this rule as:  "If ` ph ` is equal to ` ps ` and ` ch ` is equal
-       to ` ps ` , then we can assert that ` ph ` is equal to ` ch ` ". $)
+    $( We read this as:  "If ` ph ` is equal to ` ps ` and ` ch ` is equal to
+       ` ps ` , then we can assert that ` ph ` is equal to ` ch ` ".  In other
+       words, two things equal to the same thing are equal to each other.
+       This is Euclid's first Common Notion and, in an equational logic, this
+       and its sibling, transitivity, are the main engine of derivation. $)
     lofax-euc $a |- [` [` ph `] [` ch `] `] [` ph ch `] $.
   $}
 
+  $( Euclid's second and third Common Notions are specific to quantity, so not
+     exactly common.  We can rephrase them as: doing the same thing (e.g.,
+     applying the same operation) to equal things leaves equal things.  In
+     light of LoF's two operations, enclosure and juxtaposition, this leads to
+     the next two axioms (looked at differently, these can also be
+     seen as substitution/replacement rules). $)
+
   ${
     lofax-beq.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
-    $( We read this rule as:  "If ` ph ` is equal to ` ps ` , then we can
-       assert that ` [ ` ph ` ] ` is equal to ` [ ` ps ` ] ` ". $)
+    $( We read this as:  "If ` ph ` is equal to ` ps ` , then we can assert
+       that ` [ ` ph ` ] ` is equal to ` [ ` ps ` ] ` ".  Enclosing equal forms
+       leaves equal forms. $)
     lofax-beq $a |- [` [` [` ph `] `] [` [` ps `] `] `] [` [` ph `] [` ps `] `]
     $.
   $}
 
   ${
     lofax-sub.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
-    $( We read this rule as:  "If ` ph ` is equal to ` ps ` , then we can
-       assert that ` ph ze ` is equal to ` ps ze ` ". $)
+    $( We read this as:  "If ` ph ` is equal to ` ps ` , then we can assert
+       that ` ph ze ` is equal to ` ps ze ` ".  Juxtaposing the same form with
+       equal forms leaves equal forms. $)
     lofax-sub $a |- [` [` ph ze `] [` ps ze `] `] [` ph ze ps ze `] $.
   $}
 
-  $( We read this rule as:  " ` ph ps ` is equal to ` ps ph ` ". $)
+  $( Commutativity of LoF.  $)
+
+  $( We read this as:  " ` ph ps ` is equal to ` ps ph ` ".  Of the four
+     axioms, only this one is domain-specific. $)
   lofax-cmm $a |- [` [` ph ps `] [` ps ph `] `] [` ph ps ps ph `] $.
 
 $(
   -----------------------------------------------------------------------------
-                        4. Additional rules of derivation
+                        4. Theorems of derivation
   -----------------------------------------------------------------------------
+
+  If our target interpetation is satisfiable, we should expect "equality" to
+  meet the requirements of an equivalence relation: reflexivity, symmetry, and 
+  transitivity.  The next three theorems show that it does.
 $)
 
-  $( We read this theorem as:  " ` ph ` is equal to ` ph ` ". $)
+  $( "Equality" is reflexive.  We read this theorem as:  " ` ph ` is equal to
+      ` ph ` ". $)
   lofidu $p |- [` [` ph `] [` ph `] `] [` ph ph `] $=
     ( lofdf-void lofax-cmm ) ABC $.
     $( [26-Jan-2017] $)
 
   ${
     lofsymu.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
-    $( We read this theorem as:  "If ` ph ` is equal to ` ps ` , then we can
-       assert that ` ps ` is equal to ` ph ` ". $)
+    $( "Equality" is symmetric.  We read this theorem as:  "If ` ph ` is equal
+       to ` ps ` , then we can assert that ` ps ` is equal to ` ph ` ". $)
     lofsymu $p |- [` [` ps `] [` ph `] `] [` ps ph `] $=
       ( lofidu lofax-euc ) BBABDCE $.
       $( [26-Jan-2017] $)
@@ -193,9 +216,9 @@ $)
   ${
     loftransu.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
     loftransu.2 $e |- [` [` ps `] [` ch `] `] [` ps ch `] $.
-    $( We read this theorem as:  "If ` ph ` is equal to ` ps ` and ` ps ` is
-       equal to ` ch ` , then we can assert that ` ph ` is equal to
-       ` ch ` ". $)
+    $( "Equality" is transitive.  We read this theorem as:  "If ` ph ` is equal
+       to ` ps ` and ` ps ` is equal to ` ch ` , then we can assert that ` ph `
+       is equal to ` ch ` ". $)
     loftransu $p |- [` [` ph `] [` ch `] `] [` ph ch `] $=
       ( lofsymu lofax-euc ) ABCDBCEFG $.
       $( [26-Jan-2017] $)
@@ -217,7 +240,7 @@ $)
 
   ${
     lofdf-uni.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
-    $( Translate LoF unitary form into normal form. $)
+    $( Translate LoF's unitary form into normal form. $)
     lofdf-uni $a |- ph .= ps $.
   $}
 
@@ -230,52 +253,41 @@ $)
   ${
     lofeuc.1 $e |- ph .= ps $.
     lofeuc.2 $e |- ch .= ps $.
-    $( Two things equal to the same thing are equal to each other.  This is
-       Euclid's first Common Notion and, in an equational logic, this and its
-       sibling, transitivity, are the main engine of derivation. $)
+    $( The normal-form version of ~ lofax-euc . $)
     lofeuc $p |- ph .= ch $=
       ( lofdf-equiv lofax-euc lofdf-uni ) ACABCABDFCBEFGH $.
       $( [26-Jan-2017] $)
   $}
 
-
   ${
     lofbeq.1 $e  |- ph .= ps $.
-    $( Enclosing equal forms leaves equal forms. $)
+    $( The normal-form version of ~ lofax-beq . $)
     lofbeq $p |- [` ph `] .= [` ps `] $=
       ( lofdf-encl lofdf-equiv lofax-beq lofdf-uni ) ADBDABABCEFG $.
       $( [26-Jan-2017] $)
   $}
 
-
   ${
     lofsub.1 $e |- ph .= ps $.
-    $( Juxtaposing the same form with equal forms leaves equal forms. $)
+    $( The normal-form version of ~ lofax-sub . $)
     lofsub $p |- ph ze .= ps ze $=
       ( lofdf-juxt lofdf-equiv lofax-sub lofdf-uni ) ACEBCEABCABDFGH $.
       $( [26-Jan-2017] $)
   $}
 
-  $( Commutativity of LoF. $)
+  $( The normal-form version of ~ lofax-cmm . $)
   lofcmm $p |- ph ps .= ps ph $=
     ( lofdf-juxt lofax-cmm lofdf-uni ) ABCBACABDE $.
     $( [26-Jan-2017] $)
 
-  $( From the common notion that two
-     things equal to the same thing are equal to each other and from the
-     commutativity of LoF, we derive the reflexivity, symmetry, and
-     transitivity of '='.  Note that such a derivation is not possible in a
-     traditional formal system without additional axioms -- it is the ability
-     to reference the empty (or void) form that allows it here. $)
-
-  $( ` .= ` is reflexive. $)
+  $( The normal-form version of ~ lofidu . $)
   lofid $p |- ph .= ph $=
     ( lofdf-void lofcmm ) ABC $.
     $( [6-Sep-2015] $)
 
   ${
     lofsym.1 $e |- ph .= ps $.
-    $( ` .= ` is symmetric. $)
+    $( The normal-form version of ~ lofsymu . $)
     lofsym $p |- ps .= ph $=
       ( lofid lofeuc ) BBABDCE $.
       $( [2-Sep-2015] $)
@@ -284,25 +296,16 @@ $)
   ${
     loftrans.1 $e |- ph .= ps $.
     loftrans.2 $e |- ps .= ch $.
-    $( ` .= ` is transitive. $)
+    $( The normal-form version of ~ loftransu . $)
     loftrans $p |- ph .= ch $=
       ( lofsym lofeuc ) ABCDBCEFG $.
       $( [2-Sep-2015] $)
   $}
 
-  $( The axioms and theorems so far have been transparent, succinct, and
-     powerful (they embody Boolean algebra, after all), but applying them
-     would be impractical without further theorems. While this is no different
-     from any other formal system, here these auxiliary theorems have a
-     peculiar feeling of inconsequence: they are often tiresome (and sometimes
-     ugly) commutative elaborations of previous statements, whose only adhoc
-     utility is to ease the derivation of particular propositions.
-  $)
-
   ${
     lofeucr.1 $e |- ph .= ps $.
     lofeucr.2 $e |- ph .= ch $.
-    $( A commuted - or reversed - version of ~ lofeuc. $)
+    $( A commuted - or reversed - version of ~ lofeuc . $)
     lofeucr $p |- ps .= ch $=
       ( lofsym loftrans ) BACABDFEG $.
       $( [2-Sep-2015] $)
@@ -310,29 +313,33 @@ $)
 
   ${
     lofsubr.1 $e |- ph .= ps $.
-    $( A commuted version of lofsub. $)
+    $( A commuted version of ~ lofsub . $)
     lofsubr $p |- et ph .= et ps $=
       ( lofdf-juxt lofsub lofcmm lofeucr ) BCEZCAEZCBEACEIJABCDFACGHBCGH $.
       $( [2-Sep-2015] $)
   $}
 
-  $( More versions of the substitution principle. Our lack of access to the
+  $( More versions of replacement/substitution. Our lack of access to the
      implicit commutativity of 2D forces us to spell out each case. $)
   ${
     lofsubst.1 $e |- ph .= ps $.
-    $( PLEASE PUT DESCRIPTION HERE. $)
+    $( Replace a form with an equal form within an extended form. $)
     lofsubst $p |- et ph ze .= et ps ze $=
       ( lofdf-juxt lofsub lofsubr ) ADFBDFCABDEGH $.
       
     $( [2-Sep-2015] $)
+    $( Replace a form with an equal form within a commuted extended form. $)
     lofsubstr $p |- et ph ze .= ze ps et $=
       ( lofdf-juxt lofsub lofcmm loftrans lofsubr ) CAFDFCDFBFDBFZCFADFZKCLBDFK
       ABDEGBDHIJCKHI $.
-      
+
+    $( Replace a form with an equal form within a bounded extended form. $)
     $( [2-Sep-2015] $)
     lofsubb1 $p |- si [` et ph ze `] rh .= si [` et ps ze `] rh $=
       ( lofdf-juxt lofdf-encl lofsubst lofbeq ) CAHDHZICBHDHZIEFLMABCDGJKJ $.
-      
+
+    $( Replace a form with an equal form within a bounded and commuted extended
+       form. $)
     $( [2-Sep-2015] $)
     lofsubb2 $p |- si [` et ph ze `] rh .= si [` ze ps et `] rh $=
       ( lofdf-juxt lofdf-encl lofsubstr lofbeq lofsubst ) CAHDHZIDBHCHZIEFMNABC
@@ -343,7 +350,7 @@ $)
   ${
     lofrep.1 $e |- ph .= ps $.
     lofrep.2 $e |- et ph ze .= mu $.
-    $( Direct substitution into an equation. $)
+    $( Direct substitution into LHS of an equation. $)
     lofrep $p |- et ps ze .= mu $=
       ( lofdf-juxt lofsubst lofeucr ) CAHDHCBHDHEABCDFIGJ $.
       $( [18-Sep-2015] $)
@@ -352,7 +359,7 @@ $)
   ${
     lofreps.1 $e |- ph .= ps $.
     lofreps.2 $e |- mu .= et ph ze $.
-    $( Direct substitution into a switched equation. $)
+    $( Direct substitution into RHS of an equation. $)
     lofreps $p |- mu .= et ps ze $=
       ( lofdf-juxt lofsym lofrep ) CBHDHEABCDEFECAHDHGIJI $.
       $( [14-Feb-2017] $)
@@ -361,7 +368,7 @@ $)
   ${
     lofrepbx.1 $e |- ph .= ps $.
     lofrepbx.2 $e |- si [` et ph ze `] rh .= mu $.
-    $( Direct substitution into a bounded-form equation. $)
+    $( Direct substitution into LHS of a bounded-form equation. $)
     lofrepbx $p |- si [` et ps ze `] rh .= mu $=
       ( lofdf-juxt lofdf-encl lofsubb1 lofeucr ) ECAJDJKJFJECBJDJKJFJGABCDEFHLI
       M $.
@@ -371,7 +378,7 @@ $)
   ${
     lofrepbxs.1 $e |- ph .= ps $.
     lofrepbxs.2 $e |- mu .= si [` et ph ze `] rh $.
-    $( Direct substitution into a switched bounded-form equation. $)
+    $( Direct substitution into RHS of a bounded-form equation. $)
     lofrepbxs $p |- mu .= si [` et ps ze `] rh $=
       ( lofdf-juxt lofdf-encl lofsym lofrepbx ) ECBJDJKJFJGABCDEFGHGECAJDJKJFJI
       LML $.
@@ -381,7 +388,7 @@ $)
   ${
     lofrepbd.1 $e |- ph .= ps $.
     lofrepbd.2 $e |- [` [` et ph ze `] `] .= mu $.
-    $( Direct substitution into a double bounded-form equation. $)
+    $( Direct substitution into LHS of a double-bounded-form equation. $)
     lofrepbd $p |- [` [` et ps ze `] `] .= mu $=
       ( lofdf-juxt lofdf-encl lofdf-void lofsubb1 lofbeq lofeucr ) CAHDHIZICBHD
       HIZIENOABCDJJFKLGM $.
