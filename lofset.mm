@@ -45,7 +45,8 @@ $(
   $}
 
   With this tool in hand, and with appropriate definitions of "implies" and
-  "not", I prove ~ ax-1 , ~ ax-2 , ~ ax-3 , and ~ ax-mp as theorems of LoF.
+  "not", I prove the axioms of metamath, ~ ax-1 , ~ ax-2 , ~ ax-3 , and
+  ~ ax-mp , as theorems of LoF.
 $)
 
 $(
@@ -725,7 +726,7 @@ $(
   -----------------------------------------------------------------------------
 $)
 
-  $( This key hybrid theorem states that the equivalence of ` ph ` to True is
+  $( This key theorem states that the equivalence of ` ph ` to True is
      equivalent to just ` ph ` .  (Contributed by naipmoro, 29-Jan-2017.) $)
   lofelimeq $p |- [` [` ph `] [` [` `] `] `] [` ph [` `] `] .= ph $=
     ( lofdf-encl lofdf-void lofi2 lofsubb1 lofc1 lofsubst loftrans lofcmm lofc2
@@ -811,6 +812,14 @@ $(
   -----------------------------------------------------------------------------
                    11. Defining classical propositional logic
   -----------------------------------------------------------------------------
+
+  We define ` ( ph -> ps ) ` as ` [` ph `] ps ` and ` -. ph ` as ` [` ph `] ` .
+  Constructing hybrid wffs like ` [` -. ph `] ` that have no meaning in either
+  LoF or propositional logic becomes not merely possible but necessary in the
+  course of translating from one system to the other.  Furthermore, one can
+  validly calculate with these intermediate forms.  For example,
+  ` [` -. ph `] -. ph ` can be reduced to ` [` `] ` by ~ lofc2e without the
+  need to fully translate into LoF.  
 $)
 
   $( Declare the primitive constant symbols for propositional calculus. $)
@@ -819,7 +828,7 @@ $)
   $c -> $. $( Right arrow (read:  "implies") $)
   $c -. $. $( Right handle (read:  "not") $)
 
-  $( Classical implication is a wff. $)
+  $( Classical material implication is a wff. $)
   wi $a wff ( ph -> ps ) $.
   
   $( Classical negation is a wff. $)
@@ -839,19 +848,25 @@ $(
   From this point on, we can prove all the true statements of propositional
   logic (axioms and theorems) entirely in LoF and translate the results back 
   into propositional form.  Below is an example where I prove Principia
-  Mathematica's 2.18, the "proof by contradiction" theorem known as the Law of
-  Clavius [WhiteheadRussell] p. 103.
+  Mathematica's "proof by contradiction" theorem known as the Law of Clavius
+  [WhiteheadRussell] p. 103.
+
+  From the point of view of LoF, the Law of Clavius, like most theorems of
+  propositional logic, are trivial truths undeserving of the label "theorem".
+  It would be as though someone claimed that "3x - 2x = x" was a "theorem" of
+  numerical algebra.  Technically, yes ...
 
   One day LoF will supplant the propositional calculus, as inevitably as brute
   algebraic computations (mostly) supplanted elegant geometric reasoning, and
   for much the same reasons.  But not in the manner shown here.  If you examine
   the proof below, you will appreciate all the overhead involved in translating
   back and forth between the two systems.  Until predicate logic, the crown
-  jewel, is itself conquered by boundary logic, and a single logic is deployed,
-  one should not expect much movement on the part of logicians.
+  jewel, is itself conquered by boundary formalism, and a single logic is
+  deployed, one should not expect much movement on the part of logicians.
 $)
 
-  $( LoF version of ~ pm2.18  (Contributed by naipmoro, 14-Feb-2017.) $)
+  $( LoF version of metamath's ~ pm2.18.  (Contributed by naipmoro,
+     14-Feb-2017.) $)
   lofpm2.18 $p |- ( ( -. ph -> ph ) -> ph ) $=
     ( wn wi lofdf-encl lofdf-juxt lofdf-neg lofdf-imp lofrepbxs lofc2x loftrans
     lofdf-void lofc1x lofreps lofc2e lofelim ) ABZACZACZRADZAEKDPSKARAFRPDZAEZD
@@ -910,9 +925,9 @@ $(
   -----------------------------------------------------------------------------
 
   With the proofs of ~ ax-1 , ~ ax-2 , ~ ax-3 , and ~ ax-mp completed, we can
-  retire LoF and proceed with the classical elaboration of metamath's logic.
+  retire LoF and proceed with the normal development of metamath's logic.
   Although one could always descend, here or there, back into LoF, it is hard
-  to imagine scenarios where that would be useful.
+  to imagine many scenarios where that would be useful.
 
   This file has been tested with the latest master branch version of set.mm
   (https://github.com/metamath/set.mm/blob/master/set.mm  as of commit
@@ -923,9 +938,12 @@ $(
   * Recursively define primitive wffs for propositional calculus
   * The axioms of propositional calculus
 
-  Paste the contents of this file anywhere prior to the start of active
+  Paste the contents of this file anywhere before the start of set.mm's active
   statements. Read the ensuing (saved) file into metamath and run "verify
   proof *".  Expected result: "All proofs in the database were verified."
+
+  An example of such an altered set.mm file is available here:
+  https://github.com/naipmoro/lofmm/blob/master/set(lof).mm .
 $)
   
 $(
@@ -933,7 +951,7 @@ $(
                                  REFERENCES
   -----------------------------------------------------------------------------
 
-  1. [Naip] naipmoro, "lof.mm", Metamath file (2016); available at 
+  1. [Naip] naipmoro, "lof.mm", Metamath file (2015); available at 
      https://github.com/naipmoro/lofmm/blob/master/lof.mm .
   2. [Spencer-Brown] Spencer-Brown, George, "Laws of Form", Allen & Unwin,
      London (1969).
