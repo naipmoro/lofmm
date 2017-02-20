@@ -583,6 +583,9 @@ $(
   -----------------------------------------------------------------------------
                       9. Generalizations of LoF consequences
   -----------------------------------------------------------------------------
+
+  This section is a modest start to ease the pain of calculating with LoF in a
+  one-dimensional notation.
 $)
 
   $( Generalizations of C1. $)
@@ -734,7 +737,8 @@ $)
     OCMCCPDEUCACPAFGHANCCCACLHASIHNAJHOCCADGH $.
     $( [29-Jan-2017] $)
 
-  $( The LoF deduction axiom. $)
+  $( The LoF deduction axiom.  This axiom allows us seamlessly to interchange
+     equational and classical forms.  $)
   ${
     lofax-ded.1 $e |- ph $.
     lofax-ded.2 $e |- ph .= ps $.
@@ -816,10 +820,10 @@ $(
   We define ` ( ph -> ps ) ` as ` [` ph `] ps ` and ` -. ph ` as ` [` ph `] ` .
   Constructing hybrid wffs like ` [` -. ph `] ` that have no meaning in either
   LoF or propositional logic becomes not merely possible but necessary in the
-  course of translating from one system to the other.  Furthermore, one can
-  validly calculate with these intermediate forms.  For example,
-  ` [` -. ph `] -. ph ` can be reduced to ` [` `] ` by ~ lofc2e without the
-  need to fully translate into LoF.  
+  course of translating from one system to the other.  Indeed, one can validly
+  calculate with these intermediate forms.  For example, ` [` -. ph `] -. ph `
+  can be reduced to ` [` `] ` by ~ lofc2e without the need to fully translate
+  into LoF.  
 $)
 
   $( Declare the primitive constant symbols for propositional calculus. $)
@@ -842,7 +846,8 @@ $)
 
 $(
   -----------------------------------------------------------------------------
-                   12.  Propositional logic is superfluous
+             
+                  12.  Propositional logic is superfluous
   -----------------------------------------------------------------------------
 
   From this point on, we can prove all the true statements of propositional
@@ -852,7 +857,7 @@ $(
   [WhiteheadRussell] p. 103.
 
   From the point of view of LoF, the Law of Clavius, like most theorems of
-  propositional logic, are trivial truths undeserving of the label "theorem".
+  propositional logic, is a trivial truth undeserving of the label "theorem".
   It would be as though someone claimed that "3x - 2x = x" was a "theorem" of
   numerical algebra.  Technically, yes ...
 
@@ -860,9 +865,9 @@ $(
   algebraic computations (mostly) supplanted elegant geometric reasoning, and
   for much the same reasons.  But not in the manner shown here.  If you examine
   the proof below, you will appreciate all the overhead involved in translating
-  back and forth between the two systems.  Until predicate logic, the crown
-  jewel, is itself conquered by boundary formalism, and a single logic is
-  deployed, one should not expect much movement on the part of logicians.
+  back and forth between the two systems.  Until predicate logic is itself
+  conquered by boundary formalism, and a single logic is deployed, one should
+  not expect much movement on the part of logicians.
 $)
 
   $( LoF version of metamath's ~ pm2.18.  (Contributed by naipmoro,
@@ -929,7 +934,7 @@ $(
   Although one could always descend, here or there, back into LoF, it is hard
   to imagine many scenarios where that would be useful.
 
-  This file has been tested with the latest master branch version of set.mm
+  This file has been tested with the master branch version of set.mm
   (https://github.com/metamath/set.mm/blob/master/set.mm  as of commit
    558ed611a8d20ccdf7d486f19ad86c76bbab59e0 on 20-Dec-2016).
 
