@@ -240,9 +240,9 @@ $)
   $c .= $. $( Equality (read:  "is equal to" or "is equivalent to") $)
 
   ${
-    lofdf-equiv.1 $e |- ph .= ps $.
+    lofdf-equ.1 $e |- ph .= ps $.
     $( Define equality in terms of LoF's unitary formalism. $)
-    lofdf-equiv $a |- [` [` ph `] [` ps `] `] [` ph ps `] $.
+    lofdf-equ $a |- [` [` ph `] [` ps `] `] [` ph ps `] $.
   $}
 
   ${
@@ -266,7 +266,7 @@ $)
     $( The normal-form version of ~ lofax-euc .  (Contributed by naipmoro,
        26-Jan-2017.) $)
     lofeuc $p |- ph .= ch $=
-      ( lofdf-equiv lofax-euc lofdf-uni ) ACABCABDFCBEFGH $.
+      ( lofdf-equ lofax-euc lofdf-uni ) ACABCABDFCBEFGH $.
       $( [26-Jan-2017] $)
   $}
 
@@ -275,7 +275,7 @@ $)
     $( The normal-form version of ~ lofax-beq .  (Contributed by naipmoro,
        26-Jan-2017.) $)
     lofbeq $p |- [` ph `] .= [` ps `] $=
-      ( lofdf-encl lofdf-equiv lofax-beq lofdf-uni ) ADBDABABCEFG $.
+      ( lofdf-encl lofdf-equ lofax-beq lofdf-uni ) ADBDABABCEFG $.
       $( [26-Jan-2017] $)
   $}
 
@@ -284,7 +284,7 @@ $)
     $( The normal-form version of ~ lofax-sub .  (Contributed by naipmoro,
        26-Jan-2017.) $)
     lofsub $p |- ph ze .= ps ze $=
-      ( lofdf-juxt lofdf-equiv lofax-sub lofdf-uni ) ACEBCEABCABDFGH $.
+      ( lofdf-juxt lofdf-equ lofax-sub lofdf-uni ) ACEBCEABCABDFGH $.
       $( [26-Jan-2017] $)
   $}
 
@@ -466,48 +466,56 @@ $(
   -----------------------------------------------------------------------------
                                  7. Axioms of LoF
   -----------------------------------------------------------------------------
+
+  [Naip] discusses different sets of axioms for LoF.  Here I adopt the original
+  set of [Spencer-Brown] p. 28.  The descriptive names of axioms and theorems
+  are Spencer-Brown's own.
 $)
 
-  $( J1.  Position. $)
+  $( J1. Position. $)
   lofj1 $a |- [` [` ph `] ph `] .= $.
 
-  $( J2.  Transposition. $)
+  $( J2. Transposition. $)
   lofj2 $a |- [` [` ph ch `] [` ps ch `] `] .= [` [` ph `] [` ps `] `] ch $.
 
 $(
   -----------------------------------------------------------------------------
                                 8. Theorems of LoF
   -----------------------------------------------------------------------------
+
+  With the exception of the corollaries and the initials, these theorems, which
+  Spencer-Brown calls Consequences, are from [Spencer-Brown] pp. 28-35.  I
+  alter the sequence slightly, proving C5 prior to C4. 
 $)
 
-  $( C1.  Reflexion.  (Contributed by naipmoro, 6-Sep-2015.) $)
+  $( C1. Reflexion.  (Contributed by naipmoro, 20-Feb-2017.) $)
   lofc1 $p |- [` [` ph `] `] .= ph $=
-    ( lofdf-encl lofdf-juxt lofdf-void lofsub lofsym lofcmmbx lofsubb1 loftrans
-    lofj1 lofj2 lofeuc lofquadbx ) ABZBZOACBZNACBZCBZAOAOCBZBZROONCBZSCBZTONOCB
-    ZSCBZUBOUAOCZUDUEOUADONJZEFNAOKLUCUADSDDNODDDDDGHIUADDSDDUFHISPDQDDDDDAODDD
-    DDGQDAJFMIROBOCBZACAONAKUGDAOJEII $.
-    $( [6-Sep-2015] $)
+    ( lofdf-encl lofdf-juxt lofj1 lofcmmbx lofsub lofsym lofj2 lofeuc lofrepbxs
+    lofdf-void lofquadbx loftrans ) ABZBZOACBZNACBZCBZAOAOCBZBRONCBZKKSKKONDZNO
+    CBZTKSKKONOKKKKKEOTOCZUBSCBUCOTKOUAFGNAOHIJJSPKQKKKKKAOKKKKKEQKADGLMROBOCBZ
+    ACAONAHUDKAODFMM $.
+    $( [20-Feb-2017] $)
 
-  $( C2.  Generation.  (Contributed by naipmoro, 6-Sep-2015.) $)
+  $( C2. Generation.  (Contributed by naipmoro, 6-Sep-2015.) $)
   lofc2 $p |- [` ph ps `] ps .= [` ph `] ps $=
     ( lofdf-encl lofdf-juxt lofj2 lofdf-void lofc1 lofquadbx loftrans lofsubb1
     lofj1 lofeucr ) ACZBDZCZBCZBDCZDCZABDCBDZNRMCZPCZDCBDSMPBETAUABFFFFBAGBGHIR
     OCNQFOFFFBKJNGIL $.
     $( [6-Sep-2015] $)
 
-  $( C3.  Integration.  (Contributed by naipmoro, 6-Sep-2015.) $)
+  $( C3. Integration.  (Contributed by naipmoro, 6-Sep-2015.) $)
   lofc3 $p |- [` `] ph .= [` `] $=
     ( lofdf-encl lofdf-juxt lofdf-void lofc2 lofc1 lofj1 lofbeq lofeucr ) ABACZ
     DBZACKDAEJBZBJKJFLDAGHII $.
     $( [6-Sep-2015] $)
 
-  $( C5.  Iteration.  (Contributed by naipmoro, 6-Sep-2015.) $)
+  $( C5. Iteration.  (Contributed by naipmoro, 6-Sep-2015.) $)
   lofc5 $p |- ph ph .= ph $=
     ( lofdf-encl lofdf-juxt lofc2 lofdf-void lofc1 lofsubst loftrans lofeucr
     lofj1 ) ABZACBZACZAACZAMKBZACNKADOAEAAFGHLEEAAJGI $.
     $( [6-Sep-2015] $)
 
-  $( C4.  Occultation.  (Contributed by naipmoro, 6-Sep-2015.) $)
+  $( C4. Occultation.  (Contributed by naipmoro, 6-Sep-2015.) $)
   lofc4 $p |- [` [` ph `] ps `] ph .= ph $=
     ( lofdf-encl lofdf-juxt lofdf-void lofj2 lofc1 lofsubb1 lofc5 lofeucr lofc3
     loftrans lofsubst ) ACZBDCADZECZCZADZAOPBCZCZDZCADZRONSADCZDCZUBAADZCZUCDCZ
@@ -520,7 +528,7 @@ $)
     DABDCJDJKAEBEJAFGJBHI $.
     $( [18-Sep-2015] $)
 
-  $( C6.  Extension.  (Contributed by naipmoro, 6-Sep-2015.) $)
+  $( C6. Extension.  (Contributed by naipmoro, 6-Sep-2015.) $)
   lofc6 $p |- [` [` ph `] [` ps `] `] [` [` ph `] ps `] .= ph $=
     ( lofdf-encl lofdf-juxt lofc1 lofdf-void lofcmmbx lofquadbx loftrans lofbeq
     lofj2 lofj1 lofsubb1 lofeucr ) ACZBCZDCZOBDCZDZOCZASCZCZSTSEUBPCPDCZODZCTUA
@@ -533,14 +541,14 @@ $)
     EZBCZEDBEZBAFBKCZLDDDJEMBKFMEZBDANEDMBGZOBDKDOACEMPMAHIIII $.
     $( [14-Feb-2017] $)
 
-  $( C7.  Echelon.  (Contributed by naipmoro, 6-Sep-2015.) $)
+  $( C7. Echelon.  (Contributed by naipmoro, 6-Sep-2015.) $)
   lofc7 $p |- [` [` [` ph `] ps `] ch `] .= [` ph ch `] [` [` ps `] ch `] $=
     ( lofdf-juxt lofdf-encl lofj2 lofbeq lofdf-void lofsubb1 loftrans lofeucr
     lofc1 ) ACDEBEZCDEDZEZEZAEZBDECDZEZNPQMEZDECDZESOUAAMCFGUARTBQHHCBLIGJNLK
     $.
     $( [6-Sep-2015] $)
 
-  $( C8.  Modified transposition.  (Contributed by naipmoro, 6-Sep-2015.) $)
+  $( C8. Modified transposition.  (Contributed by naipmoro, 6-Sep-2015.) $)
   lofc8 $p |- [` [` ph `] [` ps th `] [` ch th `] `] 
              .= [` [` ph `] [` ps `] [` ch `] `] [` [` ph `] [` th `] `] $=
     ( lofdf-encl lofdf-juxt lofc1 lofj2 lofbeq lofsubb2 lofrepbx lofc7 lofcmmbx
@@ -549,7 +557,7 @@ $)
     BQNNNNNMUGQNNNNNMOPP $.
     $( [6-Sep-2015] $)
 
-  $( C9.  Crosstransposition.  (Contributed by naipmoro, 6-Sep-2015.) $)
+  $( C9. Crosstransposition.  (Contributed by naipmoro, 6-Sep-2015.) $)
   lofc9 $p |- [` [` [` ps `] [` ph `] `] [` [` ch `] [` ph `] `]
              [` [` th `] ph `] [` [` ta `] ph `] `]
              .= [` [` ph `] ps ch `] [` ph th ta `] $=
@@ -569,12 +577,14 @@ $)
      but a prolonged deduction from these equations, so conceptually they
      belong at the beginning. $)
 
-  $( Intial I1.  Number.  (Contributed by naipmoro, 14-Feb-2017.) $)
+  $( Intial I1.  Number.  This is also known as the law of calling            
+     [Spencer-Brown] p. 1.  (Contributed by naipmoro, 14-Feb-2017.) $)
   lofi1 $p |- [` `] [` `] .= [` `] $=
     ( lofdf-void lofdf-encl lofc5 ) ABC $.
     $( [14-Feb-2017] $)
 
-  $( Intial I2.  Order.  (Contributed by naipmoro, 14-Feb-2017.) $)
+  $( Intial I2.  Order.  This is also known as the law of crossing
+     [Spencer-Brown] p. 2. (Contributed by naipmoro, 14-Feb-2017.) $)
   lofi2 $p |- [` [` `] `] .= $=
     ( lofdf-void lofj1 ) AB $.
     $( [14-Feb-2017] $)
@@ -585,7 +595,9 @@ $(
   -----------------------------------------------------------------------------
 
   This section is a modest start to ease the pain of calculating with LoF in a
-  one-dimensional notation.
+  one-dimensional notation.  These are mostly generalizations of the major
+  theorems/axioms that try to relieve the tedium of commutative rearrangements
+  of terms and maintaining equational symmetries.
 $)
 
   $( Generalizations of C1. $)
@@ -737,8 +749,8 @@ $)
     OCMCCPDEUCACPAFGHANCCCACLHASIHNAJHOCCADGH $.
     $( [29-Jan-2017] $)
 
-  $( The LoF deduction axiom.  This axiom allows us seamlessly to interchange
-     equational and classical forms.  $)
+  $( The LoF deduction axiom.  This axiom is the key that allows us to
+     interchange equational and classical forms.  $)
   ${
     lofax-ded.1 $e |- ph $.
     lofax-ded.2 $e |- ph .= ps $.
@@ -753,8 +765,8 @@ $)
     $( If ` ph ` is equivalent to True, we can assert ` ph ` .  (Contributed by
        naipmoro, 14-Feb-2017.) $)
     lofelim $p |- ph $=
-      ( lofdf-encl lofdf-void lofdf-juxt lofdf-equiv lofelimeq lofax-ded ) ACDC
-      ZCECAIECEAAIBFAGH $.
+      ( lofdf-encl lofdf-void lofdf-juxt lofdf-equ lofelimeq lofax-ded ) ACDCZC
+      ECAIECEAAIBFAGH $.
       $( [14-Feb-2017] $)
   $}
 
@@ -796,9 +808,9 @@ $)
        conclude the LoF equivalent of ` ph /\ ps ` . (Contributed by naipmoro,
        14-Feb-2017.) $)
     lofand $p |- [` [` ph `] [` ps `] `] $=
-      ( lofdf-encl lofdf-juxt lofdf-void lofc3bx lofintr lofeuc lofeucr lofelim
-      lofdf-equiv lofrepbx ) AEBEFEZOGEZBFEFOPGBOGHAPGBOGPACIZOABFEFABAPBQBDIJM
-      INKL $.
+      ( lofdf-encl lofdf-juxt lofc3bx lofintr lofeuc lofdf-equ lofrepbx lofeucr
+      lofdf-void lofelim ) AEBEFEZOMEZBFEFOPMBOMGAPMBOMPACHZOABFEFABAPBQBDHIJHK
+      LN $.
       $( [14-Feb-2017] $)
   $}
 
