@@ -359,7 +359,15 @@ $)
     lofsubb1 $p |- si [` et ph ze `] rh .= si [` et ps ze `] rh $=
       ( lofdf-juxt lofdf-encl lofsubst lofbeq ) CAHDHZICBHDHZIEFLMABCDGJKJ $.
       $( [2-Sep-2015] $)
-      
+
+    $( Replace a form with an equal form within a double-bounded extended form.
+       (Contributed by naipmoro, 25-Feb-2017.) $)    
+    lofsubbd1 $p |-  mu [` si [` et ph ze `] rh `] la 
+                    .= mu [` si [` et ps ze `] rh `] la $=
+      ( lofdf-juxt lofdf-encl lofdf-void lofsubb1 ) ECAJDJKJFJECBJDJKJFJLLGHABC
+      DEFIMM $.
+      $( [25-Feb-2017] $)
+
     $( Replace a form with an equal form within a bounded and commuted extended
        form.  (Contributed by naipmoro, 2-Sep-2015.) $)    
     lofsubb2 $p |- si [` et ph ze `] rh .= si [` ze ps et `] rh $=
@@ -402,7 +410,7 @@ $)
   ${
     lofrepbxs.1 $e |- ph .= ps $.
     lofrepbxs.2 $e |- mu .= si [` et ph ze `] rh $.
-    $( Direct substitution into RHS of a bounded-form equation.  (Contributed
+    $( Direct substitution into RHS of a bounded equation.  (Contributed
        by naipmoro, 14-Feb-2017.) $)
     lofrepbxs $p |- mu .= si [` et ps ze `] rh $=
       ( lofdf-juxt lofdf-encl lofsym lofrepbx ) ECBJDJKJFJGABCDEFGHGECAJDJKJFJI
@@ -413,7 +421,7 @@ $)
   ${
     lofrepbd.1 $e |- ph .= ps $.
     lofrepbd.2 $e |- [` [` et ph ze `] `] .= mu $.
-    $( Direct substitution into LHS of a double-bounded-form equation.
+    $( Direct substitution into LHS of a double-bounded equation.
        (Contributed by naipmoro, 3-Oct-2015.) $)
     lofrepbd $p |- [` [` et ps ze `] `] .= mu $=
       ( lofdf-juxt lofdf-encl lofdf-void lofsubb1 lofbeq lofeucr ) CAHDHIZICBHD
@@ -452,6 +460,14 @@ $)
     ( lofdf-juxt lofid lofsubstr lofsubb1 ) ADHBHBDHAHCEFGDDABDIJK $.
     $( [2-Sep-2015] $)
 
+  $( Double-bounded and extended commutativity.  (Contributed by naipmoro,
+     25-Feb-2017.) $)
+  lofcmmbdx $p |- la [` rh [` et ph ze ps si `] mu `] ka
+                  .= la [` rh [` et ps ze ph si `] mu `] ka $=
+    ( lofdf-juxt lofdf-encl lofdf-void lofcmmbx lofsubb1 ) FCAJDJBJEJKJGJFCBJDJ
+    AJEJKJGJLLHIABCDEFGMN $.
+    $( [25-Feb-2017] $)
+
   ${
     lofquadbx.1 $e |- ph .= ps $.
     lofquadbx.2 $e |- ch .= th $.
@@ -483,9 +499,9 @@ $(
                                 8. Theorems of LoF
   -----------------------------------------------------------------------------
 
-  With the exception of the corollaries and the initials, these theorems, which
-  Spencer-Brown calls Consequences, are from [Spencer-Brown] pp. 28-35.  I
-  alter the sequence slightly, proving C5 prior to C4. 
+  These theorems, which Spencer-Brown calls Consequences, are from
+  [Spencer-Brown] pp. 28-35.  I alter the sequence slightly, proving C5 prior
+  to C4. 
 $)
 
   $( C1. Reflexion.  (Contributed by naipmoro, 20-Feb-2017.) $)
@@ -574,17 +590,15 @@ $)
 
   $( The following two equations constitute the entire "arithmetic" which
      underlies the Primary Algebra.  LoF (and propositional logic) is nothing
-     but a prolonged deduction from these equations, so conceptually they
-     belong at the beginning. $)
+     but a prolonged deduction from this duo, so conceptually they belong at
+     the beginning. $)
 
-  $( Intial I1.  Number.  This is also known as the law of calling            
-     [Spencer-Brown] p. 1.  (Contributed by naipmoro, 14-Feb-2017.) $)
+  $( Intial I1.  Number.  (Contributed by naipmoro, 14-Feb-2017.) $)
   lofi1 $p |- [` `] [` `] .= [` `] $=
     ( lofdf-void lofdf-encl lofc5 ) ABC $.
     $( [14-Feb-2017] $)
 
-  $( Intial I2.  Order.  This is also known as the law of crossing
-     [Spencer-Brown] p. 2. (Contributed by naipmoro, 14-Feb-2017.) $)
+  $( Intial I2.  Order.  (Contributed by naipmoro, 14-Feb-2017.) $)
   lofi2 $p |- [` [` `] `] .= $=
     ( lofdf-void lofj1 ) AB $.
     $( [14-Feb-2017] $)
@@ -595,9 +609,10 @@ $(
   -----------------------------------------------------------------------------
 
   This section is a modest start to ease the pain of calculating with LoF in a
-  one-dimensional notation.  These are mostly generalizations of the major
-  theorems/axioms that try to relieve the tedium of commutative rearrangements
-  of terms and maintaining equational symmetries.
+  one-dimensional notation.  In generalizing some major theorems, it attempts
+  to lighten the significant overhead of commutative term rearrangements and
+  maintenance of equational symmetries.  The ugliness of the section is a gauge
+  of how inappropriate a linear script is to LoF.
 $)
 
   $( Generalizations of C1. $)
@@ -700,11 +715,33 @@ $)
     ( lofdf-juxt lofdf-void lofcmmx lofc5 lofid lofrep lofeuc ) BAEZCEZAEDELAEC
     EDEZMDECALFDGAAEABCDENAHNIJK $.
     $( [14-Feb-2017] $)
+
+  $( ~ lofc5 bounded and extended.  (Contributed by naipmoro, 25-Feb-2017.) $)
+  lofc5bx $p |- rh [` et ph ze ph si `] mu .= rh [` et ph ze si `] mu $=
+    ( lofdf-juxt lofdf-void lofc5x lofsubb1 ) BAGCGZAGDGKDGHHEFABCDIJ $.
+    $( [25-Feb-2017] $)
+
     
   $( ~ lofc5 reversed and extended.  (Contributed by naipmoro, 14-Feb-2017.) $)
   lofc5rx $p |- et ph ze si .= et ph ze ph si $=
     ( lofdf-juxt lofc5x lofsym ) BAECEZAEDEHDEABCDFG $.
     $( [14-Feb-2017] $)
+
+  $( Generalizations of C6. $)
+
+  $( ~ lofc6 extended.  (Contributed by naipmoro, 25-Feb-2017.) $)
+  lofc6x $p |- et [` [` ph `] [` ps `] `] ze [` [` ph `] ps `] si
+               .= et ph ze si $=
+    ( lofdf-encl lofdf-juxt lofc6 lofdf-void lofcmmx lofreps ) AFZBFGFZLBGFZGAC
+    DEGCMGZDGNGEGABHDNOIEJK $.
+    $( [25-Feb-2017] $)
+
+  $( ~ lofc6 reversed and extended.  (Contributed by naipmoro, 25-Feb-2017.) $)
+  lofc6rx $p |- et [` [` ph `] ps `] ze [` [` ph `] [` ps `] `] si
+                .= et ph ze si  $=
+    ( lofdf-encl lofdf-juxt lofcmmx lofc6x loftrans ) CAFZBGFZGDGKBFGFZGEGCMGDG
+    LGEGCAGDGEGLMCDEHABCDEIJ $.
+    $( [25-Feb-2017] $)
 
   $( Generalizations of J1. $)
 
@@ -713,9 +750,15 @@ $)
     ( lofdf-encl lofdf-juxt lofdf-void lofc2bx lofc3bx loftrans ) EBAGHCHAHDHGH
     FHEBIGHCHAHDHGHFHEFHIABICDEFJBCAHDHEFKL $.
     $( [14-Feb-2017] $)
-    
-  $( ~ lofj1 reversed and extended.  (Contributed by naipmoro, 14-Feb-2017.) $)
-  lofj1rx $p |- rh mu .= rh [` et [` ph `] ze ph si `] mu $=
+
+  $( ~ lofj1 reversed and extended.  (Contributed by naipmoro, 25-Feb-2017.) $)
+  lofj1rx $p |- rh [` et ph ze [` ph `] si `] mu .= rh mu $=
+    ( lofdf-juxt lofdf-encl lofcmmbx lofj1x loftrans ) EBAGCGAHZGDGHGFGEBLGCGAG
+    DGHGFGEFGALBCDEFIABCDEFJK $.
+    $( [25-Feb-2017] $)
+
+  $( ~ lofj1 extended and switched.  (Contributed by naipmoro, 14-Feb-2017.) $)
+  lofj1xs $p |- rh mu .= rh [` et [` ph `] ze ph si `] mu $=
     ( lofdf-encl lofdf-juxt lofj1x lofsym ) EBAGHCHAHDHGHFHEFHABCDEFIJ $.
     $( [14-Feb-2017] $)
 
@@ -737,7 +780,89 @@ $)
 
 $(
   -----------------------------------------------------------------------------
-                        10. Implementing LoF deduction
+                          10. Excursion into equality
+  -----------------------------------------------------------------------------
+$)
+
+  $( We will later define ` ( ph -> ps ) ` as ` [` ph `] ps `.  This theorem
+     shows that our previous definition of equality is equivalent to
+     ` ( ( ph -> ps ) /\ ( ps -> ph ) ) ` .  The latter, in turn, is what we
+     mean by the biconditional ` <-> ` .  In othe words, equality and the
+     biconditional are, as expected, equivalent.  This proof is adapted from
+     the proof of ~ bicond in [Naip].  (Contributed by naipmoro, 24-Feb-2017.)
+  $)
+  lofbiimp $p |- [` [` [` ph `] ps `] [` [` ps `] ph `] `]
+                 .= [` [` ph `] [` ps `] `] [` ph ps `] $=
+    ( lofdf-encl lofdf-juxt lofdf-void lofcmm lofsubbd1 lofc1 lofsubb1 lofcmmbx
+    lofc6 lofc9 lofeucr ) BACZDZCBCZADCZDCZNBDZCQDCNPDCABDCDZOSEEEQEEBNFGPCZNDC
+    ZQDZCZRTUABENEQEEBHGECZNDCZUEADCZDZUBDQDCZUDTUHEEUCEEEAKIUFUBDQDUGDCUITUCUG
+    UFEEEEJAEPBELMMMM $.
+    $( [24-Feb-2017] $)
+
+  $( We next prove that equality, and hence the biconditional, are
+     associative.  First, four preliminary theorems. $)
+
+  $( Lemma.  Adapted from the proof of ~ c2lem1 in [Naip].  (Contributed by
+     naipmoro, 24-Feb-2017.) $)
+  lofbiasslem1 $p |-  [` ps [` ph ps `] ch `] .= [` [` ph `] ps ch `] $=
+    ( lofdf-juxt lofdf-encl lofdf-void lofcmmbx lofc2bx loftrans ) BABDEZDCDEJB
+    DCDEAEBDCDEBJFFCFFGABFFFCFFHI $.
+    $( [24-Feb-2017] $)
+
+  $( Lemma.  Adapted from the proof of ~ c2lem2 in [Naip].  (Contributed by
+     naipmoro, 24-Feb-2017.) $)
+  lofbiasslem2 $p |-  [` ph [` ph ps `] ch `] .= [` ph [` ps `] ch `] $=
+    ( lofdf-juxt lofdf-encl lofdf-void lofcmmbdx lofbiasslem1 loftrans lofcmmbx
+    ) AABDEDCDEZBEZADCDEZALDCDEKABADEDCDEMABFFFACFFGBACHILAFFCFFJI $.
+    $( [24-Feb-2017] $)
+
+  $( Let ` P .= [` [` ph `] [` ps `] `] [` ph ps `] ` and
+         ` Q .= [` [` ps `] [` ch `] `] [` ps ch `] ` .
+     Proving that equality/biconditional associates amounts to proving:  
+         ` [` [` P `] [` ch `] `] [` P ch `]
+        .= [` [` ph `] [` Q `] `] [` ph Q `] `
+     which is demonstrated in ~ lofbiass.  Meanwhile, this theorem shows that
+     the LHS of the latter equation evaluates to a form symmetric in the three
+     variables, informal evidence for associativity.  Adapted from the proof of
+     ~ bic3 in [Naip].  (Contributed by naipmoro, 24-Feb-2017.)
+          $)
+  lofbiass3 $p |- [` [` [` [` ph `] [` ps `] `] [` ph ps `] `] [` ch `] `]
+                  [` [` [` ph `] [` ps `] `] [` ph ps `] ch `]
+                  .= [` [` ph `] [` ps `] [` ch `] `] [` ph ps [` ch `] `]
+                     [` ph [` ps `] ch `] [` [` ph `] ps ch `] $=
+    ( lofdf-encl lofdf-juxt lofj2 lofbeq lofeucr lofbiasslem2 lofsubst loftrans
+    lofc1 lofquad lofbiasslem1 lofsubr ) ADZBDZEZDABEZDZEZDCDZEZDZUACEZDZEZRUBE
+    DSUBEDEZAQECEDZEZBTECEDZEUJPBECEDZEUGUHATECEDZUKEZEUHUIUKEEUDUHUFUNUHDZDUDU
+    HUOUCRSUBFGUHLHUNDZDUFUNUPUEABTCEFGUNLHMUMUIUHUKABCIJKUKULUJABCNOK $.
+    $( [24-Feb-2017] $)
+
+  $( A permuted version of ~ lofbiass3 .  Adapted from the proof of ~ bic3x in
+     [Naip].  (Contributed by naipmoro, 29-Dec-2016.)  $)
+  lofbiass3p $p |- [` [` [` [` ps `] [` ch `] `] [` ps ch `] `] [` ph `] `]
+                   [` [` [` ps `] [` ch `] `] [` ps ch `] ph `]
+                   .= [` [` ph `] [` ps `] [` ch `] `] [` ph ps [` ch `] `]
+                      [` ph [` ps `] ch `] [` [` ph `] ps ch `] $=
+    ( lofdf-encl lofdf-juxt lofbiass3 lofdf-void lofcmmbx loftrans lofcmmx ) BD
+    ZCDZEZDBCEZDEZDADZEDOAEDEZPKELEDZPBECEDZEZAKECEDZEABELEDZEZRUBEUAESEQTUBEZU
+    AEZUCQUDKCEZAEDZEZUEQTBLEZAEDZEUGEZUHQRNPEDZEUJEUGEZUKQMPEDULEUJEUGEUMBCAFM
+    PGGGGULUJEUGEHINPGGGRUJUGEHIUIAGGGTUGHIUFAGGGUDGHIUBUATGGJISUBRUAGJI $.
+    $( [29-Dec-2016] $)
+
+  $( Proving the associativity of equality/biconditional.   Adapted from the
+     proof of ~ bicond-assc in [Naip].  (Contributed by naipmoro, 29-Dec-2016.)
+  $)
+  lofbiass  $p |- [` [` [` [` ph `] [` ps `] `] [` ph ps `] `] [` ch `] `]
+                  [` [` [` ph `] [` ps `] `] [` ph ps `] ch `]
+                  .= [` [` ph `] [` [` [` ps `] [` ch `] `] [` ps ch `] `] `]
+                     [` ph [` [` ps `] [` ch `] `] [` ps ch `] `] $=
+    ( lofdf-encl lofdf-juxt lofbiass3 lofbiass3p lofdf-void lofcmmbx loftrans
+    lofeuc ) ADZBDZEZDABEZDEZDCDZEDPCEDEZMQEDZBCEDZEZDZLEDUAAEDZEZLUBEDZASETEDE
+    ZRNQEDOQEDEAMECEDELBECEDEUDABCFABCGKUDUEUCEUFUBLHHHHUCIUAAHHHUEHIJJ $.
+    $( [29-Dec-2016] $)
+
+$(
+  -----------------------------------------------------------------------------
+                        11. Implementing LoF deduction
   -----------------------------------------------------------------------------
 $)
 
@@ -815,6 +940,19 @@ $)
   $}
 
   ${
+    lofeq.1 $e |- ph $.
+    lofeq.2 $e |- ps $.
+    $( From assertions of ` ph ` and ` ps ` we can assert their equality.
+       (Contributed by naipmoro, 21-Feb-2017.) $)
+    lofeq $p |- ph .= ps $=
+    wph lofdf-void lofdf-encl wps
+    wph lofeq.1 lofintr
+    wps lofeq.2 lofintr
+    lofeuc
+    $.
+  $}
+
+  ${
     lofmp.1 $e |- ph $.
     lofmp.2 $e |- [` ph `] ps $.
     $( LoF version of modus ponens.  (Contributed by naipmoro, 14-Feb-2017.) $)
@@ -826,16 +964,16 @@ $)
 
 $(
   -----------------------------------------------------------------------------
-                   11. Defining classical propositional logic
+                   12. Defining classical propositional logic
   -----------------------------------------------------------------------------
 
   We define ` ( ph -> ps ) ` as ` [` ph `] ps ` and ` -. ph ` as ` [` ph `] ` .
-  Constructing hybrid wffs like ` [` -. ph `] ` that have no meaning in either
-  LoF or propositional logic becomes not merely possible but necessary in the
+  Constructing hybrid wffs like ` [` -. ph `] ` that lack meaning in either LoF
+  or propositional logic becomes not merely possible but necessary in the
   course of translating from one system to the other.  Indeed, one can validly
-  calculate with these intermediate forms.  For example, ` [` -. ph `] -. ph `
-  can be reduced to ` [` `] ` by ~ lofc2e without the need to fully translate
-  into LoF.  
+  calculate with these hybrid forms.  For example, ` [` -. ph `] -. ph ` can
+  be reduced to ` [` `] ` by ~ lofc2e without the need to fully translate into
+  LoF.  
 $)
 
   $( Declare the primitive constant symbols for propositional calculus. $)
@@ -858,8 +996,26 @@ $)
 
 $(
   -----------------------------------------------------------------------------
-             
-                  12.  Propositional logic is superfluous
+                         13.  Hybrid theorems
+  -----------------------------------------------------------------------------
+$)
+
+  lofne $p |- [` -. ph `] .= ph $=
+    wph wn lofdf-encl
+    wph lofdf-encl lofdf-encl
+    wph
+    wph wn  wph lofdf-encl
+    wph lofdf-neg
+    lofbeq
+    wph lofc1
+    loftrans 
+    $.
+
+ 
+
+$(
+  -----------------------------------------------------------------------------
+                  14.  Propositional logic is superfluous
   -----------------------------------------------------------------------------
 
   From this point on, we can prove all the true statements of propositional
@@ -877,7 +1033,7 @@ $(
   algebraic computations (mostly) supplanted elegant geometric reasoning, and
   for much the same reasons.  But not in the manner shown here.  If you examine
   the proof below, you will appreciate all the overhead involved in translating
-  back and forth between the two systems.  Until predicate logic is itself
+  back and forth between the two systems.  Until predicate logic itself is
   conquered by boundary formalism, and a single logic is deployed, one should
   not expect much movement on the part of logicians.
 $)
@@ -892,7 +1048,7 @@ $)
 
 $(
   -----------------------------------------------------------------------------
-               13.  Proving the axioms of propositional logic
+               15.  Proving the axioms of propositional logic
   ----------------------------------------------------------------------------- 
 $)
 
@@ -938,7 +1094,7 @@ $)
 
 $(
   -----------------------------------------------------------------------------
-                                14.  Conclusion
+                                16.  Conclusion
   -----------------------------------------------------------------------------
 
   With the proofs of ~ ax-1 , ~ ax-2 , ~ ax-3 , and ~ ax-mp completed, we can
@@ -962,7 +1118,93 @@ $(
   An example of such an altered set.mm file is available here:
   https://github.com/naipmoro/lofmm/blob/master/set(lof).mm .
 $)
+
+$(
+  -----------------------------------------------------------------------------
+                            17.  The biconditional
+  ----------------------------------------------------------------------------- 
+$)
+
+  $( Declare the biconditional symbol. $)
+  $c <-> $.
+
+  $( The biconditional is a wff. $)
+  wb $a wff ( ph <-> ps ) $.
+
+  $( A definition of the biconditional in terms of LoF equality.  (Contributed
+     by naipmoro, 21-Feb-2017.) $)
+  lofdf-bi $a |- ( ph <-> ps ) .= [` [` ph `] [` ps `] `] [` ph ps `] $.
+
+  $( We demonstrate a more traditional understanding of the biconditional as a
+     conjunction of an implication and its converse.  (Contributed by naipmoro,
+     24-Feb-2017.) $)
+  lofdfbiimp $p |- ( ph <-> ps )
+                   .= [` [` [` ph `] ps `] [` [` ps `] ph `] `] $=
+    ( wb lofdf-encl lofdf-juxt lofdf-bi lofbiimp lofeuc ) ABCADZBDZEDABEDEIBEDJ
+    AEDEDABFABGH $.
+    $( [24-Feb-2017] $)
+
+  $( Lemma for dfbi1.  (Contributed by naipmoro, 25-Feb-2017.) $)
+  lofdfbi1lem1 $p |-  -. ( ( ph -> ps ) -> -. ( ps -> ph ) )
+                      .= [` [` [` ph `] ps `] [` [` ps `] ph `] `] $=
+    ( wi lofdf-encl lofdf-juxt lofdf-neg lofdf-void lofdf-imp lofsubb1 loftrans
+    wn lofsubbd1 ) ABCZBACZKZCZKZADBEZDZNDZEDZSBDAEZDEDQMDZTEDZUAQUCOEZDZUDQPDU
+    FPFPUEGGGGMOHIJOTUCGGGNFIJMRGGGTGGABHLJNUBGGSGGGBAHLJ $.
+    $( [25-Feb-2017] $)
+
+  $( Lemma for dfbi1.  (Contributed by naipmoro, 25-Feb-2017.) $)
+  lofdfbi1lem2 $p |- -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) .= ( ph <-> ps ) $=
+    ( wi wn lofdf-encl lofdf-juxt wb lofdfbi1lem1 lofdfbiimp lofeuc ) ABCBACDCD
+    AEBFEBEAFEFEABGABHABIJ $.
+    $( [25-Feb-2017] $)
+
+  ${
+    lofbieq.1 $e |- ( ph <-> ps ) $.
+    $( Deducing an equality from a biconditional.  (Contributed by naipmoro,
+       24-Feb-2017.) $)
+    lofbieq   $p |- ph .= ps $=
+      ( wb lofdf-encl lofdf-juxt lofdf-bi lofax-ded lofdf-uni ) ABABDAEBEFEABFE
+      FCABGHI $.
+      $( [24-Feb-2017] $)
+  $}  
+
+  $( Property of the biconditional connective.  (Contributed by naipmoro,
+     24-Feb-2017.) $)
+  bi1 $p |- ( ( ph <-> ps ) -> ( ph -> ps ) ) $=
+    ( wb wi lofdf-encl lofdf-juxt lofdf-void lofj1rx lofdf-bi lofdf-imp lofreps
+    lofrepbxs lofj2rx loftrans lofc1x lofc2e lofelim ) ABCZABDZDZTAEZBEFZUAFZBF
+    ZGETUCEZEBFUDABFZUAFEZGUEGGBTAGBGGGHTUBEUFEFZEUAFBFUEUGFEBFRUHGGGUABFZTABIS
+    UIREGTABJRSJKLUBUFUAGGBMNLUCGBONBUAUAGPNQ $.
+    $( [24-Feb-2017] $)
+
+  $( Property of the biconditional connective.  (Contributed by naipmoro,
+     24-Feb-2017.) $)
+  bi3 $p |-  ( ( ph -> ps ) -> ( ( ps -> ph ) -> ( ph <-> ps ) ) )  $=
+    ( wi wb lofdf-encl lofdf-juxt lofdf-void lofsubr loftrans lofdf-bi lofsubb1
+    lofdf-imp lofc6rx lofc2rx lofcmm lofc2e lofelim ) ABCZBACZABDZCZCZUBBEZAFZE
+    ZUCFZAFZGEUBAUEFZUCFZUGUBUHABFEZFZUIUBAEZBFZEZUEFULUCFEUJFZFZUKUBUNSEZFUOFZ
+    UPUBREZUQFZUOFZURUBUTTFZVAUBUSUAFVBRUALUAUQTFUSSTLHITUOUTABJHIRUMGGGUQUOFAB
+    LKISUDGGUNUOBALKIABGUEUJMIGAGUEBGNIAUFOIUDGGGPIQ $.
+    $( [24-Feb-2017] $)
+
   
+
+  $( Relate the biconditional connective to primitive connectives.  
+     (Contributed by naipmoro, 25-Feb-2017.) $)
+  dfbi1 $p |- ( ( ph <-> ps ) <-> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) ) $=
+    ( wb wi wn lofdf-encl lofdf-juxt lofdf-void lofdf-bi lofdfbi1lem2 lofsubbd1
+    loftrans lofsubb1 lofc5bx lofc2e lofelim ) ABCZABDBADEDEZCZSQFZFZTGZHFSUAQQ
+    GFZGZUBSTTGFZUCGZUDSUEQRGFZGZUFSTRFGFUGGUHQRIRQHHTHHUGABJZKLRQQHUEHUIMLTHHH
+    HUCNLQHHHUAHNLTHHHOLP $.
+    $( [25-Feb-2017] $)
+
+  df-bi $p |- -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
+        -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) )
+    $=
+
+    ?
+    $.
+
 $(
   -----------------------------------------------------------------------------
                                  REFERENCES
