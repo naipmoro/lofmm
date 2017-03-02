@@ -27,21 +27,21 @@ $(
   interest lies in the means of derivation.
 
   First a note about notation.  To avoid conflict with set.mm, I use grave
-  accented brackets, "[`" and "`]" to represent the boundary (or "cross") of
+  accented brackets, "[" and "]" to represent the boundary (or "cross") of
   LoF.  This seemed to me to entail the least visual noise (readers may
-  disagree).  Similarly I use ".=" for the equals sign.  All LoF labels have a
+  disagree).  Similarly I use "=" for the equals sign.  All LoF labels have a
   "lof" prefix.  Labels without that prefix are from set.mm.
 
   LoF is an equational logic (although I show that, technically, equations can
   be avoided).  In other words, axioms and theorems are stated in the form
-  ` ph .= ps ` .  Transitioning from this to the implicational form
+  ` ph = ps ` .  Transitioning from this to the implicational form
   characteristic of classical propositional logic is an interesting problem.  I
   believe the technique chosen here is among the simplest, relying on a single
   additional axiom ~ lofax-ded , the equational analogue of modus ponens:
 
   ${
     lofax-ded.1 $e |- ph $.
-    lofax-ded.2 $e |- ph .= ps $.
+    lofax-ded.2 $e |- ph = ps $.
     lofax-ded   $a |- ps $.
   $}
 
@@ -57,8 +57,8 @@ $(
 $)
 
   $( Declare the primitive constant symbols for the Primary Algebra. $)
-  $c [` $. $( Left bracket $)
-  $c `] $. $( Right bracket $)
+  $c [ $. $( Left bracket $)
+  $c ] $. $( Right bracket $)
   $c wff $. $( Well-formed formula symbol (read:  "the following symbol
                sequence is a wff") $)
   $c |- $. $( Turnstile (read:  "the following symbol sequence is provable" or
@@ -122,10 +122,10 @@ $)
 
   $( If ` ph ` is a wff, so is ` [ ` ph ` ] ` . We say that " ` ph ` is
      enclosed (or crossed, or marked)".  Combined with the previous definition,
-     we see that ` [` `] ` , ` [` [` `] `] ` ,  ` [` ... [` [` `] `] ... `] `
-     are all wffs.  We will call ` [` `] ` the "marked state" and identify it
+     we see that ` [ ] ` , ` [ [ ] ] ` ,  ` [ ... [ [ ] ] ... ] `
+     are all wffs.  We will call ` [ ] ` the "marked state" and identify it
      with the value True.  (Contributed by Naipmoro, 2-Sep-2015.) $)
-  lofdf-encl $a wff [` ph `] $.
+  lofdf-encl $a wff [ ph ] $.
 
   $( If ` ph ` and ` ps ` are wffs, so is ` ph ps ` .  This rule introduces
      technical ambiguity into the formal language and some of the more popular
@@ -143,7 +143,7 @@ $(
   In [Naip] equality, represented by "=", was one of the primitive constants of
   the language.  But the symbol is superfluous, as in a Boolean system equality
   and equivalence are synonyms.  Let us interpret the form
-  ` [` [` ph `] [` ps `] `] [` ph ps `] ` to mean " ` ph ` equals (or is
+  ` [ [ ph ] [ ps ] ] [ ph ps ] ` to mean " ` ph ` equals (or is
   equivalent to) ` ps ` ".  All of LoF can be expressed accordingly, and I will
   call this the "unitary form" of LoF.  For demonstration purposes, I state the
   four primitive rules of LoF derivation and a handful of associated theorems
@@ -153,15 +153,15 @@ $(
 $)
 
   ${
-    lofax-euc.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
-    lofax-euc.2 $e |- [` [` ch `] [` ps `] `] [` ch ps `] $.
+    lofax-euc.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
+    lofax-euc.2 $e |- [ [ ch ] [ ps ] ] [ ch ps ] $.
     $( Read this as:  "If ` ph ` is equal to ` ps ` and ` ch ` is equal to
        ` ps ` , then we can infer that ` ph ` is equal to ` ch ` ".  In other
        words, two things equal to the same thing are equal to each other.
        This is Euclid's first Common Notion and, in an equational logic, this
        and its sibling, transitivity, are the main engine of derivation.
        (Contributed by Naipmoro, 26-Jan-2017.) $)
-    lofax-euc $a |- [` [` ph `] [` ch `] `] [` ph ch `] $.
+    lofax-euc $a |- [ [ ph ] [ ch ] ] [ ph ch ] $.
   $}
 
   $( We can rephrase Euclid's second and third Common Notions as: doing the
@@ -171,21 +171,21 @@ $)
      these can also be seen as substitution/replacement rules). $)
 
   ${
-    lofax-beq.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
+    lofax-beq.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
     $( Read this as:  "If ` ph ` is equal to ` ps ` , then we can infer that
        ` [ ` ph ` ] ` is equal to ` [ ` ps ` ] ` ".  Enclosing equal forms
        leaves equal forms.  (Contributed by Naipmoro, 26-Jan-2017.) $)
-    lofax-beq $a |- [` [` [` ph `] `] [` [` ps `] `] `] [` [` ph `] [` ps `] `]
+    lofax-beq $a |- [ [ [ ph ] ] [ [ ps ] ] ] [ [ ph ] [ ps ] ]
     $.
   $}
 
   ${
-    lofax-sub.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
+    lofax-sub.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
     $( Read this as:  "If ` ph ` is equal to ` ps ` , then we can infer that
        ` ph ze ` is equal to ` ps ze ` for any ` ze ` ".  Juxtaposing the same
        form with equal forms leaves equal forms.  (Contributed by Naipmoro,
        26-Jan-2017.) $)
-    lofax-sub $a |- [` [` ph ze `] [` ps ze `] `] [` ph ze ps ze `] $.
+    lofax-sub $a |- [ [ ph ze ] [ ps ze ] ] [ ph ze ps ze ] $.
   $}
 
   $( Commutativity of LoF.  $)
@@ -193,7 +193,7 @@ $)
   $( Read this as:  " ` ph ps ` is equal to ` ps ph ` ".  Of the four axioms,
      only this one is domain-specific.  (Contributed by Naipmoro, 26-Jan-2017.)
   $)
-  lofax-cmm $a |- [` [` ph ps `] [` ps ph `] `] [` ph ps ps ph `] $.
+  lofax-cmm $a |- [ [ ph ps ] [ ps ph ] ] [ ph ps ps ph ] $.
 
 $(
   -----------------------------------------------------------------------------
@@ -207,27 +207,27 @@ $)
 
   $( "Equality" is reflexive.  Read this as:  " ` ph ` is equal to ` ph ` ".
      (Contributed by Naipmoro, 26-Jan-2017.) $)
-  lofidu $p |- [` [` ph `] [` ph `] `] [` ph ph `] $=
+  lofidu $p |- [ [ ph ] [ ph ] ] [ ph ph ] $=
     ( lofdf-void lofax-cmm ) ABC $.
     $( [26-Jan-2017] $)
 
   ${
-    lofsymu.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
+    lofsymu.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
     $( "Equality" is symmetric.  Read this as:  "If ` ph ` is equal to ` ps ` ,
        then we can infer that ` ps ` is equal to ` ph ` ". (Contributed by
        Naipmoro, 26-Jan-2017.) $)
-    lofsymu $p |- [` [` ps `] [` ph `] `] [` ps ph `] $=
+    lofsymu $p |- [ [ ps ] [ ph ] ] [ ps ph ] $=
       ( lofidu lofax-euc ) BBABDCE $.
       $( [26-Jan-2017] $)
   $}
 
   ${
-    loftransu.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
-    loftransu.2 $e |- [` [` ps `] [` ch `] `] [` ps ch `] $.
+    loftransu.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
+    loftransu.2 $e |- [ [ ps ] [ ch ] ] [ ps ch ] $.
     $( "Equality" is transitive.  Read this as:  "If ` ph ` is equal to ` ps `
        and ` ps ` is equal to ` ch ` , then we can infer that ` ph ` is equal
        to ` ch ` ".  (Contributed by Naipmoro, 26-Jan-2017.) $)
-    loftransu $p |- [` [` ph `] [` ch `] `] [` ph ch `] $=
+    loftransu $p |- [ [ ph ] [ ch ] ] [ ph ch ] $=
       ( lofsymu lofax-euc ) ABCDBCEFG $.
       $( [26-Jan-2017] $)
   $}
@@ -238,24 +238,24 @@ $(
   -----------------------------------------------------------------------------
 
   We can go only so far with the unitary form before reasoning becomes
-  intolerably cumbersome.  Note that ".=" is a relation between wffs and not
+  intolerably cumbersome.  Note that "=" is a relation between wffs and not
   itself part of a wff, despite being defined in terms of a wff.
 $)
 
-  $c .= $. $( Equality (read:  "is equal to" or "is equivalent to") $)
+  $c = $. $( Equality (read:  "is equal to" or "is equivalent to") $)
 
   ${
-    lofdf-equ.1 $e |- ph .= ps $.
+    lofdf-equ.1 $e |- ph = ps $.
     $( Define equality in terms of LoF's unitary formalism.  (Contributed by
        Naipmoro, 26-Jan-2017.) $)
-    lofdf-equ $a |- [` [` ph `] [` ps `] `] [` ph ps `] $.
+    lofdf-equ $a |- [ [ ph ] [ ps ] ] [ ph ps ] $.
   $}
 
   ${
-    lofdf-uni.1 $e |- [` [` ph `] [` ps `] `] [` ph ps `] $.
+    lofdf-uni.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
     $( Translate LoF's unitary form into normal form.  (Contributed by
        Naipmoro, 26-Jan-2017.) $)
-    lofdf-uni $a |- ph .= ps $.
+    lofdf-uni $a |- ph = ps $.
   $}
 
 $(
@@ -268,241 +268,241 @@ $(
 $)
 
   ${
-    lofeuc.1 $e |- ph .= ps $.
-    lofeuc.2 $e |- ch .= ps $.
+    lofeuc.1 $e |- ph = ps $.
+    lofeuc.2 $e |- ch = ps $.
     $( The normal-form version of ~ lofax-euc .  (Contributed by Naipmoro,
        26-Jan-2017.) $)
-    lofeuc $p |- ph .= ch $=
+    lofeuc $p |- ph = ch $=
       ( lofdf-equ lofax-euc lofdf-uni ) ACABCABDFCBEFGH $.
       $( [26-Jan-2017] $)
   $}
 
   ${
-    lofbeq.1 $e  |- ph .= ps $.
+    lofbeq.1 $e  |- ph = ps $.
     $( The normal-form version of ~ lofax-beq .  (Contributed by Naipmoro,
        26-Jan-2017.) $)
-    lofbeq $p |- [` ph `] .= [` ps `] $=
+    lofbeq $p |- [ ph ] = [ ps ] $=
       ( lofdf-encl lofdf-equ lofax-beq lofdf-uni ) ADBDABABCEFG $.
       $( [26-Jan-2017] $)
   $}
 
   ${
-    lofsub.1 $e |- ph .= ps $.
+    lofsub.1 $e |- ph = ps $.
     $( The normal-form version of ~ lofax-sub .  (Contributed by Naipmoro,
        26-Jan-2017.) $)
-    lofsub $p |- ph ze .= ps ze $=
+    lofsub $p |- ph ze = ps ze $=
       ( lofdf-juxt lofdf-equ lofax-sub lofdf-uni ) ACEBCEABCABDFGH $.
       $( [26-Jan-2017] $)
   $}
 
   $( The normal-form version of ~ lofax-cmm .  (Contributed by Naipmoro,
      26-Jan-2017.) $)
-  lofcmm $p |- ph ps .= ps ph $=
+  lofcmm $p |- ph ps = ps ph $=
     ( lofdf-juxt lofax-cmm lofdf-uni ) ABCBACABDE $.
     $( [26-Jan-2017] $)
 
   $( The normal-form version of ~ lofidu .  (Contributed by Naipmoro,
      6-Sep-2015.) $)
-  lofid $p |- ph .= ph $=
+  lofid $p |- ph = ph $=
     ( lofdf-void lofcmm ) ABC $.
     $( [6-Sep-2015] $)
 
   ${
-    lofsym.1 $e |- ph .= ps $.
+    lofsym.1 $e |- ph = ps $.
     $( The normal-form version of ~ lofsymu .  (Contributed by Naipmoro,
        2-Sep-2015.) $)
-    lofsym $p |- ps .= ph $=
+    lofsym $p |- ps = ph $=
       ( lofid lofeuc ) BBABDCE $.
       $( [2-Sep-2015] $)
   $}
 
   ${
-    loftrans.1 $e |- ph .= ps $.
-    loftrans.2 $e |- ps .= ch $.
+    loftrans.1 $e |- ph = ps $.
+    loftrans.2 $e |- ps = ch $.
     $( The normal-form version of ~ loftransu .  (Contributed by Naipmoro,
        2-Sep-2015.) $)
-    loftrans $p |- ph .= ch $=
+    loftrans $p |- ph = ch $=
       ( lofsym lofeuc ) ABCDBCEFG $.
       $( [2-Sep-2015] $)
   $}
 
   ${
-    lofeucr.1 $e |- ph .= ps $.
-    lofeucr.2 $e |- ph .= ch $.
+    lofeucr.1 $e |- ph = ps $.
+    lofeucr.2 $e |- ph = ch $.
     $( A commuted - or reversed - version of ~ lofeuc .  (Contributed by
        Naipmoro, 2-Sep-2015.) $)
-    lofeucr $p |- ps .= ch $=
+    lofeucr $p |- ps = ch $=
       ( lofsym loftrans ) BACABDFEG $.
       $( [2-Sep-2015] $)
   $}
 
   ${
-    lofsubr.1 $e |- ph .= ps $.
+    lofsubr.1 $e |- ph = ps $.
     $( A commuted version of ~ lofsub .  (Contributed by Naipmoro,
        2-Sep-2015.) $)
-    lofsubr $p |- et ph .= et ps $=
+    lofsubr $p |- et ph = et ps $=
       ( lofdf-juxt lofsub lofcmm lofeucr ) BCEZCAEZCBEACEIJABCDFACGHBCGH $.
       $( [2-Sep-2015] $)
   $}
 
   $( More versions of replacement/substitution. $)
   ${
-    lofsubst.1 $e |- ph .= ps $.
+    lofsubst.1 $e |- ph = ps $.
     $( Replace a form with an equal form within an extended form.  (Contributed
        by Naipmoro, 2-Sep-2015.) $)
-    lofsubst $p |- et ph ze .= et ps ze $=
+    lofsubst $p |- et ph ze = et ps ze $=
       ( lofdf-juxt lofsub lofsubr ) ADFBDFCABDEGH $.
       $( [2-Sep-2015] $)
 
     $( Replace a form with an equal form within a commuted extended form.
        (Contributed by Naipmoro, 2-Sep-2015.) $)
-    lofsubstr $p |- et ph ze .= ze ps et $=
+    lofsubstr $p |- et ph ze = ze ps et $=
       ( lofdf-juxt lofsub lofcmm loftrans lofsubr ) CAFDFCDFBFDBFZCFADFZKCLBDFK
       ABDEGBDHIJCKHI $.
       $( [2-Sep-2015] $)
 
     $( Replace a form with an equal form within a bounded extended form.
        (Contributed by Naipmoro, 2-Sep-2015.) $)
-    lofsubb1 $p |- si [` et ph ze `] rh .= si [` et ps ze `] rh $=
+    lofsubb1 $p |- si [ et ph ze ] rh = si [ et ps ze ] rh $=
       ( lofdf-juxt lofdf-encl lofsubst lofbeq ) CAHDHZICBHDHZIEFLMABCDGJKJ $.
       $( [2-Sep-2015] $)
 
     $( Replace a form with an equal form within a double-bounded extended form.
        (Contributed by Naipmoro, 25-Feb-2017.) $)
-    lofsubbd1 $p |-  mu [` si [` et ph ze `] rh `] la
-                    .= mu [` si [` et ps ze `] rh `] la $=
+    lofsubbd1 $p |-  mu [ si [ et ph ze ] rh ] la
+                    = mu [ si [ et ps ze ] rh ] la $=
       ( lofdf-juxt lofdf-encl lofdf-void lofsubb1 ) ECAJDJKJFJECBJDJKJFJLLGHABC
       DEFIMM $.
       $( [25-Feb-2017] $)
 
     $( Replace a form with an equal form within a bounded and commuted extended
        form.  (Contributed by Naipmoro, 2-Sep-2015.) $)
-    lofsubb2 $p |- si [` et ph ze `] rh .= si [` ze ps et `] rh $=
+    lofsubb2 $p |- si [ et ph ze ] rh = si [ ze ps et ] rh $=
       ( lofdf-juxt lofdf-encl lofsubstr lofbeq lofsubst ) CAHDHZIDBHCHZIEFMNABC
       DGJKL $.
       $( [2-Sep-2015] $)
   $}
 
   ${
-    lofrep.1 $e |- ph .= ps $.
-    lofrep.2 $e |- et ph ze .= mu $.
+    lofrep.1 $e |- ph = ps $.
+    lofrep.2 $e |- et ph ze = mu $.
     $( Direct substitution into lhs of an equation.  (Contributed by Naipmoro,
        18-Sep-2015.) $)
-    lofrep $p |- et ps ze .= mu $=
+    lofrep $p |- et ps ze = mu $=
       ( lofdf-juxt lofsubst lofeucr ) CAHDHCBHDHEABCDFIGJ $.
       $( [18-Sep-2015] $)
   $}
 
   ${
-    lofreps.1 $e |- ph .= ps $.
-    lofreps.2 $e |- mu .= et ph ze $.
+    lofreps.1 $e |- ph = ps $.
+    lofreps.2 $e |- mu = et ph ze $.
     $( Direct substitution into rhs of an equation.  (Contributed by Naipmoro,
       14-Feb-2017.) $)
-    lofreps $p |- mu .= et ps ze $=
+    lofreps $p |- mu = et ps ze $=
       ( lofdf-juxt lofsym lofrep ) CBHDHEABCDEFECAHDHGIJI $.
       $( [14-Feb-2017] $)
   $}
 
   ${
-    lofrepbx.1 $e |- ph .= ps $.
-    lofrepbx.2 $e |- si [` et ph ze `] rh .= mu $.
+    lofrepbx.1 $e |- ph = ps $.
+    lofrepbx.2 $e |- si [ et ph ze ] rh = mu $.
     $( Direct substitution into lhs of a bounded-form equation.  (Contributed
        by Naipmoro, 18-Sep-2015.) $)
-    lofrepbx $p |- si [` et ps ze `] rh .= mu $=
+    lofrepbx $p |- si [ et ps ze ] rh = mu $=
       ( lofdf-juxt lofdf-encl lofsubb1 lofeucr ) ECAJDJKJFJECBJDJKJFJGABCDEFHLI
       M $.
       $( [18-Sep-2015] $)
   $}
 
   ${
-    lofrepbdx.1 $e |- ph .= ps $.
-    lofrepbdx.2 $e |- mu [` si [` et ph ze `] rh `] la .= ka $.
+    lofrepbdx.1 $e |- ph = ps $.
+    lofrepbdx.2 $e |- mu [ si [ et ph ze ] rh ] la = ka $.
     $( Direct substitution into lhs of a double-bounded equation.
        (Contributed by Naipmoro, 27-Feb-2017.) $)
-    lofrepbdx $p |- mu [` si [` et ps ze `] rh `] la .= ka $=
+    lofrepbdx $p |- mu [ si [ et ps ze ] rh ] la = ka $=
       ( lofdf-juxt lofdf-encl lofsubbd1 lofeucr ) GECALDLMLFLMLHLGECBLDLMLFLMLH
       LIABCDEFGHJNKO $.
       $( [27-Feb-2017] $)
   $}
 
   ${
-    lofrepbxs.1 $e |- ph .= ps $.
-    lofrepbxs.2 $e |- mu .= si [` et ph ze `] rh $.
+    lofrepbxs.1 $e |- ph = ps $.
+    lofrepbxs.2 $e |- mu = si [ et ph ze ] rh $.
     $( Direct substitution into rhs of a bounded equation.  (Contributed
        by Naipmoro, 14-Feb-2017.) $)
-    lofrepbxs $p |- mu .= si [` et ps ze `] rh $=
+    lofrepbxs $p |- mu = si [ et ps ze ] rh $=
       ( lofdf-juxt lofdf-encl lofsym lofrepbx ) ECBJDJKJFJGABCDEFGHGECAJDJKJFJI
       LML $.
       $( [14-Feb-2017] $)
   $}
 
   ${
-    lofrepbdxs.1 $e |- ph .= ps $.
-    lofrepbdxs.2 $e |- ka .= mu [` si [` et ph ze `] rh `] la $.
+    lofrepbdxs.1 $e |- ph = ps $.
+    lofrepbdxs.2 $e |- ka = mu [ si [ et ph ze ] rh ] la $.
     $( Direct substitution into rhs of a double-bounded equation.
        (Contributed by Naipmoro, 27-Feb-2017.) $)
-    lofrepbdxs $p |- ka .= mu [` si [` et ps ze `] rh `] la $=
+    lofrepbdxs $p |- ka = mu [ si [ et ps ze ] rh ] la $=
       ( lofdf-juxt lofdf-encl lofsym lofrepbdx ) GECBLDLMLFLMLHLIABCDEFGHIJIGEC
       ALDLMLFLMLHLKNON $.
       $( [27-Feb-2017] $)
   $}
 
   ${
-    lofrepbd.1 $e |- ph .= ps $.
-    lofrepbd.2 $e |- [` [` et ph ze `] `] .= mu $.
+    lofrepbd.1 $e |- ph = ps $.
+    lofrepbd.2 $e |- [ [ et ph ze ] ] = mu $.
     $( Direct substitution into lhs of a double-bounded equation.
        (Contributed by Naipmoro, 3-Oct-2015.) $)
-    lofrepbd $p |- [` [` et ps ze `] `] .= mu $=
+    lofrepbd $p |- [ [ et ps ze ] ] = mu $=
       ( lofdf-juxt lofdf-encl lofdf-void lofsubb1 lofbeq lofeucr ) CAHDHIZICBHD
       HIZIENOABCDJJFKLGM $.
       $( [3-Oct-2015] $)
   $}
 
   ${
-    lofquad.1 $e |- ph .= ps $.
-    lofquad.2 $e |- ch .= th $.
+    lofquad.1 $e |- ph = ps $.
+    lofquad.2 $e |- ch = th $.
     $( Double substitution of equivalent forms.  (Contributed by Naipmoro,
        2-Sep-2015.) $)
-    lofquad $p |- ph ch .= ps th $=
+    lofquad $p |- ph ch = ps th $=
       ( lofdf-juxt lofdf-void lofsubst loftrans ) ACGBCGBDGABHCEICDBHFIJ $.
       $( [2-Sep-2015] $)
   $}
 
   ${
-    lofins.1 $e |- ph ps .= ch th $.
+    lofins.1 $e |- ph ps = ch th $.
     $( Insert the same form into two equivalent forms.  (Contributed by
        Naipmoro, 3-Sep-2015.) $)
-    lofins $p |- ph ze ps .= ch ze th $=
+    lofins $p |- ph ze ps = ch ze th $=
       ( lofdf-juxt lofcmm lofsub lofsubr loftrans ) AEGZBGZECGZDGZCEGZDGMEAGZBG
       OLQBAEHIABGCDGEFJKNPDECHIK $.
       $( [3-Sep-2015] $)
   $}
 
   $( Extended commutativity.  (Contributed by Naipmoro, 3-Sep-2015.) $)
-  lofcmmx $p  |- et ph ze ps si .= et ps ze ph si $=
+  lofcmmx $p  |- et ph ze ps si = et ps ze ph si $=
     ( lofdf-juxt lofcmm lofins lofsubst ) ADFBFBDFAFCEABBADABGHI $.
     $( [3-Sep-2015] $)
 
   $( Bounded and extended commutativity.  (Contributed by Naipmoro,
      2-Sep-2015.) $)
-  lofcmmbx $p |- rh [` et ph ze ps si `] mu .= rh [` et ps ze ph si `] mu $=
+  lofcmmbx $p |- rh [ et ph ze ps si ] mu = rh [ et ps ze ph si ] mu $=
     ( lofdf-juxt lofid lofsubstr lofsubb1 ) ADHBHBDHAHCEFGDDABDIJK $.
     $( [2-Sep-2015] $)
 
   $( Double-bounded and extended commutativity.  (Contributed by Naipmoro,
      25-Feb-2017.) $)
-  lofcmmbdx $p |- la [` rh [` et ph ze ps si `] mu `] ka
-                  .= la [` rh [` et ps ze ph si `] mu `] ka $=
+  lofcmmbdx $p |- la [ rh [ et ph ze ps si ] mu ] ka
+                  = la [ rh [ et ps ze ph si ] mu ] ka $=
     ( lofdf-juxt lofdf-encl lofdf-void lofcmmbx lofsubb1 ) FCAJDJBJEJKJGJFCBJDJ
     AJEJKJGJLLHIABCDEFGMN $.
     $( [25-Feb-2017] $)
 
   ${
-    lofquadbx.1 $e |- ph .= ps $.
-    lofquadbx.2 $e |- ch .= th $.
+    lofquadbx.1 $e |- ph = ps $.
+    lofquadbx.2 $e |- ch = th $.
     $( Double substitution into a bounded and extended form.  (Contributed by
        Naipmoro, 3-Sep-2015.) $)
-    lofquadbx $p |- rh [` et ph ze ch si `] mu .= rh [` et ps ze th si `] mu $=
+    lofquadbx $p |- rh [ et ph ze ch si ] mu = rh [ et ps ze th si ] mu $=
       ( lofdf-juxt lofquad lofins lofsubb1 ) AFLCLBFLDLEGHIACBDFABCDJKMNO $.
       $( [3-Sep-2015] $)
   $}
@@ -518,10 +518,10 @@ $(
 $)
 
   $( J1. Position.  (Contributed by Naipmoro, 6-Sep-2015.) $)
-  lofj1 $a |- [` [` ph `] ph `] .= $.
+  lofj1 $a |- [ [ ph ] ph ] = $.
 
   $( J2. Transposition.  (Contributed by Naipmoro, 6-Sep-2015.) $)
-  lofj2 $a |- [` [` ph ch `] [` ps ch `] `] .= [` [` ph `] [` ps `] `] ch $.
+  lofj2 $a |- [ [ ph ch ] [ ps ch ] ] = [ [ ph ] [ ps ] ] ch $.
 
 $(
   -----------------------------------------------------------------------------
@@ -534,7 +534,7 @@ $(
 $)
 
   $( C1. Reflexion.  (Contributed by Naipmoro, 20-Feb-2017.) $)
-  lofc1 $p |- [` [` ph `] `] .= ph $=
+  lofc1 $p |- [ [ ph ] ] = ph $=
     ( lofdf-encl lofdf-juxt lofj1 lofcmmbx lofsub lofsym lofj2 lofeuc lofrepbxs
     lofdf-void lofquadbx loftrans ) ABZBZOACBZNACBZCBZAOAOCBZBRONCBZKKSKKONDZNO
     CBZTKSKKONOKKKKKEOTOCZUBSCBUCOTKOUAFGNAOHIJJSPKQKKKKKAOKKKKKEQKADGLMROBOCBZ
@@ -542,60 +542,60 @@ $)
     $( [20-Feb-2017] $)
 
   $( C2. Generation.  (Contributed by Naipmoro, 6-Sep-2015.) $)
-  lofc2 $p |- [` ph ps `] ps .= [` ph `] ps $=
+  lofc2 $p |- [ ph ps ] ps = [ ph ] ps $=
     ( lofdf-encl lofdf-juxt lofj2 lofdf-void lofc1 lofquadbx loftrans lofsubb1
     lofj1 lofeucr ) ACZBDZCZBCZBDCZDCZABDCBDZNRMCZPCZDCBDSMPBETAUABFFFFBAGBGHIR
     OCNQFOFFFBKJNGIL $.
     $( [6-Sep-2015] $)
 
   $( C3. Integration.  (Contributed by Naipmoro, 6-Sep-2015.) $)
-  lofc3 $p |- [` `] ph .= [` `] $=
+  lofc3 $p |- [ ] ph = [ ] $=
     ( lofdf-encl lofdf-juxt lofdf-void lofc2 lofc1 lofj1 lofbeq lofeucr ) ABACZ
     DBZACKDAEJBZBJKJFLDAGHII $.
     $( [6-Sep-2015] $)
 
   $( C5. Iteration.  (Contributed by Naipmoro, 6-Sep-2015.) $)
-  lofc5 $p |- ph ph .= ph $=
+  lofc5 $p |- ph ph = ph $=
     ( lofdf-encl lofdf-juxt lofc2 lofdf-void lofc1 lofsubst loftrans lofeucr
     lofj1 ) ABZACBZACZAACZAMKBZACNKADOAEAAFGHLEEAAJGI $.
     $( [6-Sep-2015] $)
 
   $( C4. Occultation.  (Contributed by Naipmoro, 6-Sep-2015.) $)
-  lofc4 $p |- [` [` ph `] ps `] ph .= ph $=
+  lofc4 $p |- [ [ ph ] ps ] ph = ph $=
     ( lofdf-encl lofdf-juxt lofdf-void lofj2 lofc1 lofsubb1 lofc5 lofeucr lofc3
     loftrans lofsubst ) ACZBDCADZECZCZADZAOPBCZCZDZCADZRONSADCZDCZUBAADZCZUCDCZ
     OUDUGNTDCADOASAFTBNEEABGHLUFNEUCEEUEAEEEEAIHHJESAFLUAPEEEATKHLQEEAEGML $.
     $( [6-Sep-2015] $)
 
   $( C4 corollary.  (Contributed by Naipmoro, 18-Sep-2015.) $)
-  lofc4cor $p |- [` ph ps `] [` ph `] .= [` ph `] $=
+  lofc4cor $p |- [ ph ps ] [ ph ] = [ ph ] $=
     ( lofdf-encl lofdf-juxt lofdf-void lofc1 lofsubb1 lofc4 lofeucr ) ACZCZBDCJ
     DABDCJDJKAEBEJAFGJBHI $.
     $( [18-Sep-2015] $)
 
   $( C6. Extension.  (Contributed by Naipmoro, 6-Sep-2015.) $)
-  lofc6 $p |- [` [` ph `] [` ps `] `] [` [` ph `] ps `] .= ph $=
+  lofc6 $p |- [ [ ph ] [ ps ] ] [ [ ph ] ps ] = ph $=
     ( lofdf-encl lofdf-juxt lofc1 lofdf-void lofcmmbx lofquadbx loftrans lofbeq
     lofj2 lofj1 lofsubb1 lofeucr ) ACZBCZDCZOBDCZDZOCZASCZCZSTSEUBPCPDCZODZCTUA
     UDUAPODCZBODCZDCUDQUERUFFFFFFOPFFFFFGOBFFFFFGHPBOKIJUCFFOFFPLMINAEI $.
     $( [6-Sep-2015] $)
 
   $( C6 corollary.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc6cor $p |- [` [` ph `] ps `] [` ph ps `] .= [` ps `] $=
+  lofc6cor $p |- [ [ ph ] ps ] [ ph ps ] = [ ps ] $=
     ( lofdf-juxt lofdf-void lofdf-encl lofcmm lofc1 lofc6 lofrepbx ) BACZABCDDA
     EZBCZEDBEZBAFBKCZLDDDJEMBKFMEZBDANEDMBGZOBDKDOACEMPMAHIIII $.
     $( [14-Feb-2017] $)
 
   $( C7. Echelon.  (Contributed by Naipmoro, 6-Sep-2015.) $)
-  lofc7 $p |- [` [` [` ph `] ps `] ch `] .= [` ph ch `] [` [` ps `] ch `] $=
+  lofc7 $p |- [ [ [ ph ] ps ] ch ] = [ ph ch ] [ [ ps ] ch ] $=
     ( lofdf-juxt lofdf-encl lofj2 lofbeq lofdf-void lofsubb1 loftrans lofeucr
     lofc1 ) ACDEBEZCDEDZEZEZAEZBDECDZEZNPQMEZDECDZESOUAAMCFGUARTBQHHCBLIGJNLK
     $.
     $( [6-Sep-2015] $)
 
   $( C8. Modified transposition.  (Contributed by Naipmoro, 6-Sep-2015.) $)
-  lofc8 $p |- [` [` ph `] [` ps th `] [` ch th `] `]
-             .= [` [` ph `] [` ps `] [` ch `] `] [` [` ph `] [` th `] `] $=
+  lofc8 $p |- [ [ ph ] [ ps th ] [ ch th ] ]
+             = [ [ ph ] [ ps ] [ ch ] ] [ [ ph ] [ th ] ] $=
     ( lofdf-encl lofdf-juxt lofc1 lofj2 lofbeq lofsubb2 lofrepbx lofc7 lofcmmbx
     lofdf-void lofquad loftrans ) AEZBDFEZFCDFEZFEBEZCEZFZEDFZEZQFEZQTFUAFEZQDE
     ZFEZFZRSFZEZEZUJQNNNUEUJGULUDQNNNUKUCBCDHIJKUEUBQFEZUGQFEZFUIUBDQLUMUFUNUHU
@@ -603,9 +603,9 @@ $)
     $( [6-Sep-2015] $)
 
   $( C9. Crosstransposition.  (Contributed by Naipmoro, 6-Sep-2015.) $)
-  lofc9 $p |- [` [` [` ps `] [` ph `] `] [` [` ch `] [` ph `] `]
-             [` [` th `] ph `] [` [` ta `] ph `] `]
-             .= [` [` ph `] ps ch `] [` ph th ta `] $=
+  lofc9 $p |- [ [ [ ps ] [ ph ] ] [ [ ch ] [ ph ] ]
+             [ [ th ] ph ] [ [ ta ] ph ] ]
+             = [ [ ph ] ps ch ] [ ph th ta ] $=
     ( lofdf-encl lofdf-juxt lofdf-void lofc1 lofquadbx loftrans lofbeq lofsubb2
     lofj2 lofeucr lofc8 lofsubb1 lofc2 lofcmmbx lofc6 ) BFZAFZGFZCFZUBGFZGZDFZA
     GFZGEFZAGFZGFDEGZFZAGZFZUCGUEGFZUBBGCGFZADGEGFZGZUHUJGZUNUFHHHUSFZFUSUNUSIU
@@ -623,12 +623,12 @@ $)
      the beginning. $)
 
   $( Intial I1.  Number.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofi1 $p |- [` `] [` `] .= [` `] $=
+  lofi1 $p |- [ ] [ ] = [ ] $=
     ( lofdf-void lofdf-encl lofc5 ) ABC $.
     $( [14-Feb-2017] $)
 
   $( Intial I2.  Order.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofi2 $p |- [` [` `] `] .= $=
+  lofi2 $p |- [ [ ] ] = $=
     ( lofdf-void lofj1 ) AB $.
     $( [14-Feb-2017] $)
 
@@ -641,70 +641,70 @@ $(
   one-dimensional notation.  In generalizing some major theorems, it attempts
   to lighten the significant overhead of commutative term rearrangements and
   maintenance of equational symmetries.  The ugliness of the section is a gauge
-  of how inappropriate a linear script is to LoF.
+  of how inappropriate linear scripts are to LoF.
 $)
 
   $( Generalizations of C1. $)
 
   $( ~ lofc1 reversed.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc1r $p |- ph .= [` [` ph `] `] $=
+  lofc1r $p |- ph = [ [ ph ] ] $=
     ( lofdf-encl lofc1 lofsym ) ABBAACD $.
     $( [14-Feb-2017] $)
 
   $( ~ lofc1 extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc1x $p |- et [` [` ph `] `] ze .= et ph ze $=
+  lofc1x $p |- et [ [ ph ] ] ze = et ph ze $=
     ( lofdf-encl lofc1 lofsubst ) ADDABCAEF $.
     $( [14-Feb-2017] $)
 
   $( ~ lofc1 reversed and extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc1rx $p |- et ph ze .= et [` [` ph `] `] ze $=
+  lofc1rx $p |- et ph ze = et [ [ ph ] ] ze $=
     ( lofdf-encl lofc1r lofsubst ) AADDBCAEF $.
     $( [14-Feb-2017] $)
 
   $( ~ lofc1 bounded and extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc1bx $p |- si [` et [` [` ph `] `] ze `] rh .= si [` et ph ze `] rh $=
+  lofc1bx $p |- si [ et [ [ ph ] ] ze ] rh = si [ et ph ze ] rh $=
     ( lofdf-encl lofdf-juxt lofdf-void lofc1x lofsubb1 ) BAFFGCGBAGCGHHDEABCIJ
     $.
     $( [14-Feb-2017] $)
 
   $( ~ lofc1 reversed, bounded, and extended.  (Contributed by Naipmoro,
      14-Feb-2017.) $)
-  lofc1rbx $p |- si [` et ph ze `] rh .= si [` et [` [` ph `] `] ze `] rh $=
+  lofc1rbx $p |- si [ et ph ze ] rh = si [ et [ [ ph ] ] ze ] rh $=
     ( lofdf-encl lofdf-juxt lofc1bx lofsym ) DBAFFGCGFGEGDBAGCGFGEGABCDEHI $.
     $( [14-Feb-2017] $)
 
   $( Generalizations of C2. $)
 
   $( ~ lofc2 extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc2x $p |- et [` ph ps ze `] si ps rh .= et [` ph ze `] si ps rh $=
+  lofc2x $p |- et [ ph ps ze ] si ps rh = et [ ph ze ] si ps rh $=
     ( lofdf-juxt lofdf-encl lofcmm lofdf-void lofcmmbx lofcmmx loftrans lofsym
     lofc2 lofrep ) CADGZHZGZEGBGFGCABGDGHGEGBGFGZBEGEBGZSFTBEIQBGHZBGRBGCEFGTQB
     OTCUBGZBGEGFGZTUCEGBGFGUDBDAJJCUAFGKEBUCJFLMNPPN $.
     $( [14-Feb-2017] $)
 
   $( ~ lofc2 bounded and extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc2bx $p |- mu [` et [` ph ps ze `] si ps rh `] la
-                .= mu [` et [` ph ze `] si ps rh `] la $=
+  lofc2bx $p |- mu [ et [ ph ps ze ] si ps rh ] la
+                = mu [ et [ ph ze ] si ps rh ] la $=
     ( lofdf-juxt lofdf-encl lofdf-void lofc2x lofsubb1 ) CABIDIJIEIBIFICADIJIEI
     BIFIKKGHABCDEFLM $.
     $( [14-Feb-2017] $)
 
   $( ~ lofc2 reversed and extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc2rx $p |- et ps ze [` ph ps si `] rh .= et ps ze [` ph si `] rh $=
+  lofc2rx $p |- et ps ze [ ph ps si ] rh = et ps ze [ ph si ] rh $=
     ( lofdf-juxt lofdf-encl lofdf-void lofcmmx lofc2x loftrans ) CBGDGZABGEGHZG
     FGZCAEGHZGBGDGFGZMPGFGOCNGBGDGFGQBDGZNCIFJABCEIDFGKLPRCIFJL $.
     $( [14-Feb-2017] $)
 
   $( ~ lofc2 reversed, bounded, and extended.  (Contributed by Naipmoro,
      14-Feb-2017.) $)
-  lofc2rbx $p |- mu [` et [` ph ze `] si ps rh `] la
-                 .= mu [` et [` ph ps ze `] si ps rh `] la $=
+  lofc2rbx $p |- mu [ et [ ph ze ] si ps rh ] la
+                 = mu [ et [ ph ps ze ] si ps rh ] la $=
     ( lofdf-juxt lofdf-encl lofc2bx lofsym ) GCABIDIJIEIBIFIJIHIGCADIJIEIBIFIJI
     HIABCDEFGHKL $.
     $( [14-Feb-2017] $)
 
   $( ~ lofc2 special case.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc2e $p |- et [` ph `] ze ph si .= [` `] $=
+  lofc2e $p |- et [ ph ] ze ph si = [ ] $=
     ( lofdf-encl lofdf-juxt lofdf-void lofc2x lofcmmx lofc3 loftrans ) BAEFCFAF
     DFBGEZFCFAFDFZLGABGCDHMLBFCFAFDFLBLGGCAFDFIBCFAFDFJKK $.
     $( [14-Feb-2017] $)
@@ -712,13 +712,13 @@ $)
   $( Generalizations of C3. $)
 
   $( ~ lofc3 extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc3x $p |- ph [` `] ps .= [` `] $=
+  lofc3x $p |- ph [ ] ps = [ ] $=
     ( lofdf-void lofdf-encl lofdf-juxt lofcmm lofc3 loftrans ) ACDZEBEIBEZAEIAJ
     FBAEGH $.
     $( [14-Feb-2017] $)
 
   $( ~ lofc3 bounded and extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc3bx $p |- et [` ph [` `] ps `] ze .= et ze $=
+  lofc3bx $p |- et [ ph [ ] ps ] ze = et ze $=
     ( lofdf-void lofdf-encl lofdf-juxt lofc3x lofsubb1 lofc1x loftrans ) CAEFZG
     BGZFGDGCLFGDGCDGMLEECDABHIECDJK $.
     $( [14-Feb-2017] $)
@@ -726,48 +726,48 @@ $)
   $( Generalizations of C4. $)
 
   $( ~ lofc4 extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc4x $p |- si [` et [` ph `] ze `] rh ph mu .= si ph rh mu $=
+  lofc4x $p |- si [ et [ ph ] ze ] rh ph mu = si ph rh mu $=
     ( lofdf-encl lofdf-juxt lofcmmbx lofcmmx loftrans lofc4 lofid lofrep lofeuc
     lofdf-void ) DBAGZHCHGHEHAHFHZDQBHCHGZHZAHEHFHZDAHEHFHRTEHAHFHUABQPPCDEAHFH
     IEATPFJKSAHADEFHUAABCHLUAMNO $.
     $( [14-Feb-2017] $)
 
   $( ~ lofc4 reversed and extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc4rx $p |- si ph rh mu .= si [` et [` ph `] ze `] rh ph mu $=
+  lofc4rx $p |- si ph rh mu = si [ et [ ph ] ze ] rh ph mu $=
     ( lofdf-encl lofdf-juxt lofc4x lofsym ) DBAGHCHGHEHAHFHDAHEHFHABCDEFIJ $.
     $( [14-Feb-2017] $)
 
   $( Generalizations of C5. $)
 
   $( ~ lofc5 extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc5x $p |- et ph ze ph si .= et ph ze si $=
+  lofc5x $p |- et ph ze ph si = et ph ze si $=
     ( lofdf-juxt lofdf-void lofcmmx lofc5 lofid lofrep lofeuc ) BAEZCEZAEDELAEC
     EDEZMDECALFDGAAEABCDENAHNIJK $.
     $( [14-Feb-2017] $)
 
   $( ~ lofc5 bounded and extended.  (Contributed by Naipmoro, 25-Feb-2017.) $)
-  lofc5bx $p |- rh [` et ph ze ph si `] mu .= rh [` et ph ze si `] mu $=
+  lofc5bx $p |- rh [ et ph ze ph si ] mu = rh [ et ph ze si ] mu $=
     ( lofdf-juxt lofdf-void lofc5x lofsubb1 ) BAGCGZAGDGKDGHHEFABCDIJ $.
     $( [25-Feb-2017] $)
 
 
   $( ~ lofc5 reversed and extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofc5rx $p |- et ph ze si .= et ph ze ph si $=
+  lofc5rx $p |- et ph ze si = et ph ze ph si $=
     ( lofdf-juxt lofc5x lofsym ) BAECEZAEDEHDEABCDFG $.
     $( [14-Feb-2017] $)
 
   $( Generalizations of C6. $)
 
   $( ~ lofc6 extended.  (Contributed by Naipmoro, 25-Feb-2017.) $)
-  lofc6x $p |- et [` [` ph `] [` ps `] `] ze [` [` ph `] ps `] si
-               .= et ph ze si $=
+  lofc6x $p |- et [ [ ph ] [ ps ] ] ze [ [ ph ] ps ] si
+               = et ph ze si $=
     ( lofdf-encl lofdf-juxt lofc6 lofdf-void lofcmmx lofreps ) AFZBFGFZLBGFZGAC
     DEGCMGZDGNGEGABHDNOIEJK $.
     $( [25-Feb-2017] $)
 
   $( ~ lofc6 reversed and extended.  (Contributed by Naipmoro, 25-Feb-2017.) $)
-  lofc6rx $p |- et [` [` ph `] ps `] ze [` [` ph `] [` ps `] `] si
-                .= et ph ze si  $=
+  lofc6rx $p |- et [ [ ph ] ps ] ze [ [ ph ] [ ps ] ] si
+                = et ph ze si  $=
     ( lofdf-encl lofdf-juxt lofcmmx lofc6x loftrans ) CAFZBGFZGDGKBFGFZGEGCMGDG
     LGEGCAGDGEGLMCDEHABCDEIJ $.
     $( [25-Feb-2017] $)
@@ -775,34 +775,34 @@ $)
   $( Generalizations of J1. $)
 
   $( ~ lofj1 extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofj1x $p |- rh [` et [` ph `] ze ph si `] mu .= rh mu $=
+  lofj1x $p |- rh [ et [ ph ] ze ph si ] mu = rh mu $=
     ( lofdf-encl lofdf-juxt lofdf-void lofc2bx lofc3bx loftrans ) EBAGHCHAHDHGH
     FHEBIGHCHAHDHGHFHEFHIABICDEFJBCAHDHEFKL $.
     $( [14-Feb-2017] $)
 
   $( ~ lofj1 reversed and extended.  (Contributed by Naipmoro, 25-Feb-2017.) $)
-  lofj1rx $p |- rh [` et ph ze [` ph `] si `] mu .= rh mu $=
+  lofj1rx $p |- rh [ et ph ze [ ph ] si ] mu = rh mu $=
     ( lofdf-juxt lofdf-encl lofcmmbx lofj1x loftrans ) EBAGCGAHZGDGHGFGEBLGCGAG
     DGHGFGEFGALBCDEFIABCDEFJK $.
     $( [25-Feb-2017] $)
 
   $( ~ lofj1 extended and switched.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofj1xs $p |- rh mu .= rh [` et [` ph `] ze ph si `] mu $=
+  lofj1xs $p |- rh mu = rh [ et [ ph ] ze ph si ] mu $=
     ( lofdf-encl lofdf-juxt lofj1x lofsym ) EBAGHCHAHDHGHFHEFHABCDEFIJ $.
     $( [14-Feb-2017] $)
 
   $( Generalizations of J2. $)
 
   $( ~ lofj2 extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofj2x $p |- et [` [` ph ch `] [` ps ch `] `] ze si
-               .= et [` [` ph `] [` ps `] `] ze ch si $=
+  lofj2x $p |- et [ [ ph ch ] [ ps ch ] ] ze si
+               = et [ [ ph ] [ ps ] ] ze ch si $=
     ( lofdf-juxt lofdf-encl lofj2 lofsubst lofdf-void lofcmmx loftrans ) DACGHB
     CGHGHZGEGFGDAHBHGHZGZCGEGFGPEGCGFGNOCGDEFGABCIJCEPKFLM $.
     $( [14-Feb-2017] $)
 
   $( ~ lofj2 reversed and extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-  lofj2rx $p |- et [` [` ph `] [` ps `] `] ze ch si
-                .= et [` [` ph ch `] [` ps ch `] `] ze si $=
+  lofj2rx $p |- et [ [ ph ] [ ps ] ] ze ch si
+                = et [ [ ph ch ] [ ps ch ] ] ze si $=
     ( lofdf-juxt lofdf-encl lofj2x lofsym ) DACGHBCGHGHGEGFGDAHBHGHGEGCGFGABCDE
     FIJ $.
     $( [14-Feb-2017] $)
@@ -813,15 +813,15 @@ $(
   -----------------------------------------------------------------------------
 $)
 
-  $( We will later define ` ( ph -> ps ) ` as ` [` ph `] ps `.  This theorem
+  $( We will later define ` ( ph -> ps ) ` as ` [ ph ] ps `.  This theorem
      shows that our previous definition of equality is equivalent to
      ` ( ( ph -> ps ) /\ ( ps -> ph ) ) ` .  The latter, in turn, is what we
      mean by the biconditional ` <-> ` .  In othe words, equality and the
      biconditional are, as expected, equivalent.  This proof is adapted from
      the proof of ~ bicond in [Naip].  (Contributed by Naipmoro, 24-Feb-2017.)
   $)
-  lofbiimp $p |- [` [` [` ph `] ps `] [` [` ps `] ph `] `]
-                 .= [` [` ph `] [` ps `] `] [` ph ps `] $=
+  lofbiimp $p |- [ [ [ ph ] ps ] [ [ ps ] ph ] ]
+                 = [ [ ph ] [ ps ] ] [ ph ps ] $=
     ( lofdf-encl lofdf-juxt lofdf-void lofcmm lofsubbd1 lofc1 lofsubb1 lofcmmbx
     lofc6 lofc9 lofeucr ) BACZDZCBCZADCZDCZNBDZCQDCNPDCABDCDZOSEEEQEEBNFGPCZNDC
     ZQDZCZRTUABENEQEEBHGECZNDCZUEADCZDZUBDQDCZUDTUHEEUCEEEAKIUFUBDQDUGDCUITUCUG
@@ -833,32 +833,32 @@ $)
 
   $( Lemma.  Adapted from the proof of ~ c2lem1 in [Naip].  (Contributed by
      Naipmoro, 24-Feb-2017.) $)
-  lofbiasslem1 $p |-  [` ps [` ph ps `] ch `] .= [` [` ph `] ps ch `] $=
+  lofbiasslem1 $p |-  [ ps [ ph ps ] ch ] = [ [ ph ] ps ch ] $=
     ( lofdf-juxt lofdf-encl lofdf-void lofcmmbx lofc2bx loftrans ) BABDEZDCDEJB
     DCDEAEBDCDEBJFFCFFGABFFFCFFHI $.
     $( [24-Feb-2017] $)
 
   $( Lemma.  Adapted from the proof of ~ c2lem2 in [Naip].  (Contributed by
      Naipmoro, 24-Feb-2017.) $)
-  lofbiasslem2 $p |-  [` ph [` ph ps `] ch `] .= [` ph [` ps `] ch `] $=
+  lofbiasslem2 $p |-  [ ph [ ph ps ] ch ] = [ ph [ ps ] ch ] $=
     ( lofdf-juxt lofdf-encl lofdf-void lofcmmbdx lofbiasslem1 loftrans lofcmmbx
     ) AABDEDCDEZBEZADCDEZALDCDEKABADEDCDEMABFFFACFFGBACHILAFFCFFJI $.
     $( [24-Feb-2017] $)
 
-  $( Let ` P .= [` [` ph `] [` ps `] `] [` ph ps `] ` and
-         ` Q .= [` [` ps `] [` ch `] `] [` ps ch `] ` .
+  $( Let ` P = [ [ ph ] [ ps ] ] [ ph ps ] ` and
+         ` Q = [ [ ps ] [ ch ] ] [ ps ch ] ` .
      Proving that equality/biconditional associates amounts to proving:
-         ` [` [` P `] [` ch `] `] [` P ch `]
-        .= [` [` ph `] [` Q `] `] [` ph Q `] `
+         ` [ [ P ] [ ch ] ] [ P ch ]
+        = [ [ ph ] [ Q ] ] [ ph Q ] `
      which is demonstrated in ~ lofbiass.  Meanwhile, this theorem shows that
      the lhs of the latter equation evaluates to a form symmetric in the three
      variables, informal evidence for associativity.  Adapted from the proof of
      ~ bic3 in [Naip].  (Contributed by Naipmoro, 24-Feb-2017.)
           $)
-  lofbiass3 $p |- [` [` [` [` ph `] [` ps `] `] [` ph ps `] `] [` ch `] `]
-                  [` [` [` ph `] [` ps `] `] [` ph ps `] ch `]
-                  .= [` [` ph `] [` ps `] [` ch `] `] [` ph ps [` ch `] `]
-                     [` ph [` ps `] ch `] [` [` ph `] ps ch `] $=
+  lofbiass3 $p |- [ [ [ [ ph ] [ ps ] ] [ ph ps ] ] [ ch ] ]
+                  [ [ [ ph ] [ ps ] ] [ ph ps ] ch ]
+                  = [ [ ph ] [ ps ] [ ch ] ] [ ph ps [ ch ] ]
+                     [ ph [ ps ] ch ] [ [ ph ] ps ch ] $=
     ( lofdf-encl lofdf-juxt lofj2 lofbeq lofeucr lofbiasslem2 lofsubst loftrans
     lofc1 lofquad lofbiasslem1 lofsubr ) ADZBDZEZDABEZDZEZDCDZEZDZUACEZDZEZRUBE
     DSUBEDEZAQECEDZEZBTECEDZEUJPBECEDZEUGUHATECEDZUKEZEUHUIUKEEUDUHUFUNUHDZDUDU
@@ -867,10 +867,10 @@ $)
 
   $( A permuted version of ~ lofbiass3 .  Adapted from the proof of ~ bic3x in
      [Naip].  (Contributed by Naipmoro, 29-Dec-2016.)  $)
-  lofbiass3p $p |- [` [` [` [` ps `] [` ch `] `] [` ps ch `] `] [` ph `] `]
-                   [` [` [` ps `] [` ch `] `] [` ps ch `] ph `]
-                   .= [` [` ph `] [` ps `] [` ch `] `] [` ph ps [` ch `] `]
-                      [` ph [` ps `] ch `] [` [` ph `] ps ch `] $=
+  lofbiass3p $p |- [ [ [ [ ps ] [ ch ] ] [ ps ch ] ] [ ph ] ]
+                   [ [ [ ps ] [ ch ] ] [ ps ch ] ph ]
+                   = [ [ ph ] [ ps ] [ ch ] ] [ ph ps [ ch ] ]
+                      [ ph [ ps ] ch ] [ [ ph ] ps ch ] $=
     ( lofdf-encl lofdf-juxt lofbiass3 lofdf-void lofcmmbx loftrans lofcmmx ) BD
     ZCDZEZDBCEZDEZDADZEDOAEDEZPKELEDZPBECEDZEZAKECEDZEABELEDZEZRUBEUAESEQTUBEZU
     AEZUCQUDKCEZAEDZEZUEQTBLEZAEDZEUGEZUHQRNPEDZEUJEUGEZUKQMPEDULEUJEUGEUMBCAFM
@@ -880,10 +880,10 @@ $)
   $( Proving the associativity of equality/biconditional.   Adapted from the
      proof of ~ bicond-assc in [Naip].  (Contributed by Naipmoro, 29-Dec-2016.)
   $)
-  lofbiass  $p |- [` [` [` [` ph `] [` ps `] `] [` ph ps `] `] [` ch `] `]
-                  [` [` [` ph `] [` ps `] `] [` ph ps `] ch `]
-                  .= [` [` ph `] [` [` [` ps `] [` ch `] `] [` ps ch `] `] `]
-                     [` ph [` [` ps `] [` ch `] `] [` ps ch `] `] $=
+  lofbiass  $p |- [ [ [ [ ph ] [ ps ] ] [ ph ps ] ] [ ch ] ]
+                  [ [ [ ph ] [ ps ] ] [ ph ps ] ch ]
+                  = [ [ ph ] [ [ [ ps ] [ ch ] ] [ ps ch ] ] ]
+                     [ ph [ [ ps ] [ ch ] ] [ ps ch ] ] $=
     ( lofdf-encl lofdf-juxt lofbiass3 lofbiass3p lofdf-void lofcmmbx loftrans
     lofeuc ) ADZBDZEZDABEZDEZDCDZEDPCEDEZMQEDZBCEDZEZDZLEDUAAEDZEZLUBEDZASETEDE
     ZRNQEDOQEDEAMECEDELBECEDEUDABCFABCGKUDUEUCEUFUBLHHHHUCIUAAHHHUEHIJJ $.
@@ -897,7 +897,7 @@ $)
 
   $( This key theorem states that the equivalence of ` ph ` to True is
      equivalent to just ` ph ` .  (Contributed by Naipmoro, 29-Jan-2017.) $)
-  lofelimeq $p |- [` [` ph `] [` [` `] `] `] [` ph [` `] `] .= ph $=
+  lofelimeq $p |- [ [ ph ] [ [ ] ] ] [ ph [ ] ] = ph $=
     ( lofdf-encl lofdf-void lofi2 lofsubb1 lofc1 lofsubst loftrans lofcmm lofc2
     lofdf-juxt lofcmmbx ) ABZCBZBZKBANKBZKZOAKZAQNAKBZAKZRQASKZTQAPKZUAQMBZPKUB
     OCMCCPDEUCACPAFGHANCCCACLHASIHNAJHOCCADGH $.
@@ -907,7 +907,7 @@ $)
      interchange equational and classical forms.  $)
   ${
     lofax-ded.1 $e |- ph $.
-    lofax-ded.2 $e |- ph .= ps $.
+    lofax-ded.2 $e |- ph = ps $.
     $( If we assert both ` ph ` and that ` ph ` is equal to ` ps ` , we can
        infer ` ps ` .  (Contributed by Naipmoro, 14-Feb-2017.) $)
     lofax-ded $a |- ps $.
@@ -915,7 +915,7 @@ $)
 
   $( Truth equivalence elimination.  $)
   ${
-    lofelim.1 $e |- ph .= [` `] $.
+    lofelim.1 $e |- ph = [ ] $.
     $( If ` ph ` is equivalent to True, we can infer ` ph ` .  (Contributed by
        Naipmoro, 14-Feb-2017.) $)
     lofelim $p |- ph $=
@@ -929,15 +929,15 @@ $)
     lofintr.1 $e |- ph $.
     $( If we can assert ` ph ` , then we can infer that ` ph ` is equivalent
        to True.  (Contributed by Naipmoro, 14-Feb-2017.) $)
-    lofintr $p |- ph .= [` `] $=
+    lofintr $p |- ph = [ ] $=
       ( lofdf-void lofdf-encl lofdf-juxt lofelimeq lofsym lofax-ded lofdf-uni )
       ACDZAADJDEDAJEDEZBKAAFGHI $.
       $( [14-Feb-2017] $)
   $}
 
   ${
-    lofeucrelim.1 $e |- ph .= ps $.
-    lofeucrelim.2 $e |- ph .= [` `] $.
+    lofeucrelim.1 $e |- ph = ps $.
+    lofeucrelim.2 $e |- ph = [ ] $.
     $( Eliminate equation from ~ lofeucr deduction.  (Contributed by Naipmoro,
        14-Feb-2017.) $)
     lofeucrelim $p |- ps $=
@@ -946,8 +946,8 @@ $)
   $}
 
   ${
-    loftranselim.1 $e |- ph .= ps $.
-    loftranselim.2 $e |- ps .= [` `] $.
+    loftranselim.1 $e |- ph = ps $.
+    loftranselim.2 $e |- ps = [ ] $.
     $( Eliminate equation from ~ loftrans deduction.  (Contributed by Naipmoro,
        14-Feb-2017.) $)
     loftranselim $p |- ph $=
@@ -961,7 +961,7 @@ $)
     $( Wrap premises in LoF conjunctive form.  From ` ph ` and `ps ` we infer
        the LoF equivalent of ` ph /\ ps ` .  (Contributed by Naipmoro,
        14-Feb-2017.) $)
-    lofand $p |- [` [` ph `] [` ps `] `] $=
+    lofand $p |- [ [ ph ] [ ps ] ] $=
       ( lofdf-encl lofdf-juxt lofc3bx lofintr lofeuc lofdf-equ lofrepbx lofeucr
       lofdf-void lofelim ) AEBEFEZOMEZBFEFOPMBOMGAPMBOMPACHZOABFEFABAPBQBDHIJHK
       LN $.
@@ -973,14 +973,14 @@ $)
     lofeq.2 $e |- ps $.
     $( From assertions of ` ph ` and ` ps ` we infer their equality.
        (Contributed by Naipmoro, 1-Mar-2017.) $)
-    lofeq $p |- ph .= ps $=
+    lofeq $p |- ph = ps $=
       ( lofdf-void lofdf-encl lofintr lofeuc ) AEFBACGBDGH $.
       $( [1-Mar-2017] $)
   $}
 
   ${
     lofmp.1 $e |- ph $.
-    lofmp.2 $e |- [` ph `] ps $.
+    lofmp.2 $e |- [ ph ] ps $.
     $( LoF version of modus ponens.  (Contributed by Naipmoro, 14-Feb-2017.) $)
     lofmp $p |- ps $=
       ( lofdf-encl lofdf-void lofintr lofbeq loftrans lofdf-juxt lofrep lofelim
@@ -993,17 +993,17 @@ $(
                    12. Defining classical propositional logic
   -----------------------------------------------------------------------------
 
-  We define ` ( ph -> ps ) ` as ` [` ph `] ps ` and ` -. ph ` as ` [` ph `] ` .
+  We define ` ( ph -> ps ) ` as ` [ ph ] ps ` and ` -. ph ` as ` [ ph ] ` .
   This determines the interpretation of the other logical constants:
-    ` -. ph .= [` ph `] ` .
-    ` ( ph -> ps ) .= [` ph `] ps ` .
-    ` ( ph \/ ps ) .= ph ps ` .
-    ` ( ph /\ ps ) .= [` [` ph `] [` ps `] `] ` .
-  Constructing hybrid wffs like ` [` -. ph `] ` that lack meaning in either LoF
+    ` -. ph = [ ph ] ` .
+    ` ( ph -> ps ) = [ ph ] ps ` .
+    ` ( ph \/ ps ) = ph ps ` .
+    ` ( ph /\ ps ) = [ [ ph ] [ ps ] ] ` .
+  Constructing hybrid wffs like ` [ -. ph ] ` that lack meaning in either LoF
   or propositional logic becomes not merely possible but necessary in the
   course of translating from one system to the other.  Indeed, one can validly
-  calculate with these hybrid forms.  For example, ` [` -. ph `] -. ph ` can
-  be reduced to ` [` `] ` by ~ lofc2e without the need to fully translate into
+  calculate with these hybrid forms.  For example, ` [ -. ph ] -. ph ` can
+  be reduced to ` [ ] ` by ~ lofc2e without the need to fully translate into
   LoF.  The proof of ~ df-bi makes full use of that possibility.
 $)
 
@@ -1021,22 +1021,22 @@ $)
 
   $( Define material implication in terms of LoF.  (Contributed by Naipmoro,
      27-Feb-2017.) $)
-  lofdf-imp $a |- ( ph -> ps ) .= [` ph `] ps $.
+  lofdf-imp $a |- ( ph -> ps ) = [ ph ] ps $.
 
   $( Define negation in terms of LoF.  (Contributed by Naipmoro, 27-Feb-2017.)
   $)
-  lofdf-neg $a |- -. ph .= [` ph `] $.
+  lofdf-neg $a |- -. ph = [ ph ] $.
 
   $( Express the negation of an implication.  (Contributed by Naipmoro,
      27-Feb-2017.) $)
-  lofni $p |- -. ( ph -> ps ) .= [` [` ph `] ps `] $=
+  lofni $p |- -. ( ph -> ps ) = [ [ ph ] ps ] $=
     ( wi lofdf-encl lofdf-juxt lofdf-void wn lofdf-imp lofdf-neg lofrepbxs ) AB
     CZADBEFFFFKGABHKIJ $.
     $( [27-Feb-2017] $)
 
   $( A hybrid theorem.  Enclosing the negation of a proposition is equivalent
      to the proposition.  (Contributed by Naipmoro, 28-Feb-2017.) $)
-  lofne $p |- [` -. ph `] .= ph $=
+  lofne $p |- [ -. ph ] = ph $=
     ( wn lofdf-encl lofdf-neg lofbeq lofc1 loftrans ) ABZCACZCAHIADEAFG $.
     $( [28-Feb-2017] $)
 
@@ -1140,11 +1140,11 @@ $(
   equality to prove all four of those statements, including the definition,
   directly from LoF.
 
-  In examining this section, the reader may wonder about the need for ` .= ` .
+  In examining this section, the reader may wonder about the need for ` = ` .
   Could we not have dispensed with it, replacing it with ` <-> ` right from the
   start?  That was my original intent, but in the end I retained the equality
   sign for readability and to avoid some nuanced distinctions.  For example,
-  while ` ( ph <-> ps ) ` is a wff, ` ph .= ps ` cannot be a wff without
+  while ` ( ph <-> ps ) ` is a wff, ` ph = ps ` cannot be a wff without
   introducing contradiction.
 $)
 
@@ -1156,12 +1156,12 @@ $)
 
   $( A definition of the biconditional in terms of LoF equality.  (Contributed
      by Naipmoro, 21-Feb-2017.) $)
-  lofdf-bi $a |- ( ph <-> ps ) .= [` [` ph `] [` ps `] `] [` ph ps `] $.
+  lofdf-bi $a |- ( ph <-> ps ) = [ [ ph ] [ ps ] ] [ ph ps ] $.
 
   $( A  more traditional understanding of the biconditional as (the LoF
      equivalent of) a conjunction of converse implications.  (Contributed by
      Naipmoro, 24-Feb-2017.) $)
-  lofbii $p |- ( ph <-> ps ) .= [` [` [` ph `] ps `] [` [` ps `] ph `] `] $=
+  lofbii $p |- ( ph <-> ps ) = [ [ [ ph ] ps ] [ [ ps ] ph ] ] $=
     ( wb lofdf-encl lofdf-juxt lofdf-bi lofbiimp lofeuc ) ABCADZBDZEDABEDEIBEDJ
     AEDEDABFABGH $.
     $( [24-Feb-2017] $)
@@ -1170,14 +1170,14 @@ $)
     lofbieq.1 $e |- ( ph <-> ps ) $.
     $( Infer an equality from a biconditional.  (Contributed by Naipmoro,
        24-Feb-2017.) $)
-    lofbieq   $p |- ph .= ps $=
+    lofbieq   $p |- ph = ps $=
       ( wb lofdf-encl lofdf-juxt lofdf-bi lofax-ded lofdf-uni ) ABABDAEBEFEABFE
       FCABGHI $.
       $( [24-Feb-2017] $)
   $}
 
   ${
-    lofeqi.1 $e |- ph .= ps $.
+    lofeqi.1 $e |- ph = ps $.
     $( Infer an implication from an equality.  (Contributed by Naipmoro,
        28-Feb-2017.) $)
     lofeqi   $p |- ( ph -> ps ) $=
@@ -1189,7 +1189,7 @@ $)
 
   $( Relate the biconditional connective to primitive connectives, proved
      directly from LoF.  (Contributed by Naipmoro, 25-Feb-2017.) $)
-  dfbi1 $p |-  ( ph <-> ps ) .= -. ( ( ph -> ps ) -> -. ( ps -> ph ) )  $=
+  dfbi1 $p |-  ( ph <-> ps ) = -. ( ( ph -> ps ) -> -. ( ps -> ph ) )  $=
     ( wb lofdf-encl lofdf-juxt wi lofbii lofdf-neg lofdf-void lofsubb1 loftrans
     wn lofdf-imp lofsubbd1 lofeuc ) ABCADBEZDZBDAEZDEDZABFZBAFZLZFZLZABGUDQUADZ
     EDZSUDTDZUEEDZUFUDUGUBEZDZUHUDUCDUJUCHUCUIIIIITUBMJKUBUEUGIIIUAHJKTPIIIUEII
@@ -1197,7 +1197,7 @@ $)
     $( [25-Feb-2017] $)
 
   $( The reverse of ~ dfbi1.  (Contributed by Naipmoro, 26-Feb-2017.) $)
-  lofbi1r $p |- -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) .= ( ph <-> ps ) $=
+  lofbi1r $p |- -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) = ( ph <-> ps ) $=
     ( wb wi wn dfbi1 lofsym ) ABCABDBADEDEABFG $.
     $( [26-Feb-2017] $)
 
