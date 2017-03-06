@@ -19,15 +19,15 @@ $(
   In lof.mm ( ~ https://github.com/naipmoro/lofmm/blob/master/lof.mm ) I
   presented metamath derivations of Spencer-Brown's Primary Algebra (details of
   the algebra, hereafter cited as "LoF", can be found in Chapter 6 of
-  [Spencer-Brown]).  lof.mm was a stand-alone project that, for maximum
-  readability, bypassed compatibility with set.mm, metamath's ongoing
-  formalization of mathematics.  Here I present a version which is more than
-  compatible; I derive set.mm's propositional calculus from LoF.  There is
-  nothing surprising in this -- classical propositional logic is one of the
-  interpretations of LoF (Boolean algebra is another).  The real interest lies
-  in the means of derivation.
+  [Spencer-Brown]).  lof.mm was a stand-alone project indifferent to
+  compatibility with set.mm, metamath's ongoing formalization of mathematics.
+  In contrast, here I present a version which is strictly compatible:  I derive
+  set.mm's propositional calculus from LoF.  There is nothing surprising in
+  this -- classical propositional logic is one of the interpretations of LoF
+  (Boolean algebra is another).  The real interest lies in the means of
+  derivation.
 
-  A note about notation: all LoF statements have labels prefixed with "lof". 
+  A note about notation:  All LoF statements have labels prefixed with "lof". 
   Statements from set.mm retain their original labels.
 
   LoF is an equational logic (although I show that, technically, equations can
@@ -130,8 +130,8 @@ $)
   $( If ` ph ` and ` ps ` are wffs, so is ` ph ps ` .  This rule introduces
      technical ambiguity into the formal language and some metamath parsers
      will reject it.  However, since the system is inherently associative, this
-     ambiguity has no effect on the validity of the formal derivations and all
-     proper validators will accept the results.  (Contributed by Naipmoro,
+     ambiguity does not detract from the validity of the formal derivations and
+     all proper validators will accept them.  (Contributed by Naipmoro,
      2-Sep-2015.) $)
   lofdf-juxt $a wff ph ps $.
 
@@ -164,7 +164,7 @@ $)
     lofax-euc $a |- [ [ ph ] [ ch ] ] [ ph ch ] $.
   $}
 
-  $( We can rephrase Euclid's second and third Common Notions as: doing the
+  $( We can rephrase Euclid's second and third Common Notions as:  Doing the
      same thing (e.g., applying the same operation) to equal things leaves
      equal things.  In light of LoF's two operations, enclosure and
      juxtaposition, this leads to the next two axioms (looked at differently,
@@ -200,7 +200,7 @@ $(
                            4. Inference theorems
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  If our target interpetation is to be satisfied, we should expect "equality"
+  If our target interpretation is to be satisfied, we should expect "equality"
   to meet the requirements of an equivalence relation: reflexivity, symmetry,
   and transitivity.  The next three theorems show that it does.
 $)
@@ -270,12 +270,13 @@ $(
 
   <HTML><ul>
   <li><b>Substitution.</b>
-  If P is a theorem, replacing all occurences of some variable x with any wff Q
-  is also a theorem.
+  If P is a theorem, replacing all occurrences of some variable x with any wff
+  Q is also a theorem.
   </li>
   <li><b>Leibniz.</b>
-  If P = Q then replacing all occurences of some variable x in any wff F with P
-  yields an expression that is equal to replacing all occurences of x with Q.
+  If P = Q then replacing all occurrences of some variable x in any wff F with
+  P yields an expression that is equal to replacing all occurrences of x with
+  Q.
   </li>
   <li><b>Transitivity.</b>
   From P = Q and Q = R we can infer P = R.
@@ -294,12 +295,12 @@ $(
   as a proto-equational logic.  What then provides the formal power enabling
   us to generate a full logic?  The void and commutativity are enough, as shown
   by the proofs.  Although it's true that commutativity is extraneous to
-  equational logic proper, it's importatnt to understand that LoF is
+  equational logic proper, it's important to understand that LoF is
   intrinsically a planar notation, where commutativity is an unstated given.
   It is only in the context of a linear notation like metamath that an explicit
   reference to commutativity needs to be made.  So in a very real sense, it is
-  the void alone, the umarked state, that energizes the proto-logic into a full
-  logic.
+  the void alone, the unmarked state, that energizes the proto-logic into a
+  full logic.
 $)
 
   ${
@@ -862,7 +863,7 @@ $)
   $( We will later define ` ( ph -> ps ) ` as ` [ ph ] ps `.  In that light, 
      this theorem shows that our previous definition of equality is equivalent
      to ` ( ( ph -> ps ) /\ ( ps -> ph ) ) ` .  The latter, in turn, is what we
-     mean by the biconditional ` <-> ` .  In othe words, equality and the
+     mean by the biconditional ` <-> ` .  In other words, equality and the
      biconditional are, as expected, equivalent.  (Contributed by Naipmoro,
      24-Feb-2017.) $)
   lofbiimp $p |- [ [ [ ph ] ps ] [ [ ps ] ph ] ]
@@ -1303,7 +1304,7 @@ $(
 
   Paste the contents of this file anywhere before the start of set.mm's active
   statements.  Read the ensuing (saved) file into metamath and run "verify
-  proof *".  Expected result: "All proofs in the database were verified".
+  proof *".  Expected result:  "All proofs in the database were verified".
 
   An example of such an altered set.mm file is available here:
   ~ https://github.com/naipmoro/lofmm/blob/master/set(lof).mm .
