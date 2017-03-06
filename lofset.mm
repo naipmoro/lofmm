@@ -56,8 +56,8 @@ $(
 $)
 
   $( Declare the primitive constant symbols for the Primary Algebra. $)
-  $c [ $. $( Left bracket $)
-  $c ] $. $( Right bracket $)
+  $c [ $. $( Left side of boundary $)
+  $c ] $. $( Right side of boundary $)
   $c wff $. $( Well-formed formula symbol (read:  "the following symbol
                sequence is a wff") $)
   $c |- $. $( Turnstile (read:  "the following symbol sequence is provable" or
@@ -121,10 +121,10 @@ $)
 
   $( If ` ph ` is a wff, so is ` [ ` ph ` ] ` . We say that " ` ph ` is
      enclosed (or crossed, or marked)".  Combined with the previous definition,
-     we see that ` [ ] ` , ` [ [ ] ] ` ,  ` [ ... [ [ ] ] ... ] `
-     are all wffs.  We call ` [ ] ` the "marked state" and identify it with the
-     value True.  We can think of ` [ ] ` and empty space as the two atomic
-     wffs.  (Contributed by Naipmoro, 2-Sep-2015.) $)
+     we see that ` [ ] ` , ` [ [ ] ] ` ,  ` [ ... [ [ ] ] ... ] ` are all wffs.
+     We call ` [ ] ` the "marked state" and identify it with the value True.
+     We can think of ` [ ] ` and empty space as the two atomic wffs.
+     (Contributed by Naipmoro, 2-Sep-2015.) $)
   lofdf-encl $a wff [ ph ] $.
 
   $( If ` ph ` and ` ps ` are wffs, so is ` ph ps ` .  This rule introduces
@@ -298,7 +298,7 @@ $(
   intrinsically a planar notation, where commutativity is an unstated given.
   It is only in the context of a linear notation like metamath that an explicit
   reference to commutativity needs to be made.  So in a very real sense, it is
-  the void alone, the umarked state, that energizes the proto-logic to a full
+  the void alone, the umarked state, that energizes the proto-logic into a full
   logic.
 $)
 
