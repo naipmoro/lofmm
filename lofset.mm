@@ -1,40 +1,42 @@
 $(
-#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#
-                Mathbox for Naipmoro
-#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#
-$)
+  lofset.mm
+  Version 0.2.0
+  Copyright (C) 2015-2017 Naipmoro
 
-  $( Use set.mm as foundation (comment out if actually a mathbox). $)
-  $( $[ set.mm $] $)
+  This file is made available under the MIT License:
+  http://opensource.org/licenses/MIT
+
+  This file contains verbatim excerpts from set.mm
+  (found at ~ https://github.com/metamath/set.mm/blob/master/set.mm ) which
+  is released under the CC0 1.0 Universal public domain license.
+$)
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
                               0. Introduction
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  In [Naip] I presented metamath derivations of Spencer-Brown's Primary Algebra
-  (details of the algebra, hereafter cited as "LoF", can be found in chapter 6
-  of [Spencer-Brown]).  [Naip] was a stand-alone project that, for maximum
+  In lof.mm ( ~ https://github.com/naipmoro/lofmm/blob/master/lof.mm ) I
+  presented metamath derivations of Spencer-Brown's Primary Algebra (details of
+  the algebra, hereafter cited as "LoF", can be found in Chapter 6 of
+  [Spencer-Brown]).  lof.mm was a stand-alone project that, for maximum
   readability, bypassed compatibility with set.mm, metamath's ongoing
-  formalization of mathematics.  Here I present a version which is more then
-  just compatible; I derive set.mm's propositional calculus from LoF.  There is
+  formalization of mathematics.  Here I present a version which is more than
+  compatible; I derive set.mm's propositional calculus from LoF.  There is
   nothing surprising in this -- classical propositional logic is one of the
   interpretations of LoF (Boolean algebra is another).  The real interest lies
   in the means of derivation.
 
-  First a note about notation.  All LoF statements will have labels prefixed
-  with "lof".  When I prove a statement from set.mm, its label will have "mm"
-  prefixed to the original label.  When there is no opportunity for confusion,
-  I will refer to set.mm's statements by their original labels (without the
-  "mm").
+  A note about notation: all LoF statements have labels prefixed with "lof". 
+  Statements from set.mm retain their original labels.
 
   LoF is an equational logic (although I show that, technically, equations can
   be avoided).  In other words, axioms and theorems are stated in the form
   ` ph = ps ` .  Transitioning from this to the implicational form
   characteristic of classical propositional logic is an interesting problem.  I
   believe the technique chosen here is among the simplest, relying on a single
-  additional axiom ~ lofax-qny (equanimity), the equational analogue of modus
-  ponens:
+  additional axiom ~ lofax-qny (known as Equanimity), the equational analogue
+  of modus ponens:
 
   ${
     lofax-qny.1 $e |- ph $.
@@ -120,9 +122,9 @@ $)
   $( If ` ph ` is a wff, so is ` [ ` ph ` ] ` . We say that " ` ph ` is
      enclosed (or crossed, or marked)".  Combined with the previous definition,
      we see that ` [ ] ` , ` [ [ ] ] ` ,  ` [ ... [ [ ] ] ... ] `
-     are all wffs.  We will call ` [ ] ` the "marked state" and identify it
-     with the value True.  We can think of ` [ ] ` and empty space as the two
-     atomic wffs.  (Contributed by Naipmoro, 2-Sep-2015.) $)
+     are all wffs.  We call ` [ ] ` the "marked state" and identify it with the
+     value True.  We can think of ` [ ] ` and empty space as the two atomic
+     wffs.  (Contributed by Naipmoro, 2-Sep-2015.) $)
   lofdf-encl $a wff [ ph ] $.
 
   $( If ` ph ` and ` ps ` are wffs, so is ` ph ps ` .  This rule introduces
@@ -138,7 +140,7 @@ $(
                   3. The four primitive inference axioms
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  In [Naip] "=" was one of the primitive constants of the language.  But the
+  In lof.mm "=" was one of the primitive constants of the language.  But the
   symbol is superfluous, as in a Boolean system equality and equivalence are
   synonyms.  Let us interpret the form ` [ [ ph ] [ ps ] ] [ ph ps ] ` to mean
   " ` ph ` equals (or is equivalent to) ` ps ` ".  All of LoF can be expressed
@@ -268,30 +270,36 @@ $(
 
   <HTML><ul>
   <li><b>Substitution.</b>
-  If ` ph ` is a theorem, replacing all occurences of some variable ` x ` with
-  any wff ` y ` is also a theorem,  written in metamath as: from ` |- ph ` we
-  can infer ` |- [ y / x ] ph ` (this use of brackets is not to be confused
-  with LoF's boundary brackets).
+  If P is a theorem, replacing all occurences of some variable x with any wff Q
+  is also a theorem.
   </li>
   <li><b>Leibniz.</b>
-  If ` |- ph = ps ` then ` |- [ ph / x ] ch = [ ps / x ] ch ` for any variable
-  ` x ` in wff ` ch ` .
+  If P = Q then replacing all occurences of some variable x in any wff F with P
+  yields an expression that is equal to replacing all occurences of x with Q.
   </li>
   <li><b>Transitivity.</b>
-  From ` |- ph = ps ` and ` |- ps = ch ` we can infer ` |- ph = ch ` .
+  From P = Q and Q = R we can infer P = R.
   </li>
   <li><b>Equanimity.</b>
-  From ` |- ph  ` and ` |- ph = ps ` we can infer ` |- ps ` .
+  From P and P = Q we can infer Q.
   </li>
   </ul></HTML>
 
-  Referring to our axioms, we can dispense with Substitution as Metamath's
-  formal machinery fills the need. The Leibniz rule, which in principle applies
-  to extremely complicated forms, is conceptually captured by our two simple
-  rules, ~ lofbeq and ~ lofsub .  Transitivity is replaced by Euclid's
-  equivalent rule ~ lofeuc (we prove transitivity as a theorem).  Finally,
-  Equanimity is not needed until later when we begin to interface with
-  classical propositional logic.
+  Curiously, we do not need Substitution in developing LoF.  The Leibniz rule
+  is conceptually captured by our two simple rules ~ lofbeq and ~ lofsub ,
+  while Transitivity is replaced by Euclid's equivalent rule ~ lofeuc (we prove
+  Transitivity as a theorem).   Equanimity is not needed until we begin to
+  interface with classical propositional logic (and even then there might be a
+  simpler approach).  This suggests that LoF is more accurately characterized 
+  as a proto-equational logic.  What then provides the formal power enabling
+  us to generate a full logic?  The void and commutativity are enough, as shown
+  by the proofs.  Although it's true that commutativity is extraneous to
+  equational logic proper, it's importatnt to understand that LoF is
+  intrinsically a planar notation, where commutativity is an unstated given.
+  It is only in the context of a linear notation like metamath that an explicit
+  reference to commutativity needs to be made.  So in a very real sense, it is
+  the void alone, the umarked state, that energizes the proto-logic to a full
+  logic.
 $)
 
   ${
@@ -539,9 +547,9 @@ $(
                                  7. Axioms of LoF
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  [Naip] discusses different sets of axioms for LoF.  Here I adopt the original
-  set of [Spencer-Brown] p. 28.  The descriptive names of axioms and theorems
-  are Spencer-Brown's own.
+  See lof.mm for a discussion of different sets of axioms for LoF.  Here I
+  adopt the original set of [Spencer-Brown] p. 28.  The descriptive names of
+  axioms and theorems are Spencer-Brown's own.
 $)
 
   $( Position.  Axiom J1 of [Spencer-Brown] p. 28.  (Contributed by Naipmoro,
@@ -681,7 +689,7 @@ $(
   one-dimensional notation.  In generalizing some major theorems, it attempts
   to lighten the significant overhead of commutative term rearrangements and
   maintenance of equational symmetries.  The ugliness of the section is a gauge
-  of how inappropriate linear scripts are to LoF.
+  of how inappropriate linear notations are to LoF.
 $)
 
   $( Generalizations of C1. $)
@@ -851,9 +859,9 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 $)
 
-  $( We will later define ` ( ph -> ps ) ` as ` [ ph ] ps `.  This theorem
-     shows that our previous definition of equality is equivalent to
-     ` ( ( ph -> ps ) /\ ( ps -> ph ) ) ` .  The latter, in turn, is what we
+  $( We will later define ` ( ph -> ps ) ` as ` [ ph ] ps `.  In that light, 
+     this theorem shows that our previous definition of equality is equivalent
+     to ` ( ( ph -> ps ) /\ ( ps -> ph ) ) ` .  The latter, in turn, is what we
      mean by the biconditional ` <-> ` .  In othe words, equality and the
      biconditional are, as expected, equivalent.  (Contributed by Naipmoro,
      24-Feb-2017.) $)
@@ -927,14 +935,6 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 $)
 
-  $( This key theorem states that the equivalence of ` ph ` to True is
-     equivalent to just ` ph ` .  (Contributed by Naipmoro, 29-Jan-2017.) $)
-  lofelimeq $p |- [ [ ph ] [ [ ] ] ] [ ph [ ] ] = ph $=
-    ( lofdf-encl lofdf-void lofi2 lofsubb1 lofc1 lofsubst loftrans lofcmm lofc2
-    lofdf-juxt lofcmmbx ) ABZCBZBZKBANKBZKZOAKZAQNAKBZAKZRQASKZTQAPKZUAQMBZPKUB
-    OCMCCPDEUCACPAFGHANCCCACLHASIHNAJHOCCADGH $.
-    $( [29-Jan-2017] $)
-
   $( The Equanimity axiom.  This rule is the key that allows us to interchange
      equational and classical forms.  $)
   ${
@@ -944,6 +944,14 @@ $)
        infer ` ps ` .  (Contributed by Naipmoro, 14-Feb-2017.) $)
     lofax-qny $a |- ps $.
   $}
+
+  $( This important theorem states that the equivalence of ` ph ` to True is
+     equivalent to just ` ph ` .  (Contributed by Naipmoro, 29-Jan-2017.) $)
+  lofelimeq $p |- [ [ ph ] [ [ ] ] ] [ ph [ ] ] = ph $=
+    ( lofdf-encl lofdf-void lofi2 lofsubb1 lofc1 lofsubst loftrans lofcmm lofc2
+    lofdf-juxt lofcmmbx ) ABZCBZBZKBANKBZKZOAKZAQNAKBZAKZRQASKZTQAPKZUAQMBZPKUB
+    OCMCCPDEUCACPAFGHANCCCACLHASIHNAJHOCCADGH $.
+    $( [29-Jan-2017] $)
 
   $( Truth equivalence elimination.  $)
   ${
@@ -1116,14 +1124,14 @@ $(
   ability to ground the formalization of mathematics.
 $)
 
-  $( Derive set.mm's axiom ~ ax-1 as a theorem.  (Contributed by Naipmoro,
+  $( Proving set.mm's axiom ~ ax-1 as a theorem.  (Contributed by Naipmoro,
      14-Feb-2017.) $)
   ax-1 $p |- ( ph -> ( ps -> ph ) ) $=
     ( wi lofdf-encl lofdf-juxt lofdf-void lofdf-imp lofsubr loftrans lofelim
     lofc2e ) ABACZCZMADZBDZEAEZFDMNLEPALGLOAENBAGHIAFOFKIJ $.
     $( [14-Feb-2017] $)
 
-  $( Derive set.mm's axiom ~ ax-2 as a theorem.  (Contributed by Naipmoro,
+  $( Proving set.mm's axiom ~ ax-2 as a theorem.  (Contributed by Naipmoro,
      14-Feb-2017.) $)
   ax-2 $p |- ( ( ph -> ( ps -> ch ) ) -> ( ( ph -> ps ) -> ( ph -> ch ) ) ) $=
     ( lofdf-encl lofdf-juxt lofdf-imp lofreps lofrepbxs lofc2x loftrans lofcmmx
@@ -1133,10 +1141,9 @@ $)
     NJO $.
     $( [14-Feb-2017] $)
 
-  $( Derive set.mm's axiom ~ ax-3 as a theorem.  (Contributed by Naipmoro,
+  $( Proving set.mm's axiom ~ ax-3 as a theorem.  (Contributed by Naipmoro,
      14-Feb-2017.) $)
-  ax-3 $p |- ( ( -. ph -> -. ps ) -> ( ps -> ph ) )
-       $=
+  ax-3 $p |- ( ( -. ph -> -. ps ) -> ( ps -> ph ) ) $=
     ( wn wi lofdf-encl lofdf-juxt lofdf-void lofdf-neg lofbeq lofdf-imp lofreps
     lofrepbxs lofc2x loftrans lofc1bx lofc2e lofelim ) ACZBCZDZBADZDZUBAEZBEZFA
     FZGEUBUCEZEUDFAFZUEUBUFUDFEUDFAFUGSUDUFGGUDAFZUBBHREZUFGSGUHUBRUCAHITUISFGG
@@ -1148,7 +1155,7 @@ $)
     min $e |- ph $.
     $( Major premise for modus ponens. $)
     maj $e |- ( ph -> ps ) $.
-    $( Derive set.mm's modus ponens ~ ax-mp as a theorem.  (Contributed by
+    $( Proving set.mm's modus ponens ~ ax-mp as a theorem.  (Contributed by
        Naipmoro, 14-Feb-2017.) $)
     ax-mp $p |- ps $=
       ( lofdf-encl lofdf-juxt wi lofdf-void lofdf-imp lofintr lofeucr lofelim
@@ -1210,6 +1217,16 @@ $)
   $}
 
   ${
+    lofeqbi.1 $e |- ph = ps $.
+    $( Infer a biconditional from an equality.  (Contributed by Naipmoro,
+       4-Mar-2017.) $)
+    lofeqbi   $p |- ( ph <-> ps ) $=
+      ( lofdf-encl lofdf-juxt wb lofdf-equ lofdf-bi lofsym lofax-qny ) ADBDEDAB
+      EDEZABFZABCGLKABHIJ $.
+      $( [4-Mar-2017] $)
+  $}
+
+  ${
     lofeqi.1 $e |- ph = ps $.
     $( Infer an implication from an equality.  (Contributed by Naipmoro,
        28-Feb-2017.) $)
@@ -1220,19 +1237,25 @@ $)
       $( [28-Feb-2017] $)
   $}
 
-  $( Relate the biconditional connective to primitive connectives, proved
+  $( Relating the biconditional connective to primitive connectives, proved
      directly from LoF.  (Contributed by Naipmoro, 25-Feb-2017.) $)
-  dfbi1 $p |-  ( ph <-> ps ) = -. ( ( ph -> ps ) -> -. ( ps -> ph ) )  $=
+  lofbi1 $p |-  ( ph <-> ps ) = -. ( ( ph -> ps ) -> -. ( ps -> ph ) )  $=
     ( wb lofdf-encl lofdf-juxt wi lofbii lofdf-neg lofdf-void lofsubb1 loftrans
     wn lofdf-imp lofsubbd1 lofeuc ) ABCADBEZDZBDAEZDEDZABFZBAFZLZFZLZABGUDQUADZ
     EDZSUDTDZUEEDZUFUDUGUBEZDZUHUDUCDUJUCHUCUIIIIITUBMJKUBUEUGIIIUAHJKTPIIIUEII
     ABMNKUARIIQIIIBAMNKO $.
     $( [25-Feb-2017] $)
 
-  $( The reverse of ~ dfbi1.  (Contributed by Naipmoro, 26-Feb-2017.) $)
+  $( The reverse of ~ lofbi1.  (Contributed by Naipmoro, 26-Feb-2017.) $)
   lofbi1r $p |- -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) = ( ph <-> ps ) $=
-    ( wb wi wn dfbi1 lofsym ) ABCABDBADEDEABFG $.
+    ( wb wi wn lofbi1 lofsym ) ABCABDBADEDEABFG $.
     $( [26-Feb-2017] $)
+
+  $( Relating the biconditional connective to primitive connectives, proved
+     directly from LoF.  (Contributed by Naipmoro, 4-Mar-2017.) $)
+  dfbi1 $p |- ( ( ph <-> ps ) <-> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) ) $=
+    ( wb wi wn lofbi1 lofeqbi ) ABCABDBADEDEABFG $.
+    $( [4-Mar-2017] $)
 
   $( Property of the biconditional connective proved directly from LoF.
      (Contributed by Naipmoro, 24-Feb-2017.) $)
@@ -1253,8 +1276,8 @@ $)
     LKISUDGGUNUOBALKIABGUEUJMIGAGUEBGNIAUFOIUDGGGPIQ $.
     $( [24-Feb-2017] $)
 
-  $( The biconditional definition in set.mm proved as a theorem directly from
-     LoF.  (Contributed by Naipmoro, 28-Feb-2017.)  $)
+  $( The biconditional definition proved as a theorem directly from LoF. 
+     (Contributed by Naipmoro, 28-Feb-2017.)  $)
   df-bi $p |- -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
         -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) ) $=
     ( wb wi wn lofdf-encl lofdf-juxt lofdf-void lofbi1r lofj1 lofni lofrepbdxs
@@ -1280,14 +1303,16 @@ $(
 
   Paste the contents of this file anywhere before the start of set.mm's active
   statements.  Read the ensuing (saved) file into metamath and run "verify
-  proof *".  Expected result: "All proofs in the database were verified."
+  proof *".  Expected result: "All proofs in the database were verified".
 
   An example of such an altered set.mm file is available here:
   ~ https://github.com/naipmoro/lofmm/blob/master/set(lof).mm .
 
-  This file has been tested with the master branch version of set.mm
-  ( ~ https://github.com/metamath/set.mm/blob/master/set.mm  as of commit
-  558ed611a8d20ccdf7d486f19ad86c76bbab59e0 on 20-Dec-2016).
+  This file has been tested with the master branch of set.mm (commit
+  558ed611a8d20ccdf7d486f19ad86c76bbab59e0 on 20-Dec-2016) available at
+  ~ https://github.com/metamath/set.mm/blob/master/set.mm , and with the
+  develop branch (commit ceddb016b6450c6ee9f6f811196345a4e9395838 on
+  1-Mar-2017) at ~ https://github.com/metamath/set.mm/blob/develop/set.mm .
 $)
 
 $(
@@ -1295,8 +1320,6 @@ $(
                                  REFERENCES
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  1. [Naip] Naipmoro, "lof.mm", Metamath file (2015); available at
-     ~ https://github.com/naipmoro/lofmm/blob/master/lof.mm .
-  2. [Spencer-Brown] Spencer-Brown, George, "Laws of Form", Allen & Unwin,
+  1. [Spencer-Brown] Spencer-Brown, George, "Laws of Form", Allen & Unwin,
      London (1969).
 $)
