@@ -27,7 +27,7 @@ $(
   (Boolean algebra is another).  The real interest lies in the means of
   derivation.
 
-  A note about notation:  All LoF statements have labels prefixed with "lof". 
+  A note about notation:  All LoF statements have labels prefixed with "lof".
   Statements from set.mm retain their original labels.
 
   LoF is an equational logic (although I show that, technically, equations can
@@ -114,23 +114,23 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 $)
 
-  $( Empty space is a wff.  We will sometimes refer to it as the "unmarked
-     state" and in our intended interpretation it will be identified with the
-     value False.  (Contributed by Naipmoro, 2-Sep-2015.) $)
+  $( Empty space, the void, is a wff.  We will sometimes refer to it as the
+     "unmarked state" and in our intended interpretation it will be identified
+     with the value False.  (Contributed by Naipmoro, 2-Sep-2015.) $)
   lofdf-void $a wff $.
 
   $( If ` ph ` is a wff, so is ` [ ` ph ` ] ` . We say that " ` ph ` is
      enclosed (or crossed, or marked)".  Combined with the previous definition,
      we see that ` [ ] ` , ` [ [ ] ] ` ,  ` [ ... [ [ ] ] ... ] ` are all wffs.
      We call ` [ ] ` the "marked state" and identify it with the value True.
-     We can think of ` [ ] ` and empty space as the two atomic wffs.
+     We can think of ` [ ] ` and the void as our two atomic wffs.
      (Contributed by Naipmoro, 2-Sep-2015.) $)
   lofdf-encl $a wff [ ph ] $.
 
   $( If ` ph ` and ` ps ` are wffs, so is ` ph ps ` .  This rule introduces
      technical ambiguity into the formal language and some metamath parsers
      will reject it.  However, since the system is inherently associative, this
-     ambiguity does not detract from the validity of the formal derivations and
+     ambiguity does not compromise the validity of the formal derivations and
      all proper validators will accept them.  (Contributed by Naipmoro,
      2-Sep-2015.) $)
   lofdf-juxt $a wff ph ps $.
@@ -275,8 +275,7 @@ $(
   </li>
   <li><b>Leibniz.</b>
   If P = Q then replacing all occurrences of some variable x in any wff F with
-  P yields an expression that is equal to replacing all occurrences of x with
-  Q.
+  P is equivalent to replacing all occurrences of x with Q.
   </li>
   <li><b>Transitivity.</b>
   From P = Q and Q = R we can infer P = R.
@@ -286,21 +285,18 @@ $(
   </li>
   </ul></HTML>
 
-  Curiously, we do not need Substitution in developing LoF.  The Leibniz rule
-  is conceptually captured by our two simple rules ~ lofbeq and ~ lofsub ,
-  while Transitivity is replaced by Euclid's equivalent rule ~ lofeuc (we prove
-  Transitivity as a theorem).   Equanimity is not needed until we begin to
-  interface with classical propositional logic (and even then there might be a
-  simpler approach).  This suggests that LoF is more accurately characterized 
-  as a proto-equational logic.  What then provides the formal power enabling
-  us to generate a full logic?  The void and commutativity are enough, as shown
-  by the proofs.  Although it's true that commutativity is extraneous to
-  equational logic proper, it's important to understand that LoF is
-  intrinsically a planar notation, where commutativity is an unstated given.
-  It is only in the context of a linear notation like metamath that an explicit
-  reference to commutativity needs to be made.  So in a very real sense, it is
-  the void alone, the unmarked state, that energizes the proto-logic into a
-  full logic.
+  How does this compare with LoF? For one thing, Substitution is not needed,
+  as it is pre-built into metamath.  The generality of the Leibniz rule is
+  conceptually captured by our two simple rules ~ lofbeq and ~ lofsub , while
+  Transitivity is replaced by Euclid's equivalent rule ~ lofeuc (we prove
+  Transitivity as a theorem).  Finally, Equanimity is not needed until we begin
+  to interface with classical propositional logic (and even then there might be
+  a simpler approach).  This suggests that LoF is more accurately characterized
+  as a proto-equational logic.  Yet LoF's formal system does require
+  commutativity, clearly an extraneous addition; it's important to understand,
+  however, that LoF is intrinsically a planar notation, where commutativity is
+  an unstated given. It is only in the context of a linear notation like
+  metamath that an explicit reference to commutativity is called for.
 $)
 
   ${
@@ -860,7 +856,7 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 $)
 
-  $( We will later define ` ( ph -> ps ) ` as ` [ ph ] ps `.  In that light, 
+  $( We will later define ` ( ph -> ps ) ` as ` [ ph ] ps `.  In that light,
      this theorem shows that our previous definition of equality is equivalent
      to ` ( ( ph -> ps ) /\ ( ps -> ph ) ) ` .  The latter, in turn, is what we
      mean by the biconditional ` <-> ` .  In other words, equality and the
@@ -1034,13 +1030,36 @@ $(
                    12. Defining classical propositional logic
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  We define ` ( ph -> ps ) ` as ` [ ph ] ps ` and ` -. ph ` as ` [ ph ] ` .
+  We define ` ( ph -> ps ) ` as ` [ ph ] ps ` and ` -. ph ` as ` [ ph ] ` ,
+  consistent with our interpretation of ` [ ] ` as true and the void as false.
   This determines the interpretation of the other logical constants:
-    ` -. ph = [ ph ] ` .
-    ` ( ph -> ps ) = [ ph ] ps ` .
-    ` ( ph \/ ps ) = ph ps ` .
-    ` ( ph /\ ps ) = [ [ ph ] [ ps ] ] ` .
-    ` ( ph <-> ps ) = [ [ ph ] [ ps ] ] [ ph ps ] ` .
+
+  <HTML><br></HTML>
+
+  <HTML><ul>
+  <li> ` -. ph = [ ph ] ` .</li>
+  <li> ` ( ph -> ps ) = [ ph ] ps ` .</li>
+  <li> ` ( ph \/ ps ) = ph ps ` .</li>
+  <li> ` ( ph /\ ps ) = [ [ ph ] [ ps ] ] ` .</li>
+  <li> ` ( ph <-> ps ) = [ [ ph ] [ ps ] ] [ ph ps ] ` .</li>
+  </ul></HTML>
+
+  (NOTE:  LoF is "self-dual".  If we interpret ` [ ] ` as false and the void as
+  true, the theorems of LoF remain valid but carry different meanings:
+
+  <HTML><br></HTML>
+
+  <HTML><ul>
+  <li> ` -. ph = [ ph ] ` .</li>
+  <li> ` ( ph -> ps ) = [ ph [ ps ] ] ` .</li>
+  <li> ` ( ph \/ ps ) = [ [ ph ] [ ps ] ] ` .</li>
+  <li> ` ( ph /\ ps ) = ph ps ` .</li>
+  <li> ` ( ph <-> ps ) = [ [ [ ph ] [ ps ] ] [ ph ps ] ] ` .</li>
+  </ul></HTML>
+
+  This is C. S. Peirce's remarkable "alpha" system from his existential graphs,
+  the first modern instance of a boundary algebra.)
+
   Constructing hybrid wffs like ` [ -. ph ] ` that lack meaning in either LoF
   or propositional logic becomes not merely possible but necessary in the
   course of translating from one system to the other.  Indeed, one can validly
@@ -1098,16 +1117,17 @@ $(
   It would be as though someone claimed that "3x - 2x = x" was a "theorem" of
   numerical algebra.  Technically, yes ...
 
-  One day LoF will supplant the propositional calculus, as inevitably as brute
-  algebraic computations (mostly) supplanted elegant geometric reasoning, and
-  for much the same reasons.  But not in the manner shown here.  If you examine
-  the proof below, you will appreciate the overhead involved in translating
-  back and forth between the two systems.  Until predicate logic itself is
-  replaced by a boundary formalism, and a single logic is deployed, one should
-  not expect much movement on the part of logicians.
+  It is not farfetched to believe that one day LoF will supplant the
+  propositional calculus, as surely as brute algebraic computations (mostly)
+  supplanted elegant geometric reasoning, and for much the same reasons.  But
+  not in the manner shown here.  If you examine the proof below, you will
+  appreciate the overhead involved in translating back and forth between the
+  two systems.  Until predicate logic itself is replaced by an acceptable
+  boundary formalism, and a single logic is deployed, one should not expect
+  much movement on the part of logicians.
 $)
 
-  $( LoF version of metamath's ~ pm2.18.  Law of Clavius.  (Contributed by
+  $( LoF version of set.mm's ~ pm2.18.  Law of Clavius.  (Contributed by
      Naipmoro, 14-Feb-2017.) $)
   lofpm2.18 $p |- ( ( -. ph -> ph ) -> ph ) $=
     ( wn wi lofdf-encl lofdf-juxt lofdf-neg lofdf-imp lofrepbxs lofc2x loftrans
@@ -1177,16 +1197,15 @@ $(
   ` -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
     -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) ) `
   followed by three theorems that depend on it:  ~ bi1 , ~ bi3 , and
-  ~ dfbi1 .  In contrast, we utilize the equivalence of the biconditional with
-  equality to prove all four of those statements, including the definition,
-  directly from LoF.
+  ~ dfbi1 .  Here we utilize the equivalence of the biconditional with equality
+  to prove all four of those statements, including the definition, directly
+  from LoF.
 
-  In examining this section, the reader may wonder about the need for ` = ` .
-  Could we not have dispensed with it, replacing it with ` <-> ` right from the
-  start?  That was my original intent, but in the end I retained the equality
-  sign for readability and to avoid some nuanced distinctions.  For example,
-  while ` ( ph <-> ps ) ` is a wff, ` ph = ps ` cannot be one without
-  introducing contradiction.
+  In examining this section, the reader may wonder about the need for the
+  equality sign, and in fact we could have dispensed with it, replacing ` = `
+  with ` <-> ` right from the start.  I retained it for readability and
+  to avoid some nuanced distinctions.  For example, while ` ( ph <-> ps ) ` is
+  a wff, ` ph = ps ` cannot be one without introducing contradiction.
 $)
 
   $( Declare the biconditional symbol. $)
@@ -1277,7 +1296,7 @@ $)
     LKISUDGGUNUOBALKIABGUEUJMIGAGUEBGNIAUFOIUDGGGPIQ $.
     $( [24-Feb-2017] $)
 
-  $( The biconditional definition proved as a theorem directly from LoF. 
+  $( The biconditional definition proved as a theorem directly from LoF.
      (Contributed by Naipmoro, 28-Feb-2017.)  $)
   df-bi $p |- -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
         -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) ) $=
