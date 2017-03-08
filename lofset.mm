@@ -27,9 +27,6 @@ $(
   (Boolean algebra is another).  The real interest lies in the means of
   derivation.
 
-  A note about notation:  All LoF statements have labels prefixed with "lof".
-  Statements from set.mm retain their original labels.
-
   LoF is an equational logic (although I show that, technically, equations can
   be avoided).  In other words, axioms and theorems are stated in the form
   ` ph = ps ` .  Transitioning from this to the implicational form
@@ -47,6 +44,9 @@ $(
   With this rule in hand, and with appropriate definitions of "implies" and
   "not", I prove the axioms of set.mm, ~ ax-1 , ~ ax-2 , ~ ax-3 , and ~ ax-mp ,
   as theorems of LoF.
+
+  (Note about notation:  All LoF statements have labels prefixed with "lof".
+  Statements from set.mm retain their original labels.)
 $)
 
 $(
@@ -123,8 +123,8 @@ $)
      enclosed (or crossed, or marked)".  Combined with the previous definition,
      we see that ` [ ] ` , ` [ [ ] ] ` ,  ` [ ... [ [ ] ] ... ] ` are all wffs.
      We call ` [ ] ` the "marked state" and identify it with the value True.
-     We can think of ` [ ] ` and the void as our two atomic wffs.
-     (Contributed by Naipmoro, 2-Sep-2015.) $)
+     We can think of ` [ ] ` and the void as our two atomic wffs. (Contributed
+     by Naipmoro, 2-Sep-2015.) $)
   lofdf-encl $a wff [ ph ] $.
 
   $( If ` ph ` and ` ps ` are wffs, so is ` ph ps ` .  This rule introduces
