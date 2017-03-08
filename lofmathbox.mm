@@ -606,9 +606,10 @@ $)
     $( [6-Sep-2015] $)
 
   $( The following two equations (or rules of calculation) constitute the
-     entire "arithmetic" which underlies the Primary Algebra, so are
+     entire Primary Arithmetic which underlies the Primary Algebra, so are
      conceptually prior to the axioms and theorems.  LoF, and hence
-     propositional logic, is nothing but a prolonged deduction from this duo.
+     propositional logic, is nothing but a prolonged deduction from this pair
+     of arithmetical identities.
   $)
 
   $( Number.  Rule I1 of [Spencer-Brown] p. 12.  (Contributed by Naipmoro,
