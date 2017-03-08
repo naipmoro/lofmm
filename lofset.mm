@@ -1318,7 +1318,7 @@ $(
     *  The axioms of propositional calculus.
 
   and remove (or comment out) the following statements:
-    *  the declaration of the constants: "[", "]", and "=".
+    *  the declaration of the constants: "[", "]", "=", and "<->".
     *  ~ wb , ~ df-bi , ~ bi1 , ~ bi3 , ~ dfbi1 .
 
   Paste the contents of this file anywhere before the start of set.mm's active
