@@ -1031,8 +1031,8 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   We define ` ( ph -> ps ) ` as ` [ ph ] ps ` and ` -. ph ` as ` [ ph ] ` ,
-  consistent with our interpretation of ` [ ] ` as true and the void as false.
-  This determines the interpretation of the other logical constants:
+  consistent with our interpretation of ` [ ] ` as true and the void as false,
+  and determining the interpretation of the other logical constants:
 
   <HTML><br></HTML>
 
@@ -1106,9 +1106,9 @@ $(
                   13.  Propositional logic is superfluous
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  From this point on, we can prove all the true statements of propositional
-  logic (axioms and theorems) entirely in LoF and translate the results back
-  into propositional form.  Below is an example where I prove Principia
+  Going forward, we can prove all the true statements of propositional logic
+  (axioms and theorems) entirely in LoF and translate the results back into
+  propositional form.  Below is an example where I prove Principia
   Mathematica's "proof by contradiction" theorem known as the Law of Clavius
   [WhiteheadRussell] p. 103.
 
@@ -1117,19 +1117,19 @@ $(
   It would be as though someone claimed that "3x - 2x = x" was a "theorem" of
   numerical algebra.  Technically, yes ...
 
-  It is not farfetched to believe that one day LoF will supplant the
-  propositional calculus, as surely as brute algebraic computations (mostly)
-  supplanted elegant geometric reasoning, and for much the same reasons.  But
-  not in the manner shown here.  If you examine the proof below, you will
-  appreciate the overhead involved in translating back and forth between the
-  two systems.  Until predicate logic itself is replaced by an acceptable
-  boundary formalism, and a single logic is deployed, one should not expect
-  much movement on the part of logicians.
+  It is not far-fetched to believe that one day LoF will supplant the
+  propositional calculus, in the same way that brute algebraic computations
+  (mostly) supplanted elegant geometric reasoning, and for much the same
+  reasons.  But not in the manner shown here.  If you examine the proof below,
+  you will appreciate the overhead involved in translating back and forth
+  between the two systems.  Until predicate logic itself is replaced by a
+  superior boundary formalism, and a single logic is deployed, one should not
+  expect much movement on the part of logicians.
 $)
 
   $( LoF version of set.mm's ~ pm2.18.  Law of Clavius.  (Contributed by
      Naipmoro, 14-Feb-2017.) $)
-  lofpm2.18 $p |- ( ( -. ph -> ph ) -> ph ) $=
+  lofclav $p |- ( ( -. ph -> ph ) -> ph ) $=
     ( wn wi lofdf-encl lofdf-juxt lofdf-neg lofdf-imp lofrepbxs lofc2x loftrans
     lofdf-void lofc1x lofreps lofc2e lofelim ) ABZACZACZRADZAEKDPSKARAFRPDZAEZD
     AEZPAEZQUAKKKARPAGQAGHUBTDAEUCTAKKKKIPKALJJMAKKKNJO $.
