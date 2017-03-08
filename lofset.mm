@@ -116,13 +116,13 @@ $)
 
   $( Empty space, the void, is a wff.  We will sometimes refer to it as the
      "unmarked state" and in our intended interpretation it will be identified
-     with the value False.  (Contributed by Naipmoro, 2-Sep-2015.) $)
+     with the value false.  (Contributed by Naipmoro, 2-Sep-2015.) $)
   lofdf-void $a wff $.
 
   $( If ` ph ` is a wff, so is ` [ ` ph ` ] ` . We say that " ` ph ` is
      enclosed (or crossed, or marked)".  Combined with the previous definition,
      we see that ` [ ] ` , ` [ [ ] ] ` ,  ` [ ... [ [ ] ] ... ] ` are all wffs.
-     We call ` [ ] ` the "marked state" and identify it with the value True.
+     We call ` [ ] ` the "marked state" and identify it with the value true.
      We can think of ` [ ] ` and the void as our two atomic wffs. (Contributed
      by Naipmoro, 2-Sep-2015.) $)
   lofdf-encl $a wff [ ph ] $.
@@ -943,7 +943,7 @@ $)
     lofax-qny $a |- ps $.
   $}
 
-  $( This important theorem states that the equivalence of ` ph ` to True is
+  $( This important theorem states that the equivalence of ` ph ` to true is
      equivalent to just ` ph ` .  (Contributed by Naipmoro, 29-Jan-2017.) $)
   lofelimeq $p |- [ [ ph ] [ [ ] ] ] [ ph [ ] ] = ph $=
     ( lofdf-encl lofdf-void lofi2 lofsubb1 lofc1 lofsubst loftrans lofcmm lofc2
@@ -954,7 +954,7 @@ $)
   $( Truth equivalence elimination.  $)
   ${
     lofelim.1 $e |- ph = [ ] $.
-    $( If ` ph ` is equivalent to True, we can infer ` ph ` .  (Contributed by
+    $( If ` ph ` is equivalent to true, we can infer ` ph ` .  (Contributed by
        Naipmoro, 14-Feb-2017.) $)
     lofelim $p |- ph $=
       ( lofdf-encl lofdf-void lofdf-juxt lofdf-equ lofelimeq lofax-qny ) ACDCZC
@@ -966,7 +966,7 @@ $)
   ${
     lofintr.1 $e |- ph $.
     $( If we can assert ` ph ` , then we can infer that ` ph ` is equivalent
-       to True.  (Contributed by Naipmoro, 14-Feb-2017.) $)
+       to true.  (Contributed by Naipmoro, 14-Feb-2017.) $)
     lofintr $p |- ph = [ ] $=
       ( lofdf-void lofdf-encl lofdf-juxt lofelimeq lofsym lofax-qny lofdf-uni )
       ACDZAADJDEDAJEDEZBKAAFGHI $.
