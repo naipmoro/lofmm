@@ -5,7 +5,7 @@ $(
 $)
 
   $( Use set.mm as foundation (comment out if actually a mathbox). $)
-  $[ set.mm $] 
+  $[ set.mm $]
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -67,11 +67,11 @@ $)
      with the value false.  (Contributed by Naipmoro, 2-Sep-2015.) $)
   lofdf-void $a wff $.
 
-  $( If ` ph ` is a wff, so is ` [ ` ph ` ] ` . We say that " ` ph ` is
+  $( If ` ph ` is a wff, so is ` [ ph ] ` .  We say that " ` ph ` is
      enclosed (or crossed, or marked)".  Combined with the previous definition,
-     we see that ` [ ] ` , ` [ [ ] ] ` ,  ` [ ... [ [ ] ] ... ] ` are all wffs.
+     we see that ` [ ] ` , ` [ [ ] ] ` , ` [ ... [ [ ] ] ... ] ` are all wffs.
      We call ` [ ] ` the "marked state" and identify it with the value true.
-     We can think of ` [ ] ` and the void as our two atomic wffs. (Contributed
+     We can think of ` [ ] ` and the void as our two atomic wffs.  (Contributed
      by Naipmoro, 2-Sep-2015.) $)
   lofdf-encl $a wff [ ph ] $.
 
@@ -105,9 +105,9 @@ $)
     lofax-euc.2 $e |- [ [ ch ] [ ps ] ] [ ch ps ] $.
     $( Read this as:  "If ` ph ` is equal to ` ps ` and ` ch ` is equal to
        ` ps ` , then we can infer that ` ph ` is equal to ` ch ` ".  In other
-       words, two things equal to the same thing are equal to each other.
-       This is Euclid's first Common Notion and, in an equational logic, this
-       and its sibling, transitivity, are the main engine of derivation.
+       words, two things equal to the same thing are equal to each other.  This
+       is Euclid's first Common Notion and, in an equational logic, this and
+       its sibling, transitivity, are the main engine of derivation.
        (Contributed by Naipmoro, 26-Jan-2017.) $)
     lofax-euc $a |- [ [ ph ] [ ch ] ] [ ph ch ] $.
   $}
@@ -121,7 +121,7 @@ $)
   ${
     lofax-beq.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
     $( Read this as:  "If ` ph ` is equal to ` ps ` , then we can infer that
-       ` [ ` ph ` ] ` is equal to ` [ ` ps ` ] ` ".  Enclosing equal forms
+       ` [ ph ] ` is equal to ` [ ps ] ` ".  Enclosing equal forms
        leaves equal forms.  (Contributed by Naipmoro, 26-Jan-2017.) $)
     lofax-beq $a |- [ [ [ ph ] ] [ [ ps ] ] ] [ [ ph ] [ ps ] ]
     $.
@@ -139,8 +139,8 @@ $)
   $( Commutativity of LoF.  $)
 
   $( Read this as:  " ` ph ps ` is equal to ` ps ph ` ".  Of the four axioms,
-     only this one is domain-specific.  (Contributed by Naipmoro, 26-Jan-2017.)
-  $)
+     only this one is domain-specific.  (Contributed by Naipmoro,
+     26-Jan-2017.) $)
   lofax-cmm $a |- [ [ ph ps ] [ ps ph ] ] [ ph ps ps ph ] $.
 
 $(
@@ -162,7 +162,7 @@ $)
   ${
     lofsymu.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
     $( "Equality" is symmetric.  Read this as:  "If ` ph ` is equal to ` ps ` ,
-       then we can infer that ` ps ` is equal to ` ph ` ". (Contributed by
+       then we can infer that ` ps ` is equal to ` ph ` ".  (Contributed by
        Naipmoro, 26-Jan-2017.) $)
     lofsymu $p |- [ [ ps ] [ ph ] ] [ ps ph ] $=
       ( lofidu lofax-euc ) BBABDCE $.
@@ -345,9 +345,9 @@ $)
       ( lofdf-juxt lofdf-encl lofsubst lofbeq ) CAHDHZICBHDHZIEFLMABCDGJKJ $.
       $( [2-Sep-2015] $)
 
-    $( Replace a form with an equal form within a double-bounded extended form.
-       (Contributed by Naipmoro, 25-Feb-2017.) $)
-    lofsubbd1 $p |-  mu [ si [ et ph ze ] rh ] la
+    $( Replace a form with an equal form within a double-bounded extended
+       form.  (Contributed by Naipmoro, 25-Feb-2017.) $)
+    lofsubbd1 $p |- mu [ si [ et ph ze ] rh ] la
                     = mu [ si [ et ps ze ] rh ] la $=
       ( lofdf-juxt lofdf-encl lofdf-void lofsubb1 ) ECAJDJKJFJECBJDJKJFJLLGHABC
       DEFIMM $.
@@ -375,7 +375,7 @@ $)
     lofreps.1 $e |- ph = ps $.
     lofreps.2 $e |- mu = et ph ze $.
     $( Direct substitution into rhs of an equation.  (Contributed by Naipmoro,
-      14-Feb-2017.) $)
+       14-Feb-2017.) $)
     lofreps $p |- mu = et ps ze $=
       ( lofdf-juxt lofsym lofrep ) CBHDHEABCDEFECAHDHGIJI $.
       $( [14-Feb-2017] $)
@@ -395,8 +395,8 @@ $)
   ${
     lofrepbdx.1 $e |- ph = ps $.
     lofrepbdx.2 $e |- mu [ si [ et ph ze ] rh ] la = ka $.
-    $( Direct substitution into lhs of a double-bounded equation.
-       (Contributed by Naipmoro, 27-Feb-2017.) $)
+    $( Direct substitution into lhs of a double-bounded equation.  (Contributed
+       by Naipmoro, 27-Feb-2017.) $)
     lofrepbdx $p |- mu [ si [ et ps ze ] rh ] la = ka $=
       ( lofdf-juxt lofdf-encl lofsubbd1 lofeucr ) GECALDLMLFLMLHLGECBLDLMLFLMLH
       LIABCDEFGHJNKO $.
@@ -406,8 +406,8 @@ $)
   ${
     lofrepbxs.1 $e |- ph = ps $.
     lofrepbxs.2 $e |- mu = si [ et ph ze ] rh $.
-    $( Direct substitution into rhs of a bounded equation.  (Contributed
-       by Naipmoro, 14-Feb-2017.) $)
+    $( Direct substitution into rhs of a bounded equation.  (Contributed by
+       Naipmoro, 14-Feb-2017.) $)
     lofrepbxs $p |- mu = si [ et ps ze ] rh $=
       ( lofdf-juxt lofdf-encl lofsym lofrepbx ) ECBJDJKJFJGABCDEFGHGECAJDJKJFJI
       LML $.
@@ -417,8 +417,8 @@ $)
   ${
     lofrepbdxs.1 $e |- ph = ps $.
     lofrepbdxs.2 $e |- ka = mu [ si [ et ph ze ] rh ] la $.
-    $( Direct substitution into rhs of a double-bounded equation.
-       (Contributed by Naipmoro, 27-Feb-2017.) $)
+    $( Direct substitution into rhs of a double-bounded equation.  (Contributed
+       by Naipmoro, 27-Feb-2017.) $)
     lofrepbdxs $p |- ka = mu [ si [ et ps ze ] rh ] la $=
       ( lofdf-juxt lofdf-encl lofsym lofrepbdx ) GECBLDLMLFLMLHLIABCDEFGHIJIGEC
       ALDLMLFLMLHLKNON $.
@@ -428,8 +428,8 @@ $)
   ${
     lofrepbd.1 $e |- ph = ps $.
     lofrepbd.2 $e |- [ [ et ph ze ] ] = mu $.
-    $( Direct substitution into lhs of a double-bounded equation.
-       (Contributed by Naipmoro, 3-Oct-2015.) $)
+    $( Direct substitution into lhs of a double-bounded equation.  (Contributed
+       by Naipmoro, 3-Oct-2015.) $)
     lofrepbd $p |- [ [ et ps ze ] ] = mu $=
       ( lofdf-juxt lofdf-encl lofdf-void lofsubb1 lofbeq lofeucr ) CAHDHIZICBHD
       HIZIENOABCDJJFKLGM $.
@@ -536,8 +536,8 @@ $)
     DBZACKDAEJBZBJKJFLDAGHII $.
     $( [6-Sep-2015] $)
 
-  $( Iteration.  Theorem C5 of [Spencer-Brown] p. 33. (Contributed by Naipmoro,
-     6-Sep-2015.) $)
+  $( Iteration.  Theorem C5 of [Spencer-Brown] p. 33.  (Contributed by
+     Naipmoro, 6-Sep-2015.) $)
   lofc5 $p |- ph ph = ph $=
     ( lofdf-encl lofdf-juxt lofc2 lofdf-void lofc1 lofsubst loftrans lofeucr
     lofj1 ) ABZACBZACZAACZAMKBZACNKADOAEAAFGHLEEAAJGI $.
@@ -557,8 +557,8 @@ $)
     DABDCJDJKAEBEJAFGJBHI $.
     $( [18-Sep-2015] $)
 
-  $( Extension.  Theorem C6 of [Spencer-Brown] p. 33. (Contributed by Naipmoro,
-     6-Sep-2015.) $)
+  $( Extension.  Theorem C6 of [Spencer-Brown] p. 33.  (Contributed by
+     Naipmoro, 6-Sep-2015.) $)
   lofc6 $p |- [ [ ph ] [ ps ] ] [ [ ph ] ps ] = ph $=
     ( lofdf-encl lofdf-juxt lofc1 lofdf-void lofcmmbx lofquadbx loftrans lofbeq
     lofj2 lofj1 lofsubb1 lofeucr ) ACZBCZDCZOBDCZDZOCZASCZCZSTSEUBPCPDCZODZCTUA
@@ -757,7 +757,7 @@ $)
     $( [25-Feb-2017] $)
 
   $( ~ lofc6 reversed and extended.  (Contributed by Naipmoro, 25-Feb-2017.) $)
-  lofc6rx $p |- et [ [ ph ] ps ] ze [ [ ph ] [ ps ] ] si = et ph ze si  $=
+  lofc6rx $p |- et [ [ ph ] ps ] ze [ [ ph ] [ ps ] ] si = et ph ze si $=
     ( lofdf-encl lofdf-juxt lofcmmx lofc6x loftrans ) CAFZBGFZGDGKBFGFZGEGCMGDG
     LGEGCAGDGEGLMCDEHABCDEIJ $.
     $( [25-Feb-2017] $)
@@ -803,7 +803,7 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 $)
 
-  $( We will later define ` ( ph -> ps ) ` as ` [ ph ] ps `.  In that light, 
+  $( We will later define ` ( ph -> ps ) ` as ` [ ph ] ps ` .  In that light,
      this theorem shows that our previous definition of equality is equivalent
      to ` ( ( ph -> ps ) /\ ( ps -> ph ) ) ` .  The latter, in turn, is what we
      mean by the biconditional ` <-> ` .  In other words, equality and the
@@ -821,23 +821,23 @@ $)
      associative.  First, four preliminary theorems. $)
 
   $( Lemma.  (Contributed by Naipmoro, 24-Feb-2017.) $)
-  lofbiasslem1 $p |-  [ ps [ ph ps ] ch ] = [ [ ph ] ps ch ] $=
+  lofbiasslem1 $p |- [ ps [ ph ps ] ch ] = [ [ ph ] ps ch ] $=
     ( lofdf-juxt lofdf-encl lofdf-void lofcmmbx lofc2bx loftrans ) BABDEZDCDEJB
     DCDEAEBDCDEBJFFCFFGABFFFCFFHI $.
     $( [24-Feb-2017] $)
 
   $( Lemma.  (Contributed by Naipmoro, 24-Feb-2017.) $)
-  lofbiasslem2 $p |-  [ ph [ ph ps ] ch ] = [ ph [ ps ] ch ] $=
+  lofbiasslem2 $p |- [ ph [ ph ps ] ch ] = [ ph [ ps ] ch ] $=
     ( lofdf-juxt lofdf-encl lofdf-void lofcmmbdx lofbiasslem1 loftrans lofcmmbx
     ) AABDEDCDEZBEZADCDEZALDCDEKABADEDCDEMABFFFACFFGBACHILAFFCFFJI $.
     $( [24-Feb-2017] $)
 
   $( Let ` P = [ [ ph ] [ ps ] ] [ ph ps ] ` and
-         ` Q = [ [ ps ] [ ch ] ] [ ps ch ] ` .
-     Proving that equality/biconditional associates amounts to proving:
-         ` [ [ P ] [ ch ] ] [ P ch ] = [ [ ph ] [ Q ] ] [ ph Q ] `
-     which is demonstrated in ~ lofbiass .  Meanwhile, this theorem shows that
-     the lhs of the latter equation evaluates to a form symmetric in the three
+     ` Q = [ [ ps ] [ ch ] ] [ ps ch ] ` .  Proving that equality/biconditional
+     associates amounts to proving:
+     ` [ [ P ] [ ch ] ] [ P ch ] = [ [ ph ] [ Q ] ] [ ph Q ] ` which is
+     demonstrated in ~ lofbiass .  Meanwhile, this theorem shows that the lhs
+     of the latter equation evaluates to a form symmetric in the three
      variables, informal evidence for associativity.  (Contributed by Naipmoro,
      24-Feb-2017.) $)
   lofbiass3 $p |- [ [ [ [ ph ] [ ps ] ] [ ph ps ] ] [ ch ] ]
@@ -851,7 +851,7 @@ $)
     $( [24-Feb-2017] $)
 
   $( A permuted version of ~ lofbiass3 .  (Contributed by Naipmoro,
-     29-Dec-2016.)  $)
+     29-Dec-2016.) $)
   lofbiass3p $p |- [ [ [ [ ps ] [ ch ] ] [ ps ch ] ] [ ph ] ]
                    [ [ [ ps ] [ ch ] ] [ ps ch ] ph ]
                    = [ [ ph ] [ ps ] [ ch ] ] [ ph ps [ ch ] ]
@@ -864,7 +864,7 @@ $)
 
   $( Proving the associativity of equality/biconditional.  (Contributed by
      Naipmoro, 29-Dec-2016.) $)
-  lofbiass  $p |- [ [ [ [ ph ] [ ps ] ] [ ph ps ] ] [ ch ] ]
+  lofbiass $p |- [ [ [ [ ph ] [ ps ] ] [ ph ps ] ] [ ch ] ]
                   [ [ [ ph ] [ ps ] ] [ ph ps ] ch ]
                   = [ [ ph ] [ [ [ ps ] [ ch ] ] [ ps ch ] ] ]
                      [ ph [ [ ps ] [ ch ] ] [ ps ch ] ] $=
@@ -911,8 +911,8 @@ $)
   $( Truth equivalence introduction.  $)
   ${
     lofintr.1 $e |- ph $.
-    $( If we can assert ` ph ` , then we can infer that ` ph ` is equivalent
-       to true.  (Contributed by Naipmoro, 14-Feb-2017.) $)
+    $( If we can assert ` ph ` , then we can infer that ` ph ` is equivalent to
+       true.  (Contributed by Naipmoro, 14-Feb-2017.) $)
     lofintr $p |- ph = [ ] $=
       ( lofdf-void lofdf-encl lofdf-juxt lofelimeq lofsym lofax-qny lofdf-uni )
       ACDZAADJDEDAJEDEZBKAAFGHI $.
@@ -1019,8 +1019,8 @@ $)
      27-Feb-2017.) $)
   lofdf-imp $a |- ( ph -> ps ) = [ ph ] ps $.
 
-  $( Define negation in terms of LoF.  (Contributed by Naipmoro, 27-Feb-2017.)
-  $)
+  $( Define negation in terms of LoF.  (Contributed by Naipmoro,
+     27-Feb-2017.) $)
   lofdf-neg $a |- -. ph = [ ph ] $.
 
   $( Express the negation of an implication.  (Contributed by Naipmoro,
@@ -1111,8 +1111,8 @@ $)
     _min $e |- ph $.
     $( Major premise for modus ponens. $)
     _maj $e |- ( ph -> ps ) $.
-    $( Proving modus ponens ~ ax-mp as a theorem.  (Contributed by
-       Naipmoro, 14-Feb-2017.) $)
+    $( Proving modus ponens ~ ax-mp as a theorem.  (Contributed by Naipmoro,
+       14-Feb-2017.) $)
     _ax-mp $p |- ps $=
       ( lofdf-encl lofdf-juxt wi lofdf-void lofdf-imp lofintr lofeucr lofelim
       lofmp ) ABCAEBFZABGZNHEABIODJKLM $.
@@ -1147,7 +1147,7 @@ $)
      by Naipmoro, 21-Feb-2017.) $)
   lofdf-bi $a |- ( ph <-> ps ) = [ [ ph ] [ ps ] ] [ ph ps ] $.
 
-  $( A  more traditional understanding of the biconditional as (the LoF
+  $( A more traditional understanding of the biconditional as (the LoF
      equivalent of) a conjunction of converse implications.  (Contributed by
      Naipmoro, 24-Feb-2017.) $)
   lofbii $p |- ( ph <-> ps ) = [ [ [ ph ] ps ] [ [ ps ] ph ] ] $=
@@ -1159,7 +1159,7 @@ $)
     lofbieq.1 $e |- ( ph <-> ps ) $.
     $( Infer an equality from a biconditional.  (Contributed by Naipmoro,
        24-Feb-2017.) $)
-    lofbieq   $p |- ph = ps $=
+    lofbieq $p |- ph = ps $=
       ( wb lofdf-encl lofdf-juxt lofdf-bi lofax-qny lofdf-uni ) ABABDAEBEFEABFE
       FCABGHI $.
       $( [24-Feb-2017] $)
@@ -1169,7 +1169,7 @@ $)
     lofeqbi.1 $e |- ph = ps $.
     $( Infer a biconditional from an equality.  (Contributed by Naipmoro,
        4-Mar-2017.) $)
-    lofeqbi   $p |- ( ph <-> ps ) $=
+    lofeqbi $p |- ( ph <-> ps ) $=
       ( lofdf-encl lofdf-juxt wb lofdf-equ lofdf-bi lofsym lofax-qny ) ADBDEDAB
       EDEZABFZABCGLKABHIJ $.
       $( [4-Mar-2017] $)
@@ -1179,7 +1179,7 @@ $)
     lofeqi.1 $e |- ph = ps $.
     $( Infer an implication from an equality.  (Contributed by Naipmoro,
        28-Feb-2017.) $)
-    lofeqi   $p |- ( ph -> ps ) $=
+    lofeqi $p |- ( ph -> ps ) $=
       ( lofdf-encl lofdf-juxt lofdf-void lofbeq lofsub lofc2e lofelim lofdf-imp
       wi loftrans lofsym lofax-qny ) ADZBEZABLZQQBDZBEFDPSBABCGHBFFFIMJRQABKNO
       $.
@@ -1188,7 +1188,7 @@ $)
 
   $( An equality version of ~ dfbi1 .  (Contributed by Naipmoro,
      25-Feb-2017.) $)
-  lofbi1 $p |-  ( ph <-> ps ) = -. ( ( ph -> ps ) -> -. ( ps -> ph ) )  $=
+  lofbi1 $p |- ( ph <-> ps ) = -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) $=
     ( wb lofdf-encl lofdf-juxt wi lofbii lofdf-neg lofdf-void lofsubb1 loftrans
     wn lofdf-imp lofsubbd1 lofeuc ) ABCADBEZDZBDAEZDEDZABFZBAFZLZFZLZABGUDQUADZ
     EDZSUDTDZUEEDZUFUDUGUBEZDZUHUDUCDUJUCHUCUIIIIITUBMJKUBUEUGIIIUAHJKTPIIIUEII
@@ -1217,7 +1217,7 @@ $)
 
   $( Proving ~ bi3 directly from LoF.  (Contributed by Naipmoro,
      24-Feb-2017.) $)
-  _bi3 $p |-  ( ( ph -> ps ) -> ( ( ps -> ph ) -> ( ph <-> ps ) ) )  $=
+  _bi3 $p |- ( ( ph -> ps ) -> ( ( ps -> ph ) -> ( ph <-> ps ) ) ) $=
     ( wi wb lofdf-encl lofdf-juxt lofdf-void lofsubr loftrans lofdf-bi lofsubb1
     lofdf-imp lofc6rx lofc2rx lofcmm lofc2e lofelim ) ABCZBACZABDZCZCZUBBEZAFZE
     ZUCFZAFZGEUBAUEFZUCFZUGUBUHABFEZFZUIUBAEZBFZEZUEFULUCFEUJFZFZUKUBUNSEZFUOFZ
@@ -1226,7 +1226,7 @@ $)
     $( [24-Feb-2017] $)
 
   $( The biconditional definition ~ df-bi proved as a theorem directly from
-     LoF.  (Contributed by Naipmoro, 28-Feb-2017.)  $)
+     LoF.  (Contributed by Naipmoro, 28-Feb-2017.) $)
   _df-bi $p |- -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
         -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) ) $=
     ( wb wi wn lofdf-encl lofdf-juxt lofdf-void lofbi1r lofj1 lofni lofrepbdxs
