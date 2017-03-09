@@ -119,7 +119,7 @@ $)
      with the value false.  (Contributed by Naipmoro, 2-Sep-2015.) $)
   lofdf-void $a wff $.
 
-  $( If ` ph ` is a wff, so is ` [ ` ph ` ] ` .  We say that " ` ph ` is
+  $( If ` ph ` is a wff, so is ` [ ph ] ` .  We say that " ` ph ` is
      enclosed (or crossed, or marked)".  Combined with the previous definition,
      we see that ` [ ] ` , ` [ [ ] ] ` , ` [ ... [ [ ] ] ... ] ` are all wffs.
      We call ` [ ] ` the "marked state" and identify it with the value true.
@@ -173,7 +173,7 @@ $)
   ${
     lofax-beq.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
     $( Read this as:  "If ` ph ` is equal to ` ps ` , then we can infer that
-       ` [ ` ph ` ] ` is equal to ` [ ` ps ` ] ` ".  Enclosing equal forms
+       ` [ ph ] ` is equal to ` [ ps ] ` ".  Enclosing equal forms
        leaves equal forms.  (Contributed by Naipmoro, 26-Jan-2017.) $)
     lofax-beq $a |- [ [ [ ph ] ] [ [ ps ] ] ] [ [ ph ] [ ps ] ]
     $.
