@@ -1197,16 +1197,15 @@ $(
   set.mm's section on the biconditional begins with the definition ~ df-bi :
   ` -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
     -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) ) `
-  followed by three theorems that depend on it:  ~ bi1 , ~ bi3 , and
-  ~ dfbi1 .  Here we utilize the equivalence of the biconditional with equality
-  to prove all four of those statements, including the definition, directly
-  from LoF.
+  followed by three theorems that depend on it:  ~ bi1 , ~ bi3 , and ~ dfbi1 .
+  Here we utilize the equivalence of the biconditional with equality to prove
+  all four of those statements, including the definition, directly from LoF.
 
   In examining this section, the reader may wonder about the need for the
   equality sign, and in fact we could have dispensed with it, replacing ` = `
-  with ` <-> ` right from the start.  I retained it for readability and
-  to avoid some nuanced distinctions.  For example, while ` ( ph <-> ps ) ` is
-  a wff, ` ph = ps ` cannot be one without introducing contradiction.
+  with ` <-> ` right from the start.  I retained it for readability and to
+  avoid some nuanced distinctions.  For example, while ` ( ph <-> ps ) ` is a
+  wff, ` ph = ps ` cannot be one without introducing contradiction.
 $)
 
   $( Declare the biconditional symbol. $)
