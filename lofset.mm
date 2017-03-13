@@ -1321,9 +1321,11 @@ $(
     *  the declaration of the constants: "[", "]", "=", and "<->".
     *  ~ wb , ~ df-bi , ~ bi1 , ~ bi3 , ~ dfbi1 .
 
-  Paste the contents of this file anywhere before the start of set.mm's active
-  statements.  Read the ensuing (saved) file into metamath and run "verify
-  proof *".  Expected result:  "All proofs in the database were verified".
+  Now either:  1) Paste the contents of this file anywhere before the start of
+  set.mm's active statements, or 2) Add "$[ lofset.mm $]" to the beginning of
+  set.mm.  Read the ensuing (saved) file into metamath and run the command
+  "verify proof *".  Expected result:  "All proofs in the database were
+  verified".
 
   An example of such an altered set.mm file is available here:
   ~ https://github.com/naipmoro/lofmm/blob/master/set(lof).mm .
