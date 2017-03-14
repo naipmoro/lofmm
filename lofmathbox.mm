@@ -1139,7 +1139,8 @@ $(
   equality sign, and in fact we could have dispensed with it, replacing ` = `
   with ` <-> ` right from the start.  I retained it for readability and to
   avoid some nuanced distinctions.  For example, while ` ( ph <-> ps ) ` is a
-  wff, ` ph = ps ` cannot be one without introducing contradiction.
+  wff, ` ph = ps ` cannot be one without introducing contradiction (see
+  Appendix A for details).
 $)
 
   $( A definition of the biconditional in terms of LoF equality.  (Contributed
@@ -1241,6 +1242,45 @@ $(
 
   An example of an altered set.mm that uses this mathbox as a logical
   foundation:  ~ https://github.com/naipmoro/lofmm/blob/master/set(lof).mm .
+$)
+
+$(
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+                                 Appendix A
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  Another important difference between LoF and traditional equational logic:
+  the latter allows forms such as ` ph = ph = [ ] ` and ` [ ph ] = ph = ` ,
+  while in LoF these would result in contradiction, as demonstrated by the
+  following (commented out) derivation.
+
+  @( Assume equality can be part of a wff. @)
+  lofeqwff $a wff ph = ps $.
+
+  @( Outline of the proof of lofnono:
+
+     <HTML><br></HTML>
+
+     <HTML><ol>
+     <li> ` ph = ph ` (lofid)</li>
+     <li> ` ph = ph = [ ] ` (1 lofintr)</li>
+     <li> ` ph = ph ps = [ ] ps ` (2 lofsub)</li>
+     <li> ` [ ] ps = [ ] ` (lofc3)</li>
+     <li> ` ph = ph ps = [ ] ` (3,4 loftrans)</li>
+     <li> ` ph = ph ps ` (5 lofelim)</li>
+     </ol></HTML>
+     (Contributed by Naipmoro, 11-Mar-2017.) @)
+  lofnono $p |- ph = ph ps $=
+    ( lofeqwff lofdf-juxt lofdf-void lofdf-encl lofintr lofsub loftrans lofelim
+    lofid lofc3 ) AACZBDZNEFZBDOMOBMAKGHBLIJ $.
+    @( [11-Mar-2017] @)
+
+  @( Derive a contradiction:  We prove false is equal to true by substituting
+     the appropriate values into ~ lofnot .  (Contributed by Naipmoro,
+     11-Mar-2017.) @)
+  lofcontradiction $p |-  = [ ] $=
+    ( lofdf-void lofdf-encl lofnono ) AABC $.
+    @( [11-Mar-2017] @)
 $)
 
 $(
