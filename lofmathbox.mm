@@ -238,7 +238,7 @@ $(
   Transitivity as a theorem).  Finally, Equanimity is not needed until we begin
   to interface with classical propositional logic (and even then there might be
   a simpler approach).  This suggests that LoF is more accurately characterized
-  as a proto-equational logic.  Yet LoF's formal system does require
+  as a proto-equational logic.  It's true that LoF's formal system requires
   commutativity, clearly an extraneous addition; but it's important to
   understand that LoF is intrinsically a planar notation, where commutativity
   is an unstated given. It is only in the context of a linear notation like
