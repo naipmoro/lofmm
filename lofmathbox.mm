@@ -15,13 +15,13 @@ $(
   In lof.mm ( ~ https://github.com/naipmoro/lofmm/blob/master/lof.mm ) I
   presented metamath derivations of Spencer-Brown's Primary Algebra (details of
   the algebra, hereafter cited as "LoF", can be found in Chapter 6 of
-  [Spencer-Brown]).  lof.mm was a stand-alone project that, for maximum
-  readability, bypassed compatibility with set.mm, metamath's ongoing
-  formalization of mathematics.  Here I present a version which is more than
-  compatible; I derive set.mm's propositional calculus from LoF.  There is
-  nothing surprising in this -- classical propositional logic is one of the
-  interpretations of LoF (Boolean algebra is another).  The real interest lies
-  in the means of derivation.
+  [Spencer-Brown]).  lof.mm was a stand-alone project indifferent to
+  compatibility with set.mm, metamath's ongoing formalization of mathematics.
+  In contrast, here I present a version which is strictly compatible:  I derive
+  set.mm's propositional calculus from LoF.  There is nothing surprising in
+  this -- classical propositional logic is one of the interpretations of LoF
+  (Boolean algebra is another).  The real interest lies in the means of
+  derivation.
 
   LoF is an equational logic (although I show that, technically, equations can
   be avoided).  In other words, axioms and theorems are stated in the form
@@ -1131,16 +1131,15 @@ $(
   set.mm's section on the biconditional begins with the definition ~ df-bi :
   ` -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
     -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) ) `
-  followed by three theorems that depend on it:  ~ bi1 , ~ bi3 , and
-  ~ dfbi1 .  Here we utilize the equivalence of the biconditional with equality
-  to prove all four of those statements, including the definition, directly
-  from LoF.
+  followed by three theorems that depend on it:  ~ bi1 , ~ bi3 , and ~ dfbi1 .
+  Here we utilize the equivalence of the biconditional with equality to prove
+  all four of those statements, including the definition, directly from LoF.
 
   In examining this section, the reader may wonder about the need for the
   equality sign, and in fact we could have dispensed with it, replacing ` = `
-  with ` <-> ` right from the start.  I retained it for readability and
-  to avoid some nuanced distinctions.  For example, while ` ( ph <-> ps ) ` is
-  a wff, ` ph = ps ` cannot be one without introducing contradiction.
+  with ` <-> ` right from the start.  I retained it for readability and to
+  avoid some nuanced distinctions.  For example, while ` ( ph <-> ps ) ` is a
+  wff, ` ph = ps ` cannot be one without introducing contradiction.
 $)
 
   $( A definition of the biconditional in terms of LoF equality.  (Contributed
