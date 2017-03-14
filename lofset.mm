@@ -1327,7 +1327,7 @@ $(
   ensuing (saved) file into metamath and run the command "verify proof *".
   Expected result:  "All proofs in the database were verified".
 
-  An example of such an altered set.mm file is available here:
+  An example of such an altered set.mm file (via option 1) is available here:
   ~ https://github.com/naipmoro/lofmm/blob/master/set(lof).mm .
 
   This file has been tested with the master branch of set.mm (commit
