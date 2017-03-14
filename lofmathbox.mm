@@ -239,10 +239,10 @@ $(
   to interface with classical propositional logic (and even then there might be
   a simpler approach).  This suggests that LoF is more accurately characterized
   as a proto-equational logic.  It's true that LoF's formal system requires
-  commutativity, clearly an extraneous addition; but it's important to
-  understand that LoF is intrinsically a planar notation, where commutativity
-  is an unstated given. It is only in the context of a linear notation like
-  metamath that an explicit reference to commutativity is required.
+  commutativity, clearly an extraneous addition; but bear in mind that LoF is
+  intrinsically a planar notation, where commutativity is an unstated given. It
+  is only in the context of a linear notation like metamath that an explicit
+  reference to commutativity is required.
 $)
 
   ${
