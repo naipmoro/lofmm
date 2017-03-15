@@ -1343,11 +1343,10 @@ $(
                                  Appendix A
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  Another important difference between LoF and traditional equational logic:
-  the latter allows forms such as ` ph = ph = [ ] ` and ` [ ph ] = ph = ` ,
-  by ascribing well-formedness to equations such as ` ph = ps ` , while in LoF
-  this would result in contradiction, as demonstrated by the following
-  (commented out) derivation.
+  Another important difference between LoF and equational logic: the latter
+  allows forms such as ` ph = ph = [ ] ` and ` [ ph ] = ph = ` by ascribing
+  well-formedness to binary equations, while in LoF this would result in
+  contradiction, as demonstrated by the following (commented out) derivation.
 
   @( Assume equality can be part of a wff. @)
   lofeqwff $a wff ph = ps $.
