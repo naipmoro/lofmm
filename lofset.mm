@@ -1370,7 +1370,7 @@ $(
     @( [11-Mar-2017] @)
 
   @( Derive a contradiction:  We prove false is equal to true by substituting
-     the appropriate values into ~ lofnot .  (Contributed by Naipmoro,
+     the appropriate values into ~ lofnono .  (Contributed by Naipmoro,
      11-Mar-2017.) @)
   lofcontradiction $p |-  = [ ] $=
     ( lofdf-void lofdf-encl lofnono ) AABC $.
