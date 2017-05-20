@@ -1301,10 +1301,10 @@ $)
      (Contributed by Naipmoro, 28-Feb-2017.) $)
   df-bi $p |- -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
         -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) ) $=
-    ( wb wi wn lofdf-encl lofdf-juxt lofdf-void lofbi1r lofj1 lofni lofrepbdxs
-    lofdf-imp lofrepbxs lofne loftrans lofc2e lofelim ) ABCZABDBADEDEZDZTSDZEZD
-    EZUDSFZSGZHFTSHHHSUDABIZUDUBTFSGUDUCFUBUFFHHUCHHUDSJTSUEHHUCHHUDUGUAUETGHHH
-    UCHHUDSTMUAUCKLLNUBOPTSMPNSHHHQPR $.
+    ( wb wi lofdf-encl lofdf-juxt lofdf-void lofbi1r lofj1 lofdf-imp lofrepbdxs
+    wn lofni lofrepbxs lofne loftrans lofc2e lofelim ) ABCZABDBADLDLZDZTSDZLZDL
+    ZUDSEZSFZGETSGGGSUDABHZUDUBTESFUDUCEUBUFEGGUCGGUDSITSUEGGUCGGUDUGUAUETFGGGU
+    CGGUDSTJUAUCMKKNUBOPTSJPNSGGGQPR $.
     $( [28-Feb-2017] $)
 
 $(
