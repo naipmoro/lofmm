@@ -1173,7 +1173,7 @@ $)
     EDZSUDTDZUEEDZUFUDUGUBEZDZUHUDUCDUJUCHUCUIIIIITUBMJKUBUEUGIIIUAHJKTPIIIUEII
     ABMNKUARIIQIIIBAMNKO $.
     
-  $( The reverse of ~ lofbi1.  (Contributed by Naipmoro, 26-Feb-2017.) $)
+  $( The reverse of ~ lofbi1 .  (Contributed by Naipmoro, 26-Feb-2017.) $)
   lofbi1r $p |- -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) = ( ph <-> ps ) $=
     ( wb wi wn lofbi1 lofsym ) ABCABDBADEDEABFG $.
     
