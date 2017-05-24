@@ -64,15 +64,15 @@ $)
 
   $( Empty space, the void, is a wff.  We will sometimes refer to it as the
      "unmarked state" and in our intended interpretation it will be identified
-     with the value false.  (Contributed by Naipmoro, 2-Sep-2015.) $)
+     with the value false.  We can think of it as the single atomic wff.
+    (Contributed by Naipmoro, 2-Sep-2015.) $)
   df-lofvoid $a wff $.
 
   $( If ` ph ` is a wff, so is ` [ ph ] ` .  We say that " ` ph ` is enclosed
      (or crossed, or marked)".  Combined with the previous definition, we see
      that ` [ ] ` , ` [ [ ] ] ` , ` [ ... [ [ ] ] ... ] ` are all wffs.  We
-     call ` [ ] ` the "marked state" and identify it with the value true.  We
-     can think of ` [ ] ` and the void as our two atomic wffs.  (Contributed by
-     Naipmoro, 2-Sep-2015.) $)
+     call ` [ ] ` the "marked state" and identify it with the value true.
+     (Contributed by Naipmoro, 2-Sep-2015.) $)
   df-lofencl $a wff [ ph ] $.
 
   $( If ` ph ` and ` ps ` are wffs, so is ` ph ps ` .  This rule introduces
