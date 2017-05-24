@@ -1,6 +1,6 @@
 $(
   lofset.mm
-  Version 0.2.1
+  Version 0.2.2
   Copyright (C) 2015-2017 Naipmoro
 
   This file is made available under the MIT License:
