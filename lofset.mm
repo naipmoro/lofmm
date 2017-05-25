@@ -45,8 +45,9 @@ $(
   "not", I prove the axioms of set.mm, ~ ax-1 , ~ ax-2 , ~ ax-3 , and ~ ax-mp ,
   as theorems of LoF.
 
-  (Note about notation:  All LoF statements have labels prefixed with "lof".
-  Statements from set.mm retain their original labels.)
+  (Note about notation:  All LoF theorems have labels prefixed with "lof",
+  while axioms and definitions are prefixed with "ax-lof" and "df-lof",
+  respectively.  Statements from set.mm retain their original labels.)
 $)
 
 $(
