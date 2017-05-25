@@ -95,8 +95,8 @@ $(
   accordingly, and I will call this the "unitary form" of LoF.  For
   demonstration purposes, I state the four primitive inference rules of LoF and
   a handful of associated theorems in this form.  But what is theoretically
-  possible is not always cognitively palatable, and I subsequently jettison
-  this approach and return to explicit equations, what I call LoF's "normal
+  possible is not always cognitively palatable, and I subsequently abandon this
+  approach and return to explicit equations, what I call LoF's "equational
   form".
 $)
 
@@ -183,8 +183,9 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   We can go only so far with the unitary form before reasoning becomes
-  intolerably cumbersome.  Note that "=" is a relation between wffs and not
-  itself part of a wff, despite being defined in terms of a wff.
+  intolerably cumbersome.  In introducing "=", note that it is a relation
+  between wffs and not itself part of a wff, despite being defined in terms of
+  a wff.
 $)
 
   ${
@@ -196,7 +197,7 @@ $)
 
   ${
     df-lofuni.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
-    $( Translate LoF's unitary form into normal form.  (Contributed by
+    $( Translate LoF's unitary form into equational form.  (Contributed by
        Naipmoro, 26-Jan-2017.) $)
     df-lofuni $a |- ph = ps $.
   $}
