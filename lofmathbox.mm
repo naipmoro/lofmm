@@ -246,7 +246,7 @@ $)
   ${
     lofeuc.1 $e |- ph = ps $.
     lofeuc.2 $e |- ch = ps $.
-    $( The normal-form version of ~ ax-lofeuc .  (Contributed by Naipmoro,
+    $( The equational-form version of ~ ax-lofeuc .  (Contributed by Naipmoro,
        26-Jan-2017.) $)
     lofeuc $p |- ph = ch $=
       ( df-lofequ ax-lofeuc df-lofuni ) ACABCABDFCBEFGH $.
@@ -254,7 +254,7 @@ $)
 
   ${
     lofbeq.1 $e  |- ph = ps $.
-    $( The normal-form version of ~ ax-lofbeq .  (Contributed by Naipmoro,
+    $( The equational-form version of ~ ax-lofbeq .  (Contributed by Naipmoro,
        26-Jan-2017.) $)
     lofbeq $p |- [ ph ] = [ ps ] $=
       ( df-lofencl df-lofequ ax-lofbeq df-lofuni ) ADBDABABCEFG $.
@@ -262,25 +262,25 @@ $)
 
   ${
     lofsub.1 $e |- ph = ps $.
-    $( The normal-form version of ~ ax-lofsub .  (Contributed by Naipmoro,
+    $( The equational-form version of ~ ax-lofsub .  (Contributed by Naipmoro,
        26-Jan-2017.) $)
     lofsub $p |- ph ze = ps ze $=
       ( df-lofjuxt df-lofequ ax-lofsub df-lofuni ) ACEBCEABCABDFGH $.
   $}
 
-  $( The normal-form version of ~ ax-lofcmm .  (Contributed by Naipmoro,
+  $( The equational-form version of ~ ax-lofcmm .  (Contributed by Naipmoro,
      26-Jan-2017.) $)
   lofcmm $p |- ph ps = ps ph $=
     ( df-lofjuxt ax-lofcmm df-lofuni ) ABCBACABDE $.
 
-  $( The normal-form version of ~ lofidu .  (Contributed by Naipmoro,
+  $( The equational-form version of ~ lofidu .  (Contributed by Naipmoro,
      6-Sep-2015.) $)
   lofid $p |- ph = ph $=
     ( df-lofvoid lofcmm ) ABC $.
 
   ${
     lofsym.1 $e |- ph = ps $.
-    $( The normal-form version of ~ lofsymu .  (Contributed by Naipmoro,
+    $( The equational-form version of ~ lofsymu .  (Contributed by Naipmoro,
        2-Sep-2015.) $)
     lofsym $p |- ps = ph $=
       ( lofid lofeuc ) BBABDCE $.
@@ -289,7 +289,7 @@ $)
   ${
     loftrans.1 $e |- ph = ps $.
     loftrans.2 $e |- ps = ch $.
-    $( The normal-form version of ~ loftransu .  (Contributed by Naipmoro,
+    $( The equational-form version of ~ loftransu .  (Contributed by Naipmoro,
        2-Sep-2015.) $)
     loftrans $p |- ph = ch $=
       ( lofsym lofeuc ) ABCDBCEFG $.
