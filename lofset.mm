@@ -127,8 +127,8 @@ $)
      (Contributed by Naipmoro, 2-Sep-2015.) $)
   df-lofencl $a wff [ ph ] $.
 
-  $( If ` ph ` and ` ps ` are wffs, so is ` ph ps ` .  This rule introduces
-     technical ambiguity into the formal language and some metamath parsers
+  $( If ` ph ` and ` ps ` are wffs, so is ` ph ps ` .  This rule introduces a
+     technical ambiguity into the metamath formal language and some parsers
      will reject it.  However, since the system is inherently associative, this
      ambiguity does not compromise the validity of the formal derivations and
      all proper validators will accept them.  (Contributed by Naipmoro,
