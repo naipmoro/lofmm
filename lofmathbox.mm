@@ -59,13 +59,13 @@ $)
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                       2. Recursive definition of LoF wffs
+                       2. Inductive definition of LoF wffs
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 $)
 
   $( Empty space, the void, is a wff.  We will sometimes refer to it as the
      "unmarked state" and in our intended interpretation it will be identified
-     with the value false.  We can think of it as the single atomic wff.
+     with the value false.  We can regard it as the lone atomic wff.
     (Contributed by Naipmoro, 2-Sep-2015.) $)
   df-lofvoid $a wff $.
 
