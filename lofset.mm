@@ -1,5 +1,6 @@
+$( lofset.mm - Version of 25-May-2017 $)
+
 $(
-  lofset.mm
   Version 0.2.2
   Copyright (C) 2015-2017 Naipmoro
 
