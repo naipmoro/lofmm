@@ -1864,20 +1864,20 @@ $(
   well-formedness to binary equations, while in LoF this would result in
   contradiction, as demonstrated by the following (commented out) derivation.
 
-  @( Assume equality can be part of a wff. @)
+  @( Assume an equation is a wff. @)
   eqwff $a wff p = q $.
 
-  @( Outline of the proof of lofnono:
+  @( Outline of the proof of nono:
 
      <HTML><br></HTML>
 
      <HTML><ol>
-     <li> ` p = p ` (lofid)</li>
-     <li> ` p = p = [ ] ` (1 lofintr)</li>
-     <li> ` p = p q = [ ] q ` (2 lofsub)</li>
-     <li> ` [ ] q = [ ] ` (lofc3)</li>
-     <li> ` p = p q = [ ] ` (3,4 loftrans)</li>
-     <li> ` p = p q ` (5 lofelim)</li>
+     <li> ` p = p `           (id)        </li>
+     <li> ` p = p = [ ] `     (1 intr)    </li>
+     <li> ` p = p q = [ ] q ` (2 sub)     </li>
+     <li> ` [ ] q = [ ] `     (c3)        </li>
+     <li> ` p = p q = [ ] `   (3,4 trans) </li>
+     <li> ` p = p q `         (5 elim)    </li>
      </ol></HTML>
      (Contributed by Naipmoro, 11-Mar-2017.) @)
   nono $p |- p = p q $=
