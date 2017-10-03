@@ -1,7 +1,7 @@
-$( lofset.mm - Version of 25-May-2017 $)
+$( lofsetpq.mm - Version of 30-Sep-2017 $)
 
 $(
-  Version 0.2.2
+  Version 0.3.0
   Copyright (C) 2015-2017 Naipmoro
 
   This file is made available under the MIT License:
