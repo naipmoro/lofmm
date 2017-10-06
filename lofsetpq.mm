@@ -6,10 +6,6 @@ $(
 
   This file is made available under the MIT License:
   http://opensource.org/licenses/MIT
-
-  This file contains verbatim excerpts from set.mm
-  (found at ~ https://github.com/metamath/set.mm/blob/master/set.mm ) which
-  is released under the CC0 1.0 Universal public domain license.
 $)
 
 $(
@@ -37,86 +33,89 @@ $(
   of modus ponens:
 
   ${
-    ax-lofqny.1 $e |- p $.
-    ax-lofqny.2 $e |- p = q $.
-    ax-lofqny   $a |- q $.
+    ax-qny.1 $e |- p $.
+    ax-qny.2 $e |- p = q $.
+    ax-qny   $a |- q $.
   $}
 
   With this rule in hand, and with appropriate definitions of "implies" and
   "not", I prove the axioms of set.mm, ~ ax-1 , ~ ax-2 , ~ ax-3 , and ~ ax-mp ,
   as theorems of LoF.
-
-  (Note about notation:  All LoF theorems have labels prefixed with "lof",
-  while axioms and definitions are prefixed with "ax-lof" and "df-lof",
-  respectively.  Statements from set.mm retain their original labels.)
 $)
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                            1. The alphabet of LoF
+                    1. The alphabet of boundary algebra
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 $)
 
-  $( Declare the primitive constant symbols for the Primary Algebra. $)
+  $( Declare the primitive constant symbols. $)
   $c [ $. $( Left side of boundary $)
   $c ] $. $( Right side of boundary $)
+  $c = $. $( Equality (read:  "is equal to" or "is equivalent to") $)
   $c wff $. $( Well-formed formula symbol (read:  "the following symbol
-               sequence is a wff of LoF") $)
+               sequence is a wff of boundary algebra") $)
   $c |- $. $( Turnstile (read:  "the following symbol sequence is provable" or
-              'a proof exists for") $)
+              "a proof exists for") $)
 
-  $( Introduce variables to represent the well-formed formulas of LoF. $)
+  $( Introduce variables to represent the well-formed formulas. $)
   $v p q r s t u v w x y z k $.
 
-  $( Specify some variables that we will use to represent wff's.
-     The fact that a variable represents a wff is relevant only to a theorem
-     referring to that variable, so we may use $f hypotheses.  The symbol
-     ` wff ` specifies that the variable that follows it represents a wff. $)
-  $( Let variable ` p ` be a wff. $)
+  $( Specify some variables that we will use to represent wffs. $)
+  $( Let variable p be a wff. $)
   llp $f wff p $.
-  $( Let variable ` q ` be a wff. $)
+  $( Let variable q be a wff. $)
   llq $f wff q $.
-  $( Let variable ` r ` be a wff. $)
+  $( Let variable r be a wff. $)
   llr $f wff r $.
-  $( Let variable ` s ` be a wff. $)
+  $( Let variable s be a wff. $)
   lls $f wff s $.
-  $( Let variable ` t ` be a wff. $)
+  $( Let variable t be a wff. $)
   llt $f wff t $.
-  $( Let variable ` u ` be a wff. $)
+  $( Let variable u be a wff. $)
   llu $f wff u $.
-  $( Let variable ` v ` be a wff. $)
+  $( Let variable v be a wff. $)
   llv $f wff v $.
-  $( Let variable ` w ` be a wff. $)
+  $( Let variable w be a wff. $)
   llw $f wff w $.
-  $( Let variable ` x ` be a wff. $)
+  $( Let variable x be a wff. $)
   llx $f wff x $.
-  $( Let variable ` y ` be a wff. $)
+  $( Let variable y be a wff. $)
   lly $f wff y $.
-  $( Let variable ` z ` be a wff. $)
+  $( Let variable z be a wff. $)
   llz $f wff z $.
-  $( Let variable ` k ` be a wff. $)
+  $( Let variable k be a wff. $)
   llk $f wff k $.
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                       2. Inductive definition of LoF wffs
+                   2. Recursive definition of boundary wffs
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  It is worth noting that the following recursive definition of wffs precisely
+  mirrors the definition of the Dyck language (aka "parenthesis language") via
+  a context-free grammar: S -> e | [S] | SS (where e is the empty string).
+  Every boundary expression without variables corresponds to a word of the Dyck
+  language and vice versa.
 $)
 
-  $( Empty space, the void, is a wff.  We will sometimes refer to it as the
-     "unmarked state" and in our intended interpretation it will be identified
-     with the value false.  We can regard it as the lone atomic wff.
-    (Contributed by Naipmoro, 2-Sep-2015.) $)
+  $( Empty space, the void, is the lone atomic wff.  Spencer-Brown refers to it
+     as the "unmarked state" and in our intended interpretation it will be
+     identified with a truth value.  When that value is False, we are working
+     within Laws of Form proper; when it is True, we are in (a version of)
+     Charles S. Peirce's alpha system.  (Contributed by Naipmoro, 2-Sep-2015.)
+  $)
   df-void $a wff $.
 
-  $( If ` p ` is a wff, so is ` [ p ] ` .  We say that " ` p ` is enclosed
+  $( If p is a wff, so is [ p ] .  We say that "p is enclosed
      (or crossed, or marked)".  Combined with the previous definition, we see
-     that ` [ ] ` , ` [ [ ] ] ` , ` [ ... [ [ ] ] ... ] ` are all wffs.  We
-     call ` [ ] ` the "marked state" and identify it with the value true.
+     that [ ] , [ [ ] ] , [ ... [ [ ] ] ... ] are all wffs.
+     Spencer-Brown calls [ ] the "marked state" and we identify it with the
+     truth value opposite to the truth value of the unmarked state.
      (Contributed by Naipmoro, 2-Sep-2015.) $)
   df-encl $a wff [ p ] $.
 
-  $( If ` p ` and ` q ` are wffs, so is ` p q ` .  This rule introduces a
+  $( If p and q are wffs, so is p q .  This rule introduces a
      technical ambiguity into the metamath formal language and some parsers
      will reject it.  However, since the system is inherently associative, this
      ambiguity does not compromise the validity of the formal derivations and
@@ -131,8 +130,8 @@ $(
 
   In lof.mm "=" was one of the primitive constants of the language.  But the
   symbol is superfluous, as in a Boolean system equality and equivalence are
-  synonyms.  Let us interpret the form ` [ [ p ] [ q ] ] [ p q ] ` to mean
-  " ` p ` equals (or is equivalent to) ` q ` ".  All of LoF can be expressed
+  synonyms.  Let us interpret the form [ [ p ] [ q ] ] [ p q ] to mean
+  " p equals (or is equivalent to) q".  All of LoF can be expressed
   accordingly, and I will call this the "unitary form" of LoF.  For
   demonstration purposes, I state the four primitive inference rules of LoF and
   a handful of associated theorems in this form.  But what is theoretically
@@ -144,8 +143,8 @@ $)
   ${
     ax-euc.1 $e |- [ [ p ] [ q ] ] [ p q ] $.
     ax-euc.2 $e |- [ [ r ] [ q ] ] [ r q ] $.
-    $( Read this as:  "If ` p ` is equal to ` q ` and ` r ` is equal to
-       ` q ` , then we can infer that ` p ` is equal to ` r ` ".  In other
+    $( Read this as:  "If p is equal to q and r is equal to
+       q , then we can infer that p is equal to r ".  In other
        words, two things equal to the same thing are equal to each other.  This
        is Euclid's first Common Notion and, in an equational logic, this and
        its sibling, transitivity, are the main engine of derivation.
@@ -155,14 +154,14 @@ $)
 
   $( We can rephrase Euclid's second and third Common Notions as:  Doing the
      same thing (e.g., applying the same operation) to equal things leaves
-     equal things.  In light of LoF's two operations, enclosure and
+     equal things.  In light of our two operations, enclosure and
      juxtaposition, this leads to the next two axioms (looked at differently,
      these can also be seen as substitution/replacement rules). $)
 
   ${
     ax-beq.1 $e |- [ [ p ] [ q ] ] [ p q ] $.
-    $( Read this as:  "If ` p ` is equal to ` q ` , then we can infer that
-       ` [ p ] ` is equal to ` [ q ] ` ".  Enclosing equal forms leaves equal
+    $( Read this as:  "If p is equal to q , then we can infer that
+       [ p ] is equal to [ q ]".  Enclosing equal forms leaves equal
        forms.  (Contributed by Naipmoro, 26-Jan-2017.) $)
     ax-beq $a |- [ [ [ p ] ] [ [ q ] ] ] [ [ p ] [ q ] ]
     $.
@@ -170,8 +169,8 @@ $)
 
   ${
     ax-sub.1 $e |- [ [ p ] [ q ] ] [ p q ] $.
-    $( Read this as:  "If ` p ` is equal to ` q ` , then we can infer that
-       ` p v ` is equal to ` q v ` for any ` v ` ".  Juxtaposing the same
+    $( Read this as:  "If p is equal to q , then we can infer that
+       p v is equal to q v for any v ".  Juxtaposing the same
        form with equal forms leaves equal forms.  (Contributed by Naipmoro,
        26-Jan-2017.) $)
     ax-sub $a |- [ [ p v ] [ q v ] ] [ p v q v ] $.
@@ -179,7 +178,7 @@ $)
 
   $( Commutativity of LoF.  $)
 
-  $( Read this as:  " ` p q ` is equal to ` q p ` ".  Of the four axioms,
+  $( Read this as:  " p q is equal to q p ".  Of the four axioms,
      only this one is domain-specific.  (Contributed by Naipmoro,
      26-Jan-2017.) $)
   ax-cmm $a |- [ [ p q ] [ q p ] ] [ p q q p ] $.
@@ -194,15 +193,15 @@ $(
   and transitivity.  The next three theorems show that it does.
 $)
 
-  $( "Equality" is reflexive.  Read this as:  " ` p ` is equal to ` p ` ".
+  $( "Equality" is reflexive.  Read this as:  " p is equal to p ".
      (Contributed by Naipmoro, 26-Jan-2017.) $)
  idu $p |- [ [ p ] [ p ] ] [ p p ] $=
    llp df-void ax-cmm $.
 
   ${
     symu.1 $e |- [ [ p ] [ q ] ] [ p q ] $.
-    $( "Equality" is symmetric.  Read this as:  "If ` p ` is equal to ` q ` ,
-       then we can infer that ` q ` is equal to ` p ` ".  (Contributed by
+    $( "Equality" is symmetric.  Read this as:  "If p is equal to q ,
+       then we can infer that q is equal to p ".  (Contributed by
        Naipmoro, 26-Jan-2017.) $)
     symu $p |- [ [ q ] [ p ] ] [ q p ] $=
       llq llq llp llq idu symu.1 ax-euc $.
@@ -211,16 +210,16 @@ $)
   ${
     transu.1 $e |- [ [ p ] [ q ] ] [ p q ] $.
     transu.2 $e |- [ [ q ] [ r ] ] [ q r ] $.
-    $( "Equality" is transitive.  Read this as:  "If ` p ` is equal to ` q `
-       and ` q ` is equal to ` r ` , then we can infer that ` p ` is equal
-       to ` r ` ".  (Contributed by Naipmoro, 26-Jan-2017.) $)
+    $( "Equality" is transitive.  Read this as:  "If p is equal to q `
+       and q is equal to r , then we can infer that p is equal
+       to r ".  (Contributed by Naipmoro, 26-Jan-2017.) $)
     transu $p |- [ [ p ] [ r ] ] [ p r ] $=
       llp llq llr transu.1 llq llr transu.2 symu ax-euc $.
   $}
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                     5. Introducing the notion of equality
+                     5. Introducing the equality symbol
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   We can go only so far with the unitary form before reasoning becomes
@@ -228,8 +227,6 @@ $(
   between wffs and not itself part of a wff, despite being defined in terms of
   a wff.
 $)
-
-  $c = $. $( Equality (read:  "is equal to" or "is equivalent to") $)
 
   ${
     df-lofequ.1 $e |- p = q $.
@@ -1071,10 +1068,10 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 $)
 
-  $( We will later define ` ( p -> q ) ` as ` [ p ] q ` .  In that light,
+  $( We will later define ( p -> q ) as [ p ] q .  In that light,
      this theorem shows that our previous definition of equality is equivalent
-     to ` ( ( p -> q ) /\ ( q -> p ) ) ` .  The latter, in turn, is what we
-     mean by the biconditional ` <-> ` .  In other words, equality and the
+     to ( ( p -> q ) /\ ( q -> p ) ) .  The latter, in turn, is what we
+     mean by the biconditional <-> .  In other words, equality and the
      biconditional are, as expected, equivalent.  (Contributed by Naipmoro,
      24-Feb-2017.) $)
   biimp $p |- [ [ [ p ] q ] [ [ q ] p ] ] = [ [ p ] [ q ] ] [ p q ] $=
@@ -1127,10 +1124,10 @@ $)
     llp llr biasslem1 trans llq df-encl llp df-void df-void llr df-void df-void
     cmmbx trans $.
 
-  $( Let ` P = [ [ p ] [ q ] ] [ p q ] ` and
-     ` Q = [ [ q ] [ r ] ] [ q r ] ` .  Proving that equality/biconditional
+  $( Let P = [ [ p ] [ q ] ] [ p q ] and
+     Q = [ [ q ] [ r ] ] [ q r ] .  Proving that equality/biconditional
      associates amounts to proving:
-     ` [ [ P ] [ r ] ] [ P r ] = [ [ p ] [ Q ] ] [ p Q ] ` which is
+     [ [ P ] [ r ] ] [ P r ] = [ [ p ] [ Q ] ] [ p Q ] which is
      demonstrated in ~ biass .  Meanwhile, this theorem shows that the lhs
      of the latter equation evaluates to a form symmetric in the three
      variables, informal evidence for associativity.  (Contributed by Naipmoro,
@@ -1322,13 +1319,13 @@ $)
   ${
     ax-qny.1 $e |- p $.
     ax-qny.2 $e |- p = q $.
-    $( If we assert both ` p ` and that ` p ` is equal to ` q ` , we can
-       infer ` q ` .  (Contributed by Naipmoro, 14-Feb-2017.) $)
+    $( If we assert both p and that p is equal to q , we can
+       infer q .  (Contributed by Naipmoro, 14-Feb-2017.) $)
     ax-qny $a |- q $.
   $}
 
-  $( This important theorem states that the equivalence of ` p ` to true is
-     equivalent to just ` p ` .  (Contributed by Naipmoro, 29-Jan-2017.) $)
+  $( This important theorem states that the equivalence of p to true is
+     equivalent to just p .  (Contributed by Naipmoro, 29-Jan-2017.) $)
   elimeq $p |- [ [ p ] [ [ ] ] ] [ p [ ] ] = p $=
     llp df-encl df-void df-encl df-encl df-juxt df-encl llp df-void df-encl
     df-juxt df-encl df-juxt df-void df-encl df-encl llp df-juxt llp llp df-encl
@@ -1352,7 +1349,7 @@ $)
   $( Truth equivalence elimination.  $)
   ${
     elim.1 $e |- p = [ ] $.
-    $( If ` p ` is equivalent to true, we can infer ` p ` .  (Contributed by
+    $( If p is equivalent to true, we can infer p .  (Contributed by
        Naipmoro, 14-Feb-2017.) $)
     elim $p |- p $=
       llp df-encl df-void df-encl df-encl df-juxt df-encl llp df-void df-encl
@@ -1363,7 +1360,7 @@ $)
   $( Truth equivalence introduction.  $)
   ${
     intr.1 $e |- p $.
-    $( If we can assert ` p ` , then we can infer that ` p ` is equivalent to
+    $( If we can assert p , then we can infer that p is equivalent to
        true.  (Contributed by Naipmoro, 14-Feb-2017.) $)
     intr $p |- p = [ ] $=
       llp df-void df-encl llp llp df-encl df-void df-encl df-encl df-juxt
@@ -1393,8 +1390,8 @@ $)
   ${
     and.1 $e |- p $.
     and.2 $e |- q $.
-    $( Wrap premises in LoF conjunctive form.  From ` p ` and ` q ` we infer
-       the LoF equivalent of ` p /\ q ` .  (Contributed by Naipmoro,
+    $( Wrap premises in LoF conjunctive form.  From p and q we infer
+       the LoF equivalent of p /\ q .  (Contributed by Naipmoro,
        14-Feb-2017.) $)
     and $p |- [ [ p ] [ q ] ] $=
       llp df-encl llq df-encl df-juxt df-encl llp df-encl llq df-encl df-juxt
@@ -1410,7 +1407,7 @@ $)
   ${
     eq.1 $e |- p $.
     eq.2 $e |- q $.
-    $( From assertions of ` p ` and ` q ` we infer their equality.
+    $( From assertions of p and q we infer their equality.
        (Contributed by Naipmoro, 1-Mar-2017.) $)
     eq $p |- p = q $=
       llp df-void df-encl llq llp eq.1 intr llq eq.2 intr euc $.
@@ -1431,41 +1428,41 @@ $(
                    12. Defining classical propositional logic
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  We define ` ( p -> q ) ` as ` [ p ] q ` and ` -. p ` as ` [ p ] ` ,
-  consistent with our interpretation of ` [ ] ` as true and the void as false,
+  We define ( p -> q ) as [ p ] q and -. p as [ p ] ,
+  consistent with our interpretation of [ ] as true and the void as false,
   and determining the interpretation of the other logical constants:
 
   <HTML><br></HTML>
 
   <HTML><ul>
-  <li> ` -. p = [ p ] ` .</li>
-  <li> ` ( p -> q ) = [ p ] q ` .</li>
-  <li> ` ( p \/ q ) = p q ` .</li>
-  <li> ` ( p /\ q ) = [ [ p ] [ q ] ] ` .</li>
-  <li> ` ( p <-> q ) = [ [ p ] [ q ] ] [ p q ] ` .</li>
+  <li> -. p = [ p ] .</li>
+  <li> ( p -> q ) = [ p ] q .</li>
+  <li> ( p \/ q ) = p q .</li>
+  <li> ( p /\ q ) = [ [ p ] [ q ] ] .</li>
+  <li> ( p <-> q ) = [ [ p ] [ q ] ] [ p q ] .</li>
   </ul></HTML>
 
-  (NOTE:  LoF is "self-dual".  If we interpret ` [ ] ` as false and the void as
+  (NOTE:  LoF is "self-dual".  If we interpret [ ] as false and the void as
   true, the theorems of LoF remain valid but carry different meanings:
 
   <HTML><br></HTML>
 
   <HTML><ul>
-  <li> ` -. p = [ p ] ` .</li>
-  <li> ` ( p -> q ) = [ p [ q ] ] ` .</li>
-  <li> ` ( p \/ q ) = [ [ p ] [ q ] ] ` .</li>
-  <li> ` ( p /\ q ) = p q ` .</li>
-  <li> ` ( p <-> q ) = [ [ [ p ] [ q ] ] [ p q ] ] ` .</li>
+  <li> -. p = [ p ] .</li>
+  <li> ( p -> q ) = [ p [ q ] ] .</li>
+  <li> ( p \/ q ) = [ [ p ] [ q ] ] .</li>
+  <li> ( p /\ q ) = p q .</li>
+  <li> ( p <-> q ) = [ [ [ p ] [ q ] ] [ p q ] ] .</li>
   </ul></HTML>
 
   This is C. S. Peirce's remarkable "alpha" system from his existential graphs,
   the first modern instance of a boundary algebra.)
 
-  Constructing hybrid wffs like ` [ -. p ] ` that lack meaning in either LoF
+  Constructing hybrid wffs like [ -. p ] that lack meaning in either LoF
   or propositional logic becomes not merely possible but necessary in the
   course of translating from one system to the other.  Indeed, one can validly
-  calculate with these hybrid forms.  For example, ` [ -. p ] -. p ` can
-  be reduced to ` [ ] ` by ~ c2e without the need to fully translate into
+  calculate with these hybrid forms.  For example, [ -. p ] -. p can
+  be reduced to [ ] by ~ c2e without the need to fully translate into
   LoF.  The proof of ~ df-bimm makes full use of that possibility.
 $)
 
@@ -1633,17 +1630,17 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   set.mm's section on the biconditional begins with the definition ~ df-bimm :
-  ` -. ( ( ( p <-> q ) -> -. ( ( p -> q ) -> -. ( q -> p ) ) )
+  -. ( ( ( p <-> q ) -> -. ( ( p -> q ) -> -. ( q -> p ) ) )
     -> -. ( -. ( ( p -> q ) -> -. ( q -> p ) ) -> ( p <-> q ) ) ) `
   followed by three theorems that depend on it:  ~ bi1mm , ~ bi3 , and ~ dfbi1 .
   Here we utilize the equivalence of the biconditional with equality to prove
   all four of those statements, including the definition, directly from LoF.
 
   In examining this section, the reader may wonder about the need for the
-  equality sign, and in fact we could have dispensed with it, replacing ` = `
-  with ` <-> ` right from the start.  I retained it for readability and to
-  avoid some nuanced distinctions.  For example, while ` ( p <-> q ) ` is a
-  wff, ` p = q ` cannot be one without introducing contradiction (see
+  equality sign, and in fact we could have dispensed with it, replacing = `
+  with <-> right from the start.  I retained it for readability and to
+  avoid some nuanced distinctions.  For example, while ( p <-> q ) is a
+  wff, p = q cannot be one without introducing contradiction (see
   Appendix A for details).
 $)
 
@@ -1860,7 +1857,7 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   Another important difference between LoF and equational logic: the latter
-  allows forms such as ` p = p = [ ] ` and ` [ p ] = p = ` by ascribing
+  allows forms such as p = p = [ ] and [ p ] = p = by ascribing
   well-formedness to binary equations, while in LoF this would result in
   contradiction, as demonstrated by the following (commented out) derivation.
 
@@ -1872,12 +1869,12 @@ $(
      <HTML><br></HTML>
 
      <HTML><ol>
-     <li> ` p = p `           (id)        </li>
-     <li> ` p = p = [ ] `     (1 intr)    </li>
-     <li> ` p = p q = [ ] q ` (2 sub)     </li>
-     <li> ` [ ] q = [ ] `     (c3)        </li>
-     <li> ` p = p q = [ ] `   (3,4 trans) </li>
-     <li> ` p = p q `         (5 elim)    </li>
+     <li> p = p           (id)        </li>
+     <li> p = p = [ ]     (1 intr)    </li>
+     <li> p = p q = [ ] q (2 sub)     </li>
+     <li> [ ] q = [ ]     (c3)        </li>
+     <li> p = p q = [ ]   (3,4 trans) </li>
+     <li> p = p q         (5 elim)    </li>
      </ol></HTML>
      (Contributed by Naipmoro, 11-Mar-2017.) @)
   nono $p |- p = p q $=
