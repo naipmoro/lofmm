@@ -1654,55 +1654,25 @@ $)
 
   $( A definition of the biconditional in terms of LoF equality.  (Contributed
      by Naipmoro, 21-Feb-2017.) $)
-  df-bi $a |- ( p <-> q ) = [ [ p ] [ q ] ] [ p q ] $.
+  df-bic $a |- ( p <-> q ) = [ [ p ] [ q ] ] [ p q ] $.
 
   $( A more traditional understanding of the biconditional as (the LoF
      equivalent of) a conjunction of converse implications.  (Contributed by
      Naipmoro, 24-Feb-2017.) $)
-  bii $p |- ( p <-> q ) = [ [ [ p ] q ] [ [ q ] p ] ] $=
+  bici $p |- ( p <-> q ) = [ [ [ p ] q ] [ [ q ] p ] ] $=
     llp llq wb llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt df-encl
     df-juxt llp df-encl llq df-juxt df-encl llq df-encl llp df-juxt df-encl
-    df-juxt df-encl llp llq df-bi llp llq biimp euc $.
+    df-juxt df-encl llp llq df-bic llp llq biimp euc $.
 
-  ${
-    bieq.1 $e |- ( p <-> q ) $.
-    $( Infer an equality from a biconditional.  (Contributed by Naipmoro,
-       24-Feb-2017.) $)
-    bieq $p |- p = q $=
-      llp llq llp llq wb llp df-encl llq df-encl df-juxt df-encl llp llq
-      df-juxt df-encl df-juxt bieq.1 llp llq df-bi ax-qny df-uni $.
-  $}
-
-  ${
-    eqbi.1 $e |- p = q $.
-    $( Infer a biconditional from an equality.  (Contributed by Naipmoro,
-       4-Mar-2017.) $)
-    eqbi $p |- ( p <-> q ) $=
-      llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt
-      llp llq wb llp llq eqbi.1 df-equ llp llq wb llp df-encl llq df-encl
-      df-juxt df-encl llp llq df-juxt df-encl df-juxt llp llq df-bi sym ax-qny
-      $.
-  $}
-
-  ${
-    eqi.1 $e |- p = q $.
-    $( Infer an implication from an equality.  (Contributed by Naipmoro,
-       28-Feb-2017.) $)
-    eqi $p |- ( p -> q ) $=
-      llp df-encl llq df-juxt llp llq wi llp df-encl llq df-juxt llp df-encl
-      llq df-juxt llq df-encl llq df-juxt df-void df-encl llp df-encl llq
-      df-encl llq llp llq eqi.1 beq sub llq df-void df-void df-void c2e tran       elim llp llq wi llp df-encl llq df-juxt llp llq df-imp sym ax-qny $.
-  $}
-
-  $( Relating the biconditional connective to primitive connectives, proved
-     directly from LoF. (Contributed by Naipmoro, 25-Feb-2017.) $)
-  bi1 $p |- ( p <-> q ) = -. ( ( p -> q ) -> -. ( q -> p ) ) $=
+  $( This is similar to set.mm's ~ dfbi1. (Contributed by Naipmoro,
+     25-Feb-2017.) $)
+  bic1 $p |- ( p <-> q ) = -. ( ( p -> q ) -> -. ( q -> p ) ) $=
     llp llq wb llp df-encl llq df-juxt df-encl llq df-encl llp df-juxt df-encl
-    df-juxt df-encl llp llq wi llq llp wi wn wi wn llp llq bii llp llq wi llq
-    llp wi wn wi wn llp df-encl llq df-juxt df-encl llq llp wi df-encl df-juxt
-    df-encl llp df-encl llq df-juxt df-encl llq df-encl llp df-juxt df-encl
-    df-juxt df-encl llp llq wi llq llp wi wn wi wn llp llq wi df-encl llq llp
-    wi df-encl df-juxt df-encl llp df-encl llq df-juxt df-encl llq llp wi
+    df-juxt df-encl llp llq wi llq llp wi wn wi wn llp llq bici llp llq wi
+    llq llp wi wn wi wn llp df-encl llq df-juxt df-encl llq llp wi df-encl
+    df-juxt df-encl llp df-encl llq df-juxt df-encl llq df-encl llp df-juxt
+    df-encl df-juxt df-encl llp llq wi llq llp wi wn wi wn llp llq wi df-encl
+    llq llp wi df-encl df-juxt df-encl llp df-encl llq df-juxt df-encl llq llp wi
     df-encl df-juxt df-encl llp llq wi llq llp wi wn wi wn llp llq wi df-encl
     llq llp wi wn df-juxt df-encl llp llq wi df-encl llq llp wi df-encl df-juxt
     df-encl llp llq wi llq llp wi wn wi wn llp llq wi llq llp wi wn wi df-encl
@@ -1716,89 +1686,20 @@ $)
     df-encl llq df-juxt df-encl df-void df-void df-void llq llp df-imp subbd1
     tran euc $.
 
-  $( The reverse of ~ bi1 .  (Contributed by Naipmoro, 26-Feb-2017.) $)
-  bi1r $p |- -. ( ( p -> q ) -> -. ( q -> p ) ) = ( p <-> q ) $=
-    llp llq wb llp llq wi llq llp wi wn wi wn llp llq bi1 sym $.
-
-  $( Relating the biconditional connective to primitive connectives, proved
-     directly from LoF. (Contributed by Naipmoro, 4-Mar-2017.) $)
-  dfbi1 $p |- ( ( p <-> q ) <-> -. ( ( p -> q ) -> -. ( q -> p ) ) ) $=
-    llp llq wb llp llq wi llq llp wi wn wi wn llp llq bi1 eqbi $.
-
-  $( Property of the biconditional connective proved directly from LoF.
-     (Contributed by Naipmoro, 24-Feb-2017.) $)
-  bi1mm $p |- ( ( p <-> q ) -> ( p -> q ) ) $=
-    llp llq wb llp llq wi wi llp llq wb llp llq wi wi llp df-encl llq df-encl
-    df-juxt llp df-encl df-juxt llq df-juxt df-void df-encl llp llq wb llp llq
-    wi wi llp df-encl llq df-encl df-juxt llp df-encl df-juxt df-encl df-encl
-    llq df-juxt llp df-encl llq df-encl df-juxt llp df-encl df-juxt llq df-juxt
-    llp llq df-juxt llp df-encl df-juxt df-encl df-void llp df-encl llq df-encl
-    df-juxt llp df-encl df-juxt df-encl df-void df-void llq llp llq wb llp llq
-    wi wi llp df-void llq df-void df-void df-void j1rx llp llq wb llp llq wi wi
-    llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt
-    df-encl llp df-encl df-juxt llq df-juxt llp df-encl llq df-encl df-juxt llp
-    df-encl df-juxt df-encl llp llq df-juxt llp df-encl df-juxt df-encl df-juxt
-    df-encl llq df-juxt llp llq wb llp df-encl llq df-encl df-juxt df-encl llp
-    llq df-juxt df-encl df-juxt df-void df-void df-void llp df-encl llq df-juxt
-    llp llq wb llp llq wi wi llp llq df-bi llp llq wi llp df-encl llq df-juxt
-    llp llq wb df-encl df-void llp llq wb llp llq wi wi llp llq df-imp llp llq
-    wb llp llq wi df-imp reps repbxs llp df-encl llq df-encl df-juxt llp llq
-    df-juxt llp df-encl df-void df-void llq j2rx tran repbxs llp df-encl llq
-    df-encl df-juxt llp df-encl df-juxt df-void llq c1x tran llq llp df-encl
-    llp df-encl df-void c2e tran elim $.
-
-  $( Property of the biconditional connective proved directly from LoF.
-     (Contributed by Naipmoro, 24-Feb-2017.) $)
-  bi3 $p |- ( ( p -> q ) -> ( ( q -> p ) -> ( p <-> q ) ) ) $=
-    llp llq wi llq llp wi llp llq wb wi wi llp llq wi llq llp wi llp llq wb wi
-    wi llq df-encl llp df-juxt df-encl llq df-encl df-juxt llp df-juxt df-void
-    df-encl llp llq wi llq llp wi llp llq wb wi wi llp llq df-encl llp df-juxt
-    df-encl df-juxt llq df-encl df-juxt llq df-encl llp df-juxt df-encl llq
-    df-encl df-juxt llp df-juxt llp llq wi llq llp wi llp llq wb wi wi llp llq
-    df-encl llp df-juxt df-encl df-juxt llp llq df-juxt df-encl df-juxt llp llq
-    df-encl llp df-juxt df-encl df-juxt llq df-encl df-juxt llp llq wi llq llp
-    wi llp llq wb wi wi llp df-encl llq df-juxt df-encl llq df-encl llp df-juxt
-    df-encl df-juxt llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt
-    df-encl df-juxt df-juxt llp llq df-encl llp df-juxt df-encl df-juxt llp llq
-    df-juxt df-encl df-juxt llp llq wi llq llp wi llp llq wb wi wi llp df-encl
-    llq df-juxt df-encl llq llp wi df-encl df-juxt llp df-encl llq df-encl
-    df-juxt df-encl llp llq df-juxt df-encl df-juxt df-juxt llp df-encl llq
-    df-juxt df-encl llq df-encl llp df-juxt df-encl df-juxt llp df-encl llq
-    df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt df-juxt llp llq wi
-    llq llp wi llp llq wb wi wi llp llq wi df-encl llq llp wi df-encl df-juxt
-    llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt
-    df-juxt llp df-encl llq df-juxt df-encl llq llp wi df-encl df-juxt llp
-    df-encl llq df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt df-juxt
-    llp llq wi llq llp wi llp llq wb wi wi llp llq wi df-encl llq llp wi
-    df-encl df-juxt llp llq wb df-juxt llp llq wi df-encl llq llp wi df-encl
-    df-juxt llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt df-encl
-    df-juxt df-juxt llp llq wi llq llp wi llp llq wb wi wi llp llq wi df-encl
-    llq llp wi llp llq wb wi df-juxt llp llq wi df-encl llq llp wi df-encl
-    df-juxt llp llq wb df-juxt llp llq wi llq llp wi llp llq wb wi df-imp llq
-    llp wi llp llq wb wi llq llp wi df-encl llp llq wb df-juxt llp llq wi
-    df-encl llq llp wi llp llq wb df-imp subr tran llp llq wb llp df-encl llq
-    df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt llp llq wi df-encl
-    llq llp wi df-encl df-juxt llp llq df-bi subr tran llp llq wi llp df-encl
-    llq df-juxt df-void df-void df-void llq llp wi df-encl llp df-encl llq
-    df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt df-juxt llp llq
-    df-imp subb1 tran llq llp wi llq df-encl llp df-juxt df-void df-void llp
-    df-encl llq df-juxt df-encl llp df-encl llq df-encl df-juxt df-encl llp llq
-    df-juxt df-encl df-juxt llq llp df-imp subb1 tran llp llq df-void llq
-    df-encl llp df-juxt df-encl llp llq df-juxt df-encl c6rx tran df-void llp
-    df-void llq df-encl llp df-juxt df-encl llq df-void c2rx tran llp llq
-    df-encl llp df-juxt df-encl llq df-encl df-juxt cmm tran llq df-encl llp
-    df-juxt df-void df-void df-void c2e tran elim $.
+  $( The reverse of ~ bic1 .  (Contributed by Naipmoro, 26-Feb-2017.) $)
+  bic1r $p |- -. ( ( p -> q ) -> -. ( q -> p ) ) = ( p <-> q ) $=
+    llp llq wb llp llq wi llq llp wi wn wi wn llp llq bic1 sym $.
 
   $( This is set.mm's biconditional definition ~ df-bi proved as a theorem.
      (Contributed by Naipmoro, 28-Feb-2017.) $)
-  dfbi $p |- -. ( ( ( p <-> q ) -> -. ( ( p -> q ) -> -. ( q -> p ) ) )
-             -> -. ( -. ( ( p -> q ) -> -. ( q -> p ) ) -> ( p <-> q ) ) ) $=
+  dfbic $p |- -. ( ( ( p <-> q ) -> -. ( ( p -> q ) -> -. ( q -> p ) ) )
+              -> -. ( -. ( ( p -> q ) -> -. ( q -> p ) ) -> ( p <-> q ) ) ) $=
     llp llq wb llp llq wi llq llp wi wn wi wn wi llp llq wi llq llp wi wn wi wn
     llp llq wb wi wn wi wn llp llq wb llp llq wi llq llp wi wn wi wn wi llp llq
     wi llq llp wi wn wi wn llp llq wb wi wn wi wn llp llq wb df-encl llp llq wb
     df-juxt df-void df-encl llp llq wi llq llp wi wn wi wn llp llq wb df-void
     df-void df-void llp llq wb llp llq wb llp llq wi llq llp wi wn wi wn wi llp
-    llq wi llq llp wi wn wi wn llp llq wb wi wn wi wn llp llq bi1r llp llq wb
+    llq wi llq llp wi wn wi wn llp llq wb wi wn wi wn llp llq bic1r llp llq wb
     llp llq wi llq llp wi wn wi wn wi llp llq wi llq llp wi wn wi wn llp llq wb
     wi wn wi wn llp llq wi llq llp wi wn wi wn llp llq wb wi llp llq wi llq llp
     wi wn wi wn df-encl llp llq wb df-juxt llp llq wb llp llq wi llq llp wi wn
@@ -1810,7 +1711,7 @@ $)
     wi wn wi wn llp llq wb ax-j1 llp llq wi llq llp wi wn wi wn llp llq wb llp
     llq wb df-encl df-void df-void llp llq wi llq llp wi wn wi wn llp llq wb wi
     wn df-void df-void llp llq wb llp llq wi llq llp wi wn wi wn wi llp llq wi
-    llq llp wi wn wi wn llp llq wb wi wn wi wn llp llq bi1r llp llq wb llp llq
+    llq llp wi wn wi wn llp llq wb wi wn wi wn llp llq bic1r llp llq wb llp llq
     wi llq llp wi wn wi wn wi llp llq wb df-encl llp llq wi llq llp wi wn wi wn
     df-juxt df-void df-void df-void llp llq wi llq llp wi wn wi wn llp llq wb
     wi wn df-void df-void llp llq wb llp llq wi llq llp wi wn wi wn wi llp llq
@@ -1862,7 +1763,7 @@ $)
      (Contributed by Naipmoro, 14-Oct-2017.) $)
   eqeqbi $p |- ( p = q ) = ( p <-> q ) $=
     llp llq df-wfe llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt
-    df-encl df-juxt llp llq wb llp llq df-pareq llp llq df-bi euc $.
+    df-encl df-juxt llp llq wb llp llq df-pareq llp llq df-bic euc $.
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
