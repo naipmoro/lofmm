@@ -52,7 +52,6 @@ $)
   $( Declare the primitive constant symbols. $)
   $c [ $. $( Left side of boundary $)
   $c ] $. $( Right side of boundary $)
-  $c = $. $( Equality (read:  "is equal to" or "is equivalent to") $)
   $c wff $. $( Well-formed formula symbol (read:  "the following symbol
                sequence is a wff of boundary algebra") $)
   $c |- $. $( Turnstile (read:  "the following symbol sequence is provable" or
@@ -89,7 +88,7 @@ $)
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                   2. Recursive definition of boundary wffs
+                   2. Recursive definition of LoF wffs
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   It is worth noting that the following recursive definition of wffs precisely
@@ -101,21 +100,19 @@ $)
 
   $( Empty space, the void, is the lone atomic wff.  Spencer-Brown refers to it
      as the "unmarked state" and in our intended interpretation it will be
-     identified with a truth value.  When that value is False, we are working
-     within Laws of Form proper; when it is True, we are in (a version of)
-     Charles S. Peirce's alpha system.  (Contributed by Naipmoro, 2-Sep-2015.)
-  $)
+     identified with the truth value False.  Had we interpreted it as True, we
+     would be working in (a version of) Charles S. Peirce's alpha system.
+     (Contributed by Naipmoro, 2-Sep-2015.) $)
   df-void $a wff $.
 
-  $( If p is a wff, so is [ p ] .  We say that "p is enclosed
-     (or crossed, or marked)".  Combined with the previous definition, we see
-     that [ ] , [ [ ] ] , [ ... [ [ ] ] ... ] are all wffs.
-     Spencer-Brown calls [ ] the "marked state" and we identify it with the
-     truth value opposite to the truth value of the unmarked state.
-     (Contributed by Naipmoro, 2-Sep-2015.) $)
+  $( If p is a wff, so is [ p ] .  We say that "p is enclosed (or crossed, or
+     marked)".  Combined with the previous definition, we see that [ ] ,
+     [ [ ] ] , [ ... [ [ ] ] ... ] are all wffs.  Spencer-Brown calls [ ] the
+     "marked state" and we identify it with the value True.  (Contributed by
+     Naipmoro, 2-Sep-2015.) $)
   df-encl $a wff [ p ] $.
 
-  $( If p and q are wffs, so is p q .  This rule introduces a
+  $( If p and q are wffs, so is p q .  Note:  This rule introduces a
      technical ambiguity into the metamath formal language and some parsers
      will reject it.  However, since the system is inherently associative, this
      ambiguity does not compromise the validity of the formal derivations and
@@ -163,8 +160,7 @@ $)
     $( Read this as:  "If p is equal to q , then we can infer that
        [ p ] is equal to [ q ]".  Enclosing equal forms leaves equal
        forms.  (Contributed by Naipmoro, 26-Jan-2017.) $)
-    ax-beq $a |- [ [ [ p ] ] [ [ q ] ] ] [ [ p ] [ q ] ]
-    $.
+    ax-beq $a |- [ [ [ p ] ] [ [ q ] ] ] [ [ p ] [ q ] ] $.
   $}
 
   ${
@@ -176,11 +172,9 @@ $)
     ax-sub $a |- [ [ p v ] [ q v ] ] [ p v q v ] $.
   $}
 
-  $( Commutativity of LoF.  $)
-
-  $( Read this as:  " p q is equal to q p ".  Of the four axioms,
-     only this one is domain-specific.  (Contributed by Naipmoro,
-     26-Jan-2017.) $)
+  $( Read this as:  "p q is equal to q p".  Of the four,
+     this commutativity axiom is the only one that is domain-specific.
+     (Contributed by Naipmoro, 26-Jan-2017.) $)
   ax-cmm $a |- [ [ p q ] [ q p ] ] [ p q q p ] $.
 
 $(
@@ -193,7 +187,7 @@ $(
   and transitivity.  The next three theorems show that it does.
 $)
 
-  $( "Equality" is reflexive.  Read this as:  " p is equal to p ".
+  $( "Equality" is reflexive.  Read this as:  "p is equal to p".
      (Contributed by Naipmoro, 26-Jan-2017.) $)
  idu $p |- [ [ p ] [ p ] ] [ p p ] $=
    llp df-void ax-cmm $.
@@ -201,20 +195,20 @@ $)
   ${
     symu.1 $e |- [ [ p ] [ q ] ] [ p q ] $.
     $( "Equality" is symmetric.  Read this as:  "If p is equal to q ,
-       then we can infer that q is equal to p ".  (Contributed by
+       then we can infer that q is equal to p".  (Contributed by
        Naipmoro, 26-Jan-2017.) $)
     symu $p |- [ [ q ] [ p ] ] [ q p ] $=
       llq llq llp llq idu symu.1 ax-euc $.
   $}
 
   ${
-    transu.1 $e |- [ [ p ] [ q ] ] [ p q ] $.
-    transu.2 $e |- [ [ q ] [ r ] ] [ q r ] $.
-    $( "Equality" is transitive.  Read this as:  "If p is equal to q `
-       and q is equal to r , then we can infer that p is equal
-       to r ".  (Contributed by Naipmoro, 26-Jan-2017.) $)
-    transu $p |- [ [ p ] [ r ] ] [ p r ] $=
-      llp llq llr transu.1 llq llr transu.2 symu ax-euc $.
+    tranu.1 $e |- [ [ p ] [ q ] ] [ p q ] $.
+    tranu.2 $e |- [ [ q ] [ r ] ] [ q r ] $.
+    $( "Equality" is transitive.  Read this as:  "If p is equal to q
+       and q is equal to r, then we can infer that p is equal
+       to r".  (Contributed by Naipmoro, 26-Jan-2017.) $)
+    tranu $p |- [ [ p ] [ r ] ] [ p r ] $=
+      llp llq llr tranu.1 llq llr tranu.2 symu ax-euc $.
   $}
 
 $(
@@ -227,6 +221,8 @@ $(
   between wffs and not itself part of a wff, despite being defined in terms of
   a wff.
 $)
+
+  $c = $. $( Equality (read:  "is equal to" or "is equivalent to") $)
 
   ${
     df-lofequ.1 $e |- p = q $.
@@ -269,6 +265,10 @@ $(
   </li>
   </ul></HTML>
 
+  At this point in the derivation, nothing approaching the power first-order
+  logic is available, so the generality of the Leibniz rule is unattainable
+  Since we are developing this system ex nihilo, FOL is unavailable and we
+  have no means to match the generality of the Leibniz rule...
   How does this compare with LoF? For one thing, Substitution is not needed,
   as it is pre-built into metamath.  The generality of the Leibniz rule is
   conceptually captured by our two simple rules ~ beq and ~ sub , while
@@ -329,12 +329,12 @@ $)
   $}
 
   ${
-    trans.1 $e |- p = q $.
-    trans.2 $e |- q = r $.
-    $( The equational-form version of ~ transu .  (Contributed by Naipmoro,
+    tran.1 $e |- p = q $.
+    tran.2 $e |- q = r $.
+    $( The equational-form version of ~ tranu .  (Contributed by Naipmoro,
        2-Sep-2015.) $)
-    trans $p |- p = r $=
-      llp llq llr trans.1 llq llr trans.2 sym euc $.
+    tran $p |- p = r $=
+      llp llq llr tran.1 llq llr tran.2 sym euc $.
   $}
 
   ${
@@ -343,7 +343,7 @@ $)
     $( A commuted - or reversed - version of ~ euc .  (Contributed by
        Naipmoro, 2-Sep-2015.) $)
     eucr $p |- q = r $=
-      llq llp llr llp llq eucr.1 sym eucr.2 trans $.
+      llq llp llr llp llq eucr.1 sym eucr.2 tran $.
   $}
 
   ${
@@ -363,35 +363,47 @@ $)
        by Naipmoro, 2-Sep-2015.) $)
     subst $p |- u p v = u q v $=
       llp llv df-juxt llq llv df-juxt llu llp llq llv subst.1 sub subr $.
+  $}
 
+  ${
+    substr.1 $e |- p = q $.
     $( Replace a form with an equal form within a commuted extended form.
        (Contributed by Naipmoro, 2-Sep-2015.) $)
     substr $p |- u p v = v q u $=
       llu llp df-juxt llv df-juxt llu llv df-juxt llq df-juxt llv llq df-juxt
       llu df-juxt llp llv df-juxt llv llq df-juxt llu llp llv df-juxt llq llv
-      df-juxt llv llq df-juxt llp llq llv subst.1 sub llq llv cmm trans subr
-      llu llv llq df-juxt cmm trans $.
+      df-juxt llv llq df-juxt llp llq llv substr.1 sub llq llv cmm tran subr
+      llu llv llq df-juxt cmm tran $.
+  $}
 
+  ${
+    subb1.1 $e |- p = q $.
     $( Replace a form with an equal form within a bounded extended form.
        (Contributed by Naipmoro, 2-Sep-2015.) $)
     subb1 $p |- w [ u p v ] x = w [ u q v ] x $=
       llu llp df-juxt llv df-juxt df-encl llu llq df-juxt llv df-juxt df-encl
       llw llx llu llp df-juxt llv df-juxt llu llq df-juxt llv df-juxt llp llq
-      llu llv subst.1 subst beq subst $.
+      llu llv subb1.1 subst beq subst $.
+  $}
 
+  ${
+    subbd1.1 $e |- p = q $.
     $( Replace a form with an equal form within a double-bounded extended
        form.  (Contributed by Naipmoro, 25-Feb-2017.) $)
     subbd1 $p |- y [ w [ u p v ] x ] z = y [ w [ u q v ] x ] z $=
       llw llu llp df-juxt llv df-juxt df-encl df-juxt llx df-juxt llw llu llq
       df-juxt llv df-juxt df-encl df-juxt llx df-juxt df-void df-void lly llz
-      llp llq llu llv llw llx subst.1 subb1 subb1 $.
+      llp llq llu llv llw llx subbd1.1 subb1 subb1 $.
+  $}
 
+  ${
+    subb2.1 $e |- p = q $.
     $( Replace a form with an equal form within a bounded and commuted extended
        form.  (Contributed by Naipmoro, 2-Sep-2015.) $)
     subb2 $p |- w [ u p v ] x = w [ v q u ] x $=
       llu llp df-juxt llv df-juxt df-encl llv llq df-juxt llu df-juxt df-encl
       llw llx llu llp df-juxt llv df-juxt llv llq df-juxt llu df-juxt llp llq
-      llu llv subst.1 substr beq subst $.
+      llu llv subb2.1 substr beq subst $.
   $}
 
   ${
@@ -479,7 +491,7 @@ $)
        2-Sep-2015.) $)
     quad $p |- p r = q s $=
       llp llr df-juxt llq llr df-juxt llq lls df-juxt llp llq df-void llr
-      quad.1 subst llr lls llq df-void quad.2 subst trans $.
+      quad.1 subst llr lls llq df-void quad.2 subst tran $.
   $}
 
   ${
@@ -490,8 +502,8 @@ $)
       llp llv df-juxt llq df-juxt llv llr df-juxt lls df-juxt llr llv df-juxt
       lls df-juxt llp llv df-juxt llq df-juxt llv llp df-juxt llq df-juxt llv
       llr df-juxt lls df-juxt llp llv df-juxt llv llp df-juxt llq llp llv cmm
-      sub llp llq df-juxt llr lls df-juxt llv ins.1 subr trans llv llr df-juxt
-      llr llv df-juxt lls llv llr cmm sub trans $.
+      sub llp llq df-juxt llr lls df-juxt llv ins.1 subr tran llv llr df-juxt
+      llr llv df-juxt lls llv llr cmm sub tran $.
   $}
 
   $( Extended commutativity.  (Contributed by Naipmoro, 3-Sep-2015.) $)
@@ -547,7 +559,7 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   The theorems, which Spencer-Brown calls Consequences, are from Chapter 6 of
-  [Spencer-Brown].  I alter the sequence slightly, proving C5 before C4.
+  [Spencer-Brown].
 $)
 
   $( Reflexion.  Theorem C1 of [Spencer-Brown] p. 28.  (Contributed by
@@ -572,11 +584,11 @@ $)
     df-encl df-encl llp df-juxt df-encl df-void llp df-encl llp df-juxt df-encl
     df-void df-void df-void df-void df-void llp llp df-encl df-encl df-void
     df-void df-void df-void df-void cmmbx llp df-encl llp df-juxt df-encl
-    df-void llp ax-j1 sym quadbx trans llp df-encl df-encl llp df-juxt df-encl
+    df-void llp ax-j1 sym quadbx tran llp df-encl df-encl llp df-juxt df-encl
     llp df-encl llp df-juxt df-encl df-juxt df-encl llp df-encl df-encl df-encl
     llp df-encl df-encl df-juxt df-encl llp df-juxt llp llp df-encl df-encl llp
     df-encl llp ax-j2 llp df-encl df-encl df-encl llp df-encl df-encl df-juxt
-    df-encl df-void llp llp df-encl df-encl ax-j1 sub trans trans $.
+    df-encl df-void llp llp df-encl df-encl ax-j1 sub tran tran $.
 
   $( Generation.  Theorem C2 of [Spencer-Brown] p. 32.  (Contributed by
      Naipmoro, 6-Sep-2015.) $)
@@ -587,11 +599,11 @@ $)
     llp df-encl df-encl llq df-encl df-encl df-juxt df-encl llq df-juxt llp llq
     df-juxt df-encl llq df-juxt llp df-encl llq df-encl llq ax-j2 llp df-encl
     df-encl llp llq df-encl df-encl llq df-void df-void df-void df-void llq llp
-    c1 llq c1 quadbx trans llp df-encl llq df-juxt df-encl llq df-encl llq
+    c1 llq c1 quadbx tran llp df-encl llq df-juxt df-encl llq df-encl llq
     df-juxt df-encl df-juxt df-encl llp df-encl llq df-juxt df-encl df-encl llp
     df-encl llq df-juxt llq df-encl llq df-juxt df-encl df-void llp df-encl llq
     df-juxt df-encl df-void df-void df-void llq ax-j1 subb1 llp df-encl llq
-    df-juxt c1 trans eucr $.
+    df-juxt c1 tran eucr $.
 
   $( Integration.  Theorem C3 of [Spencer-Brown] p. 32.  (Contributed by
      Naipmoro, 6-Sep-2015.) $)
@@ -601,41 +613,32 @@ $)
     df-void df-encl llp df-encl llp df-juxt c1 llp df-encl llp df-juxt df-encl
     df-void llp ax-j1 beq eucr eucr $.
 
-  $( Iteration.  Theorem C5 of [Spencer-Brown] p. 33.  (Contributed by
-     Naipmoro, 6-Sep-2015.) $)
-  c5 $p |- p p = p $=
-    llp df-encl llp df-juxt df-encl llp df-juxt llp llp df-juxt llp llp df-encl
-    llp df-juxt df-encl llp df-juxt llp df-encl df-encl llp df-juxt llp llp
-    df-juxt llp df-encl llp c2 llp df-encl df-encl llp df-void llp llp c1 subst
-    trans llp df-encl llp df-juxt df-encl df-void df-void llp llp ax-j1 subst
-    eucr $.
-
   $( Occultation.  Theorem C4 of [Spencer-Brown] p. 33.  (Contributed by
-     Naipmoro, 6-Sep-2015.) $)
+     Naipmoro, 6-Sep-2015.)  (Proof shortened by Naipmoro, 13-Oct-2017.) $)
   c4 $p |- [ [ p ] q ] p = p $=
-    llp df-encl llq df-juxt df-encl llp df-juxt df-void df-encl df-encl llp
-    df-juxt llp llp df-encl llq df-juxt df-encl llp df-juxt df-void df-encl llq
-    df-encl df-encl df-juxt df-encl llp df-juxt df-void df-encl df-encl llp
-    df-juxt llp df-encl llq df-juxt df-encl llp df-juxt llp df-encl llq df-encl
-    llp df-juxt df-encl df-juxt df-encl df-void df-encl llq df-encl df-encl
-    df-juxt df-encl llp df-juxt llp llp df-juxt df-encl llq df-encl llp df-juxt
-    df-encl df-juxt df-encl llp df-encl llq df-juxt df-encl llp df-juxt llp
-    df-encl llq df-encl llp df-juxt df-encl df-juxt df-encl llp llp df-juxt
-    df-encl llq df-encl llp df-juxt df-encl df-juxt df-encl llp df-encl llq
-    df-encl df-encl df-juxt df-encl llp df-juxt llp df-encl llq df-juxt df-encl
-    llp df-juxt llp llq df-encl llp ax-j2 llq df-encl df-encl llq llp df-encl
-    df-void df-void llp llq c1 subb1 trans llp llp df-juxt df-encl llp df-encl
-    df-void llq df-encl llp df-juxt df-encl df-void df-void llp llp df-juxt llp
-    df-void df-void df-void df-void llp c5 subb1 subb1 eucr df-void llq df-encl
-    llp ax-j2 trans df-void df-encl llq df-encl df-encl df-juxt df-void df-encl
-    df-void df-void df-void llp llq df-encl df-encl c3 subb1 trans df-void
-    df-encl df-encl df-void df-void llp df-void c1 subst trans $.
+    llp llp df-encl llq df-juxt df-encl llp df-juxt llp llq df-juxt df-encl llp
+    llq df-juxt df-juxt df-encl df-void df-void llp llp df-encl llq df-juxt
+    df-encl llp df-juxt llp llq df-juxt ax-j1 llq llp df-juxt llp llq df-juxt
+    llp llq df-juxt df-encl df-void df-void llp llp df-encl llq df-juxt df-encl
+    llp df-juxt llq llp cmm llp df-encl llq df-juxt llp llq df-juxt df-encl llq
+    df-juxt df-void llp df-void llp llp df-encl llq df-juxt df-encl llp df-juxt
+    llp llq df-juxt df-encl llq df-juxt llp df-encl llq df-juxt llp llq c2 sym
+    llp df-encl llq df-juxt llp c2 repbx repbx rep sym $.
 
   $( Corollary of C4.  (Contributed by Naipmoro, 18-Sep-2015.) $)
   c4cor $p |- [ p q ] [ p ] = [ p ] $=
     llp df-encl df-encl llq df-juxt df-encl llp df-encl df-juxt llp llq df-juxt
     df-encl llp df-encl df-juxt llp df-encl llp df-encl df-encl llp df-void llq
     df-void llp df-encl llp c1 subb1 llp df-encl llq c4 eucr $.
+
+  $( Iteration.  Theorem C5 of [Spencer-Brown] p. 33.  (Contributed by
+     Naipmoro, 6-Sep-2015.) $)
+  c5 $p |- p p = p $=
+    llp df-encl llp df-juxt df-encl llp df-juxt llp llp df-juxt llp llp df-encl
+    llp df-juxt df-encl llp df-juxt llp df-encl df-encl llp df-juxt llp llp
+    df-juxt llp df-encl llp c2 llp df-encl df-encl llp df-void llp llp c1 subst
+    tran llp df-encl llp df-juxt df-encl df-void df-void llp llp ax-j1 subst
+    eucr $.
 
   $( Extension.  Theorem C6 of [Spencer-Brown] p. 33.  (Contributed by
      Naipmoro, 6-Sep-2015.) $)
@@ -658,9 +661,9 @@ $)
     df-encl df-void df-void df-void df-void df-void llp df-encl llq df-encl
     df-void df-void df-void df-void df-void cmmbx llp df-encl llq df-void
     df-void df-void df-void df-void cmmbx quadbx llq df-encl llq llp df-encl
-    ax-j2 trans beq llq df-encl df-encl llq df-encl df-juxt df-encl df-void
-    df-void llp df-encl df-void df-void llq df-encl ax-j1 subb1 trans eucr llp
-    c1 trans $.
+    ax-j2 tran beq llq df-encl df-encl llq df-encl df-juxt df-encl df-void
+    df-void llp df-encl df-void df-void llq df-encl ax-j1 subb1 tran eucr llp
+    c1 tran $.
 
   $( Corollary of C6.  (Contributed by Naipmoro, 14-Feb-2017.) $)
   c6cor $p |- [ [ p ] q ] [ p q ] = [ q ] $=
@@ -684,13 +687,12 @@ $)
     df-juxt df-encl llp df-encl llq df-encl df-encl df-juxt df-encl llr df-juxt
     llp llq df-encl llr ax-j2 beq llp df-encl llq df-encl df-encl df-juxt
     df-encl llr df-juxt llp df-encl llq df-juxt df-encl llr df-juxt llq df-encl
-    df-encl llq llp df-encl df-void df-void llr llq c1 subb1 beq trans llp llr
+    df-encl llq llp df-encl df-void df-void llr llq c1 subb1 beq tran llp llr
     df-juxt df-encl llq df-encl llr df-juxt df-encl df-juxt c1 eucr $.
 
   $( Modified transposition.  Theorem C8 of [Spencer-Brown] p. 34.
      (Contributed by Naipmoro, 6-Sep-2015.) $)
-  c8 $p |- [ [ p ] [ q s ] [ r s ] ]
-             = [ [ p ] [ q ] [ r ] ] [ [ p ] [ s ] ] $=
+  c8 $p |- [ [ p ] [ q s ] [ r s ] ] = [ [ p ] [ q ] [ r ] ] [ [ p ] [ s ] ] $=
     llp df-encl llq lls df-juxt df-encl df-juxt llr lls df-juxt df-encl df-juxt
     df-encl llq df-encl llr df-encl df-juxt df-encl lls df-juxt df-encl llp
     df-encl df-juxt df-encl llp df-encl llq df-encl df-juxt llr df-encl df-juxt
@@ -713,12 +715,12 @@ $)
     df-encl df-juxt df-encl llp df-encl lls df-encl df-juxt df-encl llq df-encl
     llr df-encl df-juxt llp df-encl df-void df-void df-void df-void df-void
     cmmbx lls df-encl llp df-encl df-void df-void df-void df-void df-void cmmbx
-    quad trans trans $.
+    quad tran tran $.
 
   $( Crosstransposition.  Theorem C9 of [Spencer-Brown] p. 35.  (Contributed by
      Naipmoro, 6-Sep-2015.) $)
   c9 $p |- [ [ [ q ] [ p ] ] [ [ r ] [ p ] ] [ [ s ] p ] [ [ t ] p ] ]
-              = [ [ p ] q r ] [ p s t ] $=
+             = [ [ p ] q r ] [ p s t ] $=
     llq df-encl llp df-encl df-juxt df-encl llr df-encl llp df-encl df-juxt
     df-encl df-juxt lls df-encl llp df-juxt df-encl df-juxt llt df-encl llp
     df-juxt df-encl df-juxt df-encl lls llt df-juxt df-encl llp df-juxt df-encl
@@ -737,7 +739,7 @@ $)
     lls df-encl df-encl llt df-encl df-encl df-juxt df-encl llp df-juxt lls llt
     df-juxt df-encl llp df-juxt lls df-encl llt df-encl llp ax-j2 lls df-encl
     df-encl lls llt df-encl df-encl llt df-void df-void df-void df-void llp lls
-    c1 llt c1 quadbx trans beq eucr subb2 lls llt df-juxt df-encl llp df-juxt
+    c1 llt c1 quadbx tran beq eucr subb2 lls llt df-juxt df-encl llp df-juxt
     df-encl llq df-encl llp df-encl df-juxt df-encl df-juxt llr df-encl llp
     df-encl df-juxt df-encl df-juxt df-encl lls llt df-juxt df-encl llp df-juxt
     df-encl llq df-juxt llr df-juxt df-encl lls llt df-juxt llp df-juxt df-encl
@@ -770,15 +772,15 @@ $)
     df-juxt llq df-encl llr df-encl llp df-encl c8 llq df-encl df-encl llq llr
     df-encl df-encl llr lls llt df-juxt df-encl llp df-juxt df-encl df-void
     df-void df-void lls llt df-juxt df-encl llp df-juxt df-encl llp df-encl
-    df-encl df-juxt df-encl llq c1 llr c1 quadbx trans llp df-encl df-encl llp
+    df-encl df-juxt df-encl llq c1 llr c1 quadbx tran llp df-encl df-encl llp
     lls llt df-juxt df-encl llp df-juxt df-encl df-void lls llt df-juxt df-encl
     llp df-juxt df-encl llq df-juxt llr df-juxt df-encl df-void llp c1 subb1
-    trans lls llt df-juxt df-encl llp df-juxt df-encl llp df-juxt lls llt
+    tran lls llt df-juxt df-encl llp df-juxt df-encl llp df-juxt lls llt
     df-juxt df-encl df-encl llp df-juxt df-void df-void lls llt df-juxt df-encl
     llp df-juxt df-encl llq df-juxt llr df-juxt df-encl df-void lls llt df-juxt
-    df-encl llp c2 subb1 trans lls llt df-juxt df-encl df-encl lls llt df-juxt
+    df-encl llp c2 subb1 tran lls llt df-juxt df-encl df-encl lls llt df-juxt
     df-void llp lls llt df-juxt df-encl llp df-juxt df-encl llq df-juxt llr
-    df-juxt df-encl df-void lls llt df-juxt c1 subb1 trans lls llt df-juxt
+    df-juxt df-encl df-void lls llt df-juxt c1 subb1 tran lls llt df-juxt
     df-encl llp df-juxt df-encl llq df-juxt llr df-juxt lls llt df-juxt llp
     df-juxt df-encl df-juxt df-encl lls llt df-juxt llp df-juxt df-encl df-juxt
     lls llt df-juxt df-encl llp df-juxt df-encl llq df-juxt llr df-juxt df-encl
@@ -827,8 +829,7 @@ $)
     df-juxt llt df-juxt df-encl df-juxt llp df-encl df-void llq llr df-juxt
     df-void lls llt df-juxt llp df-juxt df-encl llp df-encl lls llt df-juxt c6
     subb1 lls llt df-juxt llp df-void df-void df-void llp df-encl llq df-juxt
-    llr df-juxt df-encl df-void cmmbx trans trans eucr trans eucr trans trans
-    $.
+    llr df-juxt df-encl df-void cmmbx tran tran eucr tran eucr tran tran     $.
 
   $( The following two equations (or rules of calculation) constitute the
      entire Primary Arithmetic which underlies the Primary Algebra, so are
@@ -903,7 +904,7 @@ $)
     df-encl df-juxt llw df-juxt llq df-juxt llx df-juxt llu llp llv df-juxt llq
     df-juxt df-encl df-juxt llq df-juxt llw df-juxt llx df-juxt llq llv llp
     df-void df-void llu llw llq df-juxt llx df-juxt cmmbx llw llq llu llp llv
-    df-juxt llq df-juxt df-encl df-juxt df-void llx cmmx trans sym rep rep sym
+    df-juxt llq df-juxt df-encl df-juxt df-void llx cmmx tran sym rep rep sym
     $.
 
   $( ~ c2 bounded and extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
@@ -922,7 +923,7 @@ $)
     df-juxt llv df-juxt llx df-juxt llu llp llw df-juxt df-encl df-juxt llq
     df-juxt llv df-juxt llx df-juxt llq llv df-juxt llp llq df-juxt llw df-juxt
     df-encl llu df-void llx cmmx llp llq llu llw df-void llv llx df-juxt c2x
-    trans llp llw df-juxt df-encl llq llv df-juxt llu df-void llx cmmx trans $.
+    tran llp llw df-juxt df-encl llq llv df-juxt llu df-void llx cmmx tran $.
 
   $( ~ c2 reversed, bounded, and extended.  (Contributed by Naipmoro,
      14-Feb-2017.) $)
@@ -939,7 +940,7 @@ $)
     llp llu df-void llv llw c2x llu df-void df-encl df-juxt llv df-juxt llp
     df-juxt llw df-juxt df-void df-encl llu df-juxt llv df-juxt llp df-juxt llw
     df-juxt df-void df-encl llu df-void df-encl df-void df-void llv llp df-juxt
-    llw df-juxt cmmx llu llv df-juxt llp df-juxt llw df-juxt c3 trans trans $.
+    llw df-juxt cmmx llu llv df-juxt llp df-juxt llw df-juxt c3 tran tran $.
 
   $( Generalizations of C3. $)
 
@@ -947,14 +948,14 @@ $)
   c3x $p |- p [ ] q = [ ] $=
     llp df-void df-encl df-juxt llq df-juxt df-void df-encl llq df-juxt llp
     df-juxt df-void df-encl llp df-void df-encl llq df-juxt cmm llq llp df-juxt
-    c3 trans $.
+    c3 tran $.
 
   $( ~ c3 bounded and extended.  (Contributed by Naipmoro, 14-Feb-2017.) $)
   c3bx $p |- u [ p [ ] q ] v = u v $=
     llu llp df-void df-encl df-juxt llq df-juxt df-encl df-juxt llv df-juxt llu
     df-void df-encl df-encl df-juxt llv df-juxt llu llv df-juxt llp df-void
     df-encl df-juxt llq df-juxt df-void df-encl df-void df-void llu llv llp llq
-    c3x subb1 df-void llu llv c1x trans $.
+    c3x subb1 df-void llu llv c1x tran $.
 
   $( Generalizations of C4. $)
 
@@ -968,7 +969,7 @@ $)
     llx df-juxt llp df-juxt lly df-juxt llw llp df-encl llu df-juxt llv df-juxt
     df-encl df-juxt llp df-juxt llx df-juxt lly df-juxt llu llp df-encl df-void
     df-void llv llw llx llp df-juxt lly df-juxt cmmbx llx llp llw llp df-encl
-    llu df-juxt llv df-juxt df-encl df-juxt df-void lly cmmx trans llp df-encl
+    llu df-juxt llv df-juxt df-encl df-juxt df-void lly cmmx tran llp df-encl
     llu df-juxt llv df-juxt df-encl llp df-juxt llp llw llx lly df-juxt llw llp
     df-encl llu df-juxt llv df-juxt df-encl df-juxt llp df-juxt llx df-juxt lly
     df-juxt llp llu llv df-juxt c4 llw llp df-encl llu df-juxt llv df-juxt
@@ -1017,7 +1018,7 @@ $)
     df-juxt df-encl df-juxt llv df-juxt llp df-encl llq df-juxt df-encl df-juxt
     llw df-juxt llu llp df-juxt llv df-juxt llw df-juxt llp df-encl llq df-juxt
     df-encl llp df-encl llq df-encl df-juxt df-encl llu llv llw cmmx llp llq
-    llu llv llw c6x trans $.
+    llu llv llw c6x tran $.
 
   $( Generalizations of J1. $)
 
@@ -1027,7 +1028,7 @@ $)
     df-juxt lly df-juxt llx llu df-void df-encl df-juxt llv df-juxt llp df-juxt
     llw df-juxt df-encl df-juxt lly df-juxt llx lly df-juxt df-void llp llu
     df-void llv llw llx lly c2bx llu llv llp df-juxt llw df-juxt llx lly c3bx
-    trans $.
+    tran $.
 
   $( ~ ax-j1 reversed and extended.  (Contributed by Naipmoro,
      25-Feb-2017.) $)
@@ -1035,7 +1036,7 @@ $)
     llx llu llp df-juxt llv df-juxt llp df-encl df-juxt llw df-juxt df-encl
     df-juxt lly df-juxt llx llu llp df-encl df-juxt llv df-juxt llp df-juxt llw
     df-juxt df-encl df-juxt lly df-juxt llx lly df-juxt llp llp df-encl llu llv
-    llw llx lly cmmbx llp llu llv llw llx lly j1x trans $.
+    llw llx lly cmmbx llp llu llv llw llx lly j1x tran $.
 
   $( ~ ax-j1 extended and switched.  (Contributed by Naipmoro,
      14-Feb-2017.) $)
@@ -1053,7 +1054,7 @@ $)
     df-encl df-juxt llv df-juxt llr df-juxt llw df-juxt llp llr df-juxt df-encl
     llq llr df-juxt df-encl df-juxt df-encl llp df-encl llq df-encl df-juxt
     df-encl llr df-juxt llu llv llw df-juxt llp llq llr ax-j2 subst llr llv llu
-    llp df-encl llq df-encl df-juxt df-encl df-juxt df-void llw cmmx trans $.
+    llp df-encl llq df-encl df-juxt df-encl df-juxt df-void llw cmmx tran $.
 
   $( ~ ax-j2 reversed and extended.  (Contributed by Naipmoro,
      14-Feb-2017.) $)
@@ -1112,7 +1113,7 @@ $)
     llq llp llq df-juxt df-encl df-juxt llr df-juxt df-encl llp llq df-juxt
     df-encl llq df-juxt llr df-juxt df-encl llp df-encl llq df-juxt llr df-juxt
     df-encl llq llp llq df-juxt df-encl df-void df-void llr df-void df-void
-    cmmbx llp llq df-void df-void df-void llr df-void df-void c2bx trans $.
+    cmmbx llp llq df-void df-void df-void llr df-void df-void c2bx tran $.
 
   $( Lemma.  (Contributed by Naipmoro, 24-Feb-2017.) $)
   biasslem2 $p |- [ p [ p q ] r ] = [ p [ q ] r ] $=
@@ -1121,8 +1122,8 @@ $)
     llp llq df-juxt df-encl df-juxt llr df-juxt df-encl llp llq llp df-juxt
     df-encl df-juxt llr df-juxt df-encl llq df-encl llp df-juxt llr df-juxt
     df-encl llp llq df-void df-void df-void llp llr df-void df-void cmmbdx llq
-    llp llr biasslem1 trans llq df-encl llp df-void df-void llr df-void df-void
-    cmmbx trans $.
+    llp llr biasslem1 tran llq df-encl llp df-void df-void llr df-void df-void
+    cmmbx tran $.
 
   $( Let P = [ [ p ] [ q ] ] [ p q ] and
      Q = [ [ q ] [ r ] ] [ q r ] .  Proving that equality/biconditional
@@ -1133,9 +1134,9 @@ $)
      variables, informal evidence for associativity.  (Contributed by Naipmoro,
      24-Feb-2017.) $)
   biass3 $p |- [ [ [ [ p ] [ q ] ] [ p q ] ] [ r ] ]
-                  [ [ [ p ] [ q ] ] [ p q ] r ]
+               [ [ [ p ] [ q ] ] [ p q ] r ]
                   = [ [ p ] [ q ] [ r ] ] [ p q [ r ] ]
-                     [ p [ q ] r ] [ [ p ] q r ] $=
+                    [ p [ q ] r ] [ [ p ] q r ] $=
     llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt
     df-encl llr df-encl df-juxt df-encl llp df-encl llq df-encl df-juxt df-encl
     llp llq df-juxt df-encl df-juxt llr df-juxt df-encl df-juxt llp df-encl llq
@@ -1184,18 +1185,18 @@ $)
     llr df-juxt df-encl llp df-encl llq df-encl df-juxt llr df-encl df-juxt
     df-encl llp llq df-juxt llr df-encl df-juxt df-encl df-juxt llq llp llq
     df-juxt df-encl df-juxt llr df-juxt df-encl llp llq llr biasslem2 subst
-    trans llq llp llq df-juxt df-encl df-juxt llr df-juxt df-encl llp df-encl
+    tran llq llp llq df-juxt df-encl df-juxt llr df-juxt df-encl llp df-encl
     llq df-juxt llr df-juxt df-encl llp df-encl llq df-encl df-juxt llr df-encl
     df-juxt df-encl llp llq df-juxt llr df-encl df-juxt df-encl df-juxt llp llq
     df-encl df-juxt llr df-juxt df-encl df-juxt llp llq llr biasslem1 subr
-    trans $.
+    tran $.
 
   $( A permuted version of ~ biass3 .  (Contributed by Naipmoro,
      29-Dec-2016.) $)
   biass3p $p |- [ [ [ [ q ] [ r ] ] [ q r ] ] [ p ] ]
-                   [ [ [ q ] [ r ] ] [ q r ] p ]
+                [ [ [ q ] [ r ] ] [ q r ] p ]
                    = [ [ p ] [ q ] [ r ] ] [ p q [ r ] ]
-                      [ p [ q ] r ] [ [ p ] q r ] $=
+                     [ p [ q ] r ] [ [ p ] q r ] $=
     llq df-encl llr df-encl df-juxt df-encl llq llr df-juxt df-encl df-juxt
     df-encl llp df-encl df-juxt df-encl llq df-encl llr df-encl df-juxt df-encl
     llq llr df-juxt df-encl df-juxt llp df-juxt df-encl df-juxt llp df-encl llq
@@ -1251,29 +1252,29 @@ $)
     llp biass3 llq df-encl llr df-encl df-juxt llp df-encl df-void df-void
     df-void df-void llq llr df-juxt llp df-encl df-juxt df-encl llq llr df-encl
     df-juxt llp df-juxt df-encl df-juxt llq df-encl llr df-juxt llp df-juxt
-    df-encl df-juxt cmmbx trans llq llr df-juxt llp df-encl df-void df-void
+    df-encl df-juxt cmmbx tran llq llr df-juxt llp df-encl df-void df-void
     df-void llp df-encl llq df-encl df-juxt llr df-encl df-juxt df-encl llq llr
     df-encl df-juxt llp df-juxt df-encl llq df-encl llr df-juxt llp df-juxt
-    df-encl df-juxt cmmbx trans llq llr df-encl df-juxt llp df-void df-void
+    df-encl df-juxt cmmbx tran llq llr df-encl df-juxt llp df-void df-void
     df-void llp df-encl llq df-encl df-juxt llr df-encl df-juxt df-encl llp
     df-encl llq df-juxt llr df-juxt df-encl df-juxt llq df-encl llr df-juxt llp
-    df-juxt df-encl cmmbx trans llq df-encl llr df-juxt llp df-void df-void
+    df-juxt df-encl cmmbx tran llq df-encl llr df-juxt llp df-void df-void
     df-void llp df-encl llq df-encl df-juxt llr df-encl df-juxt df-encl llp
     df-encl llq df-juxt llr df-juxt df-encl df-juxt llp llq df-juxt llr df-encl
-    df-juxt df-encl df-juxt df-void cmmbx trans llp llq df-juxt llr df-encl
+    df-juxt df-encl df-juxt df-void cmmbx tran llp llq df-juxt llr df-encl
     df-juxt df-encl llp llq df-encl df-juxt llr df-juxt df-encl llp df-encl llq
     df-encl df-juxt llr df-encl df-juxt df-encl llp df-encl llq df-juxt llr
-    df-juxt df-encl df-juxt df-void df-void cmmx trans llp df-encl llq df-juxt
+    df-juxt df-encl df-juxt df-void df-void cmmx tran llp df-encl llq df-juxt
     llr df-juxt df-encl llp llq df-juxt llr df-encl df-juxt df-encl llp df-encl
     llq df-encl df-juxt llr df-encl df-juxt df-encl llp llq df-encl df-juxt llr
-    df-juxt df-encl df-void cmmx trans $.
+    df-juxt df-encl df-void cmmx tran $.
 
   $( Proving the associativity of equality/biconditional.  (Contributed by
      Naipmoro, 29-Dec-2016.) $)
   biass $p |- [ [ [ [ p ] [ q ] ] [ p q ] ] [ r ] ]
-                  [ [ [ p ] [ q ] ] [ p q ] r ]
+              [ [ [ p ] [ q ] ] [ p q ] r ]
                   = [ [ p ] [ [ [ q ] [ r ] ] [ q r ] ] ]
-                     [ p [ [ q ] [ r ] ] [ q r ] ] $=
+                    [ p [ [ q ] [ r ] ] [ q r ] ] $=
     llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt
     df-encl llr df-encl df-juxt df-encl llp df-encl llq df-encl df-juxt df-encl
     llp llq df-juxt df-encl df-juxt llr df-juxt df-encl df-juxt llq df-encl llr
@@ -1305,8 +1306,7 @@ $)
     df-encl llq llr df-juxt df-encl df-juxt llp df-juxt df-encl cmmbx llq
     df-encl llr df-encl df-juxt df-encl llq llr df-juxt df-encl df-juxt llp
     df-void df-void df-void llp df-encl llq df-encl llr df-encl df-juxt df-encl
-    llq llr df-juxt df-encl df-juxt df-encl df-juxt df-encl df-void cmmbx trans
-    trans $.
+    llq llr df-juxt df-encl df-juxt df-encl df-juxt df-encl df-void cmmbx tran     tran $.
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1314,8 +1314,8 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 $)
 
-  $( The Equanimity axiom.  This rule is the key that allows us to interchange
-     equational and classical forms.  $)
+  $( The Equanimity axiom.  This rule is the key that allows us to switch
+     between equational and implicational forms.  $)
   ${
     ax-qny.1 $e |- p $.
     ax-qny.2 $e |- p = q $.
@@ -1324,8 +1324,10 @@ $)
     ax-qny $a |- q $.
   $}
 
-  $( This important theorem states that the equivalence of p to true is
-     equivalent to just p .  (Contributed by Naipmoro, 29-Jan-2017.) $)
+  $( This important theorem states that the equivalence of p to True is
+     equivalent to just p .  Compare axiom ( A = 1) = A of [Schroeder2] p. 52.
+     Schroeder called it "the specific principle of propositional calculus".
+     (Contributed by Naipmoro, 29-Jan-2017.) $)
   elimeq $p |- [ [ p ] [ [ ] ] ] [ p [ ] ] = p $=
     llp df-encl df-void df-encl df-encl df-juxt df-encl llp df-void df-encl
     df-juxt df-encl df-juxt df-void df-encl df-encl llp df-juxt llp llp df-encl
@@ -1341,10 +1343,10 @@ $)
     df-void df-encl df-juxt df-encl df-juxt llp llp df-void df-encl df-juxt
     df-encl df-juxt df-void df-encl df-encl df-void llp df-encl df-void df-void
     llp df-void df-encl df-juxt df-encl i2 subb1 llp df-encl df-encl llp
-    df-void llp df-void df-encl df-juxt df-encl llp c1 subst trans llp df-void
-    df-encl df-void df-void df-void llp df-void cmmbx trans llp df-void df-encl
-    llp df-juxt df-encl cmm trans df-void df-encl llp c2 trans df-void df-encl
-    df-encl df-void df-void llp i2 subst trans $.
+    df-void llp df-void df-encl df-juxt df-encl llp c1 subst tran llp df-void
+    df-encl df-void df-void df-void llp df-void cmmbx tran llp df-void df-encl
+    llp df-juxt df-encl cmm tran df-void df-encl llp c2 tran df-void df-encl
+    df-encl df-void df-void llp i2 subst tran $.
 
   $( Truth equivalence elimination.  $)
   ${
@@ -1379,12 +1381,12 @@ $)
   $}
 
   ${
-    transelim.1 $e |- p = q $.
-    transelim.2 $e |- q = [ ] $.
-    $( Eliminate equation from ~ trans deduction.  (Contributed by Naipmoro,
+    tranelim.1 $e |- p = q $.
+    tranelim.2 $e |- q = [ ] $.
+    $( Eliminate equation from ~ tran deduction.  (Contributed by Naipmoro,
        14-Feb-2017.) $)
-    transelim $p |- p $=
-      llp llp llq df-void df-encl transelim.1 transelim.2 trans elim $.
+    tranelim $p |- p $=
+      llp llp llq df-void df-encl tranelim.1 tranelim.2 tran elim $.
   $}
 
   ${
@@ -1420,7 +1422,7 @@ $)
     mp $p |- q $=
       llq llp df-encl df-void df-void llq df-void df-encl llp df-encl df-void
       df-encl df-encl df-void llp df-void df-encl llp mp.1 intr beq df-void c1
-      trans llp df-encl llq df-juxt mp.2 intr rep elim $.
+      tran llp df-encl llq df-juxt mp.2 intr rep elim $.
   $}
 
 $(
@@ -1496,7 +1498,7 @@ $)
      to the proposition.  (Contributed by Naipmoro, 28-Feb-2017.) $)
   ne $p |- [ -. p ] = p $=
     llp wn df-encl llp df-encl df-encl llp llp wn llp df-encl llp df-neg beq
-    llp c1 trans $.
+    llp c1 tran $.
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1534,8 +1536,8 @@ $)
     llp llp wn llp wi llp wi llp wn llp df-imp llp wn llp wi llp df-imp repbxs
     llp wn df-encl llp df-juxt df-encl llp df-juxt llp wn df-encl df-encl llp
     df-juxt llp wn llp df-juxt llp wn df-encl llp df-void df-void df-void
-    df-void c2x llp wn df-void llp c1x trans trans reps llp df-void df-void
-    df-void c2e trans elim $.
+    df-void c2x llp wn df-void llp c1x tran tran reps llp df-void df-void
+    df-void c2e tran elim $.
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1553,8 +1555,8 @@ $)
     llp llq llp wi wi llp llq llp wi wi llp df-encl llq df-encl df-juxt llp
     df-juxt df-void df-encl llp llq llp wi wi llp df-encl llq llp wi df-juxt
     llp df-encl llq df-encl df-juxt llp df-juxt llp llq llp wi df-imp llq llp
-    wi llq df-encl llp df-juxt llp df-encl llq llp df-imp subr trans llp
-    df-void llq df-encl df-void c2e trans elim $.
+    wi llq df-encl llp df-juxt llp df-encl llq llp df-imp subr tran llp
+    df-void llq df-encl df-void c2e tran elim $.
 
   $( Proving set.mm's axiom ~ ax-2 as a theorem.  (Contributed by Naipmoro,
      14-Feb-2017.) $)
@@ -1583,9 +1585,9 @@ $)
     wi wi llp llq wi llp llr wi wi wi llp llq wi llp llr wi df-imp llp llq llr
     wi wi llp llq wi llp llr wi wi df-imp reps reps repbxs repbxs repbxs
     df-void llp df-encl llp df-encl llq df-encl df-juxt llr df-juxt df-encl llq
-    df-void llr c2x trans llq df-encl llp df-encl llp df-encl llq df-encl
-    df-juxt llr df-juxt df-encl df-void llr cmmx trans llp df-encl llq df-encl
-    df-juxt llr df-juxt df-void df-void df-void c2e trans elim $.
+    df-void llr c2x tran llq df-encl llp df-encl llp df-encl llq df-encl
+    df-juxt llr df-juxt df-encl df-void llr cmmx tran llp df-encl llq df-encl
+    df-juxt llr df-juxt df-void df-void df-void c2e tran elim $.
 
   $( Proving set.mm's axiom ~ ax-3 as a theorem.  (Contributed by Naipmoro,
      14-Feb-2017.) $)
@@ -1604,9 +1606,9 @@ $)
     wi llp wn llq wn df-imp llq llp wi llq df-encl llp df-juxt llp wn llq wn wi
     df-encl df-void llp wn llq wn wi llq llp wi wi llq llp df-imp llp wn llq wn
     wi llq llp wi df-imp reps repbxs repbxs repbxs llp df-encl df-encl llq
-    df-encl df-void df-void df-void llp c2x trans llp df-void df-void df-void
-    llq df-encl llp df-juxt c1bx trans llp df-void llq df-encl df-void c2e
-    trans elim $.
+    df-encl df-void df-void df-void llp c2x tran llp df-void df-void df-void
+    llq df-encl llp df-juxt c1bx tran llp df-void llq df-encl df-void c2e
+    tran elim $.
 
   ${
     $( Minor premise for modus ponens. $)
@@ -1631,13 +1633,13 @@ $(
 
   set.mm's section on the biconditional begins with the definition ~ df-bimm :
   -. ( ( ( p <-> q ) -> -. ( ( p -> q ) -> -. ( q -> p ) ) )
-    -> -. ( -. ( ( p -> q ) -> -. ( q -> p ) ) -> ( p <-> q ) ) ) `
+    -> -. ( -. ( ( p -> q ) -> -. ( q -> p ) ) -> ( p <-> q ) ) )
   followed by three theorems that depend on it:  ~ bi1mm , ~ bi3 , and ~ dfbi1 .
   Here we utilize the equivalence of the biconditional with equality to prove
   all four of those statements, including the definition, directly from LoF.
 
   In examining this section, the reader may wonder about the need for the
-  equality sign, and in fact we could have dispensed with it, replacing = `
+  equality sign, and in fact we could have dispensed with it, replacing =
   with <-> right from the start.  I retained it for readability and to
   avoid some nuanced distinctions.  For example, while ( p <-> q ) is a
   wff, p = q cannot be one without introducing contradiction (see
@@ -1689,8 +1691,7 @@ $)
     eqi $p |- ( p -> q ) $=
       llp df-encl llq df-juxt llp llq wi llp df-encl llq df-juxt llp df-encl
       llq df-juxt llq df-encl llq df-juxt df-void df-encl llp df-encl llq
-      df-encl llq llp llq eqi.1 beq sub llq df-void df-void df-void c2e trans
-      elim llp llq wi llp df-encl llq df-juxt llp llq df-imp sym ax-qny $.
+      df-encl llq llp llq eqi.1 beq sub llq df-void df-void df-void c2e tran       elim llp llq wi llp df-encl llq df-juxt llp llq df-imp sym ax-qny $.
   $}
 
   $( Relating the biconditional connective to primitive connectives, proved
@@ -1708,12 +1709,12 @@ $)
     llp llq wi df-encl llq llp wi wn df-juxt df-encl llp llq wi llq llp wi wn
     wi df-neg llp llq wi llq llp wi wn wi llp llq wi df-encl llq llp wi wn
     df-juxt df-void df-void df-void df-void llp llq wi llq llp wi wn df-imp
-    subb1 trans llq llp wi wn llq llp wi df-encl llp llq wi df-encl df-void
-    df-void df-void llq llp wi df-neg subb1 trans llp llq wi llp df-encl llq
+    subb1 tran llq llp wi wn llq llp wi df-encl llp llq wi df-encl df-void
+    df-void df-void llq llp wi df-neg subb1 tran llp llq wi llp df-encl llq
     df-juxt df-void df-void df-void llq llp wi df-encl df-void df-void llp llq
-    df-imp subbd1 trans llq llp wi llq df-encl llp df-juxt df-void df-void llp
+    df-imp subbd1 tran llq llp wi llq df-encl llp df-juxt df-void df-void llp
     df-encl llq df-juxt df-encl df-void df-void df-void llq llp df-imp subbd1
-    trans euc $.
+    tran euc $.
 
   $( The reverse of ~ bi1 .  (Contributed by Naipmoro, 26-Feb-2017.) $)
   bi1r $p |- -. ( ( p -> q ) -> -. ( q -> p ) ) = ( p <-> q ) $=
@@ -1742,9 +1743,9 @@ $)
     llp llq wb llp llq wi wi llp llq df-bi llp llq wi llp df-encl llq df-juxt
     llp llq wb df-encl df-void llp llq wb llp llq wi wi llp llq df-imp llp llq
     wb llp llq wi df-imp reps repbxs llp df-encl llq df-encl df-juxt llp llq
-    df-juxt llp df-encl df-void df-void llq j2rx trans repbxs llp df-encl llq
-    df-encl df-juxt llp df-encl df-juxt df-void llq c1x trans llq llp df-encl
-    llp df-encl df-void c2e trans elim $.
+    df-juxt llp df-encl df-void df-void llq j2rx tran repbxs llp df-encl llq
+    df-encl df-juxt llp df-encl df-juxt df-void llq c1x tran llq llp df-encl
+    llp df-encl df-void c2e tran elim $.
 
   $( Property of the biconditional connective proved directly from LoF.
      (Contributed by Naipmoro, 24-Feb-2017.) $)
@@ -1775,23 +1776,23 @@ $)
     llq llp wi llp llq wb wi df-juxt llp llq wi df-encl llq llp wi df-encl
     df-juxt llp llq wb df-juxt llp llq wi llq llp wi llp llq wb wi df-imp llq
     llp wi llp llq wb wi llq llp wi df-encl llp llq wb df-juxt llp llq wi
-    df-encl llq llp wi llp llq wb df-imp subr trans llp llq wb llp df-encl llq
+    df-encl llq llp wi llp llq wb df-imp subr tran llp llq wb llp df-encl llq
     df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt llp llq wi df-encl
-    llq llp wi df-encl df-juxt llp llq df-bi subr trans llp llq wi llp df-encl
+    llq llp wi df-encl df-juxt llp llq df-bi subr tran llp llq wi llp df-encl
     llq df-juxt df-void df-void df-void llq llp wi df-encl llp df-encl llq
     df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt df-juxt llp llq
-    df-imp subb1 trans llq llp wi llq df-encl llp df-juxt df-void df-void llp
+    df-imp subb1 tran llq llp wi llq df-encl llp df-juxt df-void df-void llp
     df-encl llq df-juxt df-encl llp df-encl llq df-encl df-juxt df-encl llp llq
-    df-juxt df-encl df-juxt llq llp df-imp subb1 trans llp llq df-void llq
-    df-encl llp df-juxt df-encl llp llq df-juxt df-encl c6rx trans df-void llp
-    df-void llq df-encl llp df-juxt df-encl llq df-void c2rx trans llp llq
-    df-encl llp df-juxt df-encl llq df-encl df-juxt cmm trans llq df-encl llp
-    df-juxt df-void df-void df-void c2e trans elim $.
+    df-juxt df-encl df-juxt llq llp df-imp subb1 tran llp llq df-void llq
+    df-encl llp df-juxt df-encl llp llq df-juxt df-encl c6rx tran df-void llp
+    df-void llq df-encl llp df-juxt df-encl llq df-void c2rx tran llp llq
+    df-encl llp df-juxt df-encl llq df-encl df-juxt cmm tran llq df-encl llp
+    df-juxt df-void df-void df-void c2e tran elim $.
 
-  $( The biconditional definition proved as a theorem directly from LoF.
+  $( This is set.mm's biconditional definition ~ df-bi proved as a theorem.
      (Contributed by Naipmoro, 28-Feb-2017.) $)
-  df-bimm $p |- -. ( ( ( p <-> q ) -> -. ( ( p -> q ) -> -. ( q -> p ) ) )
-        -> -. ( -. ( ( p -> q ) -> -. ( q -> p ) ) -> ( p <-> q ) ) ) $=
+  dfbi $p |- -. ( ( ( p <-> q ) -> -. ( ( p -> q ) -> -. ( q -> p ) ) )
+             -> -. ( -. ( ( p -> q ) -> -. ( q -> p ) ) -> ( p <-> q ) ) ) $=
     llp llq wb llp llq wi llq llp wi wn wi wn wi llp llq wi llq llp wi wn wi wn
     llp llq wb wi wn wi wn llp llq wb llp llq wi llq llp wi wn wi wn wi llp llq
     wi llq llp wi wn wi wn llp llq wb wi wn wi wn llp llq wb df-encl llp llq wb
@@ -1816,13 +1817,64 @@ $)
     wi llq llp wi wn wi wn llp llq wb wi wn wi wn llp llq wb llp llq wi llq llp
     wi wn wi wn df-imp llp llq wb llp llq wi llq llp wi wn wi wn wi llp llq wi
     llq llp wi wn wi wn llp llq wb wi wn ni repbdxs repbdxs repbxs llp llq wi
-    llq llp wi wn wi wn llp llq wb wi ne trans llp llq wi llq llp wi wn wi wn
-    llp llq wb df-imp trans repbxs llp llq wb df-void df-void df-void c2e trans
+    llq llp wi wn wi wn llp llq wb wi ne tran llp llq wi llq llp wi wn wi wn
+    llp llq wb df-imp tran repbxs llp llq wb df-void df-void df-void c2e tran
     elim $.
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                                16.  Conclusion
+                         16.  Parenthesized equality
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+$)
+
+  $( A parenthesized equality is a wff. $)
+  df-wfe $a wff ( p = q ) $.
+
+  $( The definition of parenthesized equality is exactly the same as the joint
+     definitions of equality ~ df-equ and ~ df-uni , except that the latter
+     need to be in the form of inferences.  (Contributed by Naipmoro,
+     14-Oct-2017.) $)
+  df-pareq $a |- ( p = q ) = [ [ p ] [ q ] ] [ p q ] $.
+
+  $( Parentheses can be removed from an equality. (Contributed by Naipmoro,
+     14-Oct-2017.) $)
+  ${
+    parrm.1 $e |- ( p = q ) $.
+    parrm $p |- p = q  $=
+      llp llq llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt df-encl
+      df-juxt llp llq df-wfe llp df-encl llq df-encl df-juxt df-encl llp llq
+      df-juxt df-encl df-juxt df-void df-encl llp llq df-pareq llp llq df-wfe
+      parrm.1 intr eucr elim df-uni $.
+  $}
+
+  $( Parentheses can be added to an equality. (Contributed by Naipmoro,
+     14-Oct-2017.) $)
+  ${
+    parad.1 $e |- p = q $.
+    parad $p |- ( p = q ) $=
+      llp llq df-wfe llp llq df-wfe llp df-encl llq df-encl df-juxt df-encl llp
+      llq df-juxt df-encl df-juxt df-void df-encl llp llq df-pareq llp df-encl
+      llq df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt llp llq
+      parad.1 df-equ intr tran elim $.
+  $}
+
+  $( Demonstrating, yet again, that equality equals the biconditional.
+     (Contributed by Naipmoro, 14-Oct-2017.) $)
+  eqeqbi $p |- ( p = q ) = ( p <-> q ) $=
+    llp llq df-wfe llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt
+    df-encl df-juxt llp llq wb llp llq df-pareq llp llq df-bi euc $.
+
+$(
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+                           17.  Equational logic
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+$)
+
+
+
+$(
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+                                18.  Conclusion
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   To show that this file can replace set.mm's classical logic, remove (or
@@ -1878,7 +1930,7 @@ $(
      </ol></HTML>
      (Contributed by Naipmoro, 11-Mar-2017.) @)
   nono $p |- p = p q $=
-    ( eqwff df-juxt df-void df-encl intr sub trans elim id c3 ) AACZBDZNEFZBDOM
+    ( eqwff df-juxt df-void df-encl intr sub tran elim id c3 ) AACZBDZNEFZBDOM
     OBMAKGHBLIJ $.
 
   @( Derive a contradiction:  We prove false is equal to true by substituting
@@ -1893,6 +1945,8 @@ $(
                                  REFERENCES
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  1. [Spencer-Brown] Spencer-Brown, George, "Laws of Form", Allen & Unwin,
+  1. [Schroeder2] Schroeder, Ernst, "Vorlesungen ueber die Algebra der Logik
+     (exakte Logik)", vol. II, part 1, Teubner, Leipzig (1891).
+  2. [Spencer-Brown] Spencer-Brown, George, "Laws of Form", Allen & Unwin,
      London (1969).
 $)
