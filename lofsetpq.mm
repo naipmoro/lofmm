@@ -1631,7 +1631,7 @@ $(
                             15.  The biconditional
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  set.mm's section on the biconditional begins with the definition ~ df-bimm :
+  set.mm's section on the biconditional begins with the definition ~ df-bi :
   -. ( ( ( p <-> q ) -> -. ( ( p -> q ) -> -. ( q -> p ) ) )
     -> -. ( -. ( ( p -> q ) -> -. ( q -> p ) ) -> ( p <-> q ) ) )
   followed by three theorems that depend on it:  ~ bi1mm , ~ bi3 , and ~ dfbi1 .
@@ -1664,8 +1664,8 @@ $)
     df-juxt llp df-encl llq df-juxt df-encl llq df-encl llp df-juxt df-encl
     df-juxt df-encl llp llq df-bic llp llq biimp euc $.
 
-  $( This is similar to set.mm's ~ dfbi1. (Contributed by Naipmoro,
-     25-Feb-2017.) $)
+  $( This is similar, in fact equivalent, to set.mm's ~ dfbi1. (Contributed by
+     Naipmoro, 25-Feb-2017.) $)
   bic1 $p |- ( p <-> q ) = -. ( ( p -> q ) -> -. ( q -> p ) ) $=
     llp llq wb llp df-encl llq df-juxt df-encl llq df-encl llp df-juxt df-encl
     df-juxt df-encl llp llq wi llq llp wi wn wi wn llp llq bici llp llq wi
@@ -1724,45 +1724,45 @@ $)
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                         16.  Parenthesized equality
+                         16.  Equality as a wff
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 $)
 
   $( A parenthesized equality is a wff. $)
-  df-wfe $a wff ( p = q ) $.
+  wfe $a wff ( p = q ) $.
 
-  $( The definition of parenthesized equality is exactly the same as the joint
-     definitions of equality ~ df-equ and ~ df-uni , except that the latter
-     need to be in the form of inferences.  (Contributed by Naipmoro,
+  $( The definition of parenthesized equality is, of course, the same as the
+     joint definitions of equality ~ df-equ and ~ df-uni , except that the
+     latter need to be in the form of inferences.  (Contributed by Naipmoro,
      14-Oct-2017.) $)
   df-pareq $a |- ( p = q ) = [ [ p ] [ q ] ] [ p q ] $.
 
-  $( Parentheses can be removed from an equality. (Contributed by Naipmoro,
+  $( Parentheses can be removed from an equality.  (Contributed by Naipmoro,
      14-Oct-2017.) $)
   ${
     parrm.1 $e |- ( p = q ) $.
     parrm $p |- p = q  $=
       llp llq llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt df-encl
-      df-juxt llp llq df-wfe llp df-encl llq df-encl df-juxt df-encl llp llq
-      df-juxt df-encl df-juxt df-void df-encl llp llq df-pareq llp llq df-wfe
+      df-juxt llp llq wfe llp df-encl llq df-encl df-juxt df-encl llp llq
+      df-juxt df-encl df-juxt df-void df-encl llp llq df-pareq llp llq wfe
       parrm.1 intr eucr elim df-uni $.
   $}
 
-  $( Parentheses can be added to an equality. (Contributed by Naipmoro,
+  $( Parentheses can be added to an equality.  (Contributed by Naipmoro,
      14-Oct-2017.) $)
   ${
     parad.1 $e |- p = q $.
     parad $p |- ( p = q ) $=
-      llp llq df-wfe llp llq df-wfe llp df-encl llq df-encl df-juxt df-encl llp
+      llp llq wfe llp llq wfe llp df-encl llq df-encl df-juxt df-encl llp
       llq df-juxt df-encl df-juxt df-void df-encl llp llq df-pareq llp df-encl
       llq df-encl df-juxt df-encl llp llq df-juxt df-encl df-juxt llp llq
       parad.1 df-equ intr tran elim $.
   $}
 
-  $( Demonstrating, yet again, that equality equals the biconditional.
-     (Contributed by Naipmoro, 14-Oct-2017.) $)
+  $( Demonstrating again that equality equals the biconditional.  (Contributed
+     by Naipmoro, 14-Oct-2017.) $)
   eqeqbi $p |- ( p = q ) = ( p <-> q ) $=
-    llp llq df-wfe llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt
+    llp llq wfe llp df-encl llq df-encl df-juxt df-encl llp llq df-juxt
     df-encl df-juxt llp llq wb llp llq df-pareq llp llq df-bic euc $.
 
 $(
