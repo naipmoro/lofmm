@@ -34,7 +34,7 @@ $(
   The ramifications of this last point are felt throughout the ensuing
   derivations, as properties that are obvious in the 2D notation have to be
   spelled out case by case in auxiliary theorems. The system as formulated
-  is simply unable to prove general statements of commutativity.
+  is unable to prove general statements of commutativity.
 $)
 
   $( constants $)
@@ -73,7 +73,7 @@ $)
   $( Empty space is a form. $)
   void  $a form $.
 
-  $( If p is a form, then (p) is a form. $)
+  $( If p is a form, then ( p ) is a form. $)
   encl  $a form ( p ) $.
 
   $( If p and q are forms, then p q is a form. $)
@@ -81,7 +81,6 @@ $)
 
 
   $( Common Notions --------------------------------------------
-     One goal of lof.mm is exploring the minimal basis for a boundary algebra.
      The next 3 axioms are the required machinery of symbol manipulation.
   $)
 
@@ -123,12 +122,12 @@ $)
 
   $( Theorems --------------------------------------------------------
      The symbol '=' is never defined but it will turn out to obey the expected
-     laws of an equivalence relation. Specifically, from the common notion
-     that two things equal to the same thing are equal to each other and from
-     the commutativity of LoF, we derive the reflexivity, symmetry, and
-     transitivity of '='. Note that such a derivation is not possible in a
-     traditional formal system without additional axioms -- it is the ability
-     to reference the empty (or void) form that allows it here.
+     laws of an equivalence relation. From the common notion that two things
+     equal to the same thing are equal to each other and from the commutativity
+     of LoF, we derive the reflexivity, symmetry, and transitivity of '='. Such
+     a derivation is not possible in a traditional formal system without
+     additional axioms -- it is the ability to reference the empty (or void)
+     form that allows it here.
   $)
 
   $( '=' is reflexive. $)
@@ -565,7 +564,7 @@ $( =======================================================================
 
   $( The more familiar form of the Robbins equation is
      ((p q) (p (q))) = p, but for this exercise I'll be using the
-     equivalent form: $)
+     following equivalent form. $)
   robbins  $a |- ( ( ( p ) q ) ( p q ) ) = q $.
 
   $( System_3 consequences ------------------------------------ $)
@@ -629,7 +628,7 @@ $( =======================================================================
   $( Now I turn to proving the associativity of the biconditional:
   (p<->q)<->r = p<->(q<->r). I had earlier taken for granted that p<->q,
   transcribed as (((p)q) ((q)p)), was equivalent to ((p)(q)) (p q). Here
-  I prove it: $)
+  I prove it. $)
 
   bicond  $p |- ( ( ( p ) q ) ( ( q ) p ) ) = ( ( p ) ( q ) ) ( p q ) $=
     ( encl juxt void ax-cmm ax-beq subb1 c1.0 c6.0 cmmbx c9.0 eucr ) BACZDZCZBC
@@ -637,7 +636,7 @@ $( =======================================================================
     NDCZUHADCZDZUEDRDCZUGUCUKEEUFEEEAJHUIUEDRDUJDCULUCUFUJUIEEEEKAEQBELMMMM $.
     $( [29-Dec-2016] $)
 
-  $( Next I'll need the following two lemmas: $)
+  $( Next I'll need the following two lemmas. $)
 
   c2lem1  $p |- ( q ( p q ) r ) = ( ( p ) q r ) $=
     ( juxt encl void cmmx c2.0 ax-sub trans ax-beq ) BABDEZDCDZAEBDZCDZMLBDZCDO
