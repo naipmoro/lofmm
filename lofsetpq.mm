@@ -216,7 +216,7 @@ $(
 
   We can go only so far with the unitary form before reasoning becomes
   intolerably cumbersome.  In introducing "=", note that it is a relation
-  between wffs and not itself part of a wff.
+  between wffs and _not itself part of a wff_.
 $)
 
   $c = $. $( Equality.  Read:  "is equal to" or "is equivalent to") $)
