@@ -112,12 +112,12 @@ $)
      Naip Moro, 2-Sep-2015.) $)
   df-encl $a wff [ p ] $.
 
-  $( If p and q are wffs, so is p q .  Note:  This rule introduces a
-     technical ambiguity into the metamath formal language and some parsers
-     will reject it.  However, since the system is inherently associative, this
-     ambiguity does not compromise the validity of the formal derivations and
-     all proper validators will accept them.  (Contributed by Naip Moro,
-     2-Sep-2015.) $)
+  $( If p and q are wffs, so is p q .  We say that "p is juxtaposed with q".
+     As with the Dyck language, this rule introduces a technical ambiguity into
+     the grammar and some parsers will reject it.  However, since juxtaposition
+     is inherently associative, this ambiguity does not compromise the validity
+     of the ensuing derivations and all proper proof verifiers will accept
+     them.  (Contributed by Naip Moro, 2-Sep-2015.) $)
   df-juxt $a wff p q $.
 
 $(
