@@ -262,22 +262,19 @@ $(
   </li>
   </ul></HTML>
 
-  At this point in the derivation, nothing approaching the power first-order
-  logic is available, so the generality of the Leibniz rule is unattainable
-  Since we are developing this system ex nihilo, FOL is unavailable and we
-  have no means to match the generality of the Leibniz rule...
   How does this compare with LoF? For one thing, Substitution is not needed,
-  as it is pre-built into metamath.  The generality of the Leibniz rule is
-  conceptually captured by our two simple rules 'beq' and 'sub', while
-  Transitivity is replaced by Euclid's equivalent rule 'euc' (we prove
-  Transitivity as a theorem).  Finally, Equanimity is not needed until we begin
-  to interface with classical propositional logic (and even then there might be
-  a simpler approach).  This suggests that LoF is more accurately characterized
-  as a proto-equational logic.  It's true that LoF's formal system requires
-  commutativity, clearly an extraneous addition; but bear in mind that LoF is
-  intrinsically a planar notation, where commutativity is an unstated given. It
-  is only in the context of a linear notation like metamath that an explicit
-  reference to commutativity is required.
+  as it is pre-built into metamath.  While the generality of the Leibniz rule
+  is unavailable to us, any particular instance of it is conceptually captured
+  by the two rules 'beq' and 'sub'.  Transitivity is replaced by Euclid's
+  equivalent rule 'euc' (we prove Transitivity as a theorem).  Finally,
+  Equanimity is not needed until we begin to interface with classical
+  propositional logic (and even then there might be a simpler approach).  This
+  suggests that LoF is more accurately characterized as a proto-equational
+  logic.  LoF's formal system does require commutativity, clearly an extraneous
+  addition; but bear in mind that LoF is intrinsically a planar notation, where
+  commutativity is an unstated given. It is only in the context of a linear
+  notation like metamath that an explicit reference to commutativity is
+  required.
 $)
 
   ${
