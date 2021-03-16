@@ -16,21 +16,19 @@ $(
   In lof.mm ( https://github.com/naipmoro/lofmm/blob/master/lof.mm ) I
   presented metamath derivations of Spencer-Brown's Primary Algebra (details of
   the algebra, hereafter cited as "LoF", can be found in Chapter 6 of
-  [Spencer-Brown]).  lof.mm was a stand-alone project indifferent to
-  compatibility with set.mm, metamath's ongoing formalization of mathematics.
-  In contrast, here I present a version which is strictly compatible:  I derive
-  set.mm's propositional calculus from LoF.  There is nothing surprising in
-  this -- classical propositional logic is one of the interpretations of LoF
-  (Boolean algebra is another).  The real interest lies in the means of
-  derivation.
+  [Spencer-Brown]).  lof.mm was a stand-alone project incompatible with set.mm,
+  metamath's ongoing formalization of mathematics.  In contrast, here I present
+  a version which is strictly compatible:  I derive set.mm's propositional
+  calculus from LoF.  There is nothing surprising in this -- classical
+  propositional logic is one of the interpretations of LoF (Boolean algebra is
+  another).  The real interest lies in the means of derivation.
 
   LoF is an equational logic (although I show that, technically, equations can
   be avoided).  In other words, axioms and theorems are stated in the form
   "p = q" .  Transitioning from this to the implicational form characteristic
-  of classical propositional logic is an interesting problem.  I believe the
-  technique chosen here is among the simplest, relying on a single additional
-  axiom 'ax-qny' (known as Equanimity), the equational analogue of modus
-  ponens:
+  of classical logic is an interesting problem.  I believe the technique chosen
+  here is among the simplest, relying on a single additional axiom 'ax-qny'
+  (known as Equanimity), the equational analogue of modus ponens:
 
   ${
     ax-qny.1 $e |- p $.
@@ -39,7 +37,7 @@ $(
   $}
 
   With this rule in hand, and with appropriate definitions of "implies" and
-  "not", I prove the axioms of set.mm, ax-1, ax-2, ax-3, and ax-mp, as theorems
+  "not", I prove the axioms of set.mm (ax-1, ax-2, ax-3, and ax-mp) as theorems
   of LoF.
 $)
 
@@ -177,7 +175,7 @@ $)
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                           4. Inference theorems
+                   4. Equality is an equivalence relation
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   If our target interpretation is to be satisfied, we should expect "equality"
@@ -237,7 +235,7 @@ $)
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                     6. Equality-based inference theorems
+                     6. Equality-based theorems
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   Traditional equational logic is based on four inference rules
