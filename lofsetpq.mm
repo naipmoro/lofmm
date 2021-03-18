@@ -550,86 +550,44 @@ $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   The theorems, which Spencer-Brown calls Consequences, are from Chapter 6 of
-  [Spencer-Brown].
+  [Spencer-Brown] p. 28-35.
 $)
 
   $( Reflexion.  Theorem C1 of [Spencer-Brown] p. 28.  (Contributed by Naip
-     Moro, 20-Feb-2017.) $)
+     Moro, 6-Sep-2015.)  (Proof shortened by Naip Moro, 20-Feb-2017.) $)
   c1 $p |- [ [ p ] ] = p $=
-    llp df-encl df-encl llp df-encl df-encl llp df-juxt df-encl llp df-encl llp
-    df-juxt df-encl df-juxt df-encl llp llp df-encl df-encl llp llp df-encl
-    df-encl df-juxt df-encl df-encl llp df-encl df-encl llp df-juxt df-encl llp
-    df-encl llp df-juxt df-encl df-juxt df-encl llp df-encl df-encl llp df-encl
-    df-juxt df-encl df-void df-void llp llp df-encl df-encl df-juxt df-encl
-    df-void df-void llp df-encl df-encl llp df-encl ax-j1 llp df-encl llp
-    df-encl df-encl df-juxt df-encl llp df-encl df-encl llp df-encl df-juxt
-    df-encl df-void llp llp df-encl df-encl df-juxt df-encl df-void df-void llp
-    df-encl df-encl llp df-encl llp df-encl df-encl df-void df-void df-void
-    df-void df-void cmmbx llp df-encl df-encl llp df-encl df-encl llp df-encl
-    df-juxt df-encl llp df-encl df-encl df-juxt llp df-encl llp df-encl df-encl
-    df-juxt df-encl llp llp df-encl df-encl df-juxt df-encl df-juxt df-encl llp
-    df-encl df-encl llp df-encl df-juxt df-encl llp df-encl df-encl df-juxt llp
-    df-encl df-encl llp df-encl df-encl llp df-encl df-juxt df-encl df-void llp
-    df-encl df-encl llp df-encl ax-j1 sub sym llp df-encl llp llp df-encl
-    df-encl ax-j2 euc repbxs repbxs llp llp df-encl df-encl df-juxt df-encl llp
-    df-encl df-encl llp df-juxt df-encl df-void llp df-encl llp df-juxt df-encl
-    df-void df-void df-void df-void df-void llp llp df-encl df-encl df-void
-    df-void df-void df-void df-void cmmbx llp df-encl llp df-juxt df-encl
-    df-void llp ax-j1 sym quadbx tran llp df-encl df-encl llp df-juxt df-encl
-    llp df-encl llp df-juxt df-encl df-juxt df-encl llp df-encl df-encl df-encl
-    llp df-encl df-encl df-juxt df-encl llp df-juxt llp llp df-encl df-encl llp
-    df-encl llp ax-j2 llp df-encl df-encl df-encl llp df-encl df-encl df-juxt
-    df-encl df-void llp llp df-encl df-encl ax-j1 sub tran tran $.
+    ( df-encl df-juxt df-void ax-j1 cmmbx sub sym ax-j2 euc repbxs quadbx tran
+    ) ABZBZOACBZNACBZCBZAOAOCBZBRONCBZDDSDDONEZNOCBZTDSDDONODDDDDFOTOCZUBSCBUCO
+    TDOUAGHNAOIJKKSPDQDDDDDAODDDDDFQDAEHLMROBOCBZACAONAIUDDAOEGMM $.
 
   $( Generation.  Theorem C2 of [Spencer-Brown] p. 32.  (Contributed by Naip
      Moro, 6-Sep-2015.) $)
   c2 $p |- [ p q ] q = [ p ] q $=
-    llp df-encl llq df-juxt df-encl llq df-encl llq df-juxt df-encl df-juxt
-    df-encl llp llq df-juxt df-encl llq df-juxt llp df-encl llq df-juxt llp
-    df-encl llq df-juxt df-encl llq df-encl llq df-juxt df-encl df-juxt df-encl
-    llp df-encl df-encl llq df-encl df-encl df-juxt df-encl llq df-juxt llp llq
-    df-juxt df-encl llq df-juxt llp df-encl llq df-encl llq ax-j2 llp df-encl
-    df-encl llp llq df-encl df-encl llq df-void df-void df-void df-void llq llp
-    c1 llq c1 quadbx tran llp df-encl llq df-juxt df-encl llq df-encl llq
-    df-juxt df-encl df-juxt df-encl llp df-encl llq df-juxt df-encl df-encl llp
-    df-encl llq df-juxt llq df-encl llq df-juxt df-encl df-void llp df-encl llq
-    df-juxt df-encl df-void df-void df-void llq ax-j1 subb1 llp df-encl llq
-    df-juxt c1 tran eucr $.
+    ( df-encl df-juxt ax-j2 df-void c1 quadbx tran ax-j1 subb1 eucr ) ACZBDZCZB
+    CZBDCZDCZABDCBDZNRMCZPCZDCBDSMPBETAUABFFFFBAGBGHIROCNQFOFFFBJKNGIL  $.
 
   $( Integration.  Theorem C3 of [Spencer-Brown] p. 32.  (Contributed by
      Naip Moro, 6-Sep-2015.) $)
   c3 $p |- [ ] p = [ ] $=
-    llp df-encl llp df-juxt df-void df-encl llp df-juxt df-void df-encl df-void
-    llp c2 llp df-encl llp df-juxt df-encl df-encl llp df-encl llp df-juxt
-    df-void df-encl llp df-encl llp df-juxt c1 llp df-encl llp df-juxt df-encl
-    df-void llp ax-j1 beq eucr eucr $.
+    ( df-encl df-juxt df-void c2 c1 ax-j1 beq eucr ) ABACZDBZACKDAEJBZBJKJFLDAG
+    HII  $.
 
   $( Occultation.  Theorem C4 of [Spencer-Brown] p. 33.  (Contributed by Naip
      Moro, 6-Sep-2015.)  (Proof shortened by Naip Moro, 13-Oct-2017.) $)
   c4 $p |- [ [ p ] q ] p = p $=
-    llp llp df-encl llq df-juxt df-encl llp df-juxt llp llq df-juxt df-encl llp
-    llq df-juxt df-juxt df-encl df-void df-void llp llp df-encl llq df-juxt
-    df-encl llp df-juxt llp llq df-juxt ax-j1 llq llp df-juxt llp llq df-juxt
-    llp llq df-juxt df-encl df-void df-void llp llp df-encl llq df-juxt df-encl
-    llp df-juxt llq llp cmm llp df-encl llq df-juxt llp llq df-juxt df-encl llq
-    df-juxt df-void llp df-void llp llp df-encl llq df-juxt df-encl llp df-juxt
-    llp llq df-juxt df-encl llq df-juxt llp df-encl llq df-juxt llp llq c2 sym
-    llp df-encl llq df-juxt llp c2 repbx repbx rep sym $.
+    ( df-encl df-juxt df-void ax-j1 cmm c2 sym repbx rep ) AACBDZCADZABDZCZNDCE
+    EAMNFBADNOEEAMBAGLOBDZEAEAMPLABHILAHJJKI $.
 
   $( Corollary of C4.  (Contributed by Naip Moro, 18-Sep-2015.) $)
   c4cor $p |- [ p q ] [ p ] = [ p ] $=
-    llp df-encl df-encl llq df-juxt df-encl llp df-encl df-juxt llp llq df-juxt
-    df-encl llp df-encl df-juxt llp df-encl llp df-encl df-encl llp df-void llq
-    df-void llp df-encl llp c1 subb1 llp df-encl llq c4 eucr $.
+    ( df-encl df-juxt df-void c1 subb1 c4 eucr ) ACZCZBDCJDABDCJDJKAEBEJAFGJBHI
+    $.
 
   $( Iteration.  Theorem C5 of [Spencer-Brown] p. 33.  (Contributed by Naip
      Moro, 6-Sep-2015.) $)
   c5 $p |- p p = p $=
-    llp df-encl llp df-juxt df-encl llp df-juxt llp llp df-juxt llp llp df-encl
-    llp df-juxt df-encl llp df-juxt llp df-encl df-encl llp df-juxt llp llp
-    df-juxt llp df-encl llp c2 llp df-encl df-encl llp df-void llp llp c1 subst
-    tran llp df-encl llp df-juxt df-encl df-void df-void llp llp ax-j1 subst
-    eucr $.
+    ( df-encl df-juxt c2 df-void c1 subst tran ax-j1 eucr ) ABZACBZACZAACZAMKBZ
+    ACNKADOAEAAFGHLEEAAIGJ  $.
 
   $( Extension.  Theorem C6 of [Spencer-Brown] p. 33.  (Contributed by Naip
      Moro, 6-Sep-2015.) $)
