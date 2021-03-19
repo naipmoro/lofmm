@@ -269,24 +269,19 @@ $(
   Traditional equational logic is based on four inference rules
   (see ~ https://en.wikipedia.org/wiki/Equational_logic ):
 
-  <HTML><br></HTML>
-
-  <HTML><ul>
-  <li><b>Substitution.</b>
+  1. Substitution
   If P is a theorem, replacing all occurrences of some variable x with any wff
   Q is also a theorem.
-  </li>
-  <li><b>Leibniz.</b>
+
+  2. Leibniz
   If P = Q then replacing all occurrences of some variable x in any wff F with
   P is equivalent to replacing all occurrences of x with Q.
-  </li>
-  <li><b>Transitivity.</b>
+
+  3. Transitivity
   From P = Q and Q = R we can infer P = R.
-  </li>
-  <li><b>Equanimity.</b>
+
+  4. Equanimity
   From P and P = Q we can infer Q.
-  </li>
-  </ul></HTML>
 
   How does this compare with LoF? For one thing, Substitution is not needed,
   as it is pre-built into metamath.  While the generality of the Leibniz rule
