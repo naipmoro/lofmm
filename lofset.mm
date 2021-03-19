@@ -224,12 +224,12 @@ $)
   $}
 
   ${
-    loftransu.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
-    loftransu.2 $e |- [ [ ps ] [ ch ] ] [ ps ch ] $.
+    loftranu.1 $e |- [ [ ph ] [ ps ] ] [ ph ps ] $.
+    loftranu.2 $e |- [ [ ps ] [ ch ] ] [ ps ch ] $.
     $( "Equality" is transitive.  Read this as:  "If ` ph ` is equal to ` ps `
        and ` ps ` is equal to ` ch ` , then we can infer that ` ph ` is equal
        to ` ch ` ".  (Contributed by Naip Moro, 26-Jan-2017.) $)
-    loftransu $p |- [ [ ph ] [ ch ] ] [ ph ch ] $=
+    loftranu $p |- [ [ ph ] [ ch ] ] [ ph ch ] $=
       ( lofsymu ax-lofeuc ) ABCDBCEFG $.
   $}
 
@@ -347,11 +347,11 @@ $)
   $}
 
   ${
-    loftrans.1 $e |- ph = ps $.
-    loftrans.2 $e |- ps = ch $.
-    $( The equational-form version of ~ loftransu .  (Contributed by Naip Moro,
+    loftran.1 $e |- ph = ps $.
+    loftran.2 $e |- ps = ch $.
+    $( The equational-form version of ~ loftranu .  (Contributed by Naip Moro,
        2-Sep-2015.) $)
-    loftrans $p |- ph = ch $=
+    loftran $p |- ph = ch $=
       ( lofsym lofeuc ) ABCDBCEFG $.
   $}
 
@@ -361,7 +361,7 @@ $)
     $( A commuted - or reversed - version of ~ lofeuc .  (Contributed by Naip
        Moro, 2-Sep-2015.) $)
     lofeucr $p |- ps = ch $=
-      ( lofsym loftrans ) BACABDFEG $.
+      ( lofsym loftran ) BACABDFEG $.
   $}
 
   ${
@@ -383,8 +383,8 @@ $)
     $( Replace a form with an equal form within a commuted extended form.
        (Contributed by Naip Moro, 2-Sep-2015.) $)
     lofsubstr $p |- et ph ze = ze ps et $=
-      ( df-lofjuxt lofsub lofcmm loftrans lofsubr ) CAFDFCDFBFDBFZCFADFZKCLBDFK
-      ABDEGBDHIJCKHI $.
+      ( df-lofjuxt lofsub lofcmm loftran lofsubr ) CAFDFCDFBFDBFZCFADFZKCLBDFKA
+      BDEGBDHIJCKHI $.
 
     $( Replace a form with an equal form within a bounded extended form.
        (Contributed by Naip Moro, 2-Sep-2015.) $)
@@ -479,7 +479,7 @@ $)
     $( Double substitution of equivalent forms.  (Contributed by Naip Moro,
        2-Sep-2015.) $)
     lofquad $p |- ph ch = ps th $=
-      ( df-lofjuxt df-lofvoid lofsubst loftrans ) ACGBCGBDGABHCEICDBHFIJ $.
+      ( df-lofjuxt df-lofvoid lofsubst loftran ) ACGBCGBDGABHCEICDBHFIJ $.
   $}
 
   ${
@@ -487,8 +487,8 @@ $)
     $( Insert the same form into two equivalent forms.  (Contributed by Naip
        Moro, 3-Sep-2015.) $)
     lofins $p |- ph ze ps = ch ze th $=
-      ( df-lofjuxt lofcmm lofsub lofsubr loftrans ) AEGZBGZECGZDGZCEGZDGMEAGZBG
-      OLQBAEHIABGCDGEFJKNPDECHIK $.
+      ( df-lofjuxt lofcmm lofsub lofsubr loftran ) AEGZBGZECGZDGZCEGZDGMEAGZBGO
+      LQBAEHIABGCDGEFJKNPDECHIK $.
   $}
 
   $( Extended commutativity.  (Contributed by Naip Moro, 3-Sep-2015.) $)
@@ -544,19 +544,19 @@ $(
 $)
 
   $( Reflexion.  Theorem C1 of [Spencer-Brown] p. 28.  (Contributed by Naip
-     Moro, 6-Sep-2015.)  (Proof shortened by Naip Moro, 20-Feb-2017.) $) 
+     Moro, 6-Sep-2015.)  (Proof shortened by Naip Moro, 20-Feb-2017.) $)
   lofc1 $p |- [ [ ph ] ] = ph $=
     ( df-lofencl df-lofjuxt df-lofvoid ax-lofj1 lofcmmbx lofsub lofsym ax-lofj2
-    lofeuc lofrepbxs lofquadbx loftrans ) ABZBZOACBZNACBZCBZAOAOCBZBRONCBZDDSDD
-    ONEZNOCBZTDSDDONODDDDDFOTOCZUBSCBUCOTDOUAGHNAOIJKKSPDQDDDDDAODDDDDFQDAEHLMR
-    OBOCBZACAONAIUDDAOEGMM $.
+    lofeuc lofrepbxs lofquadbx loftran ) ABZBZOACBZNACBZCBZAOAOCBZBRONCBZDDSDDO
+    NEZNOCBZTDSDDONODDDDDFOTOCZUBSCBUCOTDOUAGHNAOIJKKSPDQDDDDDAODDDDDFQDAEHLMRO
+    BOCBZACAONAIUDDAOEGMM $.
 
   $( Generation.  Theorem C2 of [Spencer-Brown] p. 32.  (Contributed by Naip
      Moro, 6-Sep-2015.) $)
   lofc2 $p |- [ ph ps ] ps = [ ph ] ps $=
-    ( df-lofencl df-lofjuxt ax-lofj2 lofc1 lofquadbx loftrans ax-lofj1 lofsubb1
-    df-lofvoid lofeucr ) ACZBDZCZBCZBDCZDCZABDCBDZNRMCZPCZDCBDSMPBETAUABKKKKBAF
-    BFGHROCNQKOKKKBIJNFHL $.
+    ( df-lofencl df-lofjuxt ax-lofj2 df-lofvoid lofc1 loftran ax-lofj1 lofsubb1
+    lofquadbx lofeucr ) ACZBDZCZBCZBDCZDCZABDCBDZNRMCZPCZDCBDSMPBETAUABFFFFBAGB
+    GKHROCNQFOFFFBIJNGHL $.
 
   $( Integration.  Theorem C3 of [Spencer-Brown] p. 32.  (Contributed by Naip
      Moro, 6-Sep-2015.) $)
@@ -578,16 +578,15 @@ $)
   $( Iteration.  Theorem C5 of [Spencer-Brown] p. 33.  (Contributed by Naip
      Moro, 6-Sep-2015.) $)
   lofc5 $p |- ph ph = ph $=
-    ( df-lofencl df-lofjuxt lofc2 df-lofvoid lofsubst loftrans ax-lofj1 lofeucr
+    ( df-lofencl df-lofjuxt lofc2 df-lofvoid lofsubst loftran ax-lofj1 lofeucr
     lofc1 ) ABZACBZACZAACZAMKBZACNKADOAEAAJFGLEEAAHFI $.
 
   $( Extension.  Theorem C6 of [Spencer-Brown] p. 33.  (Contributed by Naip
      Moro, 6-Sep-2015.) $)
   lofc6 $p |- [ [ ph ] [ ps ] ] [ [ ph ] ps ] = ph $=
     ( df-lofencl df-lofjuxt lofc1 df-lofvoid lofcmmbx lofquadbx ax-lofj2 lofbeq
-    loftrans ax-lofj1 lofsubb1 lofeucr ) ACZBCZDCZOBDCZDZOCZASCZCZSTSEUBPCPDCZO
-    DZCTUAUDUAPODCZBODCZDCUDQUERUFFFFFFOPFFFFFGOBFFFFFGHPBOIKJUCFFOFFPLMKNAEK
-    $.
+    loftran ax-lofj1 lofsubb1 lofeucr ) ACZBCZDCZOBDCZDZOCZASCZCZSTSEUBPCPDCZOD
+    ZCTUAUDUAPODCZBODCZDCUDQUERUFFFFFFOPFFFFFGOBFFFFFGHPBOIKJUCFFOFFPLMKNAEK $.
 
   $( Corollary of C6.  (Contributed by Naip Moro, 14-Feb-2017.) $)
   lofc6cor $p |- [ [ ph ] ps ] [ ph ps ] = [ ps ] $=
@@ -597,8 +596,8 @@ $)
   $( Echelon.  Theorem C7 of [Spencer-Brown] p. 34.  (Contributed by Naip Moro,
      6-Sep-2015.) $)
   lofc7 $p |- [ [ [ ph ] ps ] ch ] = [ ph ch ] [ [ ps ] ch ] $=
-    ( df-lofjuxt df-lofencl ax-lofj2 df-lofvoid lofc1 lofsubb1 loftrans lofeucr
-    lofbeq ) ACDEBEZCDEDZEZEZAEZBDECDZEZNPQMEZDECDZESOUAAMCFLUARTBQGGCBHILJNHK
+    ( df-lofjuxt df-lofencl ax-lofj2 lofbeq df-lofvoid lofsubb1 loftran lofeucr
+    lofc1 ) ACDEBEZCDEDZEZEZAEZBDECDZEZNPQMEZDECDZESOUAAMCFGUARTBQHHCBLIGJNLK
     $.
 
   $( Modified transposition.  Theorem C8 of [Spencer-Brown] p. 34.
@@ -606,24 +605,24 @@ $)
   lofc8 $p |- [ [ ph ] [ ps th ] [ ch th ] ]
              = [ [ ph ] [ ps ] [ ch ] ] [ [ ph ] [ th ] ] $=
     ( df-lofencl df-lofjuxt df-lofvoid lofc1 ax-lofj2 lofsubb2 lofrepbx lofquad
-    lofbeq lofc7 lofcmmbx loftrans ) AEZBDFEZFCDFEZFEBEZCEZFZEDFZEZQFEZQTFUAFEZ
-    QDEZFEZFZRSFZEZEZUJQGGGUEUJHULUDQGGGUKUCBCDIMJKUEUBQFEZUGQFEZFUIUBDQNUMUFUN
-    UHUBQGGGGGOUGQGGGGGOLPP $.
+    lofbeq lofc7 lofcmmbx loftran ) AEZBDFEZFCDFEZFEBEZCEZFZEDFZEZQFEZQTFUAFEZQ
+    DEZFEZFZRSFZEZEZUJQGGGUEUJHULUDQGGGUKUCBCDIMJKUEUBQFEZUGQFEZFUIUBDQNUMUFUNU
+    HUBQGGGGGOUGQGGGGGOLPP $.
 
   $( Crosstransposition.  Theorem C9 of [Spencer-Brown] p. 35.  (Contributed by
      Naip Moro, 6-Sep-2015.) $)
   lofc9 $p |- [ [ [ ps ] [ ph ] ] [ [ ch ] [ ph ] ]
               [ [ th ] ph ] [ [ ta ] ph ] ]
               = [ [ ph ] ps ch ] [ ph th ta ] $=
-    ( df-lofencl df-lofjuxt df-lofvoid lofc1 ax-lofj2 lofquadbx loftrans lofbeq
-    lofeucr lofsubb2 lofc8 lofsubb1 lofc2 lofcmmbx lofc6 ) BFZAFZGFZCFZUBGFZGZD
-    FZAGFZGEFZAGFZGFDEGZFZAGZFZUCGUEGFZUBBGCGFZADGEGFZGZUHUJGZUNUFHHHUSFZFUSUNU
-    SIUTUMUTUGFZUIFZGFAGUMUGUIAJVADVBEHHHHADIEIKLMNOUOUNBGCGZFZUKAGFZGZURUOVDUL
-    FZAGZFGZVFUOVDUNAGZFGZVIUOVDUNUBFZGFZGZVKUOUNUAFZGUDFZGFVMGVNUMUAUDUBPVOBVP
-    CUNHHHVMBICIKLVLAUNHVDHAIZQLVJVHHHVDHULARQLVGUKHAVDHUKIQLVCVEGFVEGZVFURVCVE
-    RVRAULGFZBGCGZUQGFVEGZURUNVSVEUQHBCGZHHVEULAHHHHHSUKAHHHHHSKVLULGFZBGCGZVLD
-    GEGFZGFVEGZWAURWDVTWEUQHHHHVEVLAHULHWBVQQVLAHUKHHVQQKWFWCWEGZBGCGFVEGZURWBW
-    EWCHHHVESWHUPVEGURWGUBHWBHVEUBUKTQUKAHHHUPHSLLNLNLL $.
+    ( df-lofencl df-lofjuxt df-lofvoid lofc1 ax-lofj2 lofquadbx loftran lofeucr
+    lofbeq lofsubb2 lofc8 lofsubb1 lofc2 lofcmmbx lofc6 ) BFZAFZGFZCFZUBGFZGZDF
+    ZAGFZGEFZAGFZGFDEGZFZAGZFZUCGUEGFZUBBGCGFZADGEGFZGZUHUJGZUNUFHHHUSFZFUSUNUS
+    IUTUMUTUGFZUIFZGFAGUMUGUIAJVADVBEHHHHADIEIKLNMOUOUNBGCGZFZUKAGFZGZURUOVDULF
+    ZAGZFGZVFUOVDUNAGZFGZVIUOVDUNUBFZGFZGZVKUOUNUAFZGUDFZGFVMGVNUMUAUDUBPVOBVPC
+    UNHHHVMBICIKLVLAUNHVDHAIZQLVJVHHHVDHULARQLVGUKHAVDHUKIQLVCVEGFVEGZVFURVCVER
+    VRAULGFZBGCGZUQGFVEGZURUNVSVEUQHBCGZHHVEULAHHHHHSUKAHHHHHSKVLULGFZBGCGZVLDG
+    EGFZGFVEGZWAURWDVTWEUQHHHHVEVLAHULHWBVQQVLAHUKHHVQQKWFWCWEGZBGCGFVEGZURWBWE
+    WCHHHVESWHUPVEGURWGUBHWBHVEUBUKTQUKAHHHUPHSLLMLMLL $.
 
   $( The following two equations (or rules of calculation) constitute the
      entire Primary Arithmetic which underlies the Primary Algebra, so are
@@ -682,9 +681,9 @@ $)
 
   $( ~ lofc2 extended.  (Contributed by Naip Moro, 14-Feb-2017.) $)
   lofc2x $p |- et [ ph ps ze ] si ps rh = et [ ph ze ] si ps rh $=
-    ( df-lofjuxt df-lofencl lofcmm df-lofvoid lofcmmbx lofcmmx loftrans lofsym
-    lofc2 lofrep ) CADGZHZGZEGBGFGCABGDGHGEGBGFGZBEGEBGZSFTBEIQBGHZBGRBGCEFGTQB
-    OTCUBGZBGEGFGZTUCEGBGFGUDBDAJJCUAFGKEBUCJFLMNPPN $.
+    ( df-lofjuxt df-lofencl lofcmm lofc2 lofcmmbx lofcmmx loftran lofsym lofrep
+    df-lofvoid ) CADGZHZGZEGBGFGCABGDGHGEGBGFGZBEGEBGZSFTBEIQBGHZBGRBGCEFGTQBJT
+    CUBGZBGEGFGZTUCEGBGFGUDBDAPPCUAFGKEBUCPFLMNOON $.
 
   $( ~ lofc2 bounded and extended.  (Contributed by Naip Moro, 14-Feb-2017.) $)
   lofc2bx $p |- mu [ et [ ph ps ze ] si ps rh ] la
@@ -694,8 +693,8 @@ $)
 
   $( ~ lofc2 reversed and extended.  (Contributed by Naip Moro, 14-Feb-2017.) $)
   lofc2rx $p |- et ps ze [ ph ps si ] rh = et ps ze [ ph si ] rh $=
-    ( df-lofjuxt df-lofencl df-lofvoid lofcmmx lofc2x loftrans ) CBGDGZABGEGHZG
-    FGZCAEGHZGBGDGFGZMPGFGOCNGBGDGFGQBDGZNCIFJABCEIDFGKLPRCIFJL $.
+    ( df-lofjuxt df-lofencl df-lofvoid lofcmmx lofc2x loftran ) CBGDGZABGEGHZGF
+    GZCAEGHZGBGDGFGZMPGFGOCNGBGDGFGQBDGZNCIFJABCEIDFGKLPRCIFJL $.
 
   $( ~ lofc2 reversed, bounded, and extended.  (Contributed by Naip Moro,
      14-Feb-2017.) $)
@@ -706,26 +705,26 @@ $)
 
   $( ~ lofc2 special case.  (Contributed by Naip Moro, 14-Feb-2017.) $)
   lofc2e $p |- et [ ph ] ze ph si = [ ] $=
-    ( df-lofencl df-lofjuxt df-lofvoid lofc2x lofcmmx lofc3 loftrans ) BAEFCFAF
-    DFBGEZFCFAFDFZLGABGCDHMLBFCFAFDFLBLGGCAFDFIBCFAFDFJKK $.
+    ( df-lofencl df-lofjuxt df-lofvoid lofc2x lofcmmx lofc3 loftran ) BAEFCFAFD
+    FBGEZFCFAFDFZLGABGCDHMLBFCFAFDFLBLGGCAFDFIBCFAFDFJKK $.
 
   $( Generalizations of C3. $)
 
   $( ~ lofc3 extended.  (Contributed by Naip Moro, 14-Feb-2017.) $)
   lofc3x $p |- ph [ ] ps = [ ] $=
-    ( df-lofvoid df-lofencl df-lofjuxt lofcmm lofc3 loftrans ) ACDZEBEIBEZAEIAJ
-    FBAEGH $.
+    ( df-lofvoid df-lofencl df-lofjuxt lofcmm lofc3 loftran ) ACDZEBEIBEZAEIAJF
+    BAEGH $.
 
   $( ~ lofc3 bounded and extended.  (Contributed by Naip Moro, 14-Feb-2017.) $)
   lofc3bx $p |- et [ ph [ ] ps ] ze = et ze $=
-    ( df-lofvoid df-lofencl df-lofjuxt lofc3x lofsubb1 lofc1x loftrans ) CAEFZG
-    BGZFGDGCLFGDGCDGMLEECDABHIECDJK $.
+    ( df-lofvoid df-lofencl df-lofjuxt lofc3x lofsubb1 lofc1x loftran ) CAEFZGB
+    GZFGDGCLFGDGCDGMLEECDABHIECDJK $.
 
   $( Generalizations of C4. $)
 
   $( ~ lofc4 extended.  (Contributed by Naip Moro, 14-Feb-2017.) $)
   lofc4x $p |- si [ et [ ph ] ze ] rh ph mu = si ph rh mu $=
-    ( df-lofencl df-lofjuxt lofcmmbx lofcmmx loftrans lofc4 lofid lofrep lofeuc
+    ( df-lofencl df-lofjuxt lofcmmbx lofcmmx loftran lofc4 lofid lofrep lofeuc
     df-lofvoid ) DBAGZHCHGHEHAHFHZDQBHCHGZHZAHEHFHZDAHEHFHRTEHAHFHUABQPPCDEAHFH
     IEATPFJKSAHADEFHUAABCHLUAMNO $.
 
@@ -757,21 +756,21 @@ $)
 
   $( ~ lofc6 reversed and extended. (Contributed by Naip Moro, 25-Feb-2017.) $)
   lofc6rx $p |- et [ [ ph ] ps ] ze [ [ ph ] [ ps ] ] si = et ph ze si $=
-    ( df-lofencl df-lofjuxt lofcmmx lofc6x loftrans ) CAFZBGFZGDGKBFGFZGEGCMGDG
-    LGEGCAGDGEGLMCDEHABCDEIJ $.
+    ( df-lofencl df-lofjuxt lofcmmx lofc6x loftran ) CAFZBGFZGDGKBFGFZGEGCMGDGL
+    GEGCAGDGEGLMCDEHABCDEIJ $.
 
   $( Generalizations of J1. $)
 
   $( ~ ax-lofj1 extended.  (Contributed by Naip Moro, 14-Feb-2017.) $)
   lofj1x $p |- rh [ et [ ph ] ze ph si ] mu = rh mu $=
-    ( df-lofencl df-lofjuxt df-lofvoid lofc2bx lofc3bx loftrans ) EBAGHCHAHDHGH
-    FHEBIGHCHAHDHGHFHEFHIABICDEFJBCAHDHEFKL $.
+    ( df-lofencl df-lofjuxt df-lofvoid lofc2bx lofc3bx loftran ) EBAGHCHAHDHGHF
+    HEBIGHCHAHDHGHFHEFHIABICDEFJBCAHDHEFKL $.
 
   $( ~ ax-lofj1 reversed and extended.  (Contributed by Naip Moro,
      25-Feb-2017.) $)
   lofj1rx $p |- rh [ et ph ze [ ph ] si ] mu = rh mu $=
-    ( df-lofjuxt df-lofencl lofcmmbx lofj1x loftrans ) EBAGCGAHZGDGHGFGEBLGCGAG
-    DGHGFGEFGALBCDEFIABCDEFJK $.
+    ( df-lofjuxt df-lofencl lofcmmbx lofj1x loftran ) EBAGCGAHZGDGHGFGEBLGCGAGD
+    GHGFGEFGALBCDEFIABCDEFJK $.
 
   $( ~ ax-lofj1 extended and switched.  (Contributed by Naip Moro,
      14-Feb-2017.) $)
@@ -783,8 +782,8 @@ $)
   $( ~ ax-lofj2 extended.  (Contributed by Naip Moro, 14-Feb-2017.) $)
   lofj2x $p |- et [ [ ph ch ] [ ps ch ] ] ze si
                = et [ [ ph ] [ ps ] ] ze ch si $=
-    ( df-lofjuxt df-lofencl ax-lofj2 lofsubst df-lofvoid lofcmmx loftrans ) DAC
-    GHBCGHGHZGEGFGDAHBHGHZGZCGEGFGPEGCGFGNOCGDEFGABCIJCEPKFLM $.
+    ( df-lofjuxt df-lofencl ax-lofj2 lofsubst df-lofvoid lofcmmx loftran ) DACG
+    HBCGHGHZGEGFGDAHBHGHZGZCGEGFGPEGCGFGNOCGDEFGABCIJCEPKFLM $.
 
   $( ~ ax-lofj2 reversed and extended.  (Contributed by Naip Moro,
      14-Feb-2017.) $)
@@ -817,12 +816,12 @@ $)
 
   $( Lemma.  (Contributed by Naip Moro, 24-Feb-2017.) $)
   lofbiasslem1 $p |- [ ps [ ph ps ] ch ] = [ [ ph ] ps ch ] $=
-    ( df-lofjuxt df-lofencl df-lofvoid lofcmmbx lofc2bx loftrans ) BABDEZDCDEJB
-    DCDEAEBDCDEBJFFCFFGABFFFCFFHI $.
+    ( df-lofjuxt df-lofencl df-lofvoid lofcmmbx lofc2bx loftran ) BABDEZDCDEJBD
+    CDEAEBDCDEBJFFCFFGABFFFCFFHI $.
 
   $( Lemma.  (Contributed by Naip Moro, 24-Feb-2017.) $)
   lofbiasslem2 $p |- [ ph [ ph ps ] ch ] = [ ph [ ps ] ch ] $=
-    ( df-lofjuxt df-lofencl df-lofvoid lofcmmbdx lofbiasslem1 loftrans lofcmmbx
+    ( df-lofjuxt df-lofencl df-lofvoid lofcmmbdx lofbiasslem1 loftran lofcmmbx
     ) AABDEDCDEZBEZADCDEZALDCDEKABADEDCDEMABFFFACFFGBACHILAFFCFFJI $.
 
   $( Let ` P = [ [ ph ] [ ps ] ] [ ph ps ] ` and
@@ -838,9 +837,9 @@ $)
                   = [ [ ph ] [ ps ] [ ch ] ] [ ph ps [ ch ] ]
                      [ ph [ ps ] ch ] [ [ ph ] ps ch ] $=
     ( df-lofencl df-lofjuxt ax-lofj2 lofbeq lofc1 lofeucr lofbiasslem2 lofsubst
-    lofquad loftrans lofbiasslem1 lofsubr ) ADZBDZEZDABEZDZEZDCDZEZDZUACEZDZEZR
-    UBEDSUBEDEZAQECEDZEZBTECEDZEUJPBECEDZEUGUHATECEDZUKEZEUHUIUKEEUDUHUFUNUHDZD
-    UDUHUOUCRSUBFGUHHIUNDZDUFUNUPUEABTCEFGUNHILUMUIUHUKABCJKMUKULUJABCNOM $.
+    lofquad loftran lofbiasslem1 lofsubr ) ADZBDZEZDABEZDZEZDCDZEZDZUACEZDZEZRU
+    BEDSUBEDEZAQECEDZEZBTECEDZEUJPBECEDZEUGUHATECEDZUKEZEUHUIUKEEUDUHUFUNUHDZDU
+    DUHUOUCRSUBFGUHHIUNDZDUFUNUPUEABTCEFGUNHILUMUIUHUKABCJKMUKULUJABCNOM $.
 
   $( A permuted version of ~ lofbiass3 .  (Contributed by Naip Moro,
      29-Dec-2016.) $)
@@ -848,10 +847,10 @@ $)
                    [ [ [ ps ] [ ch ] ] [ ps ch ] ph ]
                    = [ [ ph ] [ ps ] [ ch ] ] [ ph ps [ ch ] ]
                       [ ph [ ps ] ch ] [ [ ph ] ps ch ] $=
-    ( df-lofencl df-lofjuxt lofbiass3 df-lofvoid lofcmmbx loftrans lofcmmx ) BD
-    ZCDZEZDBCEZDEZDADZEDOAEDEZPKELEDZPBECEDZEZAKECEDZEABELEDZEZRUBEUAESEQTUBEZU
-    AEZUCQUDKCEZAEDZEZUEQTBLEZAEDZEUGEZUHQRNPEDZEUJEUGEZUKQMPEDULEUJEUGEUMBCAFM
-    PGGGGULUJEUGEHINPGGGRUJUGEHIUIAGGGTUGHIUFAGGGUDGHIUBUATGGJISUBRUAGJI $.
+    ( df-lofencl df-lofjuxt lofbiass3 df-lofvoid lofcmmbx loftran lofcmmx ) BDZ
+    CDZEZDBCEZDEZDADZEDOAEDEZPKELEDZPBECEDZEZAKECEDZEABELEDZEZRUBEUAESEQTUBEZUA
+    EZUCQUDKCEZAEDZEZUEQTBLEZAEDZEUGEZUHQRNPEDZEUJEUGEZUKQMPEDULEUJEUGEUMBCAFMP
+    GGGGULUJEUGEHINPGGGRUJUGEHIUIAGGGTUGHIUFAGGGUDGHIUBUATGGJISUBRUAGJI $.
 
   $( Proving the associativity of equality/biconditional.  (Contributed by
      Naip Moro, 29-Dec-2016.) $)
@@ -859,7 +858,7 @@ $)
                   [ [ [ ph ] [ ps ] ] [ ph ps ] ch ]
                   = [ [ ph ] [ [ [ ps ] [ ch ] ] [ ps ch ] ] ]
                      [ ph [ [ ps ] [ ch ] ] [ ps ch ] ] $=
-    ( df-lofencl df-lofjuxt lofbiass3 lofbiass3p df-lofvoid lofcmmbx loftrans
+    ( df-lofencl df-lofjuxt lofbiass3 lofbiass3p df-lofvoid lofcmmbx loftran
     lofeuc ) ADZBDZEZDABEZDEZDCDZEDPCEDEZMQEDZBCEDZEZDZLEDUAAEDZEZLUBEDZASETEDE
     ZRNQEDOQEDEAMECEDELBECEDEUDABCFABCGKUDUEUCEUFUBLHHHHUCIUAAHHHUEHIJJ $.
 
@@ -882,9 +881,9 @@ $)
   $( This important theorem states that the equivalence of ` ph ` to true is
      equivalent to just ` ph ` .  (Contributed by Naip Moro, 29-Jan-2017.) $)
   lofelimeq $p |- [ [ ph ] [ [ ] ] ] [ ph [ ] ] = ph $=
-    ( df-lofencl df-lofvoid lofi2 lofsubb1 lofc1 lofsubst loftrans lofcmm lofc2
-    df-lofjuxt lofcmmbx ) ABZCBZBZKBANKBZKZOAKZAQNAKBZAKZRQASKZTQAPKZUAQMBZPKUB
-    OCMCCPDEUCACPAFGHANCCCACLHASIHNAJHOCCADGH $.
+    ( df-lofencl df-lofvoid df-lofjuxt lofi2 lofsubb1 lofsubst loftran lofcmmbx
+    lofc1 lofcmm lofc2 ) ABZCBZBZDBANDBZDZOADZAQNADBZADZRQASDZTQAPDZUAQMBZPDUBO
+    CMCCPEFUCACPAJGHANCCCACIHASKHNALHOCCAEGH $.
 
   $( Truth equivalence elimination.  $)
   ${
@@ -918,10 +917,10 @@ $)
   ${
     loftranselim.1 $e |- ph = ps $.
     loftranselim.2 $e |- ps = [ ] $.
-    $( Eliminate equation from ~ loftrans deduction.  (Contributed by Naip
+    $( Eliminate equation from ~ loftran deduction.  (Contributed by Naip
        Moro, 14-Feb-2017.) $)
     loftranselim $p |- ph $=
-      ( df-lofvoid df-lofencl loftrans lofelim ) AABEFCDGH $.
+      ( df-lofvoid df-lofencl loftran lofelim ) AABEFCDGH $.
   $}
 
   ${
@@ -950,7 +949,7 @@ $)
     lofmp.2 $e |- [ ph ] ps $.
     $( LoF version of modus ponens. (Contributed by Naip Moro, 14-Feb-2017.) $)
     lofmp $p |- ps $=
-      ( df-lofencl df-lofvoid lofintr lofbeq loftrans df-lofjuxt lofrep lofelim
+      ( df-lofencl df-lofvoid lofintr lofbeq loftran df-lofjuxt lofrep lofelim
       lofc1 ) BAEZFFBFEZNOEFAOACGHFMINBJDGKL $.
   $}
 
@@ -1026,7 +1025,7 @@ $)
   $( A hybrid theorem.  Enclosing the negation of a proposition is equivalent
      to the proposition.  (Contributed by Naip Moro, 28-Feb-2017.) $)
   lofne $p |- [ -. ph ] = ph $=
-    ( wn df-lofencl df-lofneg lofbeq lofc1 loftrans ) ABZCACZCAHIADEAFG $.
+    ( wn df-lofencl df-lofneg lofbeq lofc1 loftran ) ABZCACZCAHIADEAFG $.
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1057,9 +1056,9 @@ $)
   $( LoF version of set.mm's ~ pm2.18.  Law of Clavius.  (Contributed by Naip
      Moro, 14-Feb-2017.) $)
   lofclav $p |- ( ( -. ph -> ph ) -> ph ) $=
-    ( wn wi df-lofencl df-lofjuxt df-lofneg df-lofimp lofrepbxs lofc2x loftrans
-    df-lofvoid lofc1x lofreps lofc2e lofelim ) ABZACZACZRADZAEKDPSKARAFRPDZAEZD
-    AEZPAEZQUAKKKARPAGQAGHUBTDAEUCTAKKKKIPKALJJMAKKKNJO $.
+    ( wn df-lofencl df-lofjuxt df-lofvoid df-lofneg df-lofimp lofrepbxs loftran
+    wi lofc2x lofc1x lofreps lofc2e lofelim ) ABZAJZAJZRACZADECPSEARAFRPCZADZCA
+    DZPADZQUAEEEARPAGQAGHUBTCADUCTAEEEEKPEALIIMAEEENIO $.
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1074,25 +1073,25 @@ $)
   $( Proving set.mm's axiom ~ ax-1 as a theorem.  (Contributed by Naip Moro,
      14-Feb-2017.) $)
   ax-1 $p |- ( ph -> ( ps -> ph ) ) $=
-    ( wi df-lofencl df-lofjuxt df-lofvoid df-lofimp lofsubr loftrans lofelim
-    lofc2e ) ABACZCZMADZBDZEAEZFDMNLEPALGLOAENBAGHIAFOFKIJ $.
+    ( df-lofencl df-lofjuxt df-lofvoid df-lofimp lofsubr loftran lofc2e lofelim
+    wi ) ABAKZKZMACZBCZDADZECMNLDPALFLOADNBAFGHAEOEIHJ $.
 
   $( Proving set.mm's axiom ~ ax-2 as a theorem.  (Contributed by Naip Moro,
      14-Feb-2017.) $)
   ax-2 $p |- ( ( ph -> ( ps -> ch ) ) -> ( ( ph -> ps ) -> ( ph -> ch ) ) ) $=
-    ( df-lofencl df-lofjuxt df-lofimp lofreps lofrepbxs lofc2x loftrans lofcmmx
-    wi df-lofvoid lofc2e lofelim ) ABCLZLZABLZACLZLZLZUAADZBDZECEZDZUBEUCECEZMD
-    UAUEUCEUBECEZUFUAUEUBBEZDZEUBECEUGPUCCEUBMMUIUBECEZUABCFQUBPEMMMUJUAAPFRUHM
-    MQDZUBCEZUAABFSULUKRDZEMUAACFTUMSEUKMUARSFQTFGGHHHMUBUEBMCIJUCUBUEMCKJUDMMM
-    NJO $.
+    ( df-lofencl df-lofjuxt df-lofvoid df-lofimp lofreps lofc2x loftran lofcmmx
+    wi lofrepbxs lofc2e lofelim ) ABCLZLZABLZACLZLZLZUAADZBDZECEZDZUBEUCECEZFDU
+    AUEUCEUBECEZUFUAUEUBBEZDZEUBECEUGPUCCEUBFFUIUBECEZUABCGQUBPEFFFUJUAAPGRUHFF
+    QDZUBCEZUAABGSULUKRDZEFUAACGTUMSEUKFUARSGQTGHHMMMFUBUEBFCIJUCUBUEFCKJUDFFFN
+    JO $.
 
   $( Proving set.mm's axiom ~ ax-3 as a theorem.  (Contributed by Naip Moro,
      14-Feb-2017.) $)
   ax-3 $p |- ( ( -. ph -> -. ps ) -> ( ps -> ph ) ) $=
     ( wn wi df-lofencl df-lofjuxt df-lofvoid df-lofneg lofbeq df-lofimp lofreps
-    lofrepbxs lofc2x loftrans lofc1bx lofc2e lofelim ) ACZBCZDZBADZDZUBAEZBEZFA
-    FZGEUBUCEZEUDFAFZUEUBUFUDFEUDFAFUGSUDUFGGUDAFZUBBHREZUFGSGUHUBRUCAHITUISFGG
-    GUHUBRSJUAUHTEGUBBAJTUAJKLLLUFUDGGGAMNAGGGUHONAGUDGPNQ $.
+    lofrepbxs lofc2x loftran lofc1bx lofc2e lofelim ) ACZBCZDZBADZDZUBAEZBEZFAF
+    ZGEUBUCEZEUDFAFZUEUBUFUDFEUDFAFUGSUDUFGGUDAFZUBBHREZUFGSGUHUBRUCAHITUISFGGG
+    UHUBRSJUAUHTEGUBBAJTUAJKLLLUFUDGGGAMNAGGGUHONAGUDGPNQ $.
 
   ${
     $( Minor premise for modus ponens. $)
@@ -1171,18 +1170,18 @@ $)
     $( Infer an implication from an equality.  (Contributed by Naip Moro,
        28-Feb-2017.) $)
     lofeqi $p |- ( ph -> ps ) $=
-      ( df-lofencl df-lofjuxt df-lofvoid lofbeq lofsub lofc2e lofelim df-lofimp
-      wi loftrans lofsym ax-lofqny ) ADZBEZABLZQQBDZBEFDPSBABCGHBFFFIMJRQABKNO
+      ( df-lofencl df-lofjuxt df-lofvoid lofbeq lofsub lofc2e loftran df-lofimp
+      wi lofelim lofsym ax-lofqny ) ADZBEZABLZQQBDZBEFDPSBABCGHBFFFIJMRQABKNO
       $.
   $}
 
   $( Relating the biconditional connective to primitive connectives, proved
      directly from LoF. (Contributed by Naip Moro, 25-Feb-2017.) $)
   lofbi1 $p |- ( ph <-> ps ) = -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) $=
-    ( wb df-lofencl df-lofjuxt wi lofbii df-lofneg df-lofvoid lofsubb1 loftrans
-    wn df-lofimp lofsubbd1 lofeuc ) ABCADBEZDZBDAEZDEDZABFZBAFZLZFZLZABGUDQUADZ
-    EDZSUDTDZUEEDZUFUDUGUBEZDZUHUDUCDUJUCHUCUIIIIITUBMJKUBUEUGIIIUAHJKTPIIIUEII
-    ABMNKUARIIQIIIBAMNKO $.
+    ( wb df-lofencl df-lofjuxt wi lofbii df-lofneg df-lofvoid df-lofimp loftran
+    wn lofsubb1 lofsubbd1 lofeuc ) ABCADBEZDZBDAEZDEDZABFZBAFZLZFZLZABGUDQUADZE
+    DZSUDTDZUEEDZUFUDUGUBEZDZUHUDUCDUJUCHUCUIIIIITUBJMKUBUEUGIIIUAHMKTPIIIUEIIA
+    BJNKUARIIQIIIBAJNKO $.
 
   $( The reverse of ~ lofbi1 .  (Contributed by Naip Moro, 26-Feb-2017.) $)
   lofbi1r $p |- -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) = ( ph <-> ps ) $=
@@ -1197,27 +1196,27 @@ $)
      (Contributed by Naip Moro, 24-Feb-2017.) $)
   biimp $p |- ( ( ph <-> ps ) -> ( ph -> ps ) ) $=
     ( wb wi df-lofencl df-lofjuxt df-lofvoid lofj1rx df-lofbi df-lofimp lofreps
-    lofrepbxs lofj2rx loftrans lofc1x lofc2e lofelim ) ABCZABDZDZTAEZBEFZUAFZBF
-    ZGETUCEZEBFUDABFZUAFEZGUEGGBTAGBGGGHTUBEUFEFZEUAFBFUEUGFEBFRUHGGGUABFZTABIS
-    UIREGTABJRSJKLUBUFUAGGBMNLUCGBONBUAUAGPNQ $.
+    lofrepbxs lofj2rx loftran lofc1x lofc2e lofelim ) ABCZABDZDZTAEZBEFZUAFZBFZ
+    GETUCEZEBFUDABFZUAFEZGUEGGBTAGBGGGHTUBEUFEFZEUAFBFUEUGFEBFRUHGGGUABFZTABISU
+    IREGTABJRSJKLUBUFUAGGBMNLUCGBONBUAUAGPNQ $.
 
   $( Property of the biconditional connective proved directly from LoF.
      (Contributed by Naip Moro, 24-Feb-2017.) $)
   impbi $p |- ( ( ph -> ps ) -> ( ( ps -> ph ) -> ( ph <-> ps ) ) ) $=
-    ( wi wb df-lofencl df-lofjuxt df-lofvoid lofsubr loftrans df-lofbi lofsubb1
-    df-lofimp lofc6rx lofc2rx lofcmm lofc2e lofelim ) ABCZBACZABDZCZCZUBBEZAFZE
-    ZUCFZAFZGEUBAUEFZUCFZUGUBUHABFEZFZUIUBAEZBFZEZUEFULUCFEUJFZFZUKUBUNSEZFUOFZ
-    UPUBREZUQFZUOFZURUBUTTFZVAUBUSUAFVBRUALUAUQTFUSSTLHITUOUTABJHIRUMGGGUQUOFAB
-    LKISUDGGUNUOBALKIABGUEUJMIGAGUEBGNIAUFOIUDGGGPIQ $.
+    ( wi wb df-lofencl df-lofjuxt df-lofvoid df-lofimp lofsubr loftran df-lofbi
+    lofsubb1 lofc6rx lofc2rx lofcmm lofc2e lofelim ) ABCZBACZABDZCZCZUBBEZAFZEZ
+    UCFZAFZGEUBAUEFZUCFZUGUBUHABFEZFZUIUBAEZBFZEZUEFULUCFEUJFZFZUKUBUNSEZFUOFZU
+    PUBREZUQFZUOFZURUBUTTFZVAUBUSUAFVBRUAHUAUQTFUSSTHIJTUOUTABKIJRUMGGGUQUOFABH
+    LJSUDGGUNUOBAHLJABGUEUJMJGAGUEBGNJAUFOJUDGGGPJQ $.
 
   $( The biconditional definition proved as a theorem directly from LoF.
      (Contributed by Naip Moro, 28-Feb-2017.) $)
   df-bi $p |- -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
         -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) ) $=
     ( wb df-lofencl df-lofjuxt df-lofvoid lofbi1r ax-lofj1 df-lofimp lofrepbdxs
-    wi wn lofni lofrepbxs lofne loftrans lofc2e lofelim ) ABCZABKBAKLKLZKZTSKZL
-    ZKLZUDSDZSEZFDTSFFFSUDABGZUDUBTDSEUDUCDUBUFDFFUCFFUDSHTSUEFFUCFFUDUGUAUETEF
-    FFUCFFUDSTIUAUCMJJNUBOPTSIPNSFFFQPR $.
+    wi wn lofni lofrepbxs lofne loftran lofc2e lofelim ) ABCZABKBAKLKLZKZTSKZLZ
+    KLZUDSDZSEZFDTSFFFSUDABGZUDUBTDSEUDUCDUBUFDFFUCFFUDSHTSUEFFUCFFUDUGUAUETEFF
+    FUCFFUDSTIUAUCMJJNUBOPTSIPNSFFFQPR $.
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1275,7 +1274,7 @@ $(
      </ol></HTML>
      (Contributed by Naip Moro, 11-Mar-2017.) @)
   lofnono $p |- ph = ph ps $=
-    ( lofeqwff df-lofjuxt df-lofvoid df-lofencl lofintr lofsub loftrans lofelim
+    ( lofeqwff df-lofjuxt df-lofvoid df-lofencl lofintr lofsub loftran lofelim
     lofid lofc3 ) AACZBDZNEFZBDOMOBMAKGHBLIJ $.
 
   @( Derive a contradiction:  We prove false is equal to true by substituting
