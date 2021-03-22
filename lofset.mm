@@ -957,31 +957,23 @@ $(
   consistent with our interpretation of ` [ ] ` as true and the void as false,
   and determining the interpretation of the other logical constants:
 
-  <HTML><br></HTML>
+  ` -. ph = [ ph ] `
+  ` ( ph -> ps ) = [ ph ] ps `
+  ` ( ph \/ ps ) = ph ps `
+  ` ( ph /\ ps ) = [ [ ph ] [ ps ] ] `
+  ` ( ph <-> ps ) = [ [ ph ] [ ps ] ] [ ph ps ] `
 
-  <HTML><ul>
-  <li> ` -. ph = [ ph ] ` .</li>
-  <li> ` ( ph -> ps ) = [ ph ] ps ` .</li>
-  <li> ` ( ph \/ ps ) = ph ps ` .</li>
-  <li> ` ( ph /\ ps ) = [ [ ph ] [ ps ] ] ` .</li>
-  <li> ` ( ph <-> ps ) = [ [ ph ] [ ps ] ] [ ph ps ] ` .</li>
-  </ul></HTML>
+  (NOTE:  LoF is "self-dual", viz. if we interpret ` [ ] ` as false and the
+  void as true, the theorems of LoF remain valid but carry different meanings:
 
-  (NOTE:  LoF is "self-dual".  If we interpret ` [ ] ` as false and the void as
-  true, the theorems of LoF remain valid but carry different meanings:
+  ` -. ph = [ ph ] `
+  ` ( ph -> ps ) = [ ph [ ps ] ] `
+  ` ( ph \/ ps ) = [ [ ph ] [ ps ] ] `
+  ` ( ph /\ ps ) = ph ps `
+  ` ( ph <-> ps ) = [ [ [ ph ] [ ps ] ] [ ph ps ] ] `
 
-  <HTML><br></HTML>
-
-  <HTML><ul>
-  <li> ` -. ph = [ ph ] ` .</li>
-  <li> ` ( ph -> ps ) = [ ph [ ps ] ] ` .</li>
-  <li> ` ( ph \/ ps ) = [ [ ph ] [ ps ] ] ` .</li>
-  <li> ` ( ph /\ ps ) = ph ps ` .</li>
-  <li> ` ( ph <-> ps ) = [ [ [ ph ] [ ps ] ] [ ph ps ] ] ` .</li>
-  </ul></HTML>
-
-  This is C. S. Peirce's remarkable "alpha" system from his existential graphs,
-  the first modern instance of a boundary algebra.)
+  This is C. S. Peirce's "alpha" system from his existential graphs, the first
+  modern instance of a boundary algebra.)
 
   Constructing hybrid wffs like ` [ -. ph ] ` that lack meaning in either LoF
   or propositional logic becomes not merely possible but necessary in the
