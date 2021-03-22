@@ -1174,6 +1174,15 @@ $)
   lofbi1r $p |- -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) = ( ph <-> ps ) $=
     ( wb wi wn lofbi1 lofsym ) ABCABDBADEDEABFG $.
 
+  $( The biconditional definition proved as a theorem directly from LoF.
+     (Contributed by Naip Moro, 28-Feb-2017.) $)
+  df-bi $p |- -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
+        -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) ) $=
+    ( wb df-lofencl df-lofjuxt df-lofvoid lofbi1r ax-lofj1 df-lofimp lofrepbdxs
+    wi wn lofni lofrepbxs lofne loftran lofc2e lofelim ) ABCZABKBAKLKLZKZTSKZLZ
+    KLZUDSDZSEZFDTSFFFSUDABGZUDUBTDSEUDUCDUBUFDFFUCFFUDSHTSUEFFUCFFUDUGUAUETEFF
+    FUCFFUDSTIUAUCMJJNUBOPTSIPNSFFFQPR $.
+
   $( Relating the biconditional connective to primitive connectives, proved
      directly from LoF. (Contributed by Naip Moro, 4-Mar-2017.) $)
   dfbi1 $p |- ( ( ph <-> ps ) <-> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) ) $=
@@ -1195,15 +1204,6 @@ $)
     UCFZAFZGEUBAUEFZUCFZUGUBUHABFEZFZUIUBAEZBFZEZUEFULUCFEUJFZFZUKUBUNSEZFUOFZU
     PUBREZUQFZUOFZURUBUTTFZVAUBUSUAFVBRUAHUAUQTFUSSTHIJTUOUTABKIJRUMGGGUQUOFABH
     LJSUDGGUNUOBAHLJABGUEUJMJGAGUEBGNJAUFOJUDGGGPJQ $.
-
-  $( The biconditional definition proved as a theorem directly from LoF.
-     (Contributed by Naip Moro, 28-Feb-2017.) $)
-  df-bi $p |- -. ( ( ( ph <-> ps ) -> -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) )
-        -> -. ( -. ( ( ph -> ps ) -> -. ( ps -> ph ) ) -> ( ph <-> ps ) ) ) $=
-    ( wb df-lofencl df-lofjuxt df-lofvoid lofbi1r ax-lofj1 df-lofimp lofrepbdxs
-    wi wn lofni lofrepbxs lofne loftran lofc2e lofelim ) ABCZABKBAKLKLZKZTSKZLZ
-    KLZUDSDZSEZFDTSFFFSUDABGZUDUBTDSEUDUCDUBUFDFFUCFFUDSHTSUEFFUCFFUDUGUAUETEFF
-    FUCFFUDSTIUAUCMJJNUBOPTSIPNSFFFQPR $.
 
 $(
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
