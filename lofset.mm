@@ -1021,24 +1021,14 @@ $(
 
   Going forward, we can prove all the true statements of propositional logic
   (axioms and theorems) entirely in LoF and translate the results back into
-  propositional form.  Below is an example where I prove Principia
+  propositional form.  Below is an example where we prove Principia
   Mathematica's "proof by contradiction" theorem known as the Law of Clavius
   [WhiteheadRussell] p. 103.
 
   From the point of view of LoF, the Law of Clavius, like most theorems of
-  propositional logic, is a trivial truth undeserving of the label "theorem".
-  It would be as though someone claimed that "3x - 2x = x" was a "theorem" of
-  numerical algebra.  Technically, yes ...
-
-  It is not far-fetched to believe that one day LoF will supplant the
-  propositional calculus, in the same way that brute algebraic computations
-  (mostly) supplanted elegant geometric reasoning, and for much the same
-  reasons.  But not in the manner shown here.  If you examine the proof below,
-  you will appreciate the overhead involved in translating back and forth
-  between the two systems.  Until predicate logic itself is replaced by a
-  superior boundary formalism, and a single logic is deployed, one should not
-  expect much movement on the part of logicians.
-$)
+  propositional logic, is derived by a trivial calculation.  Despite that, the
+  overhead involved in translating between the two systems precludes this from
+  being more than a theoretical recourse. $)
 
   $( LoF version of set.mm's ~ pm2.18.  Law of Clavius.  (Contributed by Naip
      Moro, 14-Feb-2017.) $)
