@@ -1,5 +1,5 @@
 $(
-  lof.mm    version 0.1.1    Copyright (C) 2015 naipmoro
+  lof.mm    version 0.1.2    Copyright (C) 2015 naipmoro
   This file is made available under the MIT License:
   http://opensource.org/licenses/MIT
 
@@ -334,10 +334,10 @@ $)
   One of the goals of lof.mm was to establish different bases (initial
   axioms) for the algebra. To do this in one file, I need a way to reference
   the same theorems in the different bases. Retaining Spencer-Brown's original
-  numbering scheme for cross-referencing, I label the theorems as ck.n (jk.n),
-  where ck (jk) refers to LoF's Ck (Jk) and n refers to the basis under
-  consideration. In other words, ck.n = ck.m  (jk.n = jk.m) for all n, m.
-  LoF's system is n = 0.
+  numbering scheme for cross-referencing, I label the theorems as ck.n
+  (or jk.n), where ck (jk) refers to LoF's Ck (Jk) and n refers to the basis
+  under consideration. In other words, ck.n = ck.m  (jk.n = jk.m) for
+  all n, m. LoF's system is n = 0.
 
   ==========================================================================
 
@@ -597,15 +597,16 @@ $( =======================================================================
 
   Associativity of logical connectives
 
-  Since LoF lacks the concept of associativity, proving that a model
-  of LoF has associative connectives may involve meta-reasoning. For
-  example, the proof of (p V q) V r = p V (q V r) corresponds to the
-  equation p q r = p q r, which is easy to prove in LoF! Under the dual
-  interpretation this also proves the associativity of conjunction, but
-  here I will prove that more directly. Since p & q corresponds to
-  ((p)(q)), we need to show that ((((p)(q))) (r)) = ((p) (((q)(r)))).
-  Consider the left side of that equation -- it evaluates to ((p)(q)(r)),
-  a form symmetric in the three variables: $)
+  Although LoF lacks the concept of associativity, proving that a model
+  of LoF has associative connectives is straightforward. For example, the
+  proof of (p V q) V r = p V (q V r) corresponds to proving the LoF
+  equation p q r = p q r, which follows immediately from theorems 'quad'
+  or 'ins'. Under the dual interpretation this also proves the associativity
+  of conjunction, but we can  prove the latter more directly. Since p & q
+  corresponds to ((p)(q)), we need to show that
+  ((((p)(q))) (r)) = ((p) (((q)(r)))). Consider the left side of that
+  equation -- it evaluates to ((p)(q)(r)), a form symmetric in the three
+  variables: $)
 
   conj3  $p |- ( ( ( ( p ) ( q ) ) ) ( r ) ) = ( ( p ) ( q ) ( r ) ) $=
     ( encl juxt void c1.0 subb1 ) ADBDEZDDIFCDFFIGH $.
@@ -614,9 +615,8 @@ $( =======================================================================
   $( This shows that a permutation of variables in the LHS leaves the
   result unchanged. Specifically, ((((q)(r))) (p)), which is equal to
   ((p) (((q)(r)))) by commutation, will evaluate to the same form as
-  ((((p)(q))) (r)). This completes the proof. I call this meta-reasoning
-  because we're using an undefined, intuitive notion of symmetry. Below
-  is the full-length formal proof. $)
+  ((((p)(q))) (r)). This completes the proof. Below is the full-length
+  formal proof. $)
 
   $( Associativity of conjunction $)
   conj-assc $p |- ( ( ( ( p ) ( q ) ) ) ( r ) ) = ( ( p ) ( ( ( q ) ( r ) ) ) )
@@ -651,7 +651,8 @@ $( =======================================================================
   $( Let A = p<->q = ((p)(q)) (p q) and
          B = q<->r = ((q)(r)) (q r).
   Proving that the biconditional associates amounts to proving:
-      ((A)(r)) (A r) = ((p)(B)) (p B), i.e.,
+      ((A)(r)) (A r) = ((p)(B)) (p B),
+  in other words,
       ((((p)(q)) (p q))(r)) (((p)(q)) (p q) r) =
       ((p)(((q)(r)) (q r))) (p ((q)(r)) (q r)).
   Consider the left side of that equation -- as in the case of conjunction,
