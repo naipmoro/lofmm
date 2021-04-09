@@ -1,7 +1,7 @@
 $(
-  lof.mm    version 0.1.2    Copyright (C) 2015 naipmoro
-  This file is made available under the MIT License:
-  http://opensource.org/licenses/MIT
+  lof.mm    version 0.1.2    2015-2021 Naip Moro
+  This file is released into the public domain under the CC0 License:
+  https://creativecommons.org/publicdomain/zero/1.0/
 
   lof.mm presents metamath derivations of the Primary Algebra from
   Spencer-Brown, G. (1969) Laws of Form (Allen & Unwin, London),

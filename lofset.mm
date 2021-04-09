@@ -1,11 +1,10 @@
 $( lofset.mm - Version of 17-March-2021 $)
 
 $(
-  Version 0.3.0
-  Copyright (C) 2015-2021 Naip Moro
+  Version 0.3.0    2015-2021 Naip Moro
 
-  This file is made available under the MIT License:
-  http://opensource.org/licenses/MIT
+  This file is released into the public domain under the CC0 License:
+  https://creativecommons.org/publicdomain/zero/1.0/
 
   This file contains verbatim excerpts from set.mm
   (found at ~ https://github.com/metamath/set.mm/blob/master/set.mm ) which
